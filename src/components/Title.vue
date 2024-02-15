@@ -3,42 +3,43 @@ defineProps({
   msg: {
     type: String,
     required: true
+  },
+  subMsg: { // Optional subheading message
+    type: String,
+    default: ''
   }
-})
+});
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      A
-      <a href="https://github.com/Creators-of-Create/Create" target="_blank" rel="noopener">Create mod</a>
-      server
-    </h3>
+  <div class="header">
+    <h1>{{ msg }}</h1>
+    <h2 v-if="subMsg" class="sub-header">{{ subMsg }}</h2>
   </div>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
+.header h1 {
+  font-weight: 600; /* Slightly bolder */
+  font-size: 2.4rem; /* Adjusted for header use */
+  margin-bottom: 0.5rem; /* Space between title and subheading */
 }
 
-h3 {
-  font-size: 1.2rem;
+.sub-header {
+  font-weight: 400;
+  font-size: 1.4rem; /* Subheading size */
+  color: #666; /* Subdued color for subheading */
 }
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
+.header h1,
+.sub-header {
+  text-align: center; /* Ensures text is always centered */
 }
 
 @media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
+  .header,
+  .sub-header {
+    text-align: center; /* Keep text centered on larger screens */
   }
 }
 </style>

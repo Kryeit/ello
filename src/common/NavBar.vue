@@ -27,7 +27,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 
@@ -43,7 +42,7 @@ defineProps({
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;

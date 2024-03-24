@@ -1,11 +1,10 @@
 <template>
-  <div id="app">
-    <img :class="{ 'toggle-btn': true, rotated: isRotated }" @click="toggleNav" src="/icon.png" alt="Menu" />
-    <NavBar :showNav="isNavVisible" />
-  </div>
-  <div id="banner">
-    <img alt="Kryeit banner" src="https://kryeit.com/images/banner.png" :style="bannerStyle" />
-  </div>
+  <img :class="{ 'toggle-btn': true, rotated: isRotated }" @click="toggleNav" src="/icon.png" alt="Menu"/>
+  <NavBar :showNav="isNavVisible"/>
+
+  <router-view>
+
+  </router-view>
 </template>
 
 <script setup>
@@ -19,24 +18,9 @@ function toggleNav() {
   isNavVisible.value = !isNavVisible.value;
   isRotated.value = !isRotated.value;
 }
-
-const bannerStyle = ref({
-  position: 'absolute',
-  top: '10%',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '50vw', // 50% of viewport width
-  height: 'auto' // auto adjust the height to maintain aspect ratio
-});
 </script>
 
-<style>
-#app {
-  text-align: center;
-  height: 100vh;
-  position: relative;
-}
-
+<style scoped>
 .toggle-btn {
   position: fixed;
   top: 50%;

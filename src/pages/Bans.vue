@@ -12,6 +12,7 @@ fetch("/api/bans").then(res => res.json()).then(data => {
 
 <template>
   <div class="wrapper">
+    <h1>Banned players</h1>
     <div class="ban" v-for="ban in bans">
       <h1>{{ ban.playerName }}</h1>
       <h2><strong>Banned on:</strong> {{ formatDate(ban.creationDate) }}</h2>
@@ -41,6 +42,11 @@ fetch("/api/bans").then(res => res.json()).then(data => {
 
 .ban h1 {
   color: var(--vt-c-white-mute);
-  font-weight: bold;
+  font-size: 25px;
+}
+
+h1 {
+  font-size: 40px;
+  color: var(--vt-c-white-mute);
 }
 </style>

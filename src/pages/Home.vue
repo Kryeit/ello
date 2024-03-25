@@ -4,7 +4,7 @@
 
 <template>
   <div class="banner">
-    <img alt="Kryeit banner" src="https://kryeit.com/images/banner.png"/>
+    <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
   <h1>This is text. I really like this text. </h1>
   <h2>This is smaller text. I love text.</h2>

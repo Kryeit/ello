@@ -1,26 +1,35 @@
 <script setup>
 import {ref} from "vue";
 import {formatDate, ordinal} from "@/utils.js";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 const {playerName} = defineProps(["player-name"]);
 
 const data = ref();
+const error = ref(false);
 
-fetch(`/api/players/${playerName}`).then(res => res.json()).then(json => {
-  data.value = json;
-});
+fetch(`/api/players/${playerName}`).then(res => res.json())
+    .catch(() => error.value = true)
+    .then(json => {
+      data.value = json;
+    })
 </script>
 
 <template>
-  <div v-if="data" class="wrapper">
-    <div class="data-wrapper">
+  <div class="wrapper">
+    <div v-if="error">
+      <h1 class="error">Not found</h1>
+    </div>
+    <div v-else-if="data" class="data-wrapper">
       <h1>{{ playerName }}</h1>
 
       <h2>Status:</h2>
       <div class="info-wrapper">
         <div class="status-wrapper">
-          <div class="status" :style="{background: data.online && !data.banStatus ? 'green' : 'red'}"></div>
-          <h3 v-if="data.banStatus">Banned <router-link to="/bans">All bans...</router-link></h3>
+          <div class="status" :style="{background: data.online && !data.banStatus ? 'var(--green)' : 'var(--red)'}"></div>
+          <h3 v-if="data.banStatus">Banned
+            <router-link to="/bans">All bans...</router-link>
+          </h3>
           <h3 v-else>{{ data.online ? "Online" : "Offline" }}</h3>
         </div>
         <h3 v-if="!data.online">Last Seen: {{ formatDate(data.lastSeen) }}
@@ -31,7 +40,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json()).then(json => {
       <h2>Playtime</h2>
       <div class="info-wrapper">
         <h3 class="info">
-          {{ Math.floor(data.playtime / 3600) }} hours ({{ data.rank }}{{ ordinal(data.rank) }} place)
+          {{ Math.floor(data.playtime / 3600) }} hours ({{ ordinal(data.rank) }} place)
         </h3>
       </div>
 
@@ -42,7 +51,8 @@ fetch(`/api/players/${playerName}`).then(res => res.json()).then(json => {
         </div>
       </div>
     </div>
-    <img :src="`/api/players/${playerName}/skin`" alt="PFP"/>
+    <LoadingSpinner v-else></LoadingSpinner>
+    <img :hidden="!data" :src="`/api/players/${playerName}/skin`" alt=""/>
   </div>
 </template>
 
@@ -66,6 +76,7 @@ h1 {
   padding: 10px;
   border-radius: 10px;
   max-width: 600px;
+  min-height: 150px;
 }
 
 .status {
@@ -99,6 +110,10 @@ a {
   color: cornflowerblue;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.error {
+  color: var(--red);
 }
 
 @media screen and (min-width: 500px) {

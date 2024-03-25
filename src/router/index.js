@@ -3,11 +3,13 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Playerinfo from "@/pages/playerInfo/Playerinfo.vue";
 import Home from "@/pages/Home.vue";
 import Bans from "@/pages/Bans.vue";
+import Leaderboard from "@/pages/leaderboard/Leaderboard.vue";
 
 const routes = [
-    {path: '/', component: Home}, // Home route
+    {path: '/', component: Home},
     {path: '/bans', component: Bans},
-    {path: "/player/:playerName", component: Playerinfo}// Your new route
+    {path: "/players/:playerName?", component: Playerinfo},
+    {path: "/leaderboard", component: Leaderboard}
 ]
 
 const router = createRouter({

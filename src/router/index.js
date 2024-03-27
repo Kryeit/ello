@@ -1,15 +1,16 @@
-// src/router/index.js
+// src/router/index.javascript
 import {createRouter, createWebHistory} from 'vue-router'
 import Playerinfo from "@/pages/playerInfo/Playerinfo.vue";
 import Home from "@/pages/Home.vue";
 import Bans from "@/pages/Bans.vue";
 import Leaderboard from "@/pages/leaderboard/Leaderboard.vue";
+import Profile from "@/pages/Profile.vue";
 
 const routes = [
     {path: '/', component: Home},
     {path: '/bans', component: Bans},
-    {path: "/players/:playerName?", component: Playerinfo},
-    {path: "/leaderboard", component: Leaderboard}
+    {path: "/@:playerName", component: Playerinfo},
+    {path: "/leaderboard", component: Leaderboard},
 ]
 
 const router = createRouter({

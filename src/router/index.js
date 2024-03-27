@@ -4,7 +4,6 @@ import Playerinfo from "@/pages/playerInfo/Playerinfo.vue";
 import Home from "@/pages/Home.vue";
 import Bans from "@/pages/Bans.vue";
 import Leaderboard from "@/pages/leaderboard/Leaderboard.vue";
-import Profile from "@/pages/Profile.vue";
 
 const routes = [
     {path: '/', component: Home},

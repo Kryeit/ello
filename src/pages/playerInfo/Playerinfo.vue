@@ -3,6 +3,7 @@ import {useRoute, useRouter} from "vue-router";
 import InfoHolder from "@/pages/playerInfo/InfoHolder.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import {ref} from "vue";
+import {createBabylonInstance} from "@/javascript/babylon-render.js"
 
 const route = useRoute();
 const router = useRouter();
@@ -10,7 +11,7 @@ const playerName = ref(route.params.playerName);
 
 function showInfo(newName) {
   playerName.value = newName;
-  router.push("/players/" + newName);
+  router.push("/@" + newName);
 }
 
 async function search(query) {
@@ -22,13 +23,16 @@ async function search(query) {
     return await response.json();
   }
 }
+
 </script>
 
 <template>
-  <h1>Playerinfo</h1>
+  <h1>{{playerName}}</h1>
+  <h2>Information</h2>
   <Searchbar class="searchbar" :search-fn="search" @result-selected="showInfo"></Searchbar>
 
   <InfoHolder v-if="playerName" :key="playerName" :player-name="playerName"></InfoHolder>
+
 </template>
 
 <style scoped>

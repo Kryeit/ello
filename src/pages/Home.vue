@@ -79,10 +79,10 @@ const images = [
 
   <Slideshow :images="images"></Slideshow>
 
-  <!--  <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="YouTube video player"-->
-  <!--          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
-  <!--          allowfullscreen="">-->
-  <!--  </iframe>-->
+    <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen="">
+    </iframe>
 </template>
 
 <style scoped>

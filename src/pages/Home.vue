@@ -69,20 +69,18 @@ const images = [
   <div class="banner">
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
-  <h2>
-    Kryeit is a PvE survival Minecraft server focused on the Create mod. We strive for a friendly environment
-    so that everyone can enjoy their time on the server. There is a claim system and a nerfed teleport
-    experience to make travelling easier. The server has a focus on technical minecraft, due to the nature of
-    the Create mod, although all play styles are welcome. The most used form of communication is our Discord
-    server!
-  </h2>
+  <h1>
+    A Create mod server
+  </h1>
 
   <Slideshow :images="images"></Slideshow>
 
-  <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="YouTube video player"
+  <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="Kryeit trailer"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen="">
   </iframe>
+
+  <hr>
 
   <h2>
     NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
@@ -92,8 +90,13 @@ const images = [
 <style scoped>
 .banner img {
   width: calc(100vw - 30px);
-  max-width: 1200px;
+  max-width: 800px;
   height: auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 h2 {
@@ -111,8 +114,9 @@ h2 {
 
 iframe {
   border: none;
-  width: 100%;
+  width: 50%;
   aspect-ratio: 16/9;
-  margin-top: 30px;
+  display: block;
+  margin: 30px auto;
 }
 </style>

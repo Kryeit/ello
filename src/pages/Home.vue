@@ -69,20 +69,24 @@ const images = [
   <div class="banner">
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
-  <h1>This is text. I really like this text. </h1>
-  <h2>This is smaller text. I love text.</h2>
-  <h2>Kryeit is a PvE survival Minecraft server focused on the Create mod. We strive for a friendly environment
+  <h2>
+    Kryeit is a PvE survival Minecraft server focused on the Create mod. We strive for a friendly environment
     so that everyone can enjoy their time on the server. There is a claim system and a nerfed teleport
     experience to make travelling easier. The server has a focus on technical minecraft, due to the nature of
     the Create mod, although all play styles are welcome. The most used form of communication is our Discord
-    server!</h2>
+    server!
+  </h2>
 
   <Slideshow :images="images"></Slideshow>
 
-    <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen="">
-    </iframe>
+  <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen="">
+  </iframe>
+
+  <h2>
+    NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+  </h2>
 </template>
 
 <style scoped>
@@ -90,6 +94,11 @@ const images = [
   width: calc(100vw - 30px);
   max-width: 1200px;
   height: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .banner {
@@ -104,5 +113,6 @@ iframe {
   border: none;
   width: 100%;
   aspect-ratio: 16/9;
+  margin-top: 30px;
 }
 </style>

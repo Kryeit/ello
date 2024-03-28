@@ -33,6 +33,7 @@ fetch("/api/bans").then(res => res.json()).then(data => {
   border: 1px solid var(--vt-c-black-mute);
   margin-bottom: 10px;
   padding: 10px;
+  background: var(--vt-c-black-soft);
 }
 
 .ban h2 {

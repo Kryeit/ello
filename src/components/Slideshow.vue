@@ -17,7 +17,7 @@ function deltaImages(n) {
   currentImage.value = newValue;
 
   clearTimeout(currentTimeout);
-  // currentTimeout = setTimeout(() => deltaImages(1), 4500);
+  currentTimeout = setTimeout(() => deltaImages(1), 4500);
 }
 
 deltaImages(0);

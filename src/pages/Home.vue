@@ -114,9 +114,10 @@ h2 {
 
 iframe {
   border: none;
-  width: 50%;
+  width: 100%;
   aspect-ratio: 16/9;
   display: block;
   margin: 30px auto;
+  max-width: 800px;
 }
 </style>

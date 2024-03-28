@@ -30,7 +30,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>{{playerName}}</h1>
+  <h1>{{ playerName }}</h1>
   <h2>Information</h2>
   <Searchbar class="searchbar" :search-fn="search" @result-selected="showInfo"></Searchbar>
 

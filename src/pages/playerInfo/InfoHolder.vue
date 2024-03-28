@@ -52,7 +52,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
       </div>
     </div>
     <LoadingSpinner v-else></LoadingSpinner>
-    <img :hidden="!data" :src="`/api/players/${playerName}/skin`" alt=""/>
+    <img :hidden="!data" :src="`/api/players/${playerName}/head`" alt=""/>
   </div>
 </template>
 

@@ -1,11 +1,8 @@
 <script setup>
 import {computed, ref} from 'vue';
 import router from "@/router/index.js";
-import {useRoute} from "vue-router";
-import InfoHolder from "@/pages/playerInfo/InfoHolder.vue";
 import HoverButton from "@/common/components/HoverButton.vue";
 
-const route = useRoute();
 
 const playerName = ref('');
 const showList = ref(false);

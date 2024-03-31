@@ -17,10 +17,7 @@ defineProps({
       <header class="header-content">
         <div class="header-left">
           <Title msg="Menu" />
-        </div>
-
-        <div class="header-right">
-          <HoveredList />
+          <HoveredList class="hovered-list"/>
         </div>
       </header>
       <!-- Nav Sections -->
@@ -55,86 +52,28 @@ defineProps({
 
 
 .header-content {
-  font-family: 'Alkalami', serif;  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-family: 'Alkalami', serif;
+  display: grid;
+  place-items: center;
   width: 100%;
   padding: 1rem 5rem 1.5rem;
 }
 
 .header-left {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  flex-grow: 1
+  background-color: gray;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  position: relative;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-}
-
-.tw-btn {
-  padding: 0.5rem 1rem;
-  margin-left: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.tw-btn:hover {
-  background-color: #0056b3;
-}
-
-
-.additional-btn {
-  display: none;
-}
-
-.main-btn.active ~ .additional-btn {
-  display: inline-block;
-}
-
-.btn1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-100%, -50%);
-}
-
-.btn2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(0, -50%);
-}
-
-.btn3 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(100%, -50%);
-}
-
-.main-btn {
-  display: none;
-}
-
-.main-btn.active {
-  display: inline-block;
-}
-
-.button-list {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 0.5rem;
+.header-left::before {
+  content: "";
+  display: block;
+  width: 10%;
 }
 
 .button-list button {
@@ -152,7 +91,4 @@ defineProps({
 .button-list button:hover {
   background-color: #0056b3;
 }
-
-
-/* Style for NavSections.vue should ensure each section takes up one-third of the width */
 </style>

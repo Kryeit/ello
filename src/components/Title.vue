@@ -4,7 +4,7 @@ defineProps({
     type: String,
     required: true
   },
-  subMsg: { // Optional subheading message
+  subMsg: {
     type: String,
     default: ''
   }
@@ -19,27 +19,34 @@ defineProps({
 </template>
 
 <style scoped>
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .header h1 {
-  font-weight: 600; /* Slightly bolder */
-  font-size: 4rem; /* Adjusted for header use */
-  margin-bottom: 0.5rem; /* Space between title and subheading */
+  font-weight: 600;
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
 }
 
 .sub-header {
   font-weight: 400;
-  font-size: 1.4rem; /* Subheading size */
-  color: #666; /* Subdued color for subheading */
+  font-size: 1.4rem;
+  color: #666;
 }
 
 .header h1,
 .sub-header {
-  text-align: center; /* Ensures text is always centered */
+  text-align: center;
 }
 
 @media (min-width: 1024px) {
   .header,
   .sub-header {
-    text-align: center; /* Keep text centered on larger screens */
+    text-align: center;
   }
 }
 </style>

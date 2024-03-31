@@ -1,8 +1,16 @@
 <script setup>
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import router from "@/router/index.js";
+import {useRoute} from "vue-router";
+import InfoHolder from "@/pages/playerInfo/InfoHolder.vue";
+import HoverButton from "@/common/components/HoverButton.vue";
 
+const route = useRoute();
+
+const playerName = ref('');
 const showList = ref(false);
+
+const displayPlayerName = computed(() => playerName.value || "MuriPlz");
 
 function actionOne() {
   router.push('/leaderboard').then(() => location.reload());
@@ -19,7 +27,7 @@ function actionThree() {
 
 <template>
   <div @mouseleave="showList = false" style="position: relative;">
-    <button @mouseover="showList = true">Hover me</button>
+    <HoverButton @mouseover="showList = true" :player-name="displayPlayerName"></HoverButton>
     <div v-show="showList" class="button-list">
       <div>
         <button @click="actionOne">Leaderboard</button>

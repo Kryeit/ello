@@ -17,7 +17,7 @@ function actionOne() {
 }
 
 function actionTwo() {
-  router.push('/@Notch').then(() => location.reload());
+  router.push(`/@${displayPlayerName.value}`).then(() => location.reload());
 }
 
 function actionThree() {

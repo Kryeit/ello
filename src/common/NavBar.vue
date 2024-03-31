@@ -1,20 +1,13 @@
 <script setup>
-import {ref, defineProps, provide} from 'vue';
+import {ref, defineProps} from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
-
-const isVisible = ref(false);
-
-function toggleNavVisibility() {
-  isVisible.value = !isVisible.value;
-}
 
 defineProps({
   showNav: Boolean
 });
 
-provide('toggleNav', toggleNavVisibility);
 </script>
 
 

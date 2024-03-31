@@ -1,22 +1,19 @@
 <script setup>
-import {inject, ref} from 'vue';
-import { useStore } from 'vuex';
+import {ref} from 'vue';
 import router from "@/router/index.js";
 
 const showList = ref(false);
-const toggleNav = inject('toggleNav');
 
 function actionOne() {
-  router.push('/leaderboard');
-  toggleNav();
+  router.push('/leaderboard').then(() => location.reload());
 }
 
 function actionTwo() {
-  console.log("Action Two triggered");
+  router.push('/@Notch').then(() => location.reload());
 }
 
 function actionThree() {
-  console.log("Action Three triggered");
+  router.push('/bans').then(() => location.reload());
 }
 </script>
 
@@ -28,10 +25,10 @@ function actionThree() {
         <button @click="actionOne">Leaderboard</button>
       </div>
       <div>
-        <button @click="actionTwo">Action Two</button>
+        <button @click="actionTwo">Playerinfo</button>
       </div>
       <div>
-        <button @click="actionThree">Action Three</button>
+        <button @click="actionThree">Bans</button>
       </div>
     </div>
   </div>

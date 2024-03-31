@@ -11,10 +11,10 @@ export function createBabylonInstance(playerName, canvasId) {
     }
 
     function loadBabylonScript() {
-        var babylonScript = document.createElement('script');
+        const babylonScript = document.createElement('script');
         babylonScript.src = 'https://cdn.babylonjs.com/babylon.js';
         babylonScript.onload = function () {
-            var loadersScript = document.createElement('script');
+            const loadersScript = document.createElement('script');
             loadersScript.src = 'https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js';
             loadersScript.onload = function () {
                 startBabylonScript();
@@ -30,7 +30,7 @@ export function createBabylonInstance(playerName, canvasId) {
         const createScene = function () {
             const scene = new BABYLON.Scene(engine);
 
-            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI / 2, Math.PI / 3, 4, new BABYLON.Vector3(0, 1, 0), scene);
+            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI / 2, Math.PI / 3, 10, new BABYLON.Vector3(0, 3, 0), scene);
 
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 5, 0), scene);
             light.intensity = 0.7;
@@ -45,8 +45,10 @@ export function createBabylonInstance(playerName, canvasId) {
                     const material = new BABYLON.StandardMaterial("playerSkinMaterial", scene);
                     material.diffuseTexture = new BABYLON.Texture(skinTextureUrl, scene);
 
-                    const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 2 }, scene);
-                    sphere.material = material;
+                    BABYLON.SceneLoader.ImportMesh("", "/", "steve.stl", scene, function (meshes) {
+                        const mesh = meshes[0];
+                        mesh.material = material;
+                    });
                 })
                 .catch(error => {
                     console.error("Error fetching player skin:", error);

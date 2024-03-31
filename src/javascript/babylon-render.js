@@ -35,23 +35,21 @@ export function createBabylonInstance(playerName, canvasId) {
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 5, 0), scene);
             light.intensity = 0.7;
 
-            const skinUrl = `https://api.mojang.com/users/profiles/minecraft/${playerName}`;
+            const skinUrl = `/api/players/${playerName}/skin`;
 
-            fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(skinUrl)}`)
-                .then(response => response.json())
-                .then(data => {
-                    const uuid = data.id;
-                    const skinTextureUrl = `https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`;
+            fetch(skinUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    const skinTextureUrl = URL.createObjectURL(blob);
 
                     const material = new BABYLON.StandardMaterial("playerSkinMaterial", scene);
                     material.diffuseTexture = new BABYLON.Texture(skinTextureUrl, scene);
 
                     const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 2 }, scene);
                     sphere.material = material;
-
                 })
                 .catch(error => {
-                    console.error("Error fetching player data:", error);
+                    console.error("Error fetching player skin:", error);
                 });
 
             return scene;

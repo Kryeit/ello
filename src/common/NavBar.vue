@@ -1,41 +1,46 @@
+<script setup>
+import {ref, defineProps, provide} from 'vue';
+import Title from '@/components/Title.vue';
+import NavSections from '@/common/NavSections.vue';
+import HoveredList from "@/common/components/HoveredList.vue";
+
+const isVisible = ref(false);
+
+function toggleNavVisibility() {
+  isVisible.value = !isVisible.value;
+}
+
+defineProps({
+  showNav: Boolean
+});
+
+provide('toggleNav', toggleNavVisibility);
+</script>
+
+
 <template>
   <div>
-    <!-- ...existing NavBar content... -->
-
-    <!-- Fullscreen Nav with blurry background -->
     <div v-if="showNav" class="fullscreen-nav">
-      <!-- Header content -->
-      <header class="header-content tw-flex tw-justify-between tw-items-center tw-w-full tw-px-4 tw-py-2">
-        <!-- Left side content (e.g., title or logo) -->
+      <header class="header-content">
         <div class="header-left">
-          <Title msg="Kryeit" />
-          <!-- Additional info here -->
+          <Title msg="Menu" />
         </div>
 
-        <!-- Right side content (e.g., buttons) -->
         <div class="header-right">
-          <!-- Buttons or other interactive elements here -->
-          <button class="tw-btn">Button 1</button>
-          <button class="tw-btn">Button 2</button>
+          <HoveredList />
         </div>
       </header>
-
       <!-- Nav Sections -->
       <NavSections />
     </div>
   </div>
 </template>
 
-<script setup>
-import Title from '@/components/Title.vue';
-import NavSections from '@/common/NavSections.vue';
 
-defineProps({
-  showNav: Boolean
-});
-</script>
 
 <style scoped>
+@import url(https://fonts.bunny.net/css?family=alkalami:400);
+
 .fullscreen-nav {
   position: fixed;
   top: 0;
@@ -49,46 +54,112 @@ defineProps({
   justify-content: flex-start;
   align-items: center;
   z-index: 1000;
-  padding-top: 2%; /* Fixed value for spacing */
+  padding-top: 2%;
   padding-bottom: 2%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.header-content {
-  display: flex;
-  justify-content: space-between; /* Keep items spaced out */
-  align-items: center; /* Center items vertically */
-  flex-wrap: nowrap; /* Prevent items from wrapping */
-  width: 100%; /* Ensure the header spans the full width */
-}
 
-.header-left, .header-right {
-  flex: 1; /* Allow flex items to grow if needed */
-  display: flex;
-  align-items: center; /* Center items vertically */
+.header-content {
+  font-family: 'Alkalami', serif;  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 5rem 1.5rem;
 }
 
 .header-left {
-  padding-left: 10%;
-  flex: 1;
-  justify-content: center; /* Adjust if you want the title to be more centered */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1
 }
 
 .header-right {
-  flex: 0 1 auto; /* Do not grow but allow shrinking */
-  justify-content: flex-end;
+  display: flex;
+  align-items: center;
 }
 
-
-
-
-
-/* Assuming you have a .tw-btn class in your Tailwind setup for button styling */
 .tw-btn {
-  /* Add Tailwind classes or custom styles for your buttons here */
-  margin-left: 16px; /* Fixed value for spacing between buttons */
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
+
+.tw-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.additional-btn {
+  display: none;
+}
+
+.main-btn.active ~ .additional-btn {
+  display: inline-block;
+}
+
+.btn1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100%, -50%);
+}
+
+.btn2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+}
+
+.btn3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(100%, -50%);
+}
+
+.main-btn {
+  display: none;
+}
+
+.main-btn.active {
+  display: inline-block;
+}
+
+.button-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem;
+}
+
+.button-list button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-list button:hover {
+  background-color: #0056b3;
+}
+
 
 /* Style for NavSections.vue should ensure each section takes up one-third of the width */
 </style>

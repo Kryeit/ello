@@ -21,7 +21,7 @@ defineProps({
 <style scoped>
 .header h1 {
   font-weight: 600; /* Slightly bolder */
-  font-size: 2.4rem; /* Adjusted for header use */
+  font-size: 4rem; /* Adjusted for header use */
   margin-bottom: 0.5rem; /* Space between title and subheading */
 }
 

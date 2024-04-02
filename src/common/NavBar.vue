@@ -15,7 +15,7 @@ defineProps({
   <div>
     <div v-if="showNav" class="fullscreen-nav">
       <header class="header-content">
-        <div class="header-left">
+        <div class="header">
           <Title msg="Menu" />
           <HoveredList class="hovered-list"/>
         </div>
@@ -50,7 +50,6 @@ defineProps({
   overflow: hidden;
 }
 
-
 .header-content {
   font-family: 'Alkalami', serif;
   display: grid;
@@ -59,7 +58,7 @@ defineProps({
   padding: 1rem 5rem 1.5rem;
 }
 
-.header-left {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +69,10 @@ defineProps({
   position: relative;
 }
 
-.header-left::before {
+.hovered-list {
+  padding-right: 20px;
+}
+.header::before {
   content: "";
   display: block;
   width: 10%;

@@ -2,6 +2,7 @@
   <div class="player-card" @mouseover="hover = true" @mouseleave="hover = false">
     <div class="player-image">
       <img :src="`/api/players/${playerName}/head`" alt="Player Head">
+      <div class="player-shadow"></div>
     </div>
     <div class="player-name">{{ playerName }}</div>
   </div>
@@ -29,38 +30,44 @@ const hover = ref(false);
 }
 
 .player-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 50px;
   height: 50px;
   margin-right: 10px;
-  border-radius: 25%; /* Adjust this value to change the border radius of the image */
+  border-radius: 25%;
   overflow: hidden;
 }
 
-.player-image::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: calc(100% + 10px);
-  height: calc(100% + 10px);
-  border-radius: 25%; /* Adjust this value to change the border radius of the circumference/square */
-  border: 5px solid gray; /* Adjust this value to change the color and width of the circumference/square */
-  transition: border-color 0.3s ease;
-}
-
-.player-card:hover .player-image::before {
-  border-color: green; /* Change the color of the circumference/square to green when the .player-card is hovered */
-}
-
 .player-image img {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.player-shadow {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: 7px solid;
+  border-radius: 100%;
+}
+
+.player-card:hover .player-shadow {
+  border-color: forestgreen;
 }
 
 .player-name {
   font-size: 1.2rem;
   color: #333;
+  font-weight: bold;
 }
 </style>

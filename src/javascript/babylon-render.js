@@ -1,5 +1,6 @@
 export function createBabylonInstance(playerName, canvasId) {
     const canvas = document.getElementById(canvasId);
+
     if (!canvas) {
         console.error("Canvas element not found");
         return;
@@ -47,6 +48,108 @@ export function createBabylonInstance(playerName, canvasId) {
 
                     BABYLON.SceneLoader.ImportMesh("", "/", "steve.stl", scene, function (meshes) {
                         const mesh = meshes[0];
+
+                        // UV mapping for Minecraft skin
+                        const uvs = [
+                            // Head Front
+                            8 / 64, 8 / 32,
+                            16 / 64, 8 / 32,
+                            16 / 64, 16 / 32,
+                            8 / 64, 16 / 32,
+
+                            // Head Back
+                            24 / 64, 8 / 32,
+                            32 / 64, 8 / 32,
+                            32 / 64, 16 / 32,
+                            24 / 64, 16 / 32,
+
+                            // Head Top
+                            8 / 64, 0 / 32,
+                            16 / 64, 0 / 32,
+                            16 / 64, 8 / 32,
+                            8 / 64, 8 / 32,
+
+                            // Head Bottom
+                            16 / 64, 0 / 32,
+                            24 / 64, 0 / 32,
+                            24 / 64, 8 / 32,
+                            16 / 64, 8 / 32,
+
+                            // Head Right
+                            0 / 64, 8 / 32,
+                            8 / 64, 8 / 32,
+                            8 / 64, 16 / 32,
+                            0 / 64, 16 / 32,
+
+                            // Head Left
+                            16 / 64, 8 / 32,
+                            24 / 64, 8 / 32,
+                            24 / 64, 16 / 32,
+                            16 / 64, 16 / 32,
+
+                            // Body Front
+                            20 / 64, 20 / 32,
+                            28 / 64, 20 / 32,
+                            28 / 64, 32 / 32,
+                            20 / 64, 32 / 32,
+
+                            // Body Back
+                            32 / 64, 20 / 32,
+                            40 / 64, 20 / 32,
+                            40 / 64, 32 / 32,
+                            32 / 64, 32 / 32,
+
+                            // Arm Right Front (Steve's right)
+                            44 / 64, 20 / 32,
+                            48 / 64, 20 / 32,
+                            48 / 64, 32 / 32,
+                            44 / 64, 32 / 32,
+
+                            // Arm Right Back (Steve's right)
+                            52 / 64, 20 / 32,
+                            56 / 64, 20 / 32,
+                            56 / 64, 32 / 32,
+                            52 / 64, 32 / 32,
+
+                            // Arm Left Front (Steve's left)
+                            48 / 64, 20 / 32,
+                            52 / 64, 20 / 32,
+                            52 / 64, 32 / 32,
+                            48 / 64, 32 / 32,
+
+                            // Arm Left Back (Steve's left)
+                            56 / 64, 20 / 32,
+                            60 / 64, 20 / 32,
+                            60 / 64, 32 / 32,
+                            56 / 64, 32 / 32,
+
+                            // Leg Right Front (Steve's right)
+                            4 / 64, 20 / 32,
+                            8 / 64, 20 / 32,
+                            8 / 64, 32 / 32,
+                            4 / 64, 32 / 32,
+
+                            // Leg Right Back (Steve's right)
+                            12 / 64, 20 / 32,
+                            16 / 64, 20 / 32,
+                            16 / 64, 32 / 32,
+                            12 / 64, 32 / 32,
+
+                            // Leg Left Front (Steve's left)
+                            4 / 64, 20 / 32,
+                            8 / 64, 20 / 32,
+                            8 / 64, 32 / 32,
+                            4 / 64, 32 / 32,
+
+                            // Leg Left Back (Steve's left)
+                            12 / 64, 20 / 32,
+                            16 / 64, 20 / 32,
+                            16 / 64, 32 / 32,
+                            12 / 64, 32 / 32,
+                        ];
+
+                        mesh.setVerticesData(BABYLON.VertexBuffer.UVKind, uvs);
+
                         mesh.material = material;
                     });
                 })

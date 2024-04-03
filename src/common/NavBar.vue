@@ -44,7 +44,6 @@ defineProps({
   justify-content: flex-start;
   align-items: center;
   z-index: 1000;
-  padding-top: 2%;
   padding-bottom: 2%;
   box-sizing: border-box;
   overflow: hidden;
@@ -55,7 +54,7 @@ defineProps({
   display: grid;
   place-items: center;
   width: 100%;
-  padding: 1rem 5rem 1.5rem;
+  padding: 0 5rem 1.5rem;
 }
 
 .header {
@@ -63,7 +62,8 @@ defineProps({
   justify-content: space-between;
   align-items: center;
   background-color: gray;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding: 10px;
   width: 100%;
   position: relative;

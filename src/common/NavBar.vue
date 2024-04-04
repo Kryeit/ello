@@ -1,5 +1,5 @@
 <script setup>
-import {ref, defineProps} from 'vue';
+import {defineProps} from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
@@ -8,6 +8,7 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
 defineProps({
   showNav: Boolean
 });
+
 
 </script>
 
@@ -26,9 +27,24 @@ defineProps({
       <NavSections />
 
       <div class="footer">
-        <div class="footer-content">
-          <IconKryeit />
+        <IconKryeit class="footer-icon"/>
+        <div class="footer-section">
           <p>Kryeit </p>
+          <a href="https://kryeit.com/about" target="_blank">About us</a>
+        </div>
+
+        <div class="footer-section">
+          <p>Survival</p>
+          <a href="https://map.kryeit.com" target="_blank">Map</a>
+        </div>
+        <div class="footer-section">
+          <p>Contact</p>
+        </div>
+        <div class="footer-section">
+          <p>Contact</p>
+        </div>
+        <div class="footer-section">
+          <p>Contact</p>
         </div>
       </div>
     </body>
@@ -50,7 +66,6 @@ defineProps({
   justify-content: flex-start;
   align-items: center;
   z-index: 1000;
-  padding-bottom: 1rem;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -66,7 +81,7 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--main-color);
+  background-color: var(--primary-brass-gold);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 10px;
@@ -90,21 +105,33 @@ defineProps({
 
 .footer {
   bottom: 0;
-  width: 50%;
-  background-color: var(--main-color);
+  width: 40%;
+  background-color: var(--primary-brass-gold);
   color: white;
   padding: 1rem 0;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.footer-content {
+.footer-section {
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.footer-content image {
-  width: 10px;
+.footer-section p {
+  font-size: 10px;
+}
+
+.footer-icon {
+  width: 50px;
+  height: 50px;
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 
 </style>

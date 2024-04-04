@@ -22,6 +22,7 @@ export default {
   display: flex;
   width: 100%;
   gap: 3%;
+  padding-bottom: 2rem;
 }
 
 .section {

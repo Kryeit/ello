@@ -21,9 +21,6 @@ function toggleNav() {
 </script>
 
 <style scoped>
-* {
-  font-family: var(--minecraft-font), sans-serif;
-}
 
 .toggle-btn {
   position: fixed;
@@ -34,11 +31,11 @@ function toggleNav() {
   color: white;
   cursor: pointer;
   width: 15vw;
-  transition: transform 0.3s ease-in-out; /* Add this line */
+  transition: transform 0.3s ease-in-out;
 }
 
 .toggle-btn.rotated {
-  transform: translateX(-50%) translateY(-50%) rotate(180deg); /* Add this line */
+  transform: translateX(-50%) translateY(-50%) rotate(180deg);
 }
 
 .toggle-btn:focus {

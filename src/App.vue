@@ -21,6 +21,10 @@ function toggleNav() {
 </script>
 
 <style scoped>
+* {
+  font-family: var(--minecraft-font), sans-serif;
+}
+
 .toggle-btn {
   position: fixed;
   top: 50%;

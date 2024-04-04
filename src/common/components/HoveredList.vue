@@ -42,7 +42,6 @@ function actionThree() {
 <style scoped>
 .hovered-list {
   position: relative;
-  background: gray;
 }
 
 .button-list {

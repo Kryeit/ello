@@ -13,24 +13,22 @@ defineProps({
 
 <template>
   <div>
-    <div v-if="showNav" class="fullscreen-nav">
+    <body v-if="showNav" class="fullscreen-nav">
       <header class="header-content">
         <div class="header">
-          <Title msg="Menu" />
+          <Title msg="Menu" style="color: black"/>
           <HoveredList class="hovered-list"/>
         </div>
       </header>
       <!-- Nav Sections -->
       <NavSections />
-    </div>
+    </body>
   </div>
 </template>
 
 
 
 <style scoped>
-@import url(https://fonts.bunny.net/css?family=alkalami:400);
-
 .fullscreen-nav {
   position: fixed;
   top: 0;
@@ -50,7 +48,6 @@ defineProps({
 }
 
 .header-content {
-  font-family: 'Alkalami', serif;
   display: grid;
   place-items: center;
   width: 100%;
@@ -61,7 +58,7 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: var(--main-color);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 10px;

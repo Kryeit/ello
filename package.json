@@ -12,6 +12,7 @@
     "flowbite": "^2.2.1",
     "flowbite-vue": "github:themesberg/flowbite-vue",
     "tailwindcss": "^3.4.1",
+    "three": "^0.163.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

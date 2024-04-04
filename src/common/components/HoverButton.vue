@@ -27,6 +27,7 @@ const hover = ref(false);
 
 .player-card:hover {
   background-color: #e0e0e0;
+  cursor: pointer;
 }
 
 .player-image {
@@ -57,7 +58,7 @@ const hover = ref(false);
   left: 0;
   width: 100%;
   height: 100%;
-  border: 7px solid;
+  border: 7px solid gray;
   border-radius: 100%;
 }
 

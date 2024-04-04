@@ -3,6 +3,7 @@ import {ref, defineProps} from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
+import IconKryeit from "@/components/icons/IconKryeit.vue";
 
 defineProps({
   showNav: Boolean
@@ -14,19 +15,26 @@ defineProps({
 <template>
   <div>
     <body v-if="showNav" class="fullscreen-nav">
+
       <header class="header-content">
         <div class="header">
           <Title msg="Menu" style="color: black"/>
           <HoveredList class="hovered-list"/>
         </div>
       </header>
-      <!-- Nav Sections -->
+
       <NavSections />
+
+      <div class="footer">
+        <div class="footer-content">
+          <IconKryeit />
+          <p>Kryeit </p>
+        </div>
+      </div>
     </body>
+
   </div>
 </template>
-
-
 
 <style scoped>
 .fullscreen-nav {
@@ -42,7 +50,7 @@ defineProps({
   justify-content: flex-start;
   align-items: center;
   z-index: 1000;
-  padding-bottom: 2%;
+  padding-bottom: 1rem;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -69,25 +77,34 @@ defineProps({
 .hovered-list {
   padding-right: 20px;
 }
+
 .header::before {
   content: "";
   display: block;
   width: 10%;
 }
 
-.button-list button {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 .button-list button:hover {
   background-color: #0056b3;
 }
+
+.footer {
+  bottom: 0;
+  width: 50%;
+  background-color: var(--main-color);
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content image {
+  width: 10px;
+}
+
 </style>

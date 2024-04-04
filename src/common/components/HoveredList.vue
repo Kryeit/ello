@@ -24,17 +24,19 @@ function actionThree() {
 
 <template>
   <div class="hovered-list" @mouseleave="showList = false">
-    <HoverButton @mouseover="showList = true" :player-name="displayPlayerName"></HoverButton>
+    <HoverButton :style="{ 'border-bottom-left-radius': showList ? '0' : '10px', 'border-bottom-right-radius': showList ? '0' : '10px' }" @mouseover="showList = true" :player-name="displayPlayerName"></HoverButton>
     <div v-show="showList" class="button-list">
-      <button @click="actionOne" class="button">
+      <button @click="actionOne" class="main-button">
         <a class="button-text">Leaderboard</a>
       </button>
-      <button @click="actionTwo" class="button">
+      <button @click="actionTwo" class="main-button">
         <a class="button-text">Playerinfo</a>
       </button>
-      <button @click="actionThree" class="button">
+
+      <!--<button @click="actionThree" class="main-button">
         <a class="button-text">Bans</a>
-      </button>
+      </button>-->
+
     </div>
   </div>
 </template>
@@ -49,24 +51,17 @@ function actionThree() {
   position: absolute;
   top: 100%;
   width: 100%;
-}
-
-.button {
-  background-color: #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  transition: transform 0.1s, background-color 0.08s;
-  width: 100%;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #e0e0e0;
-  transform: scale(1.01);
+  padding: 1rem;
+  background-color: var(--vt-c-white-mute);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .button-text {
   color: black;
   user-select: none;
+  font-weight: bold;
+  font-family: 'Minecraftia', sans-serif;
 }
 </style>

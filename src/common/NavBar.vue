@@ -30,21 +30,29 @@ defineProps({
         <IconKryeit class="footer-icon"/>
         <div class="footer-section">
           <p>Kryeit </p>
-          <a href="https://kryeit.com/about" target="_blank">About us</a>
+          <a href="/about">About us</a>
         </div>
 
         <div class="footer-section">
           <p>Survival</p>
-          <a href="https://map.kryeit.com" target="_blank">Map</a>
+          <a href="https://map.kryeit.com" target="_blank">World Map</a>
+          <a href="https://archive.kryeit.com" target="_blank">Archive</a>
+          <a href="https://status.kryeit.com" target="_blank">Status</a>
+
+        </div>
+        <div class="footer-section">
+          <p>Support</p>
+          <a href="/bans">Bans</a>
+          <a href="/faq">FAQ</a>
+
+        </div>
+        <div class="footer-section">
+          <p>Join!</p>
+          <a href="/discord">Discord</a>
         </div>
         <div class="footer-section">
           <p>Contact</p>
-        </div>
-        <div class="footer-section">
-          <p>Contact</p>
-        </div>
-        <div class="footer-section">
-          <p>Contact</p>
+          <a href="mailto:kryeit.minecraft@gmail.com">Email us</a>
         </div>
       </div>
     </body>
@@ -119,12 +127,16 @@ defineProps({
 .footer-section {
   flex-direction: column;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .footer-section p {
-  font-size: 10px;
+  font-size: 11px;
+}
+  
+.footer-section a {
+  font-size: 8px;
 }
 
 .footer-icon {

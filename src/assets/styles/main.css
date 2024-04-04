@@ -15,4 +15,25 @@ body{
 :root {
   --minecraft-font: 'MinecraftiaRegular', sans-serif;
   --main-color: #d38911;
+  --main-color-darker: #946a0b;
+}
+
+.main-button {
+  background-color: #cc7a00;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  border-radius: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.1s, background-color 0.05s;
+  cursor: pointer;
+}
+
+.main-button:hover {
+  background-color: #e69500;
+  transform: scale(1.01);
 }

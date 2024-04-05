@@ -30,7 +30,7 @@ body{
   text-align: center;
   text-decoration: none;
   display: block;
-  border-radius: 20px;
+  border-radius: 15px;
   width: 100%;
   box-sizing: border-box;
   transition: transform 0.1s, background-color 0.05s;

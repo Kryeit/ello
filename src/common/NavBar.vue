@@ -19,8 +19,8 @@ defineProps({
 
       <header class="header-content">
         <div class="header">
-          <Title msg="Menu" style="color: black"/>
           <HoveredList class="hovered-list"/>
+          <Title msg="Menu" style="color: black"/>
         </div>
       </header>
 
@@ -134,7 +134,7 @@ defineProps({
 .footer-section p {
   font-size: 11px;
 }
-  
+
 .footer-section a {
   font-size: 8px;
 }

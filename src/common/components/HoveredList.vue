@@ -26,6 +26,7 @@ function actionThree() {
   <div class="hovered-list" @mouseleave="showList = false">
     <HoverButton :style="{ 'border-bottom-left-radius': showList ? '0' : '10px', 'border-bottom-right-radius': showList ? '0' : '10px' }" @mouseover="showList = true" :player-name="displayPlayerName"></HoverButton>
     <div v-show="showList" class="button-list">
+
       <button @click="actionOne" class="main-button">
         <a class="button-text">Leaderboard</a>
       </button>

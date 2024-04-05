@@ -58,7 +58,7 @@ const hover = ref(false);
   left: 0;
   width: 100%;
   height: 100%;
-  border: 7px solid gray;
+  border: 7px solid black;
   border-radius: 100%;
 }
 
@@ -68,7 +68,7 @@ const hover = ref(false);
 
 .player-name {
   font-size: 1.2rem;
-  color: #333;
+  color: black;
   font-weight: bold;
 }
 </style>

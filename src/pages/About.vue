@@ -18,22 +18,24 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
     <br>
 
     <h1>Our Staff</h1>
-    <hr>
 
+    <hr>
     <br>
 
     <div class="staff-section">
-      <div class="staff-member">
-        <img width="50%" src="../assets/staff/muriplz.png" alt="MuriPlz" />
 
+      <div class="staff-member">
+
+        <img width="50%" src="../assets/staff/muriplz.png" alt="MuriPlz" />
         <p>MuriPlz</p>
       </div>
       <div class="staff-member">
-        <IconKryeit />
+
+        <img width="50%" src="../assets/staff/tesseract.png" alt="_Tesseract" />
         <p>_Tesseract</p>
       </div>
       <div class="staff-member">
-        <!-- image at public/assets/staff/rhino.png -->
+
         <img width="50%" src="../assets/staff/rhino.png" alt="MrRedRhino" />
         <p>MrRedRhino</p>
       </div>

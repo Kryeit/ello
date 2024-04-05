@@ -14,10 +14,15 @@ fetch("/api/bans").then(res => res.json()).then(data => {
   <div class="wrapper">
     <h1>Banned players</h1>
     <div class="ban" v-for="ban in bans">
-      <h1>{{ ban.playerName }}</h1>
-      <h2><strong>Banned on:</strong> {{ formatDate(ban.creationDate) }}</h2>
-      <h2><strong>Expires:</strong> {{ ban.expiryDate ? formatDate(ban.expiryDate) : "never" }}</h2>
-      <h2><strong>Reason:</strong> {{ ban.reason }}</h2>
+      <div class="ban-content">
+        <img :src="`/api/players/${ban.playerName}/head`" alt=""/>
+        <div class="ban-details">
+          <h1>{{ ban.playerName }}</h1>
+          <h2><strong>Banned on:</strong> {{ formatDate(ban.creationDate) }}</h2>
+          <h2><strong>Expires:</strong> {{ ban.expiryDate ? formatDate(ban.expiryDate) : "never" }}</h2>
+          <h2><strong>Reason:</strong> {{ ban.reason }}</h2>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +39,22 @@ fetch("/api/bans").then(res => res.json()).then(data => {
   margin-bottom: 10px;
   padding: 10px;
   background: var(--vt-c-black-soft);
+}
+
+.ban-content {
+  display: flex;
+}
+
+.ban-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.ban-content img {
+  width: 12%;
+  height: auto;
+  object-fit: contain;
 }
 
 .ban h2 {

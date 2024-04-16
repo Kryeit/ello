@@ -8,6 +8,7 @@ import About from "@/pages/About.vue";
 
 const routes = [
     {path: '/', component: Home},
+    {path: '/home', component: Home},
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},
     {path: "/leaderboard", component: Leaderboard},

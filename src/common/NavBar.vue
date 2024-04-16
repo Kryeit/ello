@@ -1,14 +1,30 @@
 <script setup>
-import {defineProps} from 'vue';
+import {defineProps, ref} from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
-import IconKryeit from "@/components/icons/IconKryeit.vue";
+import { useRouter } from 'vue-router';
+
+const iconSource = ref('/public/icon.png');
+const treeSource = ref('/public/tree.png');
+const hoverIconSource = '/public/lifted_icon.png';
+const router = useRouter();
 
 defineProps({
   showNav: Boolean
 });
 
+function handleMouseOver() {
+  iconSource.value = hoverIconSource;
+}
+
+function handleMouseLeave() {
+  iconSource.value = '/public/icon.png';
+}
+
+function sendToMainPage() {
+  router.push('/home').then(() => location.reload());
+}
 
 </script>
 
@@ -19,15 +35,16 @@ defineProps({
 
       <header class="header-content">
         <div class="header">
+          <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage" alt=""/>
           <HoveredList class="hovered-list"/>
-          <Title msg="Menu" style="color: black"/>
+          <Title msg="" style="color: black"/>
         </div>
       </header>
 
       <NavSections />
 
       <div class="footer">
-        <IconKryeit class="footer-icon"/>
+        <img :src="treeSource" alt=""/>
         <div class="footer-section">
           <p>Kryeit </p>
           <a href="/about">About us</a>
@@ -38,22 +55,24 @@ defineProps({
           <a href="https://map.kryeit.com" target="_blank">World Map</a>
           <a href="https://archive.kryeit.com" target="_blank">Archive</a>
           <a href="https://status.kryeit.com" target="_blank">Status</a>
-
         </div>
+
         <div class="footer-section">
           <p>Support</p>
           <a href="/bans">Bans</a>
           <a href="/faq">FAQ</a>
-
         </div>
+
         <div class="footer-section">
           <p>Join!</p>
           <a href="/discord">Discord</a>
         </div>
+
         <div class="footer-section">
           <p>Contact</p>
           <a href="mailto:kryeit.minecraft@gmail.com">Email us</a>
         </div>
+
       </div>
     </body>
 
@@ -92,9 +111,14 @@ defineProps({
   background-color: var(--primary-brass-gold);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 10px;
   width: 100%;
-  position: relative;
+}
+
+.header img {
+  margin-right: 20px;
+  width: 100px;
+  height: auto;
+  cursor: pointer;
 }
 
 .hovered-list {
@@ -102,7 +126,7 @@ defineProps({
 }
 
 .header::before {
-  content: "";
+  content: '';
   display: block;
   width: 10%;
 }
@@ -113,37 +137,37 @@ defineProps({
 
 .footer {
   bottom: 0;
-  width: 40%;
+  max-height: 20vh;
+  width: auto;
   background-color: var(--primary-brass-gold);
   color: white;
-  padding: 1rem 0;
+  padding: 1rem;
   text-align: center;
   display: flex;
   justify-content: space-around;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  gap: 10px;
 }
 
 .footer-section {
+  padding: 10px;
   flex-direction: column;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  height: 100%;
 }
 
 .footer-section p {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .footer-section a {
-  font-size: 8px;
+  font-size: 11px;
 }
 
-.footer-icon {
-  width: 50px;
-  height: 50px;
-  filter: grayscale(100%);
-  opacity: 0.5;
+.footer img {
+  max-height: 100%;
 }
-
 </style>

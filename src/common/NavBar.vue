@@ -137,7 +137,7 @@ function sendToMainPage() {
 
 .footer {
   bottom: 0;
-  max-height: 20vh;
+  max-height: 17vh;
   width: auto;
   background-color: var(--primary-brass-gold);
   color: white;

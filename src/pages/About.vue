@@ -31,7 +31,7 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
       </div>
       <div class="staff-member">
 
-        <img width="50%" src="../assets/staff/tesseract.png" alt="_Tesseract" />
+        <img width="50%" src="../assets/staff/tesseract.png" alt="__Tesseract" />
         <p>_Tesseract</p>
       </div>
       <div class="staff-member">

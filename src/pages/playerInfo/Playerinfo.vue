@@ -2,8 +2,7 @@
 import {useRoute, useRouter} from "vue-router";
 import InfoHolder from "@/pages/playerInfo/InfoHolder.vue";
 import Searchbar from "@/components/Searchbar.vue";
-import {onMounted, ref} from "vue";
-import {createBabylonInstance} from "@/javascript/babylon-render.js"
+import {ref} from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -23,10 +22,6 @@ async function search(query) {
     return await response.json();
   }
 }
-
-onMounted(() => {
-  createBabylonInstance(playerName.value, "renderCanvas");
-});
 </script>
 
 <template>
@@ -35,8 +30,6 @@ onMounted(() => {
   <Searchbar class="searchbar" :search-fn="search" @result-selected="showInfo"></Searchbar>
 
   <InfoHolder v-if="playerName" :key="playerName" :player-name="playerName"></InfoHolder>
-
-  <canvas id="renderCanvas"></canvas>
 </template>
 
 <style scoped>

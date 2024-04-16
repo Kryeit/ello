@@ -1,6 +1,4 @@
 <script setup>
-
-import IconKryeit from "@/components/icons/IconKryeit.vue";
 </script>
 
 <template>
@@ -8,7 +6,7 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
     <h1 class="title">About Us</h1>
     <br>
 
-    <h3 class="introduction">Kryeit is a Minecraft Java Edition server, fully centered around the Create mod.</h3>
+    <h3 class="introduction">Kryeit is a Minecraft Java Edition server, fully centered around the <a href="https://modrinth.com/mod/create" target="_blank">Create mod</a>.</h3>
     <br>
     <p>
       We try to bring a stable server experience to all players, with a focus on technical minecraft.
@@ -32,7 +30,7 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
       <div class="staff-member">
 
         <img width="50%" src="../assets/staff/tesseract.png" alt="__Tesseract" />
-        <p>_Tesseract</p>
+        <p>__Tesseract</p>
       </div>
       <div class="staff-member">
 
@@ -54,6 +52,14 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
   font-family: 'Minecraftia', sans-serif;
 }
 
+.introduction a {
+  color: #4a90e2;
+}
+
+.introduction a:hover {
+  color: #72b3e8;
+}
+
 .title {
   font-size: 5rem;
 }
@@ -72,6 +78,15 @@ import IconKryeit from "@/components/icons/IconKryeit.vue";
 
 .staff-member p {
   font-size: 1.5rem;
+}
+
+.staff-member img {
+
+  transition: all 0.3s ease;
+}
+
+.staff-member img:hover {
+  transform: scale(1.05);
 }
 
 </style>

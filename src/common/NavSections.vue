@@ -2,9 +2,9 @@
   <div class="sections-container">
 
     <!-- Each section taking up one-third of the width -->
-    <div class="section">Section 1</div>
-    <div class="section">Section 2</div>
-    <div class="section">Section 3</div>
+    <div class="section">Work In Progress</div>
+    <div class="section">Work In Progress</div>
+    <div class="section">Work In Progress</div>
   </div>
 </template>
 
@@ -26,9 +26,17 @@ export default {
 }
 
 .section {
+  background-color: var(--neutral-dark);
   flex: 1;
   padding: 16px;
   border: 1px solid #ccc;
+  border-radius: 20px;
   min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
+
+
 </style>

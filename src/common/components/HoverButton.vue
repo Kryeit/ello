@@ -18,15 +18,16 @@ const hover = ref(false);
 <style scoped>
 .player-card {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: var(--dark-brass-gold);
   border-radius: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.7s ease;
 }
 
 .player-card:hover {
-  background-color: #e0e0e0;
+  filter: brightness(105%);
   cursor: pointer;
 }
 
@@ -42,28 +43,27 @@ const hover = ref(false);
   overflow: hidden;
 }
 
+.player-image img, .player-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 40%;
+}
+
 .player-image img {
-  position: relative;
-  z-index: 2;
-  width: 90%;
-  height: 90%;
-  object-fit: cover;
-  border-radius: 100%;
+  z-index: 3;
 }
 
 .player-shadow {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 7px solid black;
-  border-radius: 100%;
+  z-index: 2;
+  border: 24px solid black;
 }
 
 .player-card:hover .player-shadow {
-  border-color: forestgreen;
+  border-color: green;
 }
 
 .player-name {

@@ -18,7 +18,7 @@ function actionTwo() {
 }
 
 function actionThree() {
-  router.push('/bans').then(() => location.reload());
+  //router.push('/bans').then(() => location.reload());
 }
 </script>
 
@@ -34,9 +34,9 @@ function actionThree() {
         <a class="button-text">Playerinfo</a>
       </button>
 
-      <!--<button @click="actionThree" class="main-button">
-        <a class="button-text">Bans</a>
-      </button>-->
+      <button @click="actionThree" class="main-button">
+        <a class="button-text">Settings</a>
+      </button>
 
     </div>
   </div>
@@ -53,10 +53,11 @@ function actionThree() {
   top: 100%;
   width: 100%;
   padding: 1rem;
-  background-color: var(--vt-c-white-mute);
+  background-color: var(--dark-brass-gold);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
+  gap: 10px;
 }
 
 .button-text {

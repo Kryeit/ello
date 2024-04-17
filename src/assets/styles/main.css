@@ -16,7 +16,7 @@ body{
   --minecraft-font: 'MinecraftiaRegular', sans-serif;
   --primary-brass-gold: #ad7f38;
   --light-brass-gold: #c9b198;
-  --dark-brass-gold: #806642;
+  --dark-brass-gold: #806a42;
   --neutral-light: #f5f2ed;
   --neutral-dark: #504a40;
   --accent-color: #7a9e7e;
@@ -24,6 +24,7 @@ body{
 
 .main-button {
   background-color: var(--primary-brass-gold);
+  filter: brightness(89%);
   border: none;
   color: white;
   padding: 10px 20px;
@@ -35,9 +36,14 @@ body{
   box-sizing: border-box;
   transition: transform 0.1s, background-color 0.05s;
   cursor: pointer;
+  margin-bottom: 7px;
+}
+
+.main-button:last-child {
+  margin-bottom: 0;
 }
 
 .main-button:hover {
-  background-color: var(--light-brass-gold);
+  filter: brightness(105%);
   transform: scale(1.01);
 }

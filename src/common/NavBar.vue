@@ -116,7 +116,7 @@ function sendToMainPage() {
 
 .header img {
   margin-right: 20px;
-  width: 100px;
+  width: 85px;
   height: auto;
   cursor: pointer;
 }

@@ -1,16 +1,20 @@
 <script setup>
-import {defineProps, ref} from 'vue';
+import { defineProps, ref } from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
 import { useRouter } from 'vue-router';
 
-const iconSource = ref('/src/assets/icon.png');
-const treeSource = ref('/src/assets/tree.png');
-const hoverIconSource = '/src/assets/lifted_icon.png';
+import iconPath from '../assets/icon.png';
+import treePath from '../assets/tree.png';
+import hoverIconPath from '../assets/lifted_icon.png';
+
+const iconSource = ref(iconPath);
+const treeSource = ref(treePath);
+const hoverIconSource = hoverIconPath;
 const router = useRouter();
 
-defineProps({
+const props = defineProps({
   showNav: Boolean
 });
 
@@ -19,14 +23,16 @@ function handleMouseOver() {
 }
 
 function handleMouseLeave() {
-  iconSource.value = '/src/assets/icon.png';
+  iconSource.value = iconPath;
 }
 
 function sendToMainPage() {
-  router.push('/home').then(() => location.reload());
+  router.push('/home').then(() => {
+    location.reload();
+  });
 }
-
 </script>
+
 
 
 <template>

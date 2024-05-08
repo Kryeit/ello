@@ -1,5 +1,5 @@
 <template>
-  <img :class="{ 'toggle-btn': true, rotated: isRotated }" @click="toggleNav" src="/icon.png" alt="Menu"/>
+  <img :class="{ 'toggle-btn': true, rotated: isRotated }" @click="toggleNav" src="/src/assets/icon.png" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>

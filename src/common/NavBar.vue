@@ -5,9 +5,9 @@ import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
 import { useRouter } from 'vue-router';
 
-const iconSource = ref('/public/icon.png');
-const treeSource = ref('/public/tree.png');
-const hoverIconSource = '/public/lifted_icon.png';
+const iconSource = ref('/src/assets/icon.png');
+const treeSource = ref('/src/assets/tree.png');
+const hoverIconSource = '/src/assets/lifted_icon.png';
 const router = useRouter();
 
 defineProps({
@@ -19,7 +19,7 @@ function handleMouseOver() {
 }
 
 function handleMouseLeave() {
-  iconSource.value = '/public/icon.png';
+  iconSource.value = '/src/assets/icon.png';
 }
 
 function sendToMainPage() {

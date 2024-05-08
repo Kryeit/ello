@@ -75,9 +75,16 @@ const images = [
 
   <Slideshow :images="images"></Slideshow>
 
-  <iframe src="https://www.youtube.com/embed/Jh2NoGXKzME?autoplay=1&amp;mute=1" title="Kryeit trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen="">
+  <iframe
+      src="https://www.youtube-nocookie.com/embed/Jh2NoGXKzME?autoplay=1&mute=1"
+      title="Kryeit trailer"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      width="560"
+      height="315"
+      style="border: none;"
+      loading="lazy"
+      frameborder="0">
   </iframe>
 
   <hr>

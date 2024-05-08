@@ -7,7 +7,7 @@ import HoverButton from "@/common/components/HoverButton.vue";
 const playerName = ref('');
 const showList = ref(false);
 
-const displayPlayerName = computed(() => playerName.value || "DinnerBone");
+const displayPlayerName = computed(() => playerName.value || "Dinnerbone");
 
 function actionOne() {
   router.push('/leaderboard').then(() => location.reload());

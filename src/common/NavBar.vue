@@ -1,9 +1,9 @@
 <script setup>
-import { defineProps, ref } from 'vue';
+import {ref} from 'vue';
 import Title from '@/components/Title.vue';
 import NavSections from '@/common/NavSections.vue';
 import HoveredList from "@/common/components/HoveredList.vue";
-import { useRouter } from 'vue-router';
+import {useRouter} from 'vue-router';
 
 import iconPath from '../assets/icon.png';
 import treePath from '../assets/tree.png';
@@ -14,7 +14,7 @@ const treeSource = ref(treePath);
 const hoverIconSource = hoverIconPath;
 const router = useRouter();
 
-const props = defineProps({
+defineProps({
   showNav: Boolean
 });
 
@@ -27,63 +27,62 @@ function handleMouseLeave() {
 }
 
 function sendToMainPage() {
-  router.push('/home').then(() => {
-    location.reload();
-  });
+  router.push('/home');
 }
 </script>
-
 
 
 <template>
   <div>
     <body v-if="showNav" class="fullscreen-nav">
 
-      <header class="header-content">
-        <div class="header">
-          <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage" alt=""/>
-          <HoveredList class="hovered-list"/>
-          <Title msg="" style="color: black"/>
-        </div>
-      </header>
-
-      <NavSections />
-
-      <div class="footer">
-        <img :src="treeSource" alt=""/>
-        <div class="footer-section">
-          <p>Kryeit </p>
-          <a href="/about">About us</a>
-        </div>
-
-        <div class="footer-section">
-          <p>Survival</p>
-          <a href="https://map.kryeit.com" target="_blank">World Map</a>
-          <a href="https://archive.kryeit.com" target="_blank">Archive</a>
-          <a href="https://status.kryeit.com" target="_blank">Status</a>
-        </div>
-
-        <div class="footer-section">
-          <p>Support</p>
-          <a href="/bans">Bans</a>
-          <a href="/faq">FAQ</a>
-        </div>
-
-        <div class="footer-section">
-          <p>Join!</p>
-          <a href="/discord">Discord</a>
-        </div>
-
-        <div class="footer-section">
-          <p>Contact</p>
-          <a href="mailto:kryeit.minecraft@gmail.com">Email us</a>
-        </div>
-
+    <header class="header-content">
+      <div class="header">
+        <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
+             alt=""/>
+        <HoveredList class="hovered-list"/>
+        <Title msg="" style="color: black"/>
       </div>
+    </header>
+
+    <NavSections/>
+
+    <div class="footer">
+      <img :src="treeSource" alt=""/>
+      <div class="footer-section">
+        <p>Kryeit </p>
+        <router-link to="/about">About us</router-link>
+      </div>
+
+      <div class="footer-section">
+        <p>Survival</p>
+        <a href="https://map.kryeit.com" target="_blank">World Map</a>
+        <a href="https://archive.kryeit.com" target="_blank">Archive</a>
+        <a href="https://status.kryeit.com" target="_blank">Status</a>
+      </div>
+
+      <div class="footer-section">
+        <p>Support</p>
+        <router-link to="/bans">Bans</router-link>
+        <router-link to="/faq">FAQ</router-link>
+      </div>
+
+      <div class="footer-section">
+        <p>Join!</p>
+        <a href="/discord">Discord</a>
+      </div>
+
+      <div class="footer-section">
+        <p>Contact</p>
+        <a href="mailto:kryeit.minecraft@gmail.com">Email us</a>
+      </div>
+
+    </div>
     </body>
 
   </div>
 </template>
+
 
 <style scoped>
 .fullscreen-nav {

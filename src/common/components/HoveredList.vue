@@ -10,15 +10,15 @@ const showList = ref(false);
 const displayPlayerName = computed(() => playerName.value || "Dinnerbone");
 
 function actionOne() {
-  router.push('/leaderboard').then(() => location.reload());
+  router.push('/leaderboard');
 }
 
 function actionTwo() {
-  router.push(`/@${displayPlayerName.value}`).then(() => location.reload());
+  router.push(`/@${displayPlayerName.value}`);
 }
 
 function actionThree() {
-  //router.push('/bans').then(() => location.reload());
+  //router.push('/bans');
 }
 </script>
 

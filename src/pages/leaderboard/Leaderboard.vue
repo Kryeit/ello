@@ -112,8 +112,9 @@ a.page {
   background: var(--vt-c-black-soft);
   height: 28px;
   display: inline-block;
-  width: 46px;
-  padding-left: 4px;
+  width: 57px;
+  line-height: normal;
+  padding: 1px 2px;
 }
 
 .page-input {

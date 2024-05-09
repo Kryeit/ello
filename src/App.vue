@@ -1,5 +1,5 @@
 <template>
-  <img :class="{ 'toggle-btn': true, rotated: isRotated }" @click="toggleNav" src="/src/assets/icon.png" alt="Menu"/>
+  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/icon.png" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>
@@ -10,14 +10,17 @@
 <script setup>
 import {ref} from 'vue';
 import NavBar from './common/NavBar.vue';
+import {useRouter} from "vue-router";
 
 const isNavVisible = ref(false);
-const isRotated = ref(false);
 
 function toggleNav() {
   isNavVisible.value = !isNavVisible.value;
-  isRotated.value = !isRotated.value;
 }
+
+useRouter().afterEach(() => {
+  isNavVisible.value = false;
+});
 </script>
 
 <style scoped>

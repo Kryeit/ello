@@ -80,11 +80,7 @@ const images = [
       title="Kryeit trailer"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
-      width="560"
-      height="315"
-      style="border: none;"
-      loading="lazy"
-      frameborder="0">
+      loading="lazy">
   </iframe>
 
   <hr>

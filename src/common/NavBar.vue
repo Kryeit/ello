@@ -27,6 +27,7 @@ function handleMouseLeave() {
 }
 
 function sendToMainPage() {
+  handleMouseLeave();
   router.push('/home');
 }
 </script>

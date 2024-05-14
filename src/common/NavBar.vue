@@ -53,6 +53,7 @@ function sendToMainPage() {
       <div class="footer-section">
         <p>Kryeit </p>
         <router-link to="/about">About us</router-link>
+        <a href="https://kryeit.wiki.gg" target="_blank">Wiki</a>
       </div>
 
       <div class="footer-section">

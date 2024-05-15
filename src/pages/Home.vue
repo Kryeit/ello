@@ -1,5 +1,6 @@
 <script setup>
 import Slideshow from "@/components/Slideshow.vue";
+import OnlinePlayers from "@/components/OnlinePlayers.vue";
 
 const images = [
   {
@@ -69,9 +70,10 @@ const images = [
   <div class="banner">
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
-  <h1>
-    A Create mod server
-  </h1>
+
+  <OnlinePlayers/>
+
+  <br>
 
   <Slideshow :images="images"></Slideshow>
 

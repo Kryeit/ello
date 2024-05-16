@@ -25,7 +25,7 @@
               :key="index"
               :class="{ afk: player.afk }"
           >
-            {{ player.playerName }}
+            <img class="player-image" :src="`/api/players/${player.playerName}/head`" alt=""/> {{ player.playerName }}
           </p>
           <p v-if="remainingCount > 0">...and {{ remainingCount }} more</p>
         </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, nextTick } from 'vue';
+import { computed, ref } from 'vue';
 import ReconnectingWebSocket from "reconnecting-websocket";
 
 const onlinePlayers = ref([]);
@@ -50,7 +50,6 @@ const remainingCount = computed(() => {
 });
 
 const hovered = ref(false);
-const playerList = ref(null);
 
 const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/live");
 websocket.addEventListener("message", event => {
@@ -59,26 +58,11 @@ websocket.addEventListener("message", event => {
 
 const showPlayerList = () => {
   hovered.value = true;
-  adjustPlayerListPosition();
 };
 
 const hidePlayerList = () => {
   hovered.value = false;
 };
-
-const adjustPlayerListPosition = () => {
-  nextTick(() => {
-    if (playerList.value) {
-      const rect = playerList.value.getBoundingClientRect();
-      playerList.value.style.left = (rect.right > window.innerWidth) ? 'auto' : '0';
-      playerList.value.style.right = (rect.right > window.innerWidth) ? '0' : 'auto';
-    }
-  });
-};
-
-onMounted(() => {
-  window.addEventListener('resize', adjustPlayerListPosition);
-});
 </script>
 
 
@@ -87,9 +71,9 @@ onMounted(() => {
 .server-status {
   position: relative;
   display: flex;
-  align-items: flex-start; /* Align items at the top */
+  align-items: flex-start;
   background-image: url('/src/assets/dirt.png');
-  background-size: 100px 100px; /* Increase the size of the mosaic texture */
+  background-size: 100px 100px;
   padding: 10px;
   border-radius: 8px;
   overflow: visible;
@@ -164,7 +148,7 @@ h3 {
 .player-count {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the top left */
+  align-items: flex-start;
   margin-left: 20px;
   cursor: pointer;
   position: relative;
@@ -198,6 +182,12 @@ h3 {
 
 .player-list p {
   margin: 0;
+}
+
+.player-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .afk {

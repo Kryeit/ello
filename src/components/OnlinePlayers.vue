@@ -77,7 +77,7 @@ const hidePlayerList = () => {
   padding: 10px;
   border-radius: 8px;
   overflow: visible;
-  margin: 0 4rem;
+  margin: 0 20px;
   image-rendering: pixelated;
 }
 
@@ -149,7 +149,7 @@ h3 {
 
 .player-count {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   margin-left: 20px;
   cursor: pointer;

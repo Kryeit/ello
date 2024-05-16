@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://kryeit.com:4001",
+        target: "https://kryeit.com",
         changeOrigin: true
       }
     }

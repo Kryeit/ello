@@ -34,10 +34,9 @@
   </div>
 </template>
 
-
-
 <script setup>
 import { computed, ref, onMounted, nextTick } from 'vue';
+import ReconnectingWebSocket from "reconnecting-websocket";
 
 const onlinePlayers = ref([]);
 const onlineCount = computed(() => {
@@ -53,11 +52,10 @@ const remainingCount = computed(() => {
 const hovered = ref(false);
 const playerList = ref(null);
 
-fetch('/api/online')
-    .then((r) => r.json())
-    .then((json) => {
-      onlinePlayers.value = json;
-    });
+const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/live");
+websocket.addEventListener("message", event => {
+  onlinePlayers.value = JSON.parse(event.data);
+});
 
 const showPlayerList = () => {
   hovered.value = true;
@@ -91,7 +89,7 @@ onMounted(() => {
   display: flex;
   align-items: flex-start; /* Align items at the top */
   background-image: url('/src/assets/dirt.png');
-  background-size: 25px 25px; /* Increase the size of the mosaic texture */
+  background-size: 100px 100px; /* Increase the size of the mosaic texture */
   padding: 10px;
   border-radius: 8px;
   overflow: visible;
@@ -206,7 +204,3 @@ h3 {
   color: var(--color-text);
 }
 </style>
-
-
-
-

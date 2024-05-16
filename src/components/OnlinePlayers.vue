@@ -78,6 +78,7 @@ const hidePlayerList = () => {
   border-radius: 8px;
   overflow: visible;
   margin: 0 4rem;
+  image-rendering: pixelated;
 }
 
 .overlay {
@@ -87,6 +88,7 @@ const hidePlayerList = () => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
   z-index: 0;
   pointer-events: none;
 }
@@ -188,6 +190,7 @@ h3 {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+  image-rendering: pixelated;
 }
 
 .afk {

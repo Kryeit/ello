@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {formatDate, ordinal} from "@/utils.js";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
@@ -7,12 +7,16 @@ const {playerName} = defineProps(["player-name"]);
 
 const data = ref();
 const error = ref(false);
+const lastSeenMessage = computed(() => {
+  const daysAgo = Math.round((new Date() - data.value.lastSeen) / (1000 * 60 * 60 * 24));
+  return daysAgo === 1 ? "1 day ago" : daysAgo + " days ago";
+});
 
 fetch(`/api/players/${playerName}`).then(res => res.json())
     .catch(() => error.value = true)
     .then(json => {
       data.value = json;
-    })
+    });
 </script>
 
 <template>
@@ -34,7 +38,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
         </div>
         <h3 v-if="!data.online">Last Seen: {{ formatDate(data.lastSeen) }}
           <br>
-          ({{ Math.round((new Date() - data.lastSeen) / (1000 * 60 * 60 * 24)) }} days ago)</h3>
+          ({{ lastSeenMessage }})</h3>
       </div>
 
       <h2>Playtime</h2>

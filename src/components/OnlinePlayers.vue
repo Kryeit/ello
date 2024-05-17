@@ -17,15 +17,20 @@
           @mouseover="showPlayerList"
           @mouseleave="hidePlayerList"
       >
-        <span>{{ onlineCount }}/18</span>
-        <img class="bars" src="/src/assets/bars.png" alt="Bars" />
+        <a href="/online">
+          <span>{{ onlineCount }}/18</span>
+        </a>
+        <a href="https://status.kryeit.com" target="_blank">
+          <img class="bars" src="/src/assets/bars.png" alt="Bars" />
+        </a>
         <div class="player-list" v-show="hovered" ref="playerList">
           <p
               v-for="(player, index) in displayedPlayers"
               :key="index"
               :class="{ afk: player.afk }"
           >
-            <img class="player-image" :src="`/api/players/${player.playerName}/head`" alt=""/> {{ player.playerName }}
+            <img class="player-image" :src="`/api/players/${player.playerName}/head`" alt=""/>
+            <a :href="`/@${player.playerName}`" class="player-link">{{ player.playerName }}</a>
           </p>
           <p v-if="remainingCount > 0">...and {{ remainingCount }} more</p>
         </div>
@@ -137,7 +142,7 @@ h3 {
 }
 
 .version {
-  color: lightblue;
+  color: #5ab2de;
 }
 
 .player-info {
@@ -191,6 +196,16 @@ h3 {
   height: 20px;
   margin-right: 5px;
   image-rendering: pixelated;
+}
+
+a.player-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.player-link:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .afk {

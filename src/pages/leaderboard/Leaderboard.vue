@@ -171,4 +171,10 @@ table {
 h1 {
   color: var(--vt-c-white-mute);
 }
+
+@media (max-width: 600px) {
+  .table-wrapper {
+    margin-bottom: 70px;
+  }
+}
 </style>

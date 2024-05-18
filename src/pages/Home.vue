@@ -71,20 +71,20 @@ const images = [
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
 
-  <h2>Mine, craft and create.</h2>
+  <h2 class="slogan">Mine, craft and create.</h2>
 
   <OnlinePlayers/>
 
   <br>
-  <h3>
+  <h3 class="description">
     Technical minecraft, yet a relaxed environment to play on.
   </h3>
-  <h3>
+  <h3 class="description">
     You can find here a long-term mindset, a friendly community and a lot of moss.
   </h3>
   <br>
 
-  <h2>Gallery</h2>
+  <h2 class="section-title">Gallery</h2>
 
   <hr>
 
@@ -102,7 +102,7 @@ const images = [
 
   <hr>
 
-  <h2>
+  <h2 class="minecraft-disclaimer">
     NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
   </h2>
 </template>
@@ -114,18 +114,23 @@ const images = [
   height: auto;
 }
 
-h1 {
-  margin-bottom: 20px;
+.slogan {
+  color: white;
   text-align: center;
 }
 
-h2 {
-  margin-bottom: 20px;
+.description {
   text-align: center;
 }
 
-h3 {
+.section-title {
+  color: white;
   text-align: center;
+}
+
+.minecraft-disclaimer {
+  text-align: center;
+  font-size: 12px;
 }
 
 .banner {
@@ -143,5 +148,11 @@ iframe {
   display: block;
   margin: 30px auto;
   max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  .minecraft-disclaimer {
+    margin-bottom: 70px;
+  }
 }
 </style>

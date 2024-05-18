@@ -17,9 +17,7 @@
           @mouseover="showPlayerList"
           @mouseleave="hidePlayerList"
       >
-        <a href="/online">
-          <span>{{ onlineCount }}/18</span>
-        </a>
+        <span>{{ onlineCount }}/18</span>
         <a href="https://status.kryeit.com" target="_blank">
           <img class="bars" src="/src/assets/bars.png" alt="Bars" />
         </a>
@@ -133,6 +131,7 @@ h3 {
 }
 
 .create-mod {
+  white-space: nowrap;
   color: var(--vt-c-white);
 }
 
@@ -211,4 +210,47 @@ a.player-link:hover {
 .afk {
   color: var(--color-text);
 }
+
+@media (max-width: 600px) {
+  .server-status {
+    padding: 5px;
+    background-size: 50px 50px;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bars {
+    width: 13px;
+    height: 13px;
+  }
+
+  .details {
+    flex-grow: 1;
+    padding-right: 10px;
+  }
+
+  h1, h2, h3 {
+    font-size: 0.7em;
+  }
+
+  .bars {
+    margin-top: 5px;
+  }
+
+  .player-list {
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 100%;
+    z-index: 10;
+  }
+
+  .player-count {
+    font-size: 0.7em;
+  }
+}
+
+
 </style>

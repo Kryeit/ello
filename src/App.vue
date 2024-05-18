@@ -53,4 +53,14 @@ useRouter().afterEach(() => {
     transform: rotate(180deg);
   }
 }
+
+@media (max-width: 600px) {
+  .toggle-btn {
+    top: 100%;
+    bottom: 0;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+  }
+}
 </style>

@@ -71,6 +71,8 @@ const images = [
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
 
+  <h2>Mine, craft and create.</h2>
+
   <OnlinePlayers/>
 
   <br>

@@ -45,6 +45,7 @@ function actionThree() {
 <style scoped>
 .hovered-list {
   position: relative;
+  padding-right: 80px;
 }
 
 .button-list {
@@ -66,7 +67,6 @@ function actionThree() {
   font-weight: bold;
   font-family: 'Minecraftia', sans-serif;
 }
-
 
 .main-button {
   background-color: var(--primary-brass-gold);
@@ -94,4 +94,11 @@ function actionThree() {
   filter: brightness(105%);
   transform: scale(1.01);
 }
+
+@media (max-width: 600px) {
+  .hovered-list {
+    padding-right: 120px;
+  }
+}
+
 </style>

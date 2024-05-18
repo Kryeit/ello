@@ -41,7 +41,7 @@ function sendToMainPage() {
       <div class="header-content">
         <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
              alt=""/>
-        <HoveredList class="hovered-list"/>
+        <HoveredList/>
         <Title msg="" style="color: black"/>
       </div>
     </header>
@@ -128,10 +128,6 @@ function sendToMainPage() {
   width: 85px;
   height: auto;
   cursor: pointer;
-}
-
-.hovered-list {
-  padding-right: 20px;
 }
 
 .header-content::before {

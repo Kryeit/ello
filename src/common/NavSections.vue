@@ -38,5 +38,18 @@ export default {
   font-size: 30px;
 }
 
+@media (max-width: 600px) {
+  .sections-container {
+    flex-direction: column;
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 1rem;
+  }
+
+  .section {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
 
 </style>

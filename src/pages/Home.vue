@@ -77,6 +77,12 @@ const images = [
 
   <br>
 
+  <h3>Gallery</h3>
+
+  <hr>
+
+  <br>
+
   <Slideshow :images="images"></Slideshow>
 
   <iframe
@@ -108,6 +114,10 @@ h1 {
 
 h2 {
   margin-bottom: 20px;
+  text-align: center;
+}
+
+h3 {
   text-align: center;
 }
 

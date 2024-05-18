@@ -71,4 +71,15 @@ const hover = ref(false);
   color: black;
   font-weight: bold;
 }
+
+@media (max-width: 600px) {
+  .player-name {
+    display: none;
+  }
+
+  .player-image {
+    margin-right: 0;
+  }
+}
+
 </style>

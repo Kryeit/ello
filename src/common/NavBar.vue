@@ -37,8 +37,8 @@ function sendToMainPage() {
   <div>
     <body v-if="showNav" class="fullscreen-nav">
 
-    <header class="header-content">
-      <div class="header">
+    <header class="header">
+      <div class="header-content">
         <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
              alt=""/>
         <HoveredList class="hovered-list"/>
@@ -104,14 +104,14 @@ function sendToMainPage() {
   overflow: hidden;
 }
 
-.header-content {
+.header {
   display: grid;
   place-items: center;
   width: 100%;
   padding: 0 5rem 1.5rem;
 }
 
-.header {
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,7 +123,7 @@ function sendToMainPage() {
   padding-bottom: 10px;
 }
 
-.header img {
+.header-content img {
   margin-right: 20px;
   width: 85px;
   height: auto;
@@ -134,7 +134,7 @@ function sendToMainPage() {
   padding-right: 20px;
 }
 
-.header::before {
+.header-content::before {
   content: '';
   display: block;
   width: 10%;
@@ -179,4 +179,23 @@ function sendToMainPage() {
 .footer img {
   max-height: 100%;
 }
+
+@media (max-width: 600px) {
+  .header {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .header-content {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .footer {
+    padding-bottom: 220px;
+    gap: 0;
+  }
+}
+
 </style>

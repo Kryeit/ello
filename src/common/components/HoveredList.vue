@@ -66,4 +66,32 @@ function actionThree() {
   font-weight: bold;
   font-family: 'Minecraftia', sans-serif;
 }
+
+
+.main-button {
+  background-color: var(--primary-brass-gold);
+  filter: brightness(89%);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  border-radius: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.1s, background-color 0.05s;
+  cursor: pointer;
+  margin-bottom: 7px;
+  min-width: max-content;
+}
+
+.main-button:last-child {
+  margin-bottom: 0;
+}
+
+.main-button:hover {
+  filter: brightness(105%);
+  transform: scale(1.01);
+}
 </style>

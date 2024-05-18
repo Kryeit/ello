@@ -38,7 +38,7 @@ export default {
   font-size: 30px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .sections-container {
     flex-direction: column;
     padding-left: 8px;

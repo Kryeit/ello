@@ -80,7 +80,7 @@ const hidePlayerList = () => {
   padding: 10px;
   border-radius: 8px;
   overflow: visible;
-  margin: 0 20px;
+  margin: 0 10px;
   image-rendering: pixelated;
 }
 
@@ -141,7 +141,7 @@ h3 {
 }
 
 .version {
-  color: #5ab2de;
+  color: lightblue;
 }
 
 .player-info {
@@ -167,7 +167,7 @@ h3 {
 }
 
 .bars {
-  width: 20px;
+  height: 18px;
   image-rendering: pixelated;
 }
 
@@ -183,6 +183,7 @@ h3 {
   z-index: 3;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   transform-origin: top left;
+  transform: translateX(-75%);
 }
 
 .player-list p {
@@ -222,7 +223,7 @@ a.player-link:hover {
   }
 
   .bars {
-    width: 13px;
+    height: 1em;
   }
 
   .details {
@@ -232,17 +233,6 @@ a.player-link:hover {
 
   h1, h2, h3 {
     font-size: 0.7em;
-  }
-
-  .bars {
-    margin-top: 5px;
-  }
-
-  .player-list {
-    transform: translateX(-50%);
-    left: 50%;
-    bottom: 100%;
-    z-index: 10;
   }
 
   .player-count {

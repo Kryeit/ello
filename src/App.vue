@@ -26,6 +26,11 @@ useRouter().afterEach(() => {
 <style scoped>
 
 .toggle-btn {
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by most modern browsers */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on mobile for WebKit (Chrome, Safari) */
   position: fixed;
   top: 50%;
   left: 0;

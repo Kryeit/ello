@@ -76,6 +76,13 @@ const images = [
   <OnlinePlayers/>
 
   <br>
+  <h3>
+    Technical minecraft, yet a relaxed environment to play on.
+  </h3>
+  <h3>
+    You can find here a long-term mindset, a friendly community and a lot of moss.
+  </h3>
+  <br>
 
   <h3>Gallery</h3>
 

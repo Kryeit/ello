@@ -61,8 +61,7 @@ useRouter().afterEach(() => {
 
 @media (max-width: 600px) {
   .toggle-btn {
-    top: 100%;
-    bottom: 0;
+    top: min(100%, 100% - env(safe-area-inset-bottom));
     left: 50%;
     width: 300px;
     height: 300px;

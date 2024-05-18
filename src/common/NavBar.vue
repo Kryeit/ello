@@ -189,7 +189,7 @@ function sendToMainPage() {
   }
 
   .footer {
-    padding-bottom: 220px;
+    padding-bottom: 150px;
     gap: 0;
   }
 }

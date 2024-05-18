@@ -31,7 +31,6 @@ export default {
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +42,7 @@ export default {
     flex-direction: column;
     padding-left: 8px;
     padding-right: 8px;
+    padding-bottom: 8px;
     gap: 1rem;
   }
 

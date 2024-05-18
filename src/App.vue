@@ -63,8 +63,8 @@ useRouter().afterEach(() => {
   .toggle-btn {
     top: min(100%, 100% - env(safe-area-inset-bottom));
     left: 50%;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
   }
 }
 </style>

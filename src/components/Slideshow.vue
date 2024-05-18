@@ -89,6 +89,6 @@ a {
 img {
   width: 100%;
   aspect-ratio: 16/9;
-  object-fit: none;
+  object-fit: cover;
 }
 </style>

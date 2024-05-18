@@ -168,7 +168,6 @@ h3 {
 
 .bars {
   width: 20px;
-  height: 20px;
   image-rendering: pixelated;
 }
 
@@ -224,7 +223,6 @@ a.player-link:hover {
 
   .bars {
     width: 13px;
-    height: 13px;
   }
 
   .details {

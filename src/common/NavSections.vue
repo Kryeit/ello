@@ -2,8 +2,8 @@
   <div class="sections-container">
 
     <!-- Each section taking up one-third of the width -->
-    <div class="section">Work In Progress</div>
-    <div class="section">Work In Progress</div>
+    <div class="section">Work In Progress (LM)</div>
+    <div class="section">Work In Progress (M)</div>
     <div class="section">Work In Progress</div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 <style scoped>
 .sections-container {
   height: 100%;
-  padding-left: 12%;
+  padding-left: 7vw;
   padding-right: 5%;
   display: flex;
   width: 100%;
@@ -49,6 +49,7 @@ export default {
   .section {
     width: 100%;
     margin-bottom: 1rem;
+    font-size: 20px;
   }
 }
 

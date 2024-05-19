@@ -53,6 +53,7 @@ function sendToMainPage() {
       <div class="footer-section">
         <p>Kryeit </p>
         <router-link to="/about">About us</router-link>
+        <a href="https://status.kryeit.com" target="_blank">Status</a>
         <a href="https://kryeit.wiki.gg" target="_blank">Wiki</a>
       </div>
 
@@ -60,18 +61,12 @@ function sendToMainPage() {
         <p>Survival</p>
         <a href="https://map.kryeit.com" target="_blank">World Map</a>
         <a href="https://archive.kryeit.com" target="_blank">Archive</a>
-        <a href="https://status.kryeit.com" target="_blank">Status</a>
       </div>
 
       <div class="footer-section">
         <p>Support</p>
         <router-link to="/bans">Bans</router-link>
         <router-link to="/faq">FAQ</router-link>
-      </div>
-
-      <div class="footer-section">
-        <p>Join!</p>
-        <a href="/discord">Discord</a>
       </div>
 
       <div class="footer-section">
@@ -146,7 +141,7 @@ function sendToMainPage() {
   width: auto;
   background-color: var(--primary-brass-gold);
   color: white;
-  padding: 1rem;
+  padding: 0.6rem;
   text-align: center;
   display: flex;
   justify-content: space-around;
@@ -166,10 +161,20 @@ function sendToMainPage() {
 
 .footer-section p {
   font-size: 13px;
+  color: lightgray;
+  margin-bottom: 7px;
 }
 
 .footer-section a {
   font-size: 11px;
+  white-space: nowrap;
+  color: lightblue;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+  color: blue;
 }
 
 .footer img {
@@ -191,6 +196,10 @@ function sendToMainPage() {
   .footer {
     padding-bottom: 150px;
     gap: 0;
+  }
+
+  .footer-section {
+    padding: 4px;
   }
 }
 

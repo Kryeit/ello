@@ -1,5 +1,5 @@
 <template>
-  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/icon.png" alt="Menu"/>
+  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/zoomed_icon.png" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>
@@ -38,7 +38,8 @@ useRouter().afterEach(() => {
   z-index: 1010;
   color: white;
   cursor: pointer;
-  width: 15vw;
+  width: 10vw;
+  border-radius: 100%;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -63,8 +64,8 @@ useRouter().afterEach(() => {
   .toggle-btn {
     top: min(100%, 100% - env(safe-area-inset-bottom));
     left: 50%;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
   }
 }
 </style>

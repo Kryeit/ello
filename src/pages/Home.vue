@@ -117,6 +117,7 @@ const images = [
 .slogan {
   color: white;
   text-align: center;
+  padding-bottom: 16px;
 }
 
 .description {

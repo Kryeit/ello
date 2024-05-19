@@ -24,24 +24,33 @@
 
       <div class="staff-member">
 
-        <img width="50%" src="../assets/staff/muriplz.png" alt="MuriPlz" />
+        <img src="../assets/staff/muriplz.png" alt="MuriPlz" />
         <p>MuriPlz</p>
       </div>
+
       <div class="staff-member">
 
-        <img width="50%" src="../assets/staff/tesseract.png" alt="__Tesseract" />
+        <img src="../assets/staff/tesseract.png" alt="__Tesseract" />
         <p>__Tesseract</p>
       </div>
+
       <div class="staff-member">
 
-        <img width="50%" src="../assets/staff/rhino.png" alt="MrRedRhino" />
+        <img src="../assets/staff/rhino.png" alt="MrRedRhino" />
         <p>MrRedRhino</p>
       </div>
-    </div>
-
-    <div class="donation-section">
 
     </div>
+    <br>
+    <br>
+
+    <h1>Donations</h1>
+    <hr>
+    <br>
+    <h3 class="donations">
+      Kryeit is mainly ran by donations, which give some small perks, such as a colored name in chat.
+      You can donate at <a href="https://ko-fi.com/kryeit" target="_blank">Ko-Fi</a>.
+    </h3>
   </div>
 </template>
 
@@ -57,6 +66,14 @@
 }
 
 .introduction a:hover {
+  color: #72b3e8;
+}
+
+.donations a {
+  color: #4a90e2;
+}
+
+.donations a:hover {
   color: #72b3e8;
 }
 
@@ -81,12 +98,23 @@
 }
 
 .staff-member img {
-
+  width: 150px;
+  height: 150px;
   transition: all 0.3s ease;
 }
 
 .staff-member img:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .staff-section {
+    flex-direction: column;
+  }
+
+  .donations {
+    margin-bottom: 70px;
+  }
 }
 
 </style>

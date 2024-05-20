@@ -102,14 +102,28 @@ const images = [
   <div class="how-to-join">
     <div class="standard-install">
       <h3>Standard install (Suggestion)</h3>
+      <br>
       <ul>
         <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
-        <li>Click on "Add server"</li>
+        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
       </ul>
+      <br>
+      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
     </div>
-    <CopyIP/>
+
+    <div class="server-ip">
+      <CopyIP/>
+    </div>
+
     <div class="advanced-install">
       <h3>Advanced install</h3>
+      <br>
+      <ul>
+        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
+        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
+      </ul>
+      <br>
+      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
     </div>
   </div>
 
@@ -176,27 +190,48 @@ iframe {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
 }
 
 .how-to-join h3 {
-  padding-bottom: 20px;
   text-align: center;
   text-decoration: underline;
 }
 
 .standard-install {
+  border: 4px solid black;
+  border-radius: 12px;
+  background: #6e8f2b;
   width: 100%;
-
+  padding: 20px
 }
 
 .advanced-install {
+  border: 4px solid black;
+  border-radius: 12px;
+  background: #3b3b3b;
   width: 100%;
+  padding: 20px
+}
+
+.server-ip {
+  border: 4px solid black;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  background-image: url('/src/assets/dirt.png');
+  background-size: 100px 100px;
+  width: 100%;
+  image-rendering: pixelated;
+  margin: 20px;
 }
 
 @media (max-width: 600px) {
   .minecraft-disclaimer {
     margin-bottom: 70px;
+  }
+
+  .how-to-join {
+    flex-direction: column;
   }
 }
 </style>

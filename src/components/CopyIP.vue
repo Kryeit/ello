@@ -52,6 +52,7 @@ button {
   color: white;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 button:hover {

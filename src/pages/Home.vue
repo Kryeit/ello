@@ -1,6 +1,7 @@
 <script setup>
 import Slideshow from "@/components/Slideshow.vue";
 import OnlinePlayers from "@/components/OnlinePlayers.vue";
+import CopyIP from "@/components/CopyIP.vue";
 
 const images = [
   {
@@ -92,6 +93,26 @@ const images = [
 
   <Slideshow :images="images"></Slideshow>
 
+  <br>
+  <h2 class="section-title">How to join</h2>
+
+  <hr>
+  <br>
+
+  <div class="how-to-join">
+    <div class="standard-install">
+      <h3>Standard install (Suggestion)</h3>
+      <ul>
+        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
+        <li>Click on "Add server"</li>
+      </ul>
+    </div>
+    <CopyIP/>
+    <div class="advanced-install">
+      <h3>Advanced install</h3>
+    </div>
+  </div>
+
   <iframe
       src="https://www.youtube-nocookie.com/embed/Jh2NoGXKzME?autoplay=1&mute=1"
       title="Kryeit trailer"
@@ -149,6 +170,28 @@ iframe {
   display: block;
   margin: 30px auto;
   max-width: 800px;
+}
+
+.how-to-join {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.how-to-join h3 {
+  padding-bottom: 20px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.standard-install {
+  width: 100%;
+
+}
+
+.advanced-install {
+  width: 100%;
 }
 
 @media (max-width: 600px) {

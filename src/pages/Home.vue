@@ -104,7 +104,10 @@ const images = [
       <h3>Standard install (Suggestion)</h3>
       <br>
       <ul>
-        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
+        <li><a href="https://modrinth.com/app" target="_blank">
+          Download Modrinth App
+          <img src="../assets/modrinth.png" alt="Modrinth Logo">
+        </a></li>
         <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
       </ul>
       <br>
@@ -192,6 +195,10 @@ iframe {
   justify-content: center;
 }
 
+.how-to-join a img {
+  height: 20px;
+}
+
 .how-to-join h3 {
   text-align: center;
   text-decoration: underline;
@@ -200,20 +207,41 @@ iframe {
 .standard-install {
   border: 4px solid black;
   border-radius: 12px;
-  background: #6e8f2b;
+  background: #79553a;
   width: 100%;
-  padding: 20px
+  padding: 20px;
+  color: lightgrey;
+}
+
+.standard-install a {
+  text-decoration: none;
+  color: lightgrey;
+}
+
+.standard-install a:hover {
+  text-decoration: underline;
 }
 
 .advanced-install {
   border: 4px solid black;
   border-radius: 12px;
-  background: #3b3b3b;
+  background: #3b291b;
   width: 100%;
-  padding: 20px
+  padding: 20px;
+  color: lightgrey;
+}
+
+.advanced-install a {
+  text-decoration: none;
+  color: lightgrey;
+}
+
+.advanced-install a:hover {
+  text-decoration: underline;
 }
 
 .server-ip {
+  position: relative;
   border: 4px solid black;
   border-radius: 12px;
   display: flex;
@@ -225,11 +253,31 @@ iframe {
   margin: 20px;
 }
 
+.server-ip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.server-ip > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
 @media (max-width: 600px) {
   .minecraft-disclaimer {
     margin-bottom: 70px;
   }
+}
 
+@media (max-width: 900px) {
   .how-to-join {
     flex-direction: column;
   }

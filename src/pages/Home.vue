@@ -114,9 +114,7 @@ const images = [
       <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
     </div>
 
-    <div class="server-ip">
-      <CopyIP/>
-    </div>
+    <CopyIP/>
 
     <div class="advanced-install">
       <h3>Advanced install</h3>
@@ -239,36 +237,6 @@ iframe {
 .advanced-install a:hover {
   text-decoration: underline;
 }
-
-.server-ip {
-  position: relative;
-  border: 4px solid black;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  background-image: url('/src/assets/dirt.png');
-  background-size: 100px 100px;
-  width: 100%;
-  image-rendering: pixelated;
-  margin: 20px;
-}
-
-.server-ip::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 0;
-}
-
-.server-ip > * {
-  position: relative;
-  z-index: 1;
-}
-
 
 
 @media (max-width: 600px) {

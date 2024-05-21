@@ -1,13 +1,16 @@
 <template>
-  <div class="copy-input-container">
-    <div class="input-container" @click="copyText">
-      <input ref="textInput" type="text" v-model="text" readonly>
-      <span class="cursor">_</span>
+  <div class="server-ip">
+    <div class="copy-input-container">
+      <div class="input-container" @click="copyText">
+        <input ref="textInput" type="text" v-model="text" readonly>
+        <span class="cursor">_</span>
+      </div>
+      <button @click="copyTextWithoutSelection">
+        <img src="/src/assets/map.png" alt="Copy" />
+      </button>
     </div>
-    <button @click="copyTextWithoutSelection">
-      <img src="/src/assets/map.png" alt="Copy" />
-    </button>
   </div>
+
 </template>
 
 <script setup>
@@ -104,4 +107,34 @@ button img {
 button:hover {
   background-image: url('/src/assets/squared_button_hover.png');
 }
+
+
+.server-ip {
+  position: relative;
+  border: 4px solid black;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  background-image: url('/src/assets/dirt.png');
+  background-size: 100px 100px;
+  image-rendering: pixelated;
+  margin: 20px;
+}
+
+.server-ip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.server-ip > * {
+  position: relative;
+  z-index: 1;
+}
+
 </style>

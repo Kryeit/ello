@@ -9,6 +9,9 @@ import iconPath from '../assets/icon.png';
 import treePath from '../assets/tree.png';
 import hoverIconPath from '../assets/lifted_icon.png';
 
+const hoverIcon = new Image();
+hoverIcon.src = hoverIconPath;
+
 const iconSource = ref(iconPath);
 const treeSource = ref(treePath);
 const hoverIconSource = hoverIconPath;

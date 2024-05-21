@@ -7,10 +7,6 @@
   margin: 0 auto 0 70px; /* Cog icon margin */
 }
 
-body{
-  font-family: 'Minecraftia', sans-serif;
-}
-
 :root {
   --minecraft-font: 'MinecraftiaRegular', sans-serif;
   --primary-brass-gold: #ad7f38;

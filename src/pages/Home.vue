@@ -238,13 +238,6 @@ iframe {
   text-decoration: underline;
 }
 
-
-@media (max-width: 600px) {
-  .minecraft-disclaimer {
-    margin-bottom: 70px;
-  }
-}
-
 @media (max-width: 900px) {
   .how-to-join {
     flex-direction: column;

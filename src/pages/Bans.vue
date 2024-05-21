@@ -71,10 +71,4 @@ h1 {
   font-size: 40px;
   color: var(--vt-c-white-mute);
 }
-
-@media (max-width: 600px) {
-  .ban {
-    margin-bottom: 70px;
-  }
-}
 </style>

@@ -111,10 +111,6 @@
   .staff-section {
     flex-direction: column;
   }
-
-  .donations {
-    margin-bottom: 70px;
-  }
 }
 
 </style>

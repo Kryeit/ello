@@ -92,7 +92,7 @@ button {
   height: 42px;
   border: none;
   background-image: url('/src/assets/squared_button.png');
-  background-size: contain ;
+  background-size: cover;
   background-repeat: no-repeat;
   image-rendering: pixelated;
   cursor: pointer;
@@ -107,7 +107,6 @@ button img {
 button:hover {
   background-image: url('/src/assets/squared_button_hover.png');
 }
-
 
 .server-ip {
   position: relative;

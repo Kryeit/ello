@@ -2,6 +2,7 @@
 import Slideshow from "@/components/Slideshow.vue";
 import OnlinePlayers from "@/components/OnlinePlayers.vue";
 import CopyIP from "@/components/CopyIP.vue";
+import HowToJoin from "@/components/HowToJoin.vue";
 
 const images = [
   {
@@ -99,34 +100,7 @@ const images = [
   <hr>
   <br>
 
-  <div class="how-to-join">
-    <div class="standard-install">
-      <img class="title-image" src="../assets/standard.png" alt="Standard">
-      <br>
-      <ul>
-        <li><a href="https://modrinth.com/app" target="_blank">
-          Download Modrinth App
-          <img src="../assets/modrinth.png" alt="Modrinth Logo">
-        </a></li>
-        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
-      </ul>
-      <br>
-      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
-    </div>
-
-    <CopyIP/>
-
-    <div class="advanced-install">
-      <img class="title-image" src="../assets/advanced.png" alt="Advanced">
-      <br>
-      <ul>
-        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
-        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
-      </ul>
-      <br>
-      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
-    </div>
-  </div>
+  <HowToJoin/>
 
   <iframe
       src="https://www.youtube-nocookie.com/embed/Jh2NoGXKzME?autoplay=1&mute=1"
@@ -185,65 +159,5 @@ iframe {
   display: block;
   margin: 30px auto;
   max-width: 800px;
-}
-
-.how-to-join {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.how-to-join a img {
-  height: 20px;
-}
-
-.standard-install {
-  border: 4px solid black;
-  border-radius: 12px;
-  background: #79553a;
-  width: 100%;
-  padding: 20px;
-  color: lightgrey;
-}
-
-.title-image {
-  image-rendering: pixelated;
-  width: 80%;
-  object-fit: cover;
-  display: block;
-  margin: auto;
-}
-
-.standard-install a {
-  text-decoration: none;
-  color: lightgrey;
-}
-
-.standard-install a:hover {
-  text-decoration: underline;
-}
-
-.advanced-install {
-  border: 4px solid black;
-  border-radius: 12px;
-  background: #3b291b;
-  width: 100%;
-  padding: 20px;
-  color: lightgrey;
-}
-
-.advanced-install a {
-  text-decoration: none;
-  color: lightgrey;
-}
-
-.advanced-install a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 900px) {
-  .how-to-join {
-    flex-direction: column;
-  }
 }
 </style>

@@ -3,8 +3,8 @@
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>
-
   </router-view>
+
 </template>
 
 <script setup>
@@ -62,7 +62,7 @@ useRouter().afterEach(() => {
 
 @media (max-width: 600px) {
   .toggle-btn {
-    top: min(100%, 100% - env(safe-area-inset-bottom));
+    top: min(100%, 100% - env(safe-area-inset-bottom)); /* In case a browser/app adds a bottom nav bar too */
     left: 50%;
     width: 150px;
     height: 150px;

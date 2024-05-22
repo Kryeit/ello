@@ -101,7 +101,7 @@ const images = [
 
   <div class="how-to-join">
     <div class="standard-install">
-      <h3>Standard install (Suggestion)</h3>
+      <img class="title-image" src="../assets/standard.png" alt="Standard">
       <br>
       <ul>
         <li><a href="https://modrinth.com/app" target="_blank">
@@ -117,7 +117,7 @@ const images = [
     <CopyIP/>
 
     <div class="advanced-install">
-      <h3>Advanced install</h3>
+      <img class="title-image" src="../assets/advanced.png" alt="Advanced">
       <br>
       <ul>
         <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
@@ -197,11 +197,6 @@ iframe {
   height: 20px;
 }
 
-.how-to-join h3 {
-  text-align: center;
-  text-decoration: underline;
-}
-
 .standard-install {
   border: 4px solid black;
   border-radius: 12px;
@@ -209,6 +204,14 @@ iframe {
   width: 100%;
   padding: 20px;
   color: lightgrey;
+}
+
+.title-image {
+  image-rendering: pixelated;
+  width: 80%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
 }
 
 .standard-install a {

@@ -8,7 +8,6 @@
       <h3>
         <span class="create-mod">Create mod</span>
         <span class="survival">survival</span>
-        <span class="version">(1.20.1)</span>
       </h3>
     </div>
     <div class="player-info">
@@ -137,11 +136,7 @@ h3 {
 
 .survival {
   color: gray;
-  margin: 0 5px;
-}
-
-.version {
-  color: lightblue;
+  margin-left: 1ch;
 }
 
 .player-info {
@@ -155,7 +150,6 @@ h3 {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-left: 20px;
   cursor: pointer;
   position: relative;
   z-index: 2;

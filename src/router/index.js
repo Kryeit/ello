@@ -5,6 +5,8 @@ import Home from "@/pages/Home.vue";
 import Bans from "@/pages/Bans.vue";
 import Leaderboard from "@/pages/leaderboard/Leaderboard.vue";
 import About from "@/pages/About.vue";
+import Modpacks from "@/pages/community/Modpacks.vue";
+import Launchers from "@/pages/community/Launchers.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -12,7 +14,9 @@ const routes = [
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},
     {path: "/leaderboard", component: Leaderboard},
-    {path: "/about", component: About}
+    {path: "/about", component: About},
+    {path: "/modpacks", component: Modpacks},
+    {path: "/launchers", component: Launchers}
 ]
 
 const router = createRouter({

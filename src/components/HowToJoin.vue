@@ -8,15 +8,12 @@ import CopyIP from "@/components/CopyIP.vue";
     <div class="standard-install">
       <img class="title-image" src="../assets/standard.png" alt="Standard">
       <br>
-      <ul>
-        <li><a href="https://modrinth.com/app" target="_blank">
-          Download Modrinth App
-          <img src="../assets/modrinth.png" alt="Modrinth Logo">
-        </a></li>
+      <ol>
+        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
         <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
-      </ul>
+      </ol>
       <br>
-      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
+      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App.</h4>
     </div>
 
     <CopyIP/>
@@ -24,12 +21,12 @@ import CopyIP from "@/components/CopyIP.vue";
     <div class="advanced-install">
       <img class="title-image" src="../assets/advanced.png" alt="Advanced">
       <br>
-      <ul>
-        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
-        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
-      </ul>
+      <ol>
+        <li><a href="/launchers">Download any launcher</a></li>
+        <li><a href="/modpacks">Download any Kryeit modpack</a></li>
+      </ol>
       <br>
-      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App</h4>
+      <h4>Note that this is prone to bugs, and errors client-side.</h4>
     </div>
   </div>
 </template>
@@ -40,6 +37,7 @@ import CopyIP from "@/components/CopyIP.vue";
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 20px;
 }
 
 .how-to-join a img {
@@ -90,7 +88,7 @@ import CopyIP from "@/components/CopyIP.vue";
   text-decoration: underline;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .how-to-join {
     flex-direction: column;
   }

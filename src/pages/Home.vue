@@ -98,9 +98,16 @@ const images = [
   <h2 class="section-title">How to join</h2>
 
   <hr>
+
   <br>
 
   <HowToJoin/>
+
+  <h2 class="section-title">Trailer</h2>
+
+  <hr>
+
+  <br>
 
   <iframe
       src="https://www.youtube-nocookie.com/embed/Jh2NoGXKzME?autoplay=1&mute=1"
@@ -157,7 +164,7 @@ iframe {
   width: 100%;
   aspect-ratio: 16/9;
   display: block;
-  margin: 30px auto;
   max-width: 800px;
+  margin: auto auto 20px;
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
-  <div class="toast" :style="{ zIndex: zIndex }">
+  <div class="toast" :style="{ zIndex: zIndex }" @click="closeToast">
     <img v-if="image" :src="image" alt="toast-image" class="toast-image"/>
     <div class="toast-content">
       <h4 class="toast-title">{{ title }}</h4>
       <p class="toast-description">{{ description }}</p>
     </div>
-    <button class="toast-close" @click="closeToast">×</button>
   </div>
 </template>
 
@@ -20,7 +19,8 @@ export default {
   },
   methods: {
     closeToast() {
-      this.$emit('close');
+      this.$el.classList.add('toast-exit');
+      setTimeout(() => this.$emit('close'), 500);
     }
   },
   mounted() {
@@ -33,43 +33,82 @@ export default {
 .toast {
   display: flex;
   align-items: center;
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
+  background-image: url('@/assets/toast.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 20px;
+  cursor: pointer;
+  image-rendering: pixelated;
+  animation: toast-enter 0.5s forwards;
+
+}
+
+.toast-exit {
+  animation: toast-exit 0.5s forwards;
 }
 
 .toast-image {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+  image-rendering: pixelated;
 }
 
 .toast-content {
   flex: 1;
 }
 
-.toast-title {
+.toast-title, .toast-description {
   margin: 0;
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.toast-description {
-  margin: 5px 0 0;
-  font-size: 14px;
+.toast-title, .toast-description, .toast-image {
+  user-select: none;
 }
 
-.toast-close {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+@keyframes toast-enter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-exit {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .toast {
+    padding: 10px;
+  }
+
+  .toast-image {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+
+  .toast-title {
+    font-size: 12px;
+  }
+
+  .toast-description {
+    font-size: 8px;
+  }
 }
 </style>

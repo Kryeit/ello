@@ -7,7 +7,8 @@
         :title="toast.title"
         :description="toast.description"
         :zIndex="baseZIndex + index"
-        @close="removeToast(toast.id)"
+        :style="{ transform: `translateY(${index * 100}%)`, transition: 'transform 2s' }"
+        @close="handleCloseToast(toast.id)"
     />
   </div>
 </template>
@@ -17,16 +18,24 @@ import Toast from './Toast.vue';
 import { getToasts, removeToast } from '@/javascript/toasts.js';
 
 const baseZIndex = 9999;
+
+const handleCloseToast = (toastId) => {
+  removeToast(toastId);
+};
 </script>
 
 <style scoped>
 .toast-container {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 4px;
+  right: 8px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
+}
+
+.toast {
+  transition: transform 0.5s;
 }
 </style>

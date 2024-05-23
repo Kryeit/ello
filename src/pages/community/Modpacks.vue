@@ -99,6 +99,13 @@ h1 {
 .modpack-info {
   flex-grow: 1;
   padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modpack-info p {
+  padding-top: 10px;
 }
 
 .modpack-stats {

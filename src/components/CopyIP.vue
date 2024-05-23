@@ -25,7 +25,7 @@ const sound = ref(new Audio(clickSound));
 async function copyText() {
   if (textInput.value) {
     textInput.value.select();
-    addToast('/src/assets/map.png', 'Copied!', 'The server IP has been copied to your clipboard.');
+    addToast('/src/assets/map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
     try {
       await navigator.clipboard.writeText(text.value);
     } catch (err) {
@@ -39,7 +39,7 @@ async function copyTextWithoutSelection() {
     try {
       await navigator.clipboard.writeText(text.value);
       await sound.value.play();
-      addToast('/src/assets/map.png', 'Copied!', 'The server IP has been copied to your clipboard.');
+      addToast('/src/assets/map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
 
     } catch (err) {
       console.error('Failed to copy text: ', err);

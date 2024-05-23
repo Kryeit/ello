@@ -14,8 +14,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import clickSound from '@/assets/sounds/click.ogg';
+import {addToast} from "@/javascript/toasts.js";
 
 const textInput = ref(null);
 const text = ref('kryeit.com');
@@ -24,6 +25,7 @@ const sound = ref(new Audio(clickSound));
 async function copyText() {
   if (textInput.value) {
     textInput.value.select();
+    addToast('/src/assets/map.png', 'Copied!', 'The server IP has been copied to your clipboard.');
     try {
       await navigator.clipboard.writeText(text.value);
     } catch (err) {
@@ -37,6 +39,8 @@ async function copyTextWithoutSelection() {
     try {
       await navigator.clipboard.writeText(text.value);
       await sound.value.play();
+      addToast('/src/assets/map.png', 'Copied!', 'The server IP has been copied to your clipboard.');
+
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
@@ -48,7 +52,7 @@ async function copyTextWithoutSelection() {
 .copy-input-container {
   display: flex;
   justify-content: center;
-  padding: 20px 20px;
+  padding: 20px 50px;
   width: 100%;
 }
 

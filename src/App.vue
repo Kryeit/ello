@@ -1,4 +1,5 @@
 <template>
+  <ToastManager />
   <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/zoomed_icon.png" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
@@ -11,6 +12,7 @@
 import {ref} from 'vue';
 import NavBar from './common/NavBar.vue';
 import {useRouter} from "vue-router";
+import ToastManager from "@/components/ToastManager.vue";
 
 const isNavVisible = ref(false);
 

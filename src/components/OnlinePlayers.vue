@@ -42,7 +42,7 @@ import ReconnectingWebSocket from "reconnecting-websocket";
 
 const onlinePlayers = ref([]);
 const onlineCount = computed(() => {
-  return onlinePlayers.value.filter((p) => !p.afk).length;
+  return onlinePlayers.value.length;
 });
 const displayedPlayers = computed(() => {
   return onlinePlayers.value.slice(0, 10);

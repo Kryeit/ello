@@ -6,7 +6,7 @@
         <span class="cursor">_</span>
       </div>
       <button @click="copyTextWithoutSelection">
-        <img src="/src/assets/map.png" alt="Copy" />
+        <img src="/src/assets/toast/map.png" alt="Copy" />
       </button>
     </div>
   </div>
@@ -25,7 +25,7 @@ const sound = ref(new Audio(clickSound));
 async function copyText() {
   if (textInput.value) {
     textInput.value.select();
-    addToast('/src/assets/map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
+    addToast('map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
     try {
       await navigator.clipboard.writeText(text.value);
     } catch (err) {
@@ -39,7 +39,7 @@ async function copyTextWithoutSelection() {
     try {
       await navigator.clipboard.writeText(text.value);
       await sound.value.play();
-      addToast('/src/assets/map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
+      addToast('map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
 
     } catch (err) {
       console.error('Failed to copy text: ', err);
@@ -100,6 +100,7 @@ button {
   background-repeat: no-repeat;
   image-rendering: pixelated;
   cursor: pointer;
+  user-select: none;
 }
 
 button img {

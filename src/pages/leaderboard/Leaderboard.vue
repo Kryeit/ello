@@ -5,7 +5,6 @@ import {ref, watch} from "vue";
 const sortDirections = [{'name': 'Descending', 'value': 'DESC'}, {'name': 'Ascending', 'value': 'ASC'}];
 const orders = [
   {'name': 'Playtime', 'value': 'playtime'},
-  {'name': 'Last played', 'value': 'last-played'},
   {'name': 'Distance walked', 'value': 'distance-walked'},
   {'name': 'Deaths', 'value': 'deaths'},
   {'name': 'Mob kills', 'value': 'mob-kills'}

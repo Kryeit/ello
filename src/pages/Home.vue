@@ -166,5 +166,6 @@ iframe {
   display: block;
   max-width: 800px;
   margin: auto auto 20px;
+  user-select: none;
 }
 </style>

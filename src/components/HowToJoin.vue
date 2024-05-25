@@ -7,7 +7,6 @@ import CopyIP from "@/components/CopyIP.vue";
   <div class="how-to-join">
     <div class="standard-install">
       <img class="title-image" src="../assets/standard.png" alt="Standard">
-      <br>
       <ol>
         <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
         <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
@@ -20,7 +19,6 @@ import CopyIP from "@/components/CopyIP.vue";
 
     <div class="advanced-install">
       <img class="title-image" src="../assets/advanced.png" alt="Advanced">
-      <br>
       <ol>
         <li><a href="/launchers">Download any launcher</a></li>
         <li><a href="/modpacks">Download any Kryeit modpack</a></li>
@@ -59,6 +57,8 @@ import CopyIP from "@/components/CopyIP.vue";
   object-fit: cover;
   display: block;
   margin: auto;
+  user-select: none;
+  padding-bottom: 20px
 }
 
 .standard-install a {

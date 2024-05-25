@@ -40,7 +40,6 @@ export default {
   cursor: pointer;
   image-rendering: pixelated;
   animation: toast-enter 0.5s forwards;
-
 }
 
 .toast-exit {

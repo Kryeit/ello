@@ -3,7 +3,7 @@
     <Toast
         v-for="(toast, index) in getToasts()"
         :key="toast.id"
-        :image="toast.image"
+        :image="getImage(toast.image)"
         :title="toast.title"
         :description="toast.description"
         :zIndex="baseZIndex + index"
@@ -17,7 +17,19 @@
 import Toast from './Toast.vue';
 import { getToasts, removeToast } from '@/javascript/toasts.js';
 
+// Import images directly
+import mapImage from '@/assets/toast/map.png';
+
 const baseZIndex = 9999;
+
+const imageMap = {
+  'map.png': mapImage,
+  // Add other images here
+};
+
+const getImage = (imageName) => {
+  return imageMap[imageName] || '';
+};
 
 const handleCloseToast = (toastId) => {
   removeToast(toastId);

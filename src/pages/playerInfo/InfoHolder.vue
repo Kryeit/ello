@@ -30,7 +30,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
       <h2>Status:</h2>
       <div class="info-wrapper">
         <div class="status-wrapper">
-          <div class="status" :style="{background: data.online && !data.banStatus ? 'var(--green)' : 'var(--red)'}"></div>
+          <div class="status" :style="{background: data.afk ? 'grey' : (data.online && !data.banStatus ? 'var(--green)' : 'var(--red)')}"></div>
           <h3 v-if="data.banStatus">Banned
             <router-link to="/bans">All bans...</router-link>
           </h3>

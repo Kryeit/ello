@@ -86,7 +86,7 @@ const images = [
   </h3>
   <br>
 
-  <h2 class="section-title">Gallery</h2>
+  <h2 id="gallery" class="section-title">Gallery</h2>
 
   <hr>
 
@@ -95,7 +95,7 @@ const images = [
   <Slideshow :images="images"></Slideshow>
 
   <br>
-  <h2 class="section-title">How to join</h2>
+  <h2 id="how-to-join" class="section-title">How to join</h2>
 
   <hr>
 
@@ -103,7 +103,7 @@ const images = [
 
   <HowToJoin/>
 
-  <h2 class="section-title">Trailer</h2>
+  <h2 id="trainer" class="section-title">Trailer</h2>
 
   <hr>
 

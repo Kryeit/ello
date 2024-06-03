@@ -69,7 +69,7 @@ const images = [
 <template>
   <div class="gallery">
     <h2 class="title">Legacy Gallery (S2)</h2>
-    <Slideshow :images="images"></Slideshow>
+    <Slideshow :images="images"/>
   </div>
 </template>
 

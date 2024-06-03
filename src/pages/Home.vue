@@ -93,7 +93,7 @@ const images = [
 
   <br>
 
-  <Slideshow :images="images"></Slideshow>
+  <Slideshow :images="images"/>
 
   <br>
   <h2 id="how-to-join" class="section-title">How to join</h2>

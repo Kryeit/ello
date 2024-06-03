@@ -1,8 +1,9 @@
 <script setup>
 import Slideshow from "@/components/Slideshow.vue";
 import OnlinePlayers from "@/components/OnlinePlayers.vue";
-import CopyIP from "@/components/CopyIP.vue";
 import HowToJoin from "@/components/HowToJoin.vue";
+import VideoPlayer from "@/components/VideoPlayer.vue";
+import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
   {
@@ -109,13 +110,7 @@ const images = [
 
   <br>
 
-  <iframe
-      src="https://www.youtube-nocookie.com/embed/Jh2NoGXKzME?autoplay=1&mute=1"
-      title="Kryeit trailer"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      loading="lazy">
-  </iframe>
+  <VideoPlayer :src="Kryeitrailer"/>
 
   <hr>
 
@@ -157,15 +152,5 @@ const images = [
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-iframe {
-  border: none;
-  width: 100%;
-  aspect-ratio: 16/9;
-  display: block;
-  max-width: 800px;
-  margin: auto auto 20px;
-  user-select: none;
 }
 </style>

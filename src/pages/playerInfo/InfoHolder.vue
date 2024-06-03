@@ -34,7 +34,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
           <h3 v-if="data.banStatus">Banned
             <router-link to="/bans">All bans...</router-link>
           </h3>
-          <h3 v-else>{{ data.online ? "Online" : "Offline" }}</h3>
+          <h3 v-else>{{ data.online ? (data.afk ? "AFK" : "Online") : "Offline" }}</h3>
         </div>
         <h3 v-if="!data.online">Last Seen: {{ formatDate(data.lastSeen) }}
           <br>

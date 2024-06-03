@@ -7,6 +7,7 @@ import Leaderboard from "@/pages/leaderboard/Leaderboard.vue";
 import About from "@/pages/About.vue";
 import Modpacks from "@/pages/community/Modpacks.vue";
 import Launchers from "@/pages/community/Launchers.vue";
+import LegacyGallery from "@/pages/LegacyGallery.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -16,7 +17,8 @@ const routes = [
     {path: "/leaderboard", component: Leaderboard},
     {path: "/about", component: About},
     {path: "/modpacks", component: Modpacks},
-    {path: "/launchers", component: Launchers}
+    {path: "/launchers", component: Launchers},
+    {path:"/legacy-gallery", component: LegacyGallery}
 ]
 
 const router = createRouter({

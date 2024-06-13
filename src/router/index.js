@@ -8,9 +8,11 @@ import About from "@/pages/About.vue";
 import Modpacks from "@/pages/community/Modpacks.vue";
 import Launchers from "@/pages/community/Launchers.vue";
 import LegacyGallery from "@/pages/LegacyGallery.vue";
+import Login from "@/pages/auth/Login.vue";
 
 const routes = [
     {path: '/', component: Home},
+    {path: '/login', component: Login},
     {path: '/home', component: Home},
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},
@@ -18,7 +20,7 @@ const routes = [
     {path: "/about", component: About},
     {path: "/modpacks", component: Modpacks},
     {path: "/launchers", component: Launchers},
-    {path:"/legacy-gallery", component: LegacyGallery}
+    {path: "/legacy-gallery", component: LegacyGallery}
 ]
 
 const router = createRouter({

@@ -4,7 +4,7 @@
 
 <template>
   <div class="loading-spinner">
-    <img src="/src/assets/icon.png" width="100" alt="loading">
+    <img src="/src/assets/kryeit/icon.png" width="100" alt="loading">
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="server-status">
     <div class="overlay"></div>
-    <img class="icon" src="/src/assets/gears.png" alt="Server Icon" />
+    <img class="icon" src="/src/assets/kryeit/gears.png" alt="Server Icon" />
     <div class="details">
       <h1>Minecraft Server</h1>
       <h2>Kryeit</h2>
@@ -18,7 +18,7 @@
       >
         <span>{{ onlineCount }}/18</span>
         <a href="https://status.kryeit.com" target="_blank">
-          <img class="bars" src="/src/assets/bars.png" alt="Bars" />
+          <img class="bars" src="/src/assets/minecraft/bars.png" alt="Bars" />
         </a>
         <div class="player-list" v-show="hovered" ref="playerList">
           <p
@@ -74,7 +74,7 @@ const hidePlayerList = () => {
   position: relative;
   display: flex;
   align-items: flex-start;
-  background-image: url('/src/assets/dirt.png');
+  background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 100px 100px;
   padding: 10px;
   border-radius: 8px;

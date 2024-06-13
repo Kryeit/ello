@@ -95,7 +95,7 @@ button {
   width: 42px;
   height: 42px;
   border: none;
-  background-image: url('/src/assets/squared_button.png');
+  background-image: url('/src/assets/minecraft/squared_button.png');
   background-size: cover;
   background-repeat: no-repeat;
   image-rendering: pixelated;
@@ -110,7 +110,7 @@ button img {
 }
 
 button:hover {
-  background-image: url('/src/assets/squared_button_hover.png');
+  background-image: url('/src/assets/minecraft/squared_button_hover.png');
 }
 
 .server-ip {
@@ -119,7 +119,7 @@ button:hover {
   border-radius: 12px;
   display: flex;
   align-items: center;
-  background-image: url('/src/assets/dirt.png');
+  background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 100px 100px;
   image-rendering: pixelated;
   margin: 20px;

@@ -33,7 +33,7 @@ export default {
 .toast {
   display: flex;
   align-items: center;
-  background-image: url('@/assets/toast.png');
+  background-image: url('@/assets/minecraft/toast.png');
   background-size: contain;
   background-repeat: no-repeat;
   padding: 20px;

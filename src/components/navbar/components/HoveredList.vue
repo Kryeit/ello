@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref} from 'vue';
 import router from "@/router/index.js";
-import HoverButton from "@/common/components/HoverButton.vue";
+import HoverButton from "@/components/navbar/components/HoverButton.vue";
 
 
 const playerName = ref('');

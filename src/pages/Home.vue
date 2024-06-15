@@ -85,30 +85,22 @@ const images = [
   <h3 class="description">
     You can find here a long-term mindset, a friendly community and a lot of moss.
   </h3>
-  <br>
 
   <h2 id="gallery" class="section-title">Gallery</h2>
 
-  <hr>
-
-  <br>
+  <hr class="separator">
 
   <Slideshow :images="images"/>
 
-  <br>
   <h2 id="how-to-join" class="section-title">How to join</h2>
 
-  <hr>
-
-  <br>
+  <hr class="separator">
 
   <HowToJoin/>
 
-  <h2 id="trainer" class="section-title">Trailer</h2>
+  <h2 id="trailer" class="section-title">Trailer</h2>
 
-  <hr>
-
-  <br>
+  <hr class="separator">
 
   <VideoPlayer :src="Kryeitrailer"/>
 
@@ -120,6 +112,10 @@ const images = [
 </template>
 
 <style scoped>
+.separator {
+  margin-bottom: 16px;
+}
+
 .banner img {
   width: calc(100vw - 30px);
   max-width: 800px;

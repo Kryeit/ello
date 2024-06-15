@@ -11,7 +11,8 @@
   "dependencies": {
     "reconnecting-websocket": "^4.4.0",
     "vue": "^3.4.29",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.3.2",
+    "vuetify": "^3.6.9"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",

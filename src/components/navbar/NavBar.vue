@@ -2,11 +2,11 @@
 import {ref} from 'vue';
 import NavSections from '@/components/navbar/NavSections.vue';
 import Footer from '@/components/navbar/components/Footer.vue';
-import Test from "@/components/navbar/components/ProfileDropdown.vue";
 import {useRouter} from 'vue-router';
 
 import iconPath from '@/assets/kryeit/icon.png';
 import hoverIconPath from '@/assets/kryeit/lifted_icon.png';
+import ProfileDropdown from "@/components/navbar/components/ProfileDropdown.vue";
 
 const iconSource = ref(iconPath);
 const hoverIconSource = hoverIconPath;
@@ -38,7 +38,7 @@ function sendToMainPage() {
     <div class="header-content">
       <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
            alt=""/>
-      <Test/>
+      <ProfileDropdown/>
     </div>
   </header>
 

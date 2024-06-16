@@ -1,14 +1,14 @@
 <template>
-  <div class="text-center">
-    <v-menu location="end">
+  <div>
+    <v-menu location="end" open-on-hover>
       <template v-slot:activator="{ props }">
-        <v-btn
-            color="primary"
-            dark
-            v-bind="props"
-        >
-          Dropdown
-        </v-btn>
+
+        <v-list-item @click="">
+          <v-list-item-title v-bind="props">
+            Settings
+          </v-list-item-title>
+        </v-list-item>
+
       </template>
 
       <v-list>

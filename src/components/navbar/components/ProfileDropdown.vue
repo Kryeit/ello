@@ -1,6 +1,6 @@
 <template>
-  <div class="text-center">
-    <v-menu open-on-hover>
+  <div>
+    <v-menu open-on-hover :close-on-content-click="false">
       <template v-slot:activator="{ props }">
         <v-btn color="primary" v-bind="props">
           <img class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">

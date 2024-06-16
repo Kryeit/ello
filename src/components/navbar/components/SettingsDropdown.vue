@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-menu location="end" open-on-hover>
+    <v-menu location="end" open-on-hover :close-on-content-click="false">
       <template v-slot:activator="{ props }">
 
-        <v-list-item @click="">
-          <v-list-item-title v-bind="props">
+        <v-list-item v-bind="props">
+          <v-list-item-title>
             Settings
           </v-list-item-title>
         </v-list-item>
@@ -31,3 +31,7 @@ const items = [
   { title: 'Click Me 2' },
 ]
 </script>
+
+<style scoped>
+
+</style>

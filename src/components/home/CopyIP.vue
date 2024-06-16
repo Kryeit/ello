@@ -121,6 +121,7 @@ button:hover {
   align-items: center;
   background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 100px 100px;
+  background-repeat: repeat;
   image-rendering: pixelated;
   margin: 20px;
 }

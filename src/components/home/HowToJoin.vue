@@ -7,10 +7,10 @@ import CopyIP from "@/components/home/CopyIP.vue";
   <div class="how-to-join">
     <div class="standard-install">
       <img class="title-image" src="../../assets/standard.png" alt="Standard">
-      <ol>
-        <li><a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></li>
-        <li><a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></li>
-      </ol>
+      <div>
+        <p>1. <a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></p>
+        <p>2. <a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></p>
+      </div>
       <br>
       <h4>Additionally, you can just search "Kryeit" inside the Modrinth App.</h4>
     </div>
@@ -19,10 +19,10 @@ import CopyIP from "@/components/home/CopyIP.vue";
 
     <div class="advanced-install">
       <img class="title-image" src="../../assets/advanced.png" alt="Advanced">
-      <ol>
-        <li><a href="/launchers">Download any launcher</a></li>
-        <li><a href="/modpacks">Download any Kryeit modpack</a></li>
-      </ol>
+      <div>
+        <p>1. <a href="/launchers">Download any launcher</a></p>
+        <p>2. <a href="/modpacks">Download any Kryeit modpack</a></p>
+      </div>
       <br>
       <h4>Note that this is prone to bugs, and errors client-side.</h4>
     </div>

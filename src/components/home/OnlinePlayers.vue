@@ -76,6 +76,7 @@ const hidePlayerList = () => {
   align-items: flex-start;
   background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 100px 100px;
+  background-repeat: repeat;
   padding: 10px;
   border-radius: 8px;
   overflow: visible;

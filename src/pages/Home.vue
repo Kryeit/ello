@@ -1,6 +1,6 @@
 <script setup>
 import Slideshow from "@/components/Slideshow.vue";
-import OnlinePlayers from "@/components/OnlinePlayers.vue";
+import OnlinePlayers from "@/components/home/OnlinePlayers.vue";
 import HowToJoin from "@/components/home/HowToJoin.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";

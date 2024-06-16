@@ -63,7 +63,7 @@ async function copyTextWithoutSelection() {
 }
 
 input[type="text"] {
-  width: 14ch;
+  width: 13.3ch;
   padding: 9px;
   border: 2px solid white;
   background: black;

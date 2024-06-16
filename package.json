@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^10.11.0",
     "reconnecting-websocket": "^4.4.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.2",

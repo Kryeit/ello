@@ -71,6 +71,7 @@ function sendToMainPage() {
 
 .header-content {
   display: flex;
+  align-items: center;
   background-color: var(--primary-brass-gold);
   width: 100%;
   padding-top: 10px;

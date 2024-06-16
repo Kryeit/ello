@@ -135,6 +135,7 @@ const images = [
 .section-title {
   color: white;
   text-align: center;
+  padding-top: 20px;
 }
 
 .minecraft-disclaimer {

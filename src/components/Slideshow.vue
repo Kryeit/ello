@@ -60,6 +60,7 @@ a {
 
 .subtitle {
   left: 0;
+  padding-bottom: 20px;
 }
 
 .button {
@@ -89,6 +90,6 @@ a {
 img {
   width: 100%;
   aspect-ratio: 16/9;
-  object-fit: cover;
+  object-fit: contain;
 }
 </style>

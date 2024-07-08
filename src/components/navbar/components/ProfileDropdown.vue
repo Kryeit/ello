@@ -2,7 +2,7 @@
   <div>
     <v-menu open-on-hover :close-on-content-click="false">
       <template v-slot:activator="{ props }">
-        <v-btn color="primary" v-bind="props">
+        <v-btn class="profile-button" v-bind="props">
           <img class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">
           <span class="player-name">{{ playerName }}</span>
         </v-btn>
@@ -42,6 +42,11 @@ function navigateTo(item) {
 </script>
 
 <style scoped>
+.profile-button {
+  background-color: var(--dark-brass-gold);
+  color: var(--color-text);
+}
+
 .player-image {
   width: 24px;
   height: 24px;

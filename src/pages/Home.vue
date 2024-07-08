@@ -6,18 +6,18 @@ import VideoPlayer from "@/components/VideoPlayer.vue";
 import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
-  {
-    src: "https://kryeit.com/images/gallery/MrRedRhino.png",
-    name: "Picture by MrRedRhino"
-  },
+//  {
+//    src: "https://kryeit.com/images/gallery/MrRedRhino.png",
+//    name: "Picture by MrRedRhino"
+//  },
   {
     src: "https://kryeit.com/images/gallery/ELZEN219.png",
     name: "Picture by ELZEN219"
   },
-  {
-    src: "https://kryeit.com/images/gallery/MuriPlz.png",
-    name: "Picture by MuriPlz"
-  },
+//  {
+//    src: "https://kryeit.com/images/gallery/MuriPlz.png",
+//    name: "Picture by MuriPlz"
+//  },
   {
     src: "https://kryeit.com/images/gallery/goldnphoenix258.png",
     name: "Picture by goldnphoenix258"
@@ -112,9 +112,8 @@ const images = [
 
   <h2 class="slogan">Mine, craft and create.</h2>
 
-  <OnlinePlayers/>
+  <OnlinePlayers class="online-players"/>
 
-  <br>
   <h3 class="description">
     Technical minecraft, yet a relaxed environment to play on.
   </h3>
@@ -152,6 +151,10 @@ const images = [
   margin-bottom: 16px;
 }
 
+.online-players {
+  margin-bottom: 20px;
+}
+
 .banner img {
   width: calc(100vw - 30px);
   max-width: 800px;
@@ -159,7 +162,6 @@ const images = [
 }
 
 .slogan {
-  color: white;
   text-align: center;
   padding-bottom: 16px;
 }
@@ -169,7 +171,6 @@ const images = [
 }
 
 .section-title {
-  color: white;
   text-align: center;
   padding-top: 20px;
 }

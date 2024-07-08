@@ -9,12 +9,6 @@
 
 :root {
   --minecraft-font: 'MinecraftiaRegular', sans-serif;
-  --primary-brass-gold: #ad7f38;
-  --light-brass-gold: #c9b198;
-  --dark-brass-gold: #806a42;
-  --neutral-light: #f5f2ed;
-  --neutral-dark: #504a40;
-  --accent-color: #7a9e7e;
 }
 
 @media (max-width: 600px) {

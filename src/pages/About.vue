@@ -51,6 +51,7 @@
       Kryeit is mainly ran by donations, which give some small perks, such as a colored name in chat.
       You can donate at <a href="https://ko-fi.com/kryeit" target="_blank">Ko-Fi</a>.
     </h3>
+    <br>
   </div>
 </template>
 

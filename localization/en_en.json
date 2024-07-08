@@ -6,6 +6,8 @@
   "home.gallery": "Gallery",
   "home.gallery.subtitle": "{'Picture by '}{author}",
   "home.how-to-join": "How to join",
+  "home.how-to-join.copy-ip.title": "Copied Server IP!",
+  "home.how-to-join.copy-ip.description": "Paste this in your Minecraft server list.",
   "home.how-to-join.standard.1": "Download Modrinth App",
   "home.how-to-join.standard.2": "Download our modpack",
   "home.how-to-join.standard.description": "Additionally, you can just search \"Kryeit\" inside the Modrinth App.",

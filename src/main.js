@@ -22,9 +22,10 @@ const vuetify = createVuetify({
 
 const savedLanguage = localStorage.getItem('language') || 'en';
 
-const i18n = createI18n({
+export const i18n = createI18n({
     locale: savedLanguage,
     fallbackLocale: 'en',
+    globalInjection: true,
     messages: {
         en: enMessages,
         es: esMessages

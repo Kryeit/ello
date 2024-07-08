@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu open-on-hover :close-on-content-click="false">
+    <v-menu open-on-hover :close-on-content-click="false" :open-delay="0">
       <template v-slot:activator="{ props }">
         <v-btn class="profile-button" v-bind="props">
           <img class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">

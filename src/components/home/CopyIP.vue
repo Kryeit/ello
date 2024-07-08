@@ -15,6 +15,7 @@
 
 <script setup>
 import {ref} from 'vue';
+import { i18n } from "@/main.js";
 import clickSound from '@/assets/sounds/click.ogg';
 import {addToast} from "@/javascript/toasts.js";
 
@@ -25,7 +26,7 @@ const sound = ref(new Audio(clickSound));
 async function copyText() {
   if (textInput.value) {
     textInput.value.select();
-    addToast('map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
+    addToast('map.png', i18n.global.t("home.how-to-join.copy-ip.title"), i18n.global.t("home.how-to-join.copy-ip.description"));
     try {
       await navigator.clipboard.writeText(text.value);
     } catch (err) {
@@ -39,7 +40,7 @@ async function copyTextWithoutSelection() {
     try {
       await navigator.clipboard.writeText(text.value);
       await sound.value.play();
-      addToast('map.png', 'Copied Server IP!', 'Paste this in your Minecraft server list.');
+      addToast('map.png', i18n.global.t("home.how-to-join.copy-ip.title"), i18n.global.t("home.how-to-join.copy-ip.description"));
 
     } catch (err) {
       console.error('Failed to copy text: ', err);

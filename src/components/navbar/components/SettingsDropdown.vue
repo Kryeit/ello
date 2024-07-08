@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu location="end" open-on-hover :close-on-content-click="false">
+    <v-menu location="end" open-on-hover :close-on-content-click="false" :open-delay="0">
       <template v-slot:activator="{ props }">
 
         <v-list-item v-bind="props">

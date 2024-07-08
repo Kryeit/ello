@@ -6,6 +6,8 @@
   "home.gallery": "Galería",
   "home.gallery.subtitle": "{'Hecha por '}{author}",
   "home.how-to-join": "Cómo unirse",
+  "home.how-to-join.copy-ip.title": "¡IP del servidor copiada!",
+  "home.how-to-join.copy-ip.description": "Pega esto en tu lista de servidores.",
   "home.how-to-join.standard.1": "Descarga la App de Modrinth",
   "home.how-to-join.standard.2": "Descarga nuestro Modpack",
   "home.how-to-join.standard.description": "Además, puedes simplemente buscar \"Kryeit\" dentro de la App de Modrinth.",

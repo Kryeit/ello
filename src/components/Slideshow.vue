@@ -30,8 +30,7 @@ deltaImages(0);
     <div :style="{transform: `translateX(${-parent?.clientWidth * currentImage}px)`}" class="image" v-for="image in images">
       <img :src="image.src" :alt="image.name">
     </div>
-    <a class="subtitle">{{ images[currentImage].name }}</a>
-  </div>
+    <a class="subtitle">{{ $t("home.gallery.subtitle", { author: images[currentImage].name }) }}</a>  </div>
 </template>
 
 <style scoped>

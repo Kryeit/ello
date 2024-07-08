@@ -36,6 +36,7 @@ export default {
     changeLanguage() {
       this.currentLanguageIndex = (this.currentLanguageIndex + 1) % this.languages.length;
       this.$i18n.locale = this.languages[this.currentLanguageIndex].locale;
+      localStorage.setItem('language', this.$i18n.locale);
     }
   }
 }

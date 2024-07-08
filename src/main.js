@@ -20,8 +20,10 @@ const vuetify = createVuetify({
     directives,
 })
 
+const savedLanguage = localStorage.getItem('language') || 'en';
+
 const i18n = createI18n({
-    locale: 'en',
+    locale: savedLanguage,
     fallbackLocale: 'en',
     messages: {
         en: enMessages,

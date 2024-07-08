@@ -1,5 +1,19 @@
 {
   "test": "Hola mundo!",
+  "home.slogan": "Mina, craftea y crea.",
+  "home.description.1": "Minecraft técnico, pero un ambiente relajado para jugar.",
+  "home.description.2": "Podrás encontrar una mentalidad a largo plazo, una comunidad amable y mucho musgo.",
+  "home.gallery": "Galería",
+  "home.gallery.subtitle": "{'Hecha por '}{author}",
+  "home.how-to-join": "Cómo unirse",
+  "home.how-to-join.standard.1": "Descarga la App de Modrinth",
+  "home.how-to-join.standard.2": "Descarga nuestro Modpack",
+  "home.how-to-join.standard.description": "Además, puedes simplemente buscar \"Kryeit\" dentro de la App de Modrinth.",
+  "home.how-to-join.advanced.1": "Descarga cualquier Launcher",
+  "home.how-to-join.advanced.2": "Descarga cualquier Modpack de Kryeit",
+  "home.how-to-join.advanced.description": "Ten en cuenta que puede provocar errores en tu cliente.",
+
+  "home.disclaimer": "NO ES UN SERVICIO OFICIAL DE MINECRAFT. NO APROBADO NI ASOCIADO CON MOJANG O MICROSOFT.",
   "navbar.settings.theme": "Tema",
   "navbar.settings.language": "Idioma"
 }

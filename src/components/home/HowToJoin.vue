@@ -8,11 +8,17 @@ import CopyIP from "@/components/home/CopyIP.vue";
     <div class="standard-install">
       <img class="title-image" src="../../assets/standard.png" alt="Standard">
       <div>
-        <p>1. <a href="https://modrinth.com/app" target="_blank">Download Modrinth App</a></p>
-        <p>2. <a href="https://modrinth.com/modpack/Kryeit" target="_blank">Download our modpack</a></p>
+        <p>1. <a href="https://modrinth.com/app" target="_blank">
+          {{ $t("home.how-to-join.standard.1")}}
+        </a></p>
+        <p>2. <a href="https://modrinth.com/modpack/Kryeit" target="_blank">
+          {{ $t("home.how-to-join.standard.2")}}
+        </a></p>
       </div>
       <br>
-      <h4>Additionally, you can just search "Kryeit" inside the Modrinth App.</h4>
+      <h4>
+        {{ $t("home.how-to-join.standard.description")}}
+      </h4>
     </div>
 
     <CopyIP/>
@@ -20,11 +26,17 @@ import CopyIP from "@/components/home/CopyIP.vue";
     <div class="advanced-install">
       <img class="title-image" src="../../assets/advanced.png" alt="Advanced">
       <div>
-        <p>1. <a href="/launchers">Download any launcher</a></p>
-        <p>2. <a href="/modpacks">Download any Kryeit modpack</a></p>
+        <p>1. <a href="/launchers">
+          {{ $t("home.how-to-join.advanced.1")}}
+        </a></p>
+        <p>2. <a href="/modpacks">
+          {{ $t("home.how-to-join.advanced.2")}}
+        </a></p>
       </div>
       <br>
-      <h4>Note that this is prone to bugs, and errors client-side.</h4>
+      <h4>
+        {{ $t("home.how-to-join.advanced.description")}}
+      </h4>
     </div>
   </div>
 </template>

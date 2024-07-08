@@ -12,10 +12,17 @@
       </template>
 
       <v-list>
-        <v-list-item>
-          <v-list-item-title>Test</v-list-item-title>
+        <div class="setting">
+          <v-list-item-title>{{ $t("navbar.settings.theme") }}</v-list-item-title>
           <ThemeSwitch/>
-        </v-list-item>
+        </div>
+
+        <hr class="separator">
+
+        <div class="setting">
+          <v-list-item-title>{{ $t("navbar.settings.language") }}</v-list-item-title>
+          <LanguageSelector class="language-selector"/>
+        </div>
       </v-list>
     </v-menu>
   </div>
@@ -23,15 +30,26 @@
 
 <script setup>
 import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
-
-const items = [
-  { title: 'Click Me' },
-  { title: 'Click Me' },
-  { title: 'Click Me' },
-  { title: 'Click Me 2' },
-]
+import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
 </script>
 
 <style scoped>
+.separator {
+  width: 70%;
+  background-color: var(--color-text);
+  border: none;
+  height: 1px;
+  margin: 10px auto;
+}
 
+.setting {
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.language-selector {
+  margin: 0 22px;
+}
 </style>

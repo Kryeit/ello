@@ -30,7 +30,6 @@ watchEffect(() => mode.value = state.value)
   border: none;
   outline: none;
   color: var(--color-background-mute);
-  border-bottom: 2px solid var(--color-background-mute);
   text-shadow: 1px 1px 1px var(--color-border);
   border-radius: 4px;
   font-size: 1rem;

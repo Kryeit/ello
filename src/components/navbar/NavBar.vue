@@ -66,7 +66,6 @@ function sendToMainPage() {
 
 .header {
   width: 100%;
-  padding-bottom: 20px;
 }
 
 .header-content {

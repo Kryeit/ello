@@ -44,7 +44,7 @@ function navigateTo(item) {
 <style scoped>
 .profile-button {
   background-color: var(--dark-brass-gold);
-  color: var(--color-text);
+  color: white;
 }
 
 .player-image {

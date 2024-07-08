@@ -6,18 +6,18 @@ import VideoPlayer from "@/components/VideoPlayer.vue";
 import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
-//  {
-//    src: "https://kryeit.com/images/gallery/MrRedRhino.png",
-//    name: "Picture by MrRedRhino"
-//  },
+  {
+    src: "https://kryeit.com/images/gallery/MrRedRhino.png",
+    name: "Picture by MrRedRhino"
+  },
   {
     src: "https://kryeit.com/images/gallery/ELZEN219.png",
     name: "Picture by ELZEN219"
   },
-//  {
-//    src: "https://kryeit.com/images/gallery/MuriPlz.png",
-//    name: "Picture by MuriPlz"
-//  },
+  {
+    src: "https://kryeit.com/images/gallery/MuriPlz.png",
+    name: "Picture by MuriPlz"
+  },
   {
     src: "https://kryeit.com/images/gallery/goldnphoenix258.png",
     name: "Picture by goldnphoenix258"
@@ -139,7 +139,7 @@ const images = [
 
   <VideoPlayer :src="Kryeitrailer"/>
 
-  <hr>
+  <hr class="footer-separator">
 
   <h2 class="minecraft-disclaimer">
     NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
@@ -149,6 +149,15 @@ const images = [
 <style scoped>
 .separator {
   margin-bottom: 16px;
+  background-color: var(--color-text);
+  border: none;
+  height: 2px;
+}
+
+.footer-separator {
+  background-color: var(--color-text);
+  border: none;
+  height: 1px;
 }
 
 .online-players {

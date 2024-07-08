@@ -17,8 +17,7 @@
 
     <h1>Our Staff</h1>
 
-    <hr>
-    <br>
+    <hr class="separator">
 
     <div class="staff-section">
 
@@ -45,8 +44,8 @@
     <br>
 
     <h1>Donations</h1>
-    <hr>
-    <br>
+    <hr class="separator">
+
     <h3 class="donations">
       Kryeit is mainly ran by donations, which give some small perks, such as a colored name in chat.
       You can donate at <a href="https://ko-fi.com/kryeit" target="_blank">Ko-Fi</a>.
@@ -60,6 +59,13 @@
   text-align: center;
   padding-top: 30px;
   font-family: 'Minecraftia', sans-serif;
+}
+
+.separator {
+  margin-bottom: 16px;
+  background-color: var(--color-text);
+  border: none;
+  height: 2px;
 }
 
 .introduction a {

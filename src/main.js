@@ -20,7 +20,8 @@ const vuetify = createVuetify({
     directives,
 })
 
-const savedLanguage = localStorage.getItem('language') || 'en';
+const browserLanguage = navigator.language.split('-')[0];
+const savedLanguage = localStorage.getItem('language') || browserLanguage || 'en';
 
 export const i18n = createI18n({
     locale: savedLanguage,

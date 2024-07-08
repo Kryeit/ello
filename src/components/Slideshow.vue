@@ -60,7 +60,7 @@ a {
 
 .subtitle {
   left: 0;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
 .button {

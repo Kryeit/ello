@@ -1,3 +1,8 @@
+<script setup>
+import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
+import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
+</script>
+
 <template>
   <div>
     <v-menu location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
@@ -27,11 +32,6 @@
     </v-menu>
   </div>
 </template>
-
-<script setup>
-import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
-import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
-</script>
 
 <style scoped>
 

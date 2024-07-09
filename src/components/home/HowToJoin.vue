@@ -1,5 +1,4 @@
 <script setup>
-
 import CopyIP from "@/components/home/CopyIP.vue";
 </script>
 

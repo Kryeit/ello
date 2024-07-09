@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <div class="sections-container">
 
@@ -43,3 +47,5 @@
 }
 
 </style>
+<script setup>
+</script>

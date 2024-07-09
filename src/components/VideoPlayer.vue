@@ -1,11 +1,3 @@
-<template>
-  <div class="video-container" @click="playVideo">
-    <video v-if="isVisible" ref="videoPlayer" :src="src" @ended="restartVideo" @play="videoPlaying = true" @pause="videoPlaying = false" controls controlsList="nodownload">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</template>
-
 <script>
 export default {
   props: ['src'],
@@ -36,6 +28,14 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="video-container" @click="playVideo">
+    <video v-if="isVisible" ref="videoPlayer" :src="src" @ended="restartVideo" @play="videoPlaying = true" @pause="videoPlaying = false" controls controlsList="nodownload">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</template>
 
 <style scoped>
 .video-container {

@@ -1,13 +1,3 @@
-<template>
-  <div class="toast" :style="{ zIndex: zIndex }" @click="closeToast">
-    <img v-if="image" :src="image" alt="toast-image" class="toast-image"/>
-    <div class="toast-content">
-      <h4 class="toast-title">{{ title }}</h4>
-      <p class="toast-description">{{ description }}</p>
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   name: 'Toast',
@@ -28,6 +18,16 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="toast" :style="{ zIndex: zIndex }" @click="closeToast">
+    <img v-if="image" :src="image" alt="toast-image" class="toast-image"/>
+    <div class="toast-content">
+      <h4 class="toast-title">{{ title }}</h4>
+      <p class="toast-description">{{ description }}</p>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .toast {

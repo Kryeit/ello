@@ -1,18 +1,3 @@
-<template>
-  <div class="server-ip">
-    <div class="copy-input-container">
-      <div class="input-container" @click="copyText">
-        <input ref="textInput" type="text" v-model="text" readonly>
-        <span class="cursor">_</span>
-      </div>
-      <button @click="copyTextWithoutSelection">
-        <img src="/src/assets/toast/map.png" alt="Copy" />
-      </button>
-    </div>
-  </div>
-
-</template>
-
 <script setup>
 import {ref} from 'vue';
 import {i18n} from "@/main.js";
@@ -48,6 +33,21 @@ async function copyTextWithoutSelection() {
   }
 }
 </script>
+
+<template>
+  <div class="server-ip">
+    <div class="copy-input-container">
+      <div class="input-container" @click="copyText">
+        <input ref="textInput" type="text" v-model="text" readonly>
+        <span class="cursor">_</span>
+      </div>
+      <button @click="copyTextWithoutSelection">
+        <img src="/src/assets/toast/map.png" alt="Copy" />
+      </button>
+    </div>
+  </div>
+
+</template>
 
 <style scoped>
 .copy-input-container {

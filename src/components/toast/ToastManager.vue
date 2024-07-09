@@ -1,18 +1,3 @@
-<template>
-  <div class="toast-container">
-    <Toast
-        v-for="(toast, index) in getToasts()"
-        :key="toast.id"
-        :image="getImage(toast.image)"
-        :title="toast.title"
-        :description="toast.description"
-        :zIndex="baseZIndex + index"
-        :style="{ transform: `translateY(${index * 100}%)`, transition: 'transform 2s' }"
-        @close="handleCloseToast(toast.id)"
-    />
-  </div>
-</template>
-
 <script setup>
 import Toast from './Toast.vue';
 import {getToasts, removeToast} from '@/javascript/toasts.js';
@@ -35,6 +20,21 @@ const handleCloseToast = (toastId) => {
   removeToast(toastId);
 };
 </script>
+
+<template>
+  <div class="toast-container">
+    <Toast
+        v-for="(toast, index) in getToasts()"
+        :key="toast.id"
+        :image="getImage(toast.image)"
+        :title="toast.title"
+        :description="toast.description"
+        :zIndex="baseZIndex + index"
+        :style="{ transform: `translateY(${index * 100}%)`, transition: 'transform 2s' }"
+        @close="handleCloseToast(toast.id)"
+    />
+  </div>
+</template>
 
 <style scoped>
 .toast-container {

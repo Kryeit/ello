@@ -1,9 +1,3 @@
-<template>
-  <div @click="changeLanguage">
-    <img :src="selectedFlag" alt="Selected language flag" />
-  </div>
-</template>
-
 <script>
 import enFlag from '@/assets/flags/en.png'
 import esFlag from '@/assets/flags/es.png'
@@ -43,6 +37,12 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div @click="changeLanguage">
+    <img :src="selectedFlag" alt="Selected language flag" />
+  </div>
+</template>
 
 <style scoped>
 div {

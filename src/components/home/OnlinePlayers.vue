@@ -1,3 +1,34 @@
+<script setup>
+import {computed, ref} from 'vue';
+import ReconnectingWebSocket from "reconnecting-websocket";
+
+const onlinePlayers = ref([]);
+const onlineCount = computed(() => {
+  return onlinePlayers.value.length;
+});
+const displayedPlayers = computed(() => {
+  return onlinePlayers.value.slice(0, 10);
+});
+const remainingCount = computed(() => {
+  return onlinePlayers.value.length - displayedPlayers.value.length;
+});
+
+const hovered = ref(false);
+
+const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/live");
+websocket.addEventListener("message", event => {
+  onlinePlayers.value = JSON.parse(event.data);
+});
+
+const showPlayerList = () => {
+  hovered.value = true;
+};
+
+const hidePlayerList = () => {
+  hovered.value = false;
+};
+</script>
+
 <template>
   <div class="server-status">
     <div class="overlay"></div>
@@ -35,39 +66,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import {computed, ref} from 'vue';
-import ReconnectingWebSocket from "reconnecting-websocket";
-
-const onlinePlayers = ref([]);
-const onlineCount = computed(() => {
-  return onlinePlayers.value.length;
-});
-const displayedPlayers = computed(() => {
-  return onlinePlayers.value.slice(0, 10);
-});
-const remainingCount = computed(() => {
-  return onlinePlayers.value.length - displayedPlayers.value.length;
-});
-
-const hovered = ref(false);
-
-const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/live");
-websocket.addEventListener("message", event => {
-  onlinePlayers.value = JSON.parse(event.data);
-});
-
-const showPlayerList = () => {
-  hovered.value = true;
-};
-
-const hidePlayerList = () => {
-  hovered.value = false;
-};
-</script>
-
-
 
 <style scoped>
 .server-status {

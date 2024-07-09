@@ -1,3 +1,38 @@
+<script setup>
+import {onMounted, ref} from 'vue';
+
+const officialProjectIds = ['duaqEXgz'];
+const communityProjectIds = ['iEeNYT4y', 'thV8JtM6'];
+
+const officialModpacks = ref([]);
+const communityModpacks = ref([]);
+
+const fetchModpackData = async (projectId) => {
+  try {
+    const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching data for project ID ${projectId}: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+onMounted(async () => {
+  const officialFetchPromises = officialProjectIds.map(projectId => fetchModpackData(projectId));
+  const communityFetchPromises = communityProjectIds.map(projectId => fetchModpackData(projectId));
+
+  const officialResults = await Promise.all(officialFetchPromises);
+  const communityResults = await Promise.all(communityFetchPromises);
+
+  officialModpacks.value = officialResults.filter(result => result !== null);
+  communityModpacks.value = communityResults.filter(result => result !== null);
+});
+</script>
+
 <template>
   <h1>Modpacks</h1>
   <h2>Official</h2>
@@ -33,41 +68,6 @@
     </a>
   </div>
 </template>
-
-<script setup>
-import {onMounted, ref} from 'vue';
-
-const officialProjectIds = ['duaqEXgz'];
-const communityProjectIds = ['iEeNYT4y', 'thV8JtM6'];
-
-const officialModpacks = ref([]);
-const communityModpacks = ref([]);
-
-const fetchModpackData = async (projectId) => {
-  try {
-    const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching data for project ID ${projectId}: ${response.statusText}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-onMounted(async () => {
-  const officialFetchPromises = officialProjectIds.map(projectId => fetchModpackData(projectId));
-  const communityFetchPromises = communityProjectIds.map(projectId => fetchModpackData(projectId));
-
-  const officialResults = await Promise.all(officialFetchPromises);
-  const communityResults = await Promise.all(communityFetchPromises);
-
-  officialModpacks.value = officialResults.filter(result => result !== null);
-  communityModpacks.value = communityResults.filter(result => result !== null);
-});
-</script>
 
 <style scoped>
 h1 {

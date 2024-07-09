@@ -1,13 +1,3 @@
-<template>
-  <ToastManager />
-  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
-  <NavBar :showNav="isNavVisible"/>
-
-  <router-view>
-  </router-view>
-
-</template>
-
 <script setup>
 import {ref} from 'vue';
 import NavBar from './components/navbar/NavBar.vue';
@@ -24,6 +14,16 @@ useRouter().afterEach(() => {
   isNavVisible.value = false;
 });
 </script>
+
+<template>
+  <ToastManager />
+  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
+  <NavBar :showNav="isNavVisible"/>
+
+  <router-view>
+  </router-view>
+
+</template>
 
 <style scoped>
 

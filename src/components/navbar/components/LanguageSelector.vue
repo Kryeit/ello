@@ -53,7 +53,7 @@ div {
 }
 
 img {
-  height: 28px;
+  width: 47px;
   image-rendering: pixelated;
   border-radius: 4px;
 }

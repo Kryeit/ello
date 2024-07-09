@@ -56,6 +56,6 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 }
 
 .language-selector {
-  margin: 0 22px;
+  margin: 0 20px;
 }
 </style>

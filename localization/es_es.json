@@ -1,7 +1,7 @@
 {
   "test": "Hola mundo!",
   "home.slogan": "Mina, craftea y crea.",
-  "home.description.1": "Minecraft técnico, pero un ambiente relajado para jugar.",
+  "home.description.1": "Minecraft técnico, pero también un ambiente relajado para jugar.",
   "home.description.2": "Podrás encontrar una mentalidad a largo plazo, una comunidad amable y mucho musgo.",
   "home.gallery": "Galería",
   "home.gallery.subtitle": "{'Hecha por '}{author}",
@@ -15,7 +15,24 @@
   "home.how-to-join.advanced.2": "Descarga cualquier Modpack de Kryeit",
   "home.how-to-join.advanced.description": "Ten en cuenta que puede provocar errores en tu cliente.",
 
-  "home.disclaimer": "NO ES UN SERVICIO OFICIAL DE MINECRAFT. NO APROBADO NI ASOCIADO CON MOJANG O MICROSOFT.",
+  "home.disclaimer": "NO ES UN SERVICIO OFICIAL DE MINECRAFT. NO APROBADO NI ASOCIADO POR MOJANG O MICROSOFT.",
+  "navbar.leaderboard": "Clasificación",
+  "navbar.settings": "Ajustes",
   "navbar.settings.theme": "Tema",
-  "navbar.settings.language": "Idioma"
+  "navbar.settings.language": "Idioma",
+
+  "navbar.footer.kryeit.about": "Sobre nosotros",
+  "navbar.footer.kryeit.status": "Estado",
+  "navbar.footer.survival": "Supervivencia",
+  "navbar.footer.survival.map": "Mapa",
+  "navbar.footer.survival.archive": "Archivador",
+
+  "navbar.footer.support": "Ayuda",
+  "navbar.footer.support.bans": "Baneados",
+  "navbar.footer.support.faq": "Preguntas frecuentes",
+  "navbar.footer.contact": "Contact",
+
+  "navbar.footer.contact.email": "Manda un Email",
+  "navbar.footer.contact.email.title": "¡Email copiado!",
+  "navbar.footer.contact.email.description": "Pégalo para mandarnos un mensaje."
 }

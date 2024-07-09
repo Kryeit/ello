@@ -16,6 +16,23 @@
   "home.how-to-join.advanced.description": "Note that this is prone to bugs, and errors client-side.",
 
   "home.disclaimer": "NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.",
+  "navbar.leaderboard": "Leaderboard",
+  "navbar.settings": "Settings",
   "navbar.settings.theme": "Theme",
-  "navbar.settings.language": "Language"
+  "navbar.settings.language": "Language",
+
+  "navbar.footer.kryeit.about": "About us",
+  "navbar.footer.kryeit.status": "Status",
+  "navbar.footer.survival": "Survival",
+  "navbar.footer.survival.map": "Map",
+  "navbar.footer.survival.archive": "Archive",
+
+  "navbar.footer.support": "Support",
+  "navbar.footer.support.bans": "Bans",
+  "navbar.footer.support.faq": "FAQ",
+  "navbar.footer.contact": "Contact",
+
+  "navbar.footer.contact.email": "Email us",
+  "navbar.footer.contact.email.title": "Email copied!",
+  "navbar.footer.contact.email.description": "Paste this in your email to send us mail."
 }

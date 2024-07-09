@@ -1,17 +1,17 @@
 <template>
   <div>
-    <v-menu location="end" open-on-hover :close-on-content-click="false" :open-delay="0">
+    <v-menu class="menu" location="end" open-on-hover :close-on-content-click="false" :open-delay="0">
       <template v-slot:activator="{ props }">
 
         <v-list-item v-bind="props">
           <v-list-item-title>
-            Settings
+            {{ $t("navbar.settings") }} >
           </v-list-item-title>
         </v-list-item>
 
       </template>
 
-      <v-list>
+      <v-list class="menu">
         <div class="setting">
           <v-list-item-title>{{ $t("navbar.settings.theme") }}</v-list-item-title>
           <ThemeSwitch/>
@@ -34,6 +34,10 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 </script>
 
 <style scoped>
+.menu {
+  background-color: var(--color-background);
+}
+
 .separator {
   width: 70%;
   background-color: var(--color-text);
@@ -47,6 +51,7 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--color-text);
 }
 
 .language-selector {

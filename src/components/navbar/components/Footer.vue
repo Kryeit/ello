@@ -2,11 +2,12 @@
 import {ref} from "vue";
 import treePath from "@/assets/tree.png";
 import {addToast} from "@/javascript/toasts.js";
+import {i18n} from "@/main.js";
 
 const treeSource = ref(treePath);
 
 async function addEmailToast() {
-  addToast('map.png', 'Email copied!', 'Paste this in your email to send us mail.');
+  addToast('map.png', i18n.global.t("navbar.footer.contact.email.title"), i18n.global.t("navbar.footer.contact.email.description"));
   try {
     await navigator.clipboard.writeText('kryeit.minecraft@gmail.com');
   } catch (err) {
@@ -22,32 +23,52 @@ async function addEmailToast() {
       <p>Kryeit </p>
       <hr class="separator">
 
-      <router-link to="/about">About us</router-link>
-      <a href="https://status.kryeit.com" target="_blank">Status</a>
+      <router-link to="/about">
+        {{ $t("navbar.footer.kryeit.about") }}
+      </router-link>
+      <a href="https://status.kryeit.com" target="_blank">
+        {{ $t("navbar.footer.kryeit.status") }}
+      </a>
       <a href="https://kryeit.wiki.gg" target="_blank">Wiki</a>
     </div>
 
     <div class="footer-section">
-      <p>Survival</p>
+      <p>
+        {{ $t("navbar.footer.survival") }}
+      </p>
       <hr class="separator">
 
-      <a href="https://map.kryeit.com" target="_blank">World Map</a>
-      <a href="https://archive.kryeit.com" target="_blank">Archive</a>
+      <a href="https://map.kryeit.com" target="_blank">
+        {{ $t("navbar.footer.survival.map") }}
+      </a>
+      <a href="https://archive.kryeit.com" target="_blank">
+        {{ $t("navbar.footer.survival.archive") }}
+      </a>
     </div>
 
     <div class="footer-section">
-      <p>Support</p>
+      <p>
+        {{ $t("navbar.footer.support") }}
+      </p>
       <hr class="separator">
 
-      <router-link to="/bans">Bans</router-link>
-      <router-link to="/faq">FAQ</router-link>
+      <router-link to="/bans">
+        {{ $t("navbar.footer.support.bans") }}
+      </router-link>
+      <router-link to="/faq">
+        {{ $t("navbar.footer.support.faq") }}
+      </router-link>
     </div>
 
     <div class="footer-section">
-      <p>Contact</p>
+      <p>
+        {{ $t("navbar.footer.contact") }}
+      </p>
       <hr class="separator">
 
-      <button @click="addEmailToast">Email us</button>    </div>
+      <button @click="addEmailToast">
+        {{ $t("navbar.footer.contact.email") }}
+      </button>    </div>
 
   </div>
 </template>

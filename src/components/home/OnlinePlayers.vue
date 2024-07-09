@@ -203,7 +203,7 @@ a.player-link:hover {
 }
 
 .afk {
-  color: var(--color-text);
+  color: gray;
 }
 
 @media (max-width: 600px) {

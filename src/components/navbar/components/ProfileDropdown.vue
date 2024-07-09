@@ -9,7 +9,7 @@
       </template>
 
       <v-list>
-        <v-list-item
+        <v-list-item class="list"
             v-for="(item, index) in items"
             :key="index"
             @click="navigateTo(item)"
@@ -24,15 +24,16 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
 import {useRouter} from 'vue-router';
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
+import {i18n} from "@/main.js";
 
 const router = useRouter();
 const playerName = ref('Dinnerbone');
 
-const items = ref([
-  { title: 'Leaderboard', path: '/leaderboard' },
+const items = computed(() => [
+  { title: i18n.global.t("navbar.leaderboard"), path: '/leaderboard' },
   { title: 'Playerinfo', path: '/@' + playerName.value },
 ]);
 
@@ -45,6 +46,11 @@ function navigateTo(item) {
 .profile-button {
   background-color: var(--dark-brass-gold);
   color: white;
+}
+
+.list {
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 .player-image {

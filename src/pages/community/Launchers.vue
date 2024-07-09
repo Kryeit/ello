@@ -13,7 +13,6 @@ import { ref } from 'vue';
 
 const launchers = ref([
   { name: 'Modrinth App', description: 'A modern look alongside a worldclass launcher! Smooth and useful, our suggested choice.', link: 'https://modrinth.com/app' },
-  { name: 'MultiMC', description: 'Allows managing multiple instances of Minecraft, supports importing and exporting of instances for easy backup and sharing of game setups.', link: 'https://multimc.org/#Download' },
   { name: 'Prism', description: 'Allows managing multiple instances of Minecraft, supports importing and exporting of instances for easy backup and sharing of game setups.', link: 'https://prismlauncher.org' },
 ]);
 </script>

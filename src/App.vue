@@ -42,11 +42,11 @@ useRouter().afterEach(() => {
   cursor: pointer;
   width: 10vw;
   border-radius: 100%;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .toggle-btn.rotated {
-  transform: translateX(-50%) translateY(-50%) rotate(180deg);
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
 }
 
 .toggle-btn:focus {
@@ -58,7 +58,7 @@ useRouter().afterEach(() => {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
   }
 }
 

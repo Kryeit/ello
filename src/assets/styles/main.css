@@ -13,6 +13,6 @@
 
 @media (max-width: 600px) {
   #app {
-    padding: 0 0 75px 0; /* Cog icon margin in vertical devices */
+    padding: 0 10px 75px 10px; /* Cog icon margin in vertical devices */
   }
 }

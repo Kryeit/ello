@@ -49,12 +49,12 @@ div {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 img {
   height: 28px;
   image-rendering: pixelated;
   border-radius: 4px;
-
 }
 </style>

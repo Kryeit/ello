@@ -1,11 +1,47 @@
+<template>
+  <h1>Modpacks</h1>
+  <h2>Official</h2>
+  <div v-for="(modpack, index) in officialModpacks" :key="index" class="modpack">
+    <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
+      <img :src="modpack.icon_url" :alt="modpack.title" class="modpack-icon" />
+      <div class="modpack-content">
+        <div class="modpack-info">
+          <h2>{{ modpack.title }}</h2>
+          <p>{{ modpack.description }}</p>
+        </div>
+        <div class="modpack-stats">
+          <p class="downloads"><strong>Downloads:</strong> {{ modpack.downloads }}</p>
+          <p class="followers"><strong>Followers:</strong> {{ modpack.followers }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <h2>Community driven</h2>
+  <div v-for="(modpack, index) in communityModpacks" :key="index" class="modpack">
+    <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
+      <img :src="modpack.icon_url" :alt="modpack.title" class="modpack-icon" />
+      <div class="modpack-content">
+        <div class="modpack-info">
+          <h2>{{ modpack.title }}</h2>
+          <p>{{ modpack.description }}</p>
+        </div>
+        <div class="modpack-stats">
+          <p class="downloads"><strong>Downloads:</strong> {{ modpack.downloads }}</p>
+          <p class="followers"><strong>Followers:</strong> {{ modpack.followers }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</template>
+
 <script setup>
 import {onMounted, ref} from 'vue';
 
-const projectIds = ['duaqEXgz', /* Base */
-  'iEeNYT4y', /* Mayson's */
-  'thV8JtM6' /* Ray's */];
+const officialProjectIds = ['duaqEXgz'];
+const communityProjectIds = ['iEeNYT4y', 'thV8JtM6'];
 
-const modpacks = ref([]);
+const officialModpacks = ref([]);
+const communityModpacks = ref([]);
 
 const fetchModpackData = async (projectId) => {
   try {
@@ -22,30 +58,16 @@ const fetchModpackData = async (projectId) => {
 };
 
 onMounted(async () => {
-  const fetchPromises = projectIds.map(projectId => fetchModpackData(projectId));
-  const results = await Promise.all(fetchPromises);
-  modpacks.value = results.filter(result => result !== null);
+  const officialFetchPromises = officialProjectIds.map(projectId => fetchModpackData(projectId));
+  const communityFetchPromises = communityProjectIds.map(projectId => fetchModpackData(projectId));
+
+  const officialResults = await Promise.all(officialFetchPromises);
+  const communityResults = await Promise.all(communityFetchPromises);
+
+  officialModpacks.value = officialResults.filter(result => result !== null);
+  communityModpacks.value = communityResults.filter(result => result !== null);
 });
 </script>
-
-<template>
-  <h1>Modpacks</h1>
-  <div v-for="(modpack, index) in modpacks" :key="index" class="modpack">
-    <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
-      <img :src="modpack.icon_url" :alt="modpack.title" class="modpack-icon" />
-      <div class="modpack-content">
-        <div class="modpack-info">
-          <h2>{{ modpack.title }}</h2>
-          <p>{{ modpack.description }}</p>
-        </div>
-        <div class="modpack-stats">
-          <p class="downloads"><strong>Downloads:</strong> {{ modpack.downloads }}</p>
-          <p class="followers"><strong>Followers:</strong> {{ modpack.followers }}</p>
-        </div>
-      </div>
-    </a>
-  </div>
-</template>
 
 <style scoped>
 h1 {

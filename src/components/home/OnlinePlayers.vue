@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import {computed, ref} from 'vue';
 import ReconnectingWebSocket from "reconnecting-websocket";
 
 const onlinePlayers = ref([]);

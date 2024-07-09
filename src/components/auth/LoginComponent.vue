@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { loginUser } from '@/javascript/authService.js';
+import {loginUser} from '@/javascript/authService.js';
 
 export default {
   data() {

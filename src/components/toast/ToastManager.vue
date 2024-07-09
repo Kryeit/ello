@@ -15,7 +15,7 @@
 
 <script setup>
 import Toast from './Toast.vue';
-import { getToasts, removeToast } from '@/javascript/toasts.js';
+import {getToasts, removeToast} from '@/javascript/toasts.js';
 
 // Import images directly
 import mapImage from '@/assets/toast/map.png';

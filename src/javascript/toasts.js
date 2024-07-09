@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const toasts = ref([]);
 let nextId = 0;

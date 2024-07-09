@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
 
 const router = useRouter();

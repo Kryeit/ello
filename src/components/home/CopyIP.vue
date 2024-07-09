@@ -15,7 +15,7 @@
 
 <script setup>
 import {ref} from 'vue';
-import { i18n } from "@/main.js";
+import {i18n} from "@/main.js";
 import clickSound from '@/assets/sounds/click.ogg';
 import {addToast} from "@/javascript/toasts.js";
 

@@ -1,6 +1,6 @@
 <script setup>
-import { useColorMode, useCycleList } from '@vueuse/core'
-import { watchEffect } from 'vue-demi'
+import {useColorMode, useCycleList} from '@vueuse/core'
+import {watchEffect} from 'vue-demi'
 
 const mode = useColorMode({
   modes: {

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const launchers = ref([
   { name: 'Modrinth App', description: 'A modern look alongside a worldclass launcher! Smooth and useful, our suggested choice.', link: 'https://modrinth.com/app' },

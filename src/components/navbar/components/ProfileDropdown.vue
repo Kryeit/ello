@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu open-on-hover :close-on-content-click="false" :open-delay="0">
+    <v-menu open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
       <template v-slot:activator="{ props }">
         <v-btn class="profile-button" v-bind="props">
           <img class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">
@@ -8,7 +8,7 @@
         </v-btn>
       </template>
 
-      <v-list>
+      <v-list bg-color="var(--color-background)">
         <v-list-item class="list"
             v-for="(item, index) in items"
             :key="index"
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import {ref, computed} from 'vue';
+import {computed, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
 import {i18n} from "@/main.js";
@@ -50,7 +50,6 @@ function navigateTo(item) {
 
 .list {
   color: var(--color-text);
-  background-color: var(--color-background);
 }
 
 .player-image {

@@ -34,7 +34,7 @@ export const i18n = createI18n({
     }
 })
 
-const mode = useColorMode({
+useColorMode({
     modes: {
         cafe: 'cafe',
     },

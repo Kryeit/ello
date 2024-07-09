@@ -35,7 +35,7 @@
     --vt-c-light-text-soft: #000000;
 
     /* Cafe theme colors */
-    --vt-c-cafe-background: rgba(235, 235, 235, 0.64);
+    --vt-c-cafe-background: rgba(235, 235, 235, 1);
     --vt-c-cafe-background-soft: rgba(235, 235, 235, 0.64);
     --vt-c-cafe-background-mute: #d5b783;
 
@@ -68,7 +68,7 @@
 
 html.light {
     --color-background: var(--vt-c-white);
-    --color-background-gradient: #a8997d;
+    --color-background-gradient: #bb8e37;
     --color-background-soft: var(--vt-c-white-soft);
     --color-background-mute: var(--vt-c-white-mute);
 

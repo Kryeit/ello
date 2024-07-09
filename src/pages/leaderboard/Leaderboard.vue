@@ -92,8 +92,8 @@ watch([page, sortDirection, order], () => {
 }
 
 .page-button {
-  border: 1px solid var(--vt-c-divider-dark-1);
-  background: var(--vt-c-black-mute);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
   height: 28px;
   min-width: 28px;
   color: inherit;
@@ -107,20 +107,20 @@ watch([page, sortDirection, order], () => {
 }
 
 a.page {
-  border: 1px solid var(--vt-c-divider-dark-1);
-  background: var(--vt-c-black-soft);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
   height: 28px;
   display: inline-block;
   width: 57px;
   line-height: normal;
-  padding: 1px 2px;
+  padding: 2px 2px;
 }
 
 .page-input {
   height: 28px;
   color: inherit;
-  border: 1px solid var(--vt-c-divider-dark-1);
-  background: var(--vt-c-black-mute);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
   width: 40px;
 }
 
@@ -134,10 +134,11 @@ th:first-child {
 }
 
 .table-wrapper {
-  border: 1px solid var(--vt-c-divider-dark-1);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   width: fit-content;
   padding: 0 8px;
+  background-color: var(--color-background-mute);
 }
 
 table {
@@ -168,6 +169,6 @@ table {
 }
 
 h1 {
-  color: var(--vt-c-white-mute);
+  color: var(--color-text);
 }
 </style>

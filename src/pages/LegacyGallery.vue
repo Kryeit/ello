@@ -70,6 +70,7 @@ const images = [
   <div class="gallery">
     <h2 class="title">Legacy Gallery (S2)</h2>
     <Slideshow :images="images"/>
+    <br>
   </div>
 </template>
 

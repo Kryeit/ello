@@ -75,8 +75,8 @@ h1 {
 .wrapper {
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--vt-c-divider-dark-1);
-  background: var(--vt-c-black-soft);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
   padding: 10px;
   border-radius: 10px;
   max-width: 600px;

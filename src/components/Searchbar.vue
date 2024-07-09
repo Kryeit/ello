@@ -41,8 +41,8 @@ async function search() {
 }
 
 input {
-  background: var(--vt-c-black-mute);
-  border: 1px solid var(--vt-c-divider-dark-1);
+  background: var(--color-background-mute);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 5px 12px;
   color: inherit;
@@ -50,10 +50,10 @@ input {
 }
 
 .results {
-  margin-top: 3px;
   border-radius: 8px;
   position: absolute;
-  background: var(--vt-c-black-mute);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
   width: 100%;
 }
 
@@ -68,6 +68,6 @@ input {
 }
 
 .results a:hover {
-  background: var(--vt-c-black);
+  background: var(--color-border-hover);
 }
 </style>

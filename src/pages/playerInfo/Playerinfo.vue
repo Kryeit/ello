@@ -40,6 +40,6 @@ async function search(query) {
 
 h1 {
   font-size: 40px;
-  color: var(--vt-c-white-mute);
+  color: var(--color-text);
 }
 </style>

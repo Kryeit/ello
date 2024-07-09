@@ -11,20 +11,22 @@ import esFlag from '@/assets/flags/es.png'
 export default {
   name: 'LanguageSelector',
   data() {
+    const languages = [
+      {
+        language: 'English',
+        locale: 'en',
+        flag: enFlag
+      },
+      {
+        language: 'Español',
+        locale: 'es',
+        flag: esFlag
+      }
+    ];
+    const currentLanguageIndex = languages.findIndex(lang => lang.locale === this.$i18n.locale);
     return {
-      languages: [
-        {
-          language: 'English',
-          locale: 'en',
-          flag: enFlag
-        },
-        {
-          language: 'Español',
-          locale: 'es',
-          flag: esFlag
-        }
-      ],
-      currentLanguageIndex: 0
+      languages,
+      currentLanguageIndex: currentLanguageIndex !== -1 ? currentLanguageIndex : 0
     }
   },
   computed: {

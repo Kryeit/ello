@@ -10,7 +10,8 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
         <v-list-item v-bind="props">
           <v-list-item-title class="title">
-            {{ $t("navbar.settings") }} >
+            {{ $t("navbar.settings") }}
+            <span class="right-arrow">></span>
           </v-list-item-title>
         </v-list-item>
 
@@ -34,6 +35,9 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 </template>
 
 <style scoped>
+.right-arrow {
+  float: right;
+}
 
 .separator {
   width: 70%;

@@ -5,7 +5,7 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
 <template>
   <div>
-    <v-menu location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
+    <v-menu transition="slide-x-transition" location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
       <template v-slot:activator="{ props }">
 
         <v-list-item v-bind="props">

@@ -34,5 +34,10 @@
 
   "navbar.footer.contact.email": "Email us",
   "navbar.footer.contact.email.title": "Email copied!",
-  "navbar.footer.contact.email.description": "Paste this in your email to send us mail."
+  "navbar.footer.contact.email.description": "Paste this in your email to send us mail.",
+
+  "bans.title": "Banned players",
+  "bans.banned-on": "Banned on:",
+  "bans.expires": "Expires:",
+  "bans.reason": "Reason"
 }

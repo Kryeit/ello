@@ -24,15 +24,15 @@
     --green: #42d392;
 
     /* Light theme colors */
-    --vt-c-light-background: rgba(60, 60, 60, 0.29);
-    --vt-c-light-background-soft: rgba(235, 235, 235, 0.64);
+    --vt-c-light-background: rgb(217, 217, 217);
+    --vt-c-light-background-soft: rgb(173, 173, 173);
     --vt-c-light-background-mute: #d5b783;
 
-    --vt-c-light-divider: rgba(84, 84, 84, 0.65);
-    --vt-c-light-divider-hover: rgba(84, 84, 84, 0.48);
+    --vt-c-light-divider: rgba(84, 84, 84, 1);
+    --vt-c-light-divider-hover: rgba(84, 84, 84, 1);
 
-    --vt-c-light-text: #000000;
-    --vt-c-light-text-soft: #000000;
+    --vt-c-light-text: #333333;
+    --vt-c-light-text-soft: #666666;
 
     /* Cafe theme colors */
     --vt-c-cafe-background: rgba(235, 235, 235, 1);
@@ -67,16 +67,16 @@
 }
 
 html.light {
-    --color-background: var(--vt-c-white);
+    --color-background: var(--vt-c-light-background);
     --color-background-gradient: #bb8e37;
-    --color-background-soft: var(--vt-c-white-soft);
-    --color-background-mute: var(--vt-c-white-mute);
+    --color-background-soft: var(--vt-c-light-background-soft);
+    --color-background-mute: var(--vt-c-light-background-mute);
 
-    --color-border: var(--vt-c-divider-light-2);
-    --color-border-hover: var(--vt-c-divider-light-1);
+    --color-border: var(--vt-c-light-divider);
+    --color-border-hover: var(--vt-c-light-divider-hover);
 
-    --color-heading: var(--vt-c-text-light-1);
-    --color-text: var(--vt-c-text-light-1);
+    --color-heading: var(--vt-c-light-text);
+    --color-text: var(--vt-c-light-text-soft);
 }
 
 html.dark {

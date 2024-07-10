@@ -34,5 +34,10 @@
 
   "navbar.footer.contact.email": "Correo",
   "navbar.footer.contact.email.title": "¡Correo electrónico copiado!",
-  "navbar.footer.contact.email.description": "Pégalo para mandarnos un mensaje."
+  "navbar.footer.contact.email.description": "Pégalo para mandarnos un mensaje.",
+
+  "bans.title": "Jugadores baneados",
+  "bans.banned-on": "Baneado el:",
+  "bans.expires": "Expira el:",
+  "bans.reason": "Razón"
 }

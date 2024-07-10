@@ -12,15 +12,23 @@ fetch("/api/bans").then(res => res.json()).then(data => {
 
 <template>
   <div class="wrapper">
-    <h1>Banned players</h1>
+    <h1>
+      {{ $t("bans.title") }}
+    </h1>
     <div class="ban" v-for="ban in bans">
       <div class="ban-content">
         <img :src="`/api/players/${ban.playerName}/head`" alt=""/>
         <div class="ban-details">
           <h1>{{ ban.playerName }}</h1>
-          <h2><strong>Banned on:</strong> {{ formatDate(ban.creationDate) }}</h2>
-          <h2><strong>Expires:</strong> {{ ban.expiryDate ? formatDate(ban.expiryDate) : "never" }}</h2>
-          <h2><strong>Reason:</strong> {{ ban.reason }}</h2>
+          <h2><strong>
+            {{ $t("bans.banned-on") }}
+          </strong> {{ formatDate(ban.creationDate) }}</h2>
+          <h2><strong>
+            {{ $t("bans.expires") }}
+          </strong> {{ ban.expiryDate ? formatDate(ban.expiryDate) : "never" }}</h2>
+          <h2><strong>
+            {{ $t("bans.reason") }}
+          </strong> {{ ban.reason }}</h2>
         </div>
       </div>
     </div>
@@ -35,10 +43,10 @@ fetch("/api/bans").then(res => res.json()).then(data => {
 
 .ban {
   border-radius: 8px;
-  border: 1px solid var(--vt-c-black-mute);
+  border: 1px solid var(--color-border);
   margin-bottom: 10px;
   padding: 10px;
-  background: var(--vt-c-black-soft);
+  background: var(--color-background-mute);
 }
 
 .ban-content {
@@ -58,17 +66,17 @@ fetch("/api/bans").then(res => res.json()).then(data => {
 }
 
 .ban h2 {
-  color: var(--vt-c-white-mute);
+  color: var(--color-text);
   margin-left: 15px;
 }
 
 .ban h1 {
-  color: var(--vt-c-white-mute);
+  color: var(--color-text);
   font-size: 25px;
 }
 
 h1 {
   font-size: 40px;
-  color: var(--vt-c-white-mute);
+  color: var(--color-text);
 }
 </style>

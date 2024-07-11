@@ -91,4 +91,8 @@ const closeModal = () => {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+
+.item-card:hover {
+  transform: scale(1.02);
+}
 </style>

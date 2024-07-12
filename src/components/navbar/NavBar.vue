@@ -29,15 +29,6 @@ function sendToMainPage() {
   router.push('/home');
 }
 
-onMounted(() => {
-  const preloadImage = (src) => {
-    const img = new Image();
-    img.src = src;
-  };
-
-  preloadImage(iconPath);
-  preloadImage(hoverIconPath);
-});
 
 </script>
 

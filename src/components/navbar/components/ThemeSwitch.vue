@@ -24,6 +24,9 @@ watchEffect(() => mode.value = state.value)
 
 <style>
 .tgl-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   user-select: none;
   cursor: pointer;
   background-color: var(--color-text);

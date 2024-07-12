@@ -1,8 +1,9 @@
 <template>
   <v-menu open-on-hover v-model="menu" :close-on-content-click="false" :open-delay="0" :close-delay="400">
     <template v-slot:activator="{ props }">
-      <v-btn color="var(--dark-brass-gold)" v-bind="props">
-        Cart ({{ itemCount }})
+      <v-btn class="cart-button" color="var(--dark-brass-gold)" v-bind="props">
+        <Cart/>
+        <CartBadge :item-count="itemCount"/>
       </v-btn>
     </template>
 
@@ -43,8 +44,9 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } from '@/javascript/merch/cart.js'; // Adjust the path as needed
+import {computed, ref} from 'vue';
+import {cart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart} from '@/javascript/merch/cart.js';
+import CartBadge from "@/pages/merch/CartBadge.vue";
 
 const menu = ref(false);
 
@@ -69,6 +71,11 @@ const checkout = () => {
   flex-direction: column;
   padding: 16px;
   max-height: 80vh;
+}
+
+.cart-button {
+  position: relative;
+  min-height: 42px;
 }
 
 .cart-items-list {

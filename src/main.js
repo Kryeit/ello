@@ -4,7 +4,7 @@ import router from './router'
 import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
 
-import {Cafe32, CarbonIconsVue, Laptop32, Moon32, Sun32} from '@carbon/icons-vue';
+import {Cafe32, CarbonIconsVue, Laptop32, Moon32, ShoppingCart32, Sun32} from '@carbon/icons-vue';
 
 // Vuetify
 import 'vuetify/styles'
@@ -49,7 +49,8 @@ createApp(App)
                 Moon: Moon32,
                 Sun: Sun32,
                 Cafe: Cafe32,
-                Laptop: Laptop32
+                Laptop: Laptop32,
+                Cart: ShoppingCart32,
             }
         }
     )

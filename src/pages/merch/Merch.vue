@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { cart, addToCart } from '@/javascript/merch/cart.js';
+import {ref} from 'vue';
+import {addToCart, cart} from '@/javascript/merch/cart.js';
 import Cart from "@/pages/merch/Cart.vue";
 import Item from "@/pages/merch/Item.vue";
 
@@ -9,7 +9,7 @@ const items = ref([
     id: 1,
     name: "Cool T-Shirt",
     price: 19.99,
-    imageUrl: "/images/tshirt.jpg",
+    imageUrl: new URL('@/assets/flags/es.png', import.meta.url).href,
     shortDescription: "A comfortable and stylish t-shirt.",
     longDescription: "This t-shirt is made from 100% organic cotton, featuring a unique design that's perfect for any casual occasion. Available in multiple sizes and colors."
   },

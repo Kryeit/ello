@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import NavSections from '@/components/navbar/NavSections.vue';
 import Footer from '@/components/navbar/components/Footer.vue';
 import {useRouter} from 'vue-router';
@@ -28,6 +28,17 @@ function sendToMainPage() {
   handleMouseLeave();
   router.push('/home');
 }
+
+onMounted(() => {
+  const preloadImage = (src) => {
+    const img = new Image();
+    img.src = src;
+  };
+
+  preloadImage(iconPath);
+  preloadImage(hoverIconPath);
+});
+
 </script>
 
 

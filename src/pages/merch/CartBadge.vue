@@ -26,5 +26,6 @@ const props = defineProps({
   height: 25px;
   white-space: nowrap;
   aspect-ratio: 1 / 1;
+  z-index: 90;
 }
 </style>

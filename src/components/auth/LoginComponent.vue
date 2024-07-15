@@ -1,31 +1,11 @@
-<script>
-import {loginUser} from '@/javascript/authService.js';
-
-export default {
-  data() {
-    return {
-      uuid: '',
-      password: '',
-      message: ''
-    };
-  },
-  methods: {
-    async handleLogin() {
-      try {
-        const response = await loginUser(this.uuid, this.password);
-        this.message = response;
-      } catch (error) {
-        this.message = error.message;
-      }
-    }
-  }
-};
-</script>
-
 <template>
   <div>
     <h1>Login</h1>
-    <form @submit.prevent="handleLogin">
+    <div v-if="store.user.isLoggedIn">
+      <p>You are already logged in. Your UUID is: {{ store.user.uuid }} and your role is: {{ store.user.role }}</p>
+      <button @click="logoutUser">Logout</button>
+    </div>
+    <form v-else @submit.prevent="loginUserWrapper">
       <div>
         <label for="uuid">UUID:</label>
         <input type="text" v-model="uuid" id="uuid" required />
@@ -36,10 +16,27 @@ export default {
       </div>
       <button type="submit">Login</button>
     </form>
-    <p v-if="message">{{ message }}</p>
+    <p v-if="store.message">{{ store.message }}</p>
   </div>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+import { useAuth } from "@/javascript/useAuth.js";
+import store from "@/javascript/store.js";
+
+const uuid = ref('');
+const password = ref('');
+
+const {loginUser, logoutUser} = useAuth();
+
+async function loginUserWrapper() {
+  await loginUser(uuid.value, password.value);
+}
+
+// No need to explicitly expose loginUserWrapper or store to the template in <script setup>
+</script>
+
 <style scoped>
-/* Add any styles you need here */
+/* Add any component-specific styles here */
 </style>

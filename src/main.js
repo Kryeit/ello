@@ -15,6 +15,8 @@ import * as directives from 'vuetify/directives'
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
 import {useColorMode} from "@vueuse/core";
+import {getToken} from "@/javascript/auth.js";
+import axios from "axios";
 
 const vuetify = createVuetify({
     components,
@@ -39,6 +41,19 @@ useColorMode({
         cafe: 'cafe',
     },
 })
+
+axios.interceptors.request.use(
+    (config) => {
+        const token = getToken();
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 createApp(App)
     .use(i18n)

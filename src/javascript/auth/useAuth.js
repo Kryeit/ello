@@ -1,5 +1,5 @@
-import { authenticate, logout } from "@/javascript/auth.js";
-import store from "@/javascript/store.js"; // Assuming store.js exports a default store object
+import { authenticate, logout } from "@/javascript/auth/auth.js";
+import store from "@/javascript/auth/store.js"; // Assuming store.js exports a default store object
 
 async function loginUser(uuid, password) {
     try {
@@ -13,10 +13,10 @@ async function loginUser(uuid, password) {
     }
 }
 
-function checkLoginStatus() {
+async function checkLoginStatus() {
     const token = localStorage.getItem('token');
     if (token) {
-        store.setUser(token);
+        await store.setUser(token);
     } else {
         store.clearUser();
     }

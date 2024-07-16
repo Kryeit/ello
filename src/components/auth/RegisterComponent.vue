@@ -1,5 +1,5 @@
 <script>
-import {registerUser} from '@/javascript/auth.js';
+import {registerUser} from '@/javascript/auth/auth.js';
 
 export default {
   data() {

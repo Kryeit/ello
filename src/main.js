@@ -15,7 +15,7 @@ import * as directives from 'vuetify/directives'
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
 import {useColorMode} from "@vueuse/core";
-import {getToken} from "@/javascript/auth.js";
+import {getToken} from "@/javascript/auth/auth.js";
 import axios from "axios";
 
 const vuetify = createVuetify({

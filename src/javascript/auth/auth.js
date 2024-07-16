@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from "@/javascript/store.js";
+import store from "@/javascript/auth/store.js";
 
 const api = axios.create({
     baseURL: 'http://localhost:6969/api/v1/auth',
@@ -25,7 +25,7 @@ export async function authenticate(uuid, password) {
         }
         localStorage.setItem('token', access_token);
         localStorage.setItem('refreshToken', refresh_token);
-        store.setUser(access_token);
+        await store.setUser(access_token);
         return response.data; // Return the full response data
     } catch (error) {
 

@@ -22,8 +22,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useAuth } from "@/javascript/useAuth.js";
-import store from "@/javascript/store.js";
+import { useAuth } from "@/javascript/auth/useAuth.js";
+import store from "@/javascript/auth/store.js";
 
 const uuid = ref('');
 const password = ref('');
@@ -33,8 +33,6 @@ const {loginUser, logoutUser} = useAuth();
 async function loginUserWrapper() {
   await loginUser(uuid.value, password.value);
 }
-
-// No need to explicitly expose loginUserWrapper or store to the template in <script setup>
 </script>
 
 <style scoped>

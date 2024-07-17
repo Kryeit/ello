@@ -16,6 +16,7 @@
   "home.how-to-join.advanced.description": "Note that this is prone to bugs, and errors client-side.",
 
   "home.disclaimer": "NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.",
+  "navbar.login": "Login",
   "navbar.leaderboard": "Leaderboard",
   "navbar.settings": "Settings",
   "navbar.settings.theme": "Theme",

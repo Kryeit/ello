@@ -30,7 +30,7 @@ export async function authenticate(uuid, password) {
     } catch (error) {
 
         if (error.response && error.response.status === 403) {
-            store.setMessage('Access denied. Please check your credentials and permissions.');
+            store.setMessage('Access denied. Please check your credentials.');
         } else if (error.message === 'Invalid token received') {
             store.setMessage('Authentication failed due to an invalid token.');
         } else {

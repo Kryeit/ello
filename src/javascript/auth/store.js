@@ -7,7 +7,7 @@ const store = reactive({
         isLoggedIn: false,
         uuid: '',
         role: '',
-        mcUsername: '',
+        username: '',
     },
     message: '',
     async setUser(authToken) {
@@ -19,14 +19,14 @@ const store = reactive({
         try {
             const decodedToken = jwtDecode(authToken);
             // Use getMinecraftUsername to fetch the username
-            const mcUsername = await getMinecraftUsername(decodedToken.sub);
-            if (mcUsername !== 'Username not found' && mcUsername !== 'Failed to fetch username') {
-                this.user.mcUsername = mcUsername;
+            const username = await getMinecraftUsername(decodedToken.sub);
+            if (username !== 'Username not found' && username !== 'Failed to fetch username') {
+                this.user.username = username;
                 this.user.isLoggedIn = true;
                 this.user.uuid = decodedToken.sub;
                 this.user.role = decodedToken.roles ? decodedToken.roles.join(', ') : 'Not specified';
             } else {
-                throw new Error(mcUsername); // Handle errors from getMinecraftUsername
+                throw new Error(username); // Handle errors from getMinecraftUsername
             }
         } catch (error) {
             console.error('Error setting user:', error);
@@ -37,7 +37,7 @@ const store = reactive({
         this.user.isLoggedIn = false;
         this.user.uuid = '';
         this.user.role = '';
-        this.user.mcUsername = '';
+        this.user.username = '';
     },
     setMessage(message) {
         this.message = message;

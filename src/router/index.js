@@ -10,10 +10,12 @@ import Launchers from "@/pages/community/Launchers.vue";
 import LegacyGallery from "@/pages/LegacyGallery.vue";
 import Login from "@/pages/auth/Login.vue";
 import Merch from "@/pages/merch/Merch.vue";
+import Register from "@/pages/auth/Register.vue";
 
 const routes = [
     {path: '/', component: Home},
     {path: '/login', component: Login},
+    {path: '/register', component: Register},
     {path: '/home', component: Home},
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},

@@ -6,7 +6,7 @@ import {i18n} from "@/main.js";
 import store from "@/javascript/auth/store.js";
 
 const router = useRouter();
-const playerName = computed(() => store.user.username ? store.user.username : i18n.global.t("navbar.login"));
+const playerName = computed(() => store.user.username ? store.user.username : i18n.global.t("auth.login"));
 
 const items = computed(() => [
   { title: i18n.global.t("navbar.leaderboard"), path: '/leaderboard' },

@@ -122,7 +122,7 @@ const images = [
   </h3>
 
   <h2 id="gallery" class="section-title">
-    {{ $t("home.gallery") }}
+    {{ $t("home.gallery.title") }}
   </h2>
 
   <hr class="separator">
@@ -130,7 +130,7 @@ const images = [
   <Slideshow :images="images"/>
 
   <h2 id="how-to-join" class="section-title">
-    {{ $t("home.how-to-join") }}
+    {{ $t("home.how-to-join.title") }}
   </h2>
 
   <hr class="separator">

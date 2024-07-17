@@ -3,23 +3,27 @@
     <v-row justify="center">
       <v-col cols="12" md="6">
         <v-card class="pa-5">
-          <v-card-title class="text-h4">Register</v-card-title>
+          <v-card-title class="text-center">
+            <h2>{{ $t("auth.register") }}</h2>
+          </v-card-title>
           <v-card-text>
-            <v-form @submit.prevent="registerUserWrapper">
-              <v-text-field
-                  label="Username"
+            <div v-if="store.user.isLoggedIn">
+              <p>{{ $t("auth.alreadyRegistered") }}</p>
+            </div>
+            <v-form v-else @submit.prevent="registerUserWrapper">
+              <UsernameInput
                   v-model="username"
-                  required
-                  prepend-icon="mdi-account"
-              ></v-text-field>
-              <v-text-field
-                  label="Password"
+                  class="mb-4"
+              />
+              <PasswordInput
                   v-model="password"
-                  type="password"
-                  required
-                  prepend-icon="mdi-lock"
-              ></v-text-field>
-              <v-btn color="primary" type="submit">Register</v-btn>
+                  class="mb-4"
+              />
+              <div class="d-flex justify-center">
+                <v-btn color="primary" type="submit">
+                  {{ $t("auth.register") }}
+                </v-btn>
+              </div>
             </v-form>
             <v-alert v-if="store.message" type="error" dense class="mt-4">{{ store.message }}</v-alert>
           </v-card-text>
@@ -33,7 +37,9 @@
 import { ref } from 'vue';
 import { register } from "@/javascript/auth/auth.js";
 import store from "@/javascript/auth/store.js";
-import {getMinecraftUUID} from "@/javascript/auth/authUtils.js";
+import { getMinecraftUUID } from "@/javascript/auth/authUtils.js";
+import PasswordInput from "@/components/auth/input/PasswordInput.vue";
+import UsernameInput from "@/components/auth/input/UsernameInput.vue";
 
 const username = ref('');
 const password = ref('');

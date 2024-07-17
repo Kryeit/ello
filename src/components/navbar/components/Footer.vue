@@ -34,7 +34,7 @@ async function addEmailToast() {
 
     <div class="footer-section">
       <p>
-        {{ $t("navbar.footer.survival") }}
+        {{ $t("navbar.footer.survival.title") }}
       </p>
       <hr class="separator">
 
@@ -48,7 +48,7 @@ async function addEmailToast() {
 
     <div class="footer-section">
       <p>
-        {{ $t("navbar.footer.support") }}
+        {{ $t("navbar.footer.support.title") }}
       </p>
       <hr class="separator">
 
@@ -62,12 +62,12 @@ async function addEmailToast() {
 
     <div class="footer-section">
       <p>
-        {{ $t("navbar.footer.contact") }}
+        {{ $t("navbar.footer.contact.title") }}
       </p>
       <hr class="separator">
 
       <button @click="addEmailToast">
-        {{ $t("navbar.footer.contact.email") }}
+        {{ $t("navbar.footer.contact.email.label") }}
       </button>    </div>
 
   </div>

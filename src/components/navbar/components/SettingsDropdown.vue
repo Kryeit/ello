@@ -10,7 +10,7 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
         <v-list-item v-bind="props">
           <v-list-item-title class="title">
-            {{ $t("navbar.settings") }}
+            {{ $t("navbar.settings.label") }}
             <span class="right-arrow">></span>
           </v-list-item-title>
         </v-list-item>

@@ -1,29 +1,34 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" md="6">
+      <v-col md="6">
         <v-card class="pa-5">
-          <v-card-title class="text-h4">Login</v-card-title>
+          <v-card-title class="text-center">
+            <h2>
+              {{ $t("auth.login") }}
+            </h2>
+          </v-card-title>
           <v-card-text>
             <div v-if="store.user.isLoggedIn">
               <p>You are already logged in.</p>
               <v-btn color="primary" @click="logoutUser">Logout</v-btn>
             </div>
             <v-form v-else @submit.prevent="loginUserWrapper">
-              <v-text-field
-                  label="Username"
-                  v-model="username"
-                  required
-                  prepend-icon="mdi-account"
-              ></v-text-field>
-              <v-text-field
-                  label="Password"
-                  v-model="password"
-                  type="password"
-                  required
-                  prepend-icon="mdi-lock"
-              ></v-text-field>
-              <v-btn color="primary" type="submit">Login</v-btn>
+              <UsernameInput
+                  v-model=username
+                  class="mb-4"
+              />
+
+              <PasswordInput
+                  v-model=password
+                  class="mb-4"
+              />
+
+              <div class="d-flex justify-center">
+                <v-btn color="primary" type="submit">
+                  {{ $t("auth.login") }}
+                </v-btn>
+              </div>
             </v-form>
             <v-alert v-if="store.message" type="error" dense class="mt-4">{{ store.message }}</v-alert>
             <v-row class="mt-4" justify="space-between">
@@ -46,6 +51,8 @@ import { ref } from 'vue';
 import { useAuth } from "@/javascript/auth/useAuth.js";
 import store from "@/javascript/auth/store.js";
 import { getMinecraftUUID } from "@/javascript/auth/authUtils.js";
+import UsernameInput from "@/components/auth/input/UsernameInput.vue";
+import PasswordInput from "@/components/auth/input/PasswordInput.vue";
 
 const username = ref('');
 const password = ref('');

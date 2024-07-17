@@ -1,44 +1,83 @@
 {
   "test": "Hello world!",
-  "home.slogan": "Mine, craft and create.",
-  "home.description.1": "Technical minecraft, yet a relaxed environment to play on.",
-  "home.description.2": "You can find here a long-term mindset, a friendly community and a lot of moss.",
-  "home.gallery": "Gallery",
-  "home.gallery.subtitle": "{'Picture by '}{author}",
-  "home.how-to-join": "How to join",
-  "home.how-to-join.copy-ip.title": "Copied Server IP!",
-  "home.how-to-join.copy-ip.description": "Paste this in your Minecraft server list.",
-  "home.how-to-join.standard.1": "Download Modrinth App",
-  "home.how-to-join.standard.2": "Download our modpack",
-  "home.how-to-join.standard.description": "Additionally, you can just search \"Kryeit\" inside the Modrinth App.",
-  "home.how-to-join.advanced.1": "Download any launcher",
-  "home.how-to-join.advanced.2": "Download any Kryeit modpack",
-  "home.how-to-join.advanced.description": "Note that this is prone to bugs, and errors client-side.",
-
-  "home.disclaimer": "NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.",
-  "navbar.login": "Login",
-  "navbar.leaderboard": "Leaderboard",
-  "navbar.settings": "Settings",
-  "navbar.settings.theme": "Theme",
-  "navbar.settings.language": "Language",
-
-  "navbar.footer.kryeit.about": "About us",
-  "navbar.footer.kryeit.status": "Status",
-  "navbar.footer.survival": "Survival",
-  "navbar.footer.survival.map": "Map",
-  "navbar.footer.survival.archive": "Archive",
-
-  "navbar.footer.support": "Support",
-  "navbar.footer.support.bans": "Bans",
-  "navbar.footer.support.faq": "FAQ",
-  "navbar.footer.contact": "Contact",
-
-  "navbar.footer.contact.email": "Email us",
-  "navbar.footer.contact.email.title": "Email copied!",
-  "navbar.footer.contact.email.description": "Paste this in your email to send us mail.",
-
-  "bans.title": "Banned players",
-  "bans.banned-on": "Banned on:",
-  "bans.expires": "Expires:",
-  "bans.reason": "Reason"
+  "home": {
+    "slogan": "Mine, craft and create.",
+    "description": {
+      "1": "Technical minecraft, yet a relaxed environment to play on.",
+      "2": "You can find here a long-term mindset, a friendly community and a lot of moss."
+    },
+    "gallery": {
+      "title": "Gallery",
+      "subtitle": "{'Picture by '}{author}"
+    },
+    "how-to-join": {
+      "title": "How to join",
+      "copy-ip": {
+        "title": "Copied Server IP!",
+        "description": "Paste this in your Minecraft server list."
+      },
+      "standard": {
+        "1": "Download Modrinth App",
+        "2": "Download our modpack",
+        "description": "Additionally, you can just search \"Kryeit\" inside the Modrinth App."
+      },
+      "advanced": {
+        "1": "Download any launcher",
+        "2": "Download any Kryeit modpack",
+        "description": "Note that this is prone to bugs, and errors client-side."
+      }
+    },
+    "disclaimer": "NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."
+  },
+  "navbar": {
+    "home": "Home",
+    "leaderboard": "Leaderboard",
+    "settings": {
+      "label": "Settings",
+      "theme": "Theme",
+      "language": "Language"
+    },
+    "footer": {
+      "kryeit": {
+        "about": "About us",
+        "status": "Status"
+      },
+      "survival": {
+        "title": "Survival",
+        "map": "Map",
+        "archive": "Archive"
+      },
+      "support": {
+        "title": "Support",
+        "bans": "Bans",
+        "faq": "FAQ"
+      },
+      "contact": {
+        "title": "Contact",
+        "email": {
+          "label": "Email",
+          "title": "Email copied!",
+          "description": "Paste this in your email to send us mail."
+        }
+      }
+    }
+  },
+  "bans": {
+    "title": "Banned players",
+    "banned-on": "Banned on:",
+    "expires": "Expires:",
+    "reason": "Reason"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "username": "Username",
+    "username-input": {
+      "hint": "It MUST be your Minecraft username"
+    },
+    "password": "Password",
+    "password-input": {
+      "hint": "Use a unique password for this website"
+    }
+  }
 }

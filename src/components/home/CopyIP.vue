@@ -102,6 +102,7 @@ button {
   image-rendering: pixelated;
   cursor: pointer;
   user-select: none;
+  margin-top: 1px;
 }
 
 button img {

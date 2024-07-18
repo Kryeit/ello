@@ -61,14 +61,12 @@ export function getToken() {
 }
 
 export async function verifyOtp(otp, uuid = store.user.uuid) {
-    console.log('verifyOtp called with OTP:', otp, 'and UUID:', uuid); // Log input parameters
     try {
         const response = await api.post('/otp/verify', { uuid, otp });
-        console.log('verifyOtp response:', response.data); // Log API response
-        return response.data; // Return the verification result
+        return response.data;
     } catch (error) {
-        console.error('verifyOtp error:', error); // Log caught error
-        handleAuthError(error);
+        console.error('OTP verification error:', error.response?.data?.message || error.message || 'An error occurred.');
+        store.setMessage('Failed to verify OTP.');
         return false;
     }
 }

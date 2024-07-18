@@ -9,10 +9,11 @@
             </h2>
           </v-card-title>
           <v-card-text>
-            <div v-if="store.user.isLoggedIn">
-              <p>You are already logged in.</p>
-              <v-btn color="primary" @click="logoutUser">Logout</v-btn>
+            <div v-if="store.user.isLoggedIn" class="center-content">
+              <p class="mb-4">You are already logged in.</p>
+              <v-btn color="primary" @click="logout">Logout</v-btn>
             </div>
+
             <v-form v-else @submit.prevent="loginUserWrapper">
               <UsernameInput
                   v-model=username
@@ -33,10 +34,14 @@
             <v-alert v-if="store.message" type="error" dense class="mt-4">{{ store.message }}</v-alert>
             <v-row class="mt-4" justify="space-between">
               <v-col cols="auto">
-                <a href="/register" class="text-decoration-none">No account yet?</a>
+                <a href="/register" class="text-decoration-none">
+                  {{ $t("auth.no-account-yet") }}
+                </a>
               </v-col>
               <v-col cols="auto">
-                <a href="/forgot-password" class="text-decoration-none">Forgot password?</a>
+                <a href="/forgot-password" class="text-decoration-none">
+                  {{ $t("auth.forgot-password") }}
+                </a>
               </v-col>
             </v-row>
           </v-card-text>
@@ -47,22 +52,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useAuth } from "@/javascript/auth/useAuth.js";
+import {ref} from 'vue';
 import store from "@/javascript/auth/store.js";
-import { getMinecraftUUID } from "@/javascript/auth/authUtils.js";
+import {getMinecraftUUID} from "@/javascript/auth/authUtils.js";
 import UsernameInput from "@/components/auth/input/UsernameInput.vue";
 import PasswordInput from "@/components/auth/input/PasswordInput.vue";
+import {authenticate, logout} from "@/javascript/auth/auth.js";
 
 const username = ref('');
 const password = ref('');
 
-const { loginUser, logoutUser } = useAuth();
 
 async function loginUserWrapper() {
   try {
     const uuid = await getMinecraftUUID(username.value);
-    await loginUser(uuid, password.value);
+    await authenticate(uuid, password.value);
   } catch (error) {
     store.message = 'Failed to log in. Please check your username and password.';
   }
@@ -70,7 +74,12 @@ async function loginUserWrapper() {
 </script>
 
 <style scoped>
-/* Add any component-specific styles here */
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .text-decoration-none {
   text-decoration: none;
 }

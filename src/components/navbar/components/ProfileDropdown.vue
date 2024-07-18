@@ -1,5 +1,5 @@
 <script setup>
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 import {useRouter} from 'vue-router';
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
 import {i18n} from "@/main.js";
@@ -30,7 +30,7 @@ function handleProfileClick() {
     <v-menu open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
       <template v-slot:activator="{ props }">
         <v-btn class="profile-button" v-bind="props" @click="handleProfileClick">
-          <img v-if="store.user.username" class="player-image" :src="`/api/players/${playerName.value}/head`" alt="Player Head">
+          <img v-if="store.user.isLoggedIn" class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">
           <span class="player-name">{{ playerName }}</span>
         </v-btn>
       </template>

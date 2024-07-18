@@ -1,4 +1,4 @@
-import { authenticate, logout } from "@/javascript/auth/auth.js";
+import {authenticate, logout} from "@/javascript/auth/auth.js";
 import store from "@/javascript/auth/store.js"; // Assuming store.js exports a default store object
 
 async function loginUser(uuid, password) {

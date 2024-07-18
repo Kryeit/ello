@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from 'vue';
+import {ref} from 'vue';
 import NavSections from '@/components/navbar/NavSections.vue';
 import Footer from '@/components/navbar/components/Footer.vue';
 import {useRouter} from 'vue-router';
@@ -77,6 +77,7 @@ function sendToMainPage() {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-height: 105px;
 }
 
 .header-content img {

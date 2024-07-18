@@ -72,12 +72,19 @@
     "login": "Iniciar sesión",
     "register": "Registrarse",
     "username": "Nombre de usuario",
+    "no-account-yet": "¿Todavía sin cuenta?",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "is-registered": "¿Ya estás registrado?",
+    "already-registered": "Ya tienes una cuenta",
     "username-input": {
       "hint": "DEBE ser tu nombre de usuario de Minecraft"
     },
     "password": "Contraseña",
     "password-input": {
-      "hint": "Usa una contraseña única para este sitio web"
-    }
+      "hint": "Usa una contraseña única para este sitio web",
+      "confirm": "Confirmar contraseña"
+    },
+    "verify-disclaimer": "(*) Las cuentas deben ser verificadas dentro del servidor de Minecraft para evitar ser eliminadas en un día."
+
   }
 }

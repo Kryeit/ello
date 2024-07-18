@@ -1,6 +1,6 @@
-import { reactive } from 'vue';
-import { jwtDecode } from 'jwt-decode';
-import { getMinecraftUsername } from './authUtils.js'; // Import the function from authUtils.js
+import {reactive} from 'vue';
+import {jwtDecode} from 'jwt-decode';
+import {getMinecraftUsername} from './authUtils.js';
 
 const store = reactive({
     user: {
@@ -8,6 +8,7 @@ const store = reactive({
         uuid: '',
         role: '',
         username: '',
+        verified: false,
     },
     message: '',
     async setUser(authToken) {
@@ -25,6 +26,7 @@ const store = reactive({
                 this.user.isLoggedIn = true;
                 this.user.uuid = decodedToken.sub;
                 this.user.role = decodedToken.roles ? decodedToken.roles.join(', ') : 'Not specified';
+                this.user.verified = decodedToken.verified;
             } else {
                 throw new Error(username); // Handle errors from getMinecraftUsername
             }
@@ -38,9 +40,19 @@ const store = reactive({
         this.user.uuid = '';
         this.user.role = '';
         this.user.username = '';
+        this.user.verified = false;
     },
     setMessage(message) {
         this.message = message;
+        this.clearMessageAfterDelay();
+    },
+    clearMessage() {
+        this.message = '';
+    },
+    clearMessageAfterDelay() {
+        setTimeout(() => {
+            this.clearMessage();
+        }, 5000);
     }
 });
 

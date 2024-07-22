@@ -4,6 +4,7 @@ import {useRouter} from 'vue-router';
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
 import {i18n} from "@/main.js";
 import store from "@/javascript/auth/store.js";
+import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 
 const router = useRouter();
 const playerName = computed(() => store.user.username ? store.user.username : i18n.global.t("auth.login"));
@@ -15,27 +16,38 @@ const items = computed(() => [
 function navigateTo(item) {
   router.push(item.path);
 }
-
-function handleProfileClick() {
-  if (!store.user.username) {
-    router.push('/login');
-  } else {
-    router.push('/@' + store.user.username);
-  }
-}
 </script>
 
 <template>
   <div>
-    <v-menu open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
+    <v-menu
+        open-on-hover
+        :close-on-content-click="false"
+        :open-delay="0"
+        :close-delay="400"
+        transition="slide-y-transition"
+        offset="6"
+    >
+
       <template v-slot:activator="{ props }">
-        <v-btn class="profile-button" v-bind="props" @click="handleProfileClick">
-          <img v-if="store.user.isLoggedIn" class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">
-          <span class="player-name">{{ playerName }}</span>
-        </v-btn>
+        <div class="player-avatar-container" v-bind="props">
+          <PlayerAvatar :player-name="playerName" v-bind="props"/>
+          <span class="dropdown-arrow">⮟</span>
+        </div>
       </template>
 
       <v-list bg-color="var(--color-background)">
+
+        <v-list-item v-if="store.user.isLoggedIn" @click="router.push('/@' + playerName)">
+          <v-list-item-title class="text-caption" style="font-family: 'Minecraftia', sans-serif">@{{ playerName }}</v-list-item-title>
+          <v-list-item-subtitle>Visit your profile</v-list-item-subtitle>
+        </v-list-item>
+
+        <v-list-item v-else @click="router.push('/login')">
+          <v-list-item-title class="text-caption" style="font-family: 'Minecraftia', sans-serif">Guest</v-list-item-title>
+          <v-list-item-subtitle>Log in</v-list-item-subtitle>
+        </v-list-item>
+
         <v-list-item class="list"
                      v-for="(item, index) in items"
                      :key="index"
@@ -51,19 +63,19 @@ function handleProfileClick() {
 </template>
 
 <style scoped>
-.profile-button {
-  background-color: var(--dark-brass-gold);
-  color: white;
+v-list-item {
+  cursor: pointer;
 }
 
-.list {
-  color: var(--color-text);
+.player-avatar-container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.player-image {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  border-radius: 20%;
+.dropdown-arrow {
+  margin-left: 4px;
+  font-size: 20px;
+  color: currentColor;
 }
 </style>

@@ -40,7 +40,7 @@ function sendToMainPage() {
     <div class="header-content">
       <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
            alt=""/>
-      <ProfileDropdown/>
+      <ProfileDropdown class="profile-dropdown"/>
     </div>
   </header>
 
@@ -73,22 +73,20 @@ function sendToMainPage() {
 .header-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: var(--primary-brass-gold);
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 30px;
   min-height: 105px;
 }
 
-.header-content img {
-  margin-right: 20px;
-  width: 85px;
-  height: auto;
+.profile-dropdown {
   cursor: pointer;
 }
 
-.header-content::before {
-  content: '';
-  width: 10%;
+.header-content img {
+  width: 85px;
+  height: auto;
+  cursor: pointer;
 }
 </style>

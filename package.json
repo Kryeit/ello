@@ -18,6 +18,7 @@
     "vue-demi": "^0.14.8",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.2",
+    "vite-svg-loader": "^5.1.0",
     "vuetify": "^3.6.9"
   },
   "devDependencies": {

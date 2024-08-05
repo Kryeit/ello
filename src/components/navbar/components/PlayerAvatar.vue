@@ -1,15 +1,19 @@
 <script setup>
 import store from "@/javascript/auth/store.js";
+import {computed} from "vue";
 
 const props = defineProps({
   playerName: String,
-  areaExpanded: Boolean,
+});
+
+const computedPlayerName = computed(() => {
+  return props.playerName || 'Steve';
 });
 </script>
 
 <template>
   <div v-bind="$attrs" class="player-head-container">
-    <img v-if="store.user.isLoggedIn" class="player-image" :src="`/api/players/${playerName}/head`" alt="Player Head">
+    <img class="player-image" :src="`/api/players/${computedPlayerName}/head`" alt="Player Head">
     <div class="shadow"></div>
   </div>
 </template>
@@ -28,7 +32,7 @@ const props = defineProps({
   transform: translate(-50%, -50%);
   width: 41px;
   height: 41px;
-  border-radius: 45%;
+  border-radius: 17px;
   z-index: 2;
 }
 
@@ -39,8 +43,8 @@ const props = defineProps({
   transform: translate(-50%, -50%);
   width: 46px;
   height: 46px;
-  border-radius: 45%;
-  background-color: gray;
+  border-radius: 20px;
+  background-color: darkslategrey;
   transition: background-color 0.3s ease;
   z-index: 1;
 }

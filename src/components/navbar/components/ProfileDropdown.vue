@@ -5,6 +5,8 @@ import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vu
 import {i18n} from "@/main.js";
 import store from "@/javascript/auth/store.js";
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
+import DropdownIcon from "@/assets/dropdown.svg?component";
+import {logout} from "@/javascript/auth/auth.js";
 
 const router = useRouter();
 const playerName = computed(() => store.user.username ? store.user.username : i18n.global.t("auth.login"));
@@ -24,7 +26,7 @@ function navigateTo(item) {
         open-on-hover
         :close-on-content-click="false"
         :open-delay="0"
-        :close-delay="400"
+        :close-delay="200"
         transition="slide-y-transition"
         offset="6"
     >
@@ -32,7 +34,7 @@ function navigateTo(item) {
       <template v-slot:activator="{ props }">
         <div class="player-avatar-container" v-bind="props">
           <PlayerAvatar :player-name="playerName" v-bind="props"/>
-          <span class="dropdown-arrow">⮟</span>
+          <DropdownIcon class="dropdown-arrow"/>
         </div>
       </template>
 
@@ -48,6 +50,8 @@ function navigateTo(item) {
           <v-list-item-subtitle>Log in</v-list-item-subtitle>
         </v-list-item>
 
+        <v-divider :thickness="2" style="width: 80%; margin: auto"></v-divider>
+
         <v-list-item class="list"
                      v-for="(item, index) in items"
                      :key="index"
@@ -57,6 +61,11 @@ function navigateTo(item) {
         </v-list-item>
 
         <SettingsDropdown/>
+
+        <v-list-item v-if="store.user.isLoggedIn">
+          <v-divider :thickness="2" style="width: 80%; margin: auto"></v-divider>
+          <v-list-item-title @click="logout()">Logout</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
   </div>
@@ -76,6 +85,6 @@ v-list-item {
 .dropdown-arrow {
   margin-left: 4px;
   font-size: 20px;
-  color: currentColor;
+  color: black;
 }
 </style>

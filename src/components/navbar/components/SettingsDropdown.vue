@@ -5,13 +5,13 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
 <template>
   <div>
-    <v-menu transition="slide-x-transition" location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
+    <v-menu transition="slide-x-reverse-transition" location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
       <template v-slot:activator="{ props }">
 
         <v-list-item v-bind="props">
           <v-list-item-title class="title">
-            {{ $t("navbar.settings.label") }}
-            <span class="right-arrow">></span>
+            <span class="left-arrow"><</span>
+            <span class="settings-text">{{ $t("navbar.settings.label") }}</span>
           </v-list-item-title>
         </v-list-item>
 
@@ -23,8 +23,6 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
           <ThemeSwitch/>
         </div>
 
-        <hr class="separator">
-
         <div class="setting">
           <v-list-item-title>{{ $t("navbar.settings.language") }}</v-list-item-title>
           <LanguageSelector class="language-selector"/>
@@ -35,16 +33,12 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 </template>
 
 <style scoped>
-.right-arrow {
-  float: right;
+.left-arrow {
+  float: left;
 }
 
-.separator {
-  width: 70%;
-  background-color: var(--color-text);
-  border: none;
-  height: 1px;
-  margin: 10px auto;
+.settings-text {
+  margin-left: 10px;
 }
 
 .title {
@@ -57,9 +51,14 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
   align-items: center;
   justify-content: space-between;
   color: var(--color-text);
+  margin-bottom: 20px;
 }
 
 .language-selector {
   margin: 0 20px;
+}
+
+.setting:last-child {
+  margin-bottom: 0;
 }
 </style>

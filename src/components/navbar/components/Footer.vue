@@ -29,7 +29,7 @@ async function addEmailToast() {
       <a href="https://status.kryeit.com" target="_blank">
         {{ $t("navbar.footer.kryeit.status") }}
       </a>
-      <a href="https://kryeit.wiki.gg" target="_blank">Wiki</a>
+      <a href="https://kryeit.miraheze.org" target="_blank">Wiki</a>
     </div>
 
     <div class="footer-section">

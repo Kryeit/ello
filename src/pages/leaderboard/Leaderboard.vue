@@ -7,7 +7,8 @@ const orders = [
   {'name': 'Playtime', 'value': 'playtime'},
   {'name': 'Distance walked', 'value': 'distance-walked'},
   {'name': 'Deaths', 'value': 'deaths'},
-  {'name': 'Mob kills', 'value': 'mob-kills'}
+  {'name': 'Mob kills', 'value': 'mob-kills'},
+  {'name': 'Potatoes planted', 'value': 'potatoes'}
 ];
 
 function getRank(i) {

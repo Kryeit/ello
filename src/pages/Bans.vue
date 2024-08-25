@@ -6,7 +6,7 @@ import {formatDate} from "../utils.js";
 const bans = ref();
 
 fetch("/api/bans").then(res => res.json()).then(data => {
-  bans.value = data;
+  bans.value = data.filter(ban => ban !== null);
 })
 </script>
 

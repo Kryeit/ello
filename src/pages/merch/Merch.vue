@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue';
-import {addToCart, cart} from '@/javascript/merch/cart.js';
+import {addToCart, cart} from '@/js/merch/cart.js';
 import Cart from "@/pages/merch/Cart.vue";
 import Item from "@/pages/merch/Item.vue";
 

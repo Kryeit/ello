@@ -6,22 +6,10 @@ import esMessages from '../localization/es_es.json'
 
 import {Cafe32, CarbonIconsVue, Laptop32, Moon32, ShoppingCart32, Sun32} from '@carbon/icons-vue';
 
-// Vuetify
-import 'vuetify/styles'
-import {createVuetify} from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
 import {useColorMode} from "@vueuse/core";
-import {getToken, initializeAuthState} from "@/javascript/auth/auth.js";
-import axios from "axios";
-
-const vuetify = createVuetify({
-    components,
-    directives,
-})
+import AuthService from "@/js/auth/authService.js";
 
 const browserLanguage = navigator.language.split('-')[0];
 const savedLanguage = localStorage.getItem('language') || browserLanguage || 'en';
@@ -42,7 +30,7 @@ useColorMode({
     },
 })
 
-initializeAuthState();
+AuthService.validateToken();
 
 createApp(App)
     .use(i18n)
@@ -59,5 +47,4 @@ createApp(App)
         }
     )
     .use(router)
-    .use(vuetify)
     .mount('#app');

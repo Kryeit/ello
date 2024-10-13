@@ -1,16 +1,18 @@
 <script setup>
 import {ref} from 'vue';
 import {i18n} from "@/main.js";
-import clickSound from '@/assets/sounds/click.ogg';
-import {addToast} from "@/javascript/toasts.js";
+import {addToast} from "@/js/toasts.js";
+
+const clickSound = new URL('@/assets/sounds/click.ogg', import.meta.url);
 
 const textInput = ref(null);
 const text = ref('kryeit.com');
-const sound = ref(new Audio(clickSound));
+const sound = ref(new Audio(clickSound.href));
 
 async function copyText() {
   if (textInput.value) {
     textInput.value.select();
+    await sound.value.play();
     addToast('map.png', i18n.global.t("home.how-to-join.copy-ip.title"), i18n.global.t("home.how-to-join.copy-ip.description"));
     try {
       await navigator.clipboard.writeText(text.value);
@@ -64,7 +66,7 @@ async function copyTextWithoutSelection() {
 }
 
 input[type="text"] {
-  width: 13.3ch;
+  width: 14ch;
   padding: 9px;
   border: 2px solid white;
   background: black;
@@ -102,7 +104,6 @@ button {
   image-rendering: pixelated;
   cursor: pointer;
   user-select: none;
-  margin-top: 1px;
 }
 
 button img {

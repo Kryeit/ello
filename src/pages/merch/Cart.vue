@@ -45,7 +45,7 @@
 
 <script setup>
 import {computed, ref} from 'vue';
-import {cart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart} from '@/javascript/merch/cart.js';
+import {cart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart} from '@/js/merch/cart.js';
 import CartBadge from "@/pages/merch/CartBadge.vue";
 
 const menu = ref(false);

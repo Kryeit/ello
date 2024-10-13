@@ -1,9 +1,10 @@
 <script setup>
-import LoginComponent from "@/components/auth/LoginComponent.vue";
 </script>
 
 <template>
-  <LoginComponent />
+  <p>
+    Use /login inside the server
+  </p>
 </template>
 
 <style scoped>

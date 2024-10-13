@@ -10,14 +10,11 @@ import Launchers from "@/pages/community/Launchers.vue";
 import LegacyGallery from "@/pages/LegacyGallery.vue";
 import Login from "@/pages/auth/Login.vue";
 import Merch from "@/pages/merch/Merch.vue";
-import Register from "@/pages/auth/Register.vue";
-import Verify from "@/pages/auth/Verify.vue";
+import Assets from "@/pages/Assets.vue";
 
 const routes = [
     {path: '/', component: Home},
     {path: '/login', component: Login},
-    {path: '/register', component: Register},
-    {path: '/verify', component: Verify},
     {path: '/home', component: Home},
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},
@@ -26,7 +23,7 @@ const routes = [
     {path: "/modpacks", component: Modpacks},
     {path: "/launchers", component: Launchers},
     {path: "/legacy-gallery", component: LegacyGallery},
-
+    {path: "/assets", component: Assets},
     {path: "/merch", component: Merch},
 ]
 

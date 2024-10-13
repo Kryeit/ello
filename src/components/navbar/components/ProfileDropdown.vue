@@ -1,15 +1,14 @@
 <script setup>
 import {computed} from 'vue';
 import {useRouter} from 'vue-router';
-import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
 import {i18n} from "@/main.js";
-import store from "@/javascript/auth/store.js";
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
+import AuthService from "@/js/auth/authService.js";
+import store from "@/js/auth/store.js";
 import DropdownIcon from "@/assets/dropdown.svg?component";
-import {logout} from "@/javascript/auth/auth.js";
 
 const router = useRouter();
-const playerName = computed(() => store.user.username ? store.user.username : i18n.global.t("auth.login"));
+const playerName = computed(() => store.username ? store.user.username : i18n.global.t("auth.login"));
 
 const items = computed(() => [
   { title: i18n.global.t("navbar.leaderboard"), path: '/leaderboard' },
@@ -18,62 +17,50 @@ const items = computed(() => [
 function navigateTo(item) {
   router.push(item.path);
 }
+
+function logout() {
+  AuthService.logout();
+}
 </script>
 
 <template>
   <div>
-    <v-menu
-        open-on-hover
-        :close-on-content-click="false"
-        :open-delay="0"
-        :close-delay="200"
-        transition="slide-y-transition"
-        offset="6"
-    >
+    <div class="player-avatar-container" @click="router.push('/@' + playerName)">
+      <PlayerAvatar :player-name="playerName"/>
+      <DropdownIcon class="dropdown-arrow"/>
+    </div>
 
-      <template v-slot:activator="{ props }">
-        <div class="player-avatar-container" v-bind="props">
-          <PlayerAvatar :player-name="playerName" v-bind="props"/>
-          <DropdownIcon class="dropdown-arrow"/>
-        </div>
-      </template>
+    <div v-if="store.getUser()">
+      <div class="menu-item" @click="router.push('/@' + playerName)">
+        <span class="menu-item-title">@{{ playerName }}</span>
+        <span class="menu-item-subtitle">Visit your profile</span>
+      </div>
 
-      <v-list bg-color="var(--color-background)">
+      <div class="menu-item" v-for="(item, index) in items" :key="index" @click="navigateTo(item)">
+        <span class="menu-item-title">{{ item.title }}</span>
+      </div>
 
-        <v-list-item v-if="store.user.isLoggedIn" @click="router.push('/@' + playerName)">
-          <v-list-item-title class="text-caption" style="font-family: 'Minecraftia', sans-serif">@{{ playerName }}</v-list-item-title>
-          <v-list-item-subtitle>Visit your profile</v-list-item-subtitle>
-        </v-list-item>
+      <div class="menu-item" @click="logout()">
+        <span class="menu-item-title">Logout</span>
+      </div>
+    </div>
 
-        <v-list-item v-else @click="router.push('/login')">
-          <v-list-item-title class="text-caption" style="font-family: 'Minecraftia', sans-serif">Guest</v-list-item-title>
-          <v-list-item-subtitle>Log in</v-list-item-subtitle>
-        </v-list-item>
-
-        <v-divider :thickness="2" style="width: 80%; margin: auto"></v-divider>
-
-        <v-list-item class="list"
-                     v-for="(item, index) in items"
-                     :key="index"
-                     @click="navigateTo(item)"
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-
-        <SettingsDropdown/>
-
-        <v-list-item v-if="store.user.isLoggedIn">
-          <v-divider :thickness="2" style="width: 80%; margin: auto"></v-divider>
-          <v-list-item-title @click="logout()">Logout</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+    <div v-else class="menu-item" @click="router.push('/login')">
+      <span class="menu-item-title">Guest</span>
+      <span class="menu-item-subtitle">Log in</span>
+    </div>
   </div>
 </template>
 
 <style scoped>
-v-list-item {
+.menu-item {
   cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu-item-title {
+  font-family: 'Minecraftia', sans-serif;
 }
 
 .player-avatar-container {

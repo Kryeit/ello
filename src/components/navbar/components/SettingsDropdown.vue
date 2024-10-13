@@ -1,34 +1,29 @@
 <script setup>
+import { ref } from 'vue';
 import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
 import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
+
+const showSettings = ref(false);
 </script>
 
 <template>
-  <div>
-    <v-menu transition="slide-x-reverse-transition" location="end" open-on-hover :close-on-content-click="false" :open-delay="0" :close-delay="400">
-      <template v-slot:activator="{ props }">
+  <div class="menu">
+    <div class="menu-item" @click="showSettings.value = !showSettings.value">
+      <span class="left-arrow"><</span>
+      <span class="settings-text">{{ $t("navbar.settings.label") }}</span>
+    </div>
 
-        <v-list-item v-bind="props">
-          <v-list-item-title class="title">
-            <span class="left-arrow"><</span>
-            <span class="settings-text">{{ $t("navbar.settings.label") }}</span>
-          </v-list-item-title>
-        </v-list-item>
+    <div v-if="showSettings.value" class="settings-list">
+      <div class="setting">
+        <span>{{ $t("navbar.settings.theme") }}</span>
+        <ThemeSwitch/>
+      </div>
 
-      </template>
-
-      <v-list bg-color="var(--color-background)">
-        <div class="setting">
-          <v-list-item-title>{{ $t("navbar.settings.theme") }}</v-list-item-title>
-          <ThemeSwitch/>
-        </div>
-
-        <div class="setting">
-          <v-list-item-title>{{ $t("navbar.settings.language") }}</v-list-item-title>
-          <LanguageSelector class="language-selector"/>
-        </div>
-      </v-list>
-    </v-menu>
+      <div class="setting">
+        <span>{{ $t("navbar.settings.language") }}</span>
+        <LanguageSelector class="language-selector"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,10 +34,6 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
 .settings-text {
   margin-left: 10px;
-}
-
-.title {
-  color: var(--color-text);
 }
 
 .setting {
@@ -60,5 +51,18 @@ import LanguageSelector from "@/components/navbar/components/LanguageSelector.vu
 
 .setting:last-child {
   margin-bottom: 0;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-list {
+  display: none;
+}
+
+.menu-item:hover .settings-list {
+  display: block;
 }
 </style>

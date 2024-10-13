@@ -1,5 +1,5 @@
 <script setup>
-import store from "@/javascript/auth/store.js";
+import store from "@/js/auth/store.js";
 import {computed} from "vue";
 
 const props = defineProps({

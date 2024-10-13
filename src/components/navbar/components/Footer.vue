@@ -1,12 +1,15 @@
 <script setup>
 import {ref} from "vue";
 import treePath from "@/assets/tree.png";
-import {addToast} from "@/javascript/toasts.js";
+import {addToast} from "@/js/toasts.js";
 import {i18n} from "@/main.js";
 
 const treeSource = ref(treePath);
+const clickSound = new URL('@/assets/sounds/click.ogg', import.meta.url);
+const sound = ref(new Audio(clickSound.href));
 
 async function addEmailToast() {
+  await sound.value.play();
   addToast('map.png', i18n.global.t("navbar.footer.contact.email.title"), i18n.global.t("navbar.footer.contact.email.description"));
   try {
     await navigator.clipboard.writeText('kryeit.minecraft@gmail.com');
@@ -66,9 +69,10 @@ async function addEmailToast() {
       </p>
       <hr class="separator">
 
-      <button @click="addEmailToast">
+      <a @click="addEmailToast" style="cursor: pointer">
         {{ $t("navbar.footer.contact.email.label") }}
-      </button>    </div>
+      </a>
+    </div>
 
   </div>
 </template>

@@ -76,10 +76,11 @@ const hidePlayerList = () => {
   background-size: 100px 100px;
   background-repeat: repeat;
   padding: 10px;
-  border-radius: 8px;
   overflow: visible;
   margin: 0 10px;
   image-rendering: pixelated;
+  border: 4px solid black;
+  border-radius: 12px;
 }
 
 .overlay {

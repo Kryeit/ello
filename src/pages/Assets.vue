@@ -1,8 +1,13 @@
 <script setup>
+import icon from '@/assets/kryeit/icon.png';
+import serverIcon from '@/assets/kryeit/server_icon.png';
+import banner from '@/assets/kryeit/banner.png';
+
 function downloadImage(url, filename) {
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', filename);
+  link.download = filename;
+  link.style.display = 'none';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -14,8 +19,26 @@ function downloadImage(url, filename) {
   <div class="grid">
     <div class="card">
       <h3>Icon</h3>
-      <img src="https://kryeit.com/images/icon.png" alt="Server Icon"/>
-      <button class="download-button" @click="downloadImage('https://kryeit.com/images/icon.png', 'icon.png')">Download</button>
+      <div class="image-container">
+        <img src="@/assets/kryeit/icon.png" alt="Server Icon" />
+      </div>
+      <button class="download-button" @click="downloadImage(icon, 'icon.png')">Download</button>
+    </div>
+
+    <div class="card">
+      <h3>Server List Icon</h3>
+      <div class="image-container">
+        <img src="@/assets/kryeit/server_icon.png" alt="Server Icon" />
+      </div>
+      <button class="download-button" @click="downloadImage(serverIcon, 'server_icon.png')">Download</button>
+    </div>
+
+    <div class="card">
+      <h3>Banner</h3>
+      <div class="image-container">
+        <img src="@/assets/kryeit/banner.png" alt="Banner" />
+      </div>
+      <button class="download-button" @click="downloadImage(banner, 'banner.png')">Download</button>
     </div>
   </div>
 </template>
@@ -23,8 +46,16 @@ function downloadImage(url, filename) {
 <style scoped>
 .grid {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  white-space: nowrap;
 }
 
 .card {
@@ -37,19 +68,19 @@ function downloadImage(url, filename) {
   justify-content: space-between;
 }
 
+.image-container {
+  width: 150px;
+  height: 150px;
+  min-width: 150px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-}
-
-.download-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.download-button:hover {
-  background-color: #0056b3;
 }
 </style>

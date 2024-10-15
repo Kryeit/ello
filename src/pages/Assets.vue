@@ -12,6 +12,32 @@ function downloadImage(url, filename) {
   link.click();
   document.body.removeChild(link);
 }
+
+async function downloadCursor() {
+  try {
+    const response = await fetch('http://localhost:6969/api/assets/cursor');
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch file: ${response.statusText}`);
+    }
+
+    const blob = await response.blob();
+
+    const link = document.createElement('a');
+    const url = window.URL.createObjectURL(blob);
+    link.href = url;
+    link.setAttribute('download', 'cursor.rar'); // Filename for download
+    link.style.display = 'none';
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error downloading cursor file:', error);
+  }
+}
 </script>
 
 <template>
@@ -39,6 +65,14 @@ function downloadImage(url, filename) {
         <img src="@/assets/kryeit/banner.png" alt="Banner" />
       </div>
       <button class="download-button" @click="downloadImage(banner, 'banner.png')">Download</button>
+    </div>
+
+    <div class="card">
+      <h3>Cursor</h3>
+      <div class="image-container">
+        <img src="@/assets/kryeit/cursor.png" alt="Custom cursor" />
+      </div>
+      <button class="download-button" @click="downloadCursor()">Download</button>
     </div>
   </div>
 </template>

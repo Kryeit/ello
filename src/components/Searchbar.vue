@@ -47,6 +47,7 @@ input {
   padding: 5px 12px;
   color: inherit;
   width: 100%;
+  font-family: 'Minecraftia', sans-serif;
 }
 
 .results {

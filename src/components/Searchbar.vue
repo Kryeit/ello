@@ -87,6 +87,8 @@ input::placeholder {
   border-radius: 8px;
   background-color: var(--color-background-mute);
   border: none;
+  text-align: left;
+  width: 100%;
 }
 
 .results button:hover {

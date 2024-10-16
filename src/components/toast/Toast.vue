@@ -33,13 +33,18 @@ export default {
 .toast {
   display: flex;
   align-items: center;
-  background-image: url('@/assets/minecraft/toast.png');
-  background-size: contain;
-  background-repeat: no-repeat;
   padding: 20px;
   cursor: pointer;
   image-rendering: pixelated;
+  background-image: url('@/assets/minecraft/toast.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   animation: toast-enter 0.5s forwards;
+  box-sizing: border-box;
+  width: 610px;
+  height: 120px;
+  margin-bottom: 4px;
 }
 
 .toast-exit {
@@ -51,6 +56,7 @@ export default {
   height: 70px;
   margin-right: 20px;
   image-rendering: pixelated;
+  flex-shrink: 0;
 }
 
 .toast-content {
@@ -95,6 +101,8 @@ export default {
 @media (max-width: 600px) {
   .toast {
     padding: 10px;
+    width: 305px;
+    height: 60px;
   }
 
   .toast-image {

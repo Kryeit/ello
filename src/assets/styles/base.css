@@ -112,6 +112,11 @@ html.cafe {
     font-weight: normal;
 }
 
+button {
+    font-family: 'Minecraftia',
+    sans-serif;
+    color: var(--color-text);
+}
 body {
     min-height: 100vh;
     color: var(--color-text);

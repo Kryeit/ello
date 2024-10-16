@@ -40,8 +40,5 @@ watchEffect(() => mode.value = state.value)
   vertical-align: middle;
   width: 47px;
   height: 47px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 8px;
 }
 </style>

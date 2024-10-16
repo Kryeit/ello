@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
 import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
 

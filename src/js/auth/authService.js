@@ -1,5 +1,4 @@
 import Store from "@/js/auth/store.js";
-import user from "@/js/auth/user.js";
 import User from "@/js/auth/user.js";
 
 class AuthService {

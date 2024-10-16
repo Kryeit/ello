@@ -1,6 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
-import {onUnmounted} from "vue-demi";
+import {onMounted, onUnmounted, ref} from "vue";
 
 const showResults = ref(false);
 const results = ref([]);
@@ -27,23 +26,23 @@ async function search() {
 }
 
 function handleClickOutside(event) {
-  const wrapper = document.querySelector('.wrapper');
+  const wrapper = document.querySelector(".wrapper");
   if (wrapper && !wrapper.contains(event.target)) {
     focusOut();
   }
 }
 
 onMounted(() => {
-  document.addEventListener('click', handleClickOutside);
+  document.addEventListener("click", handleClickOutside);
 });
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside);
+  document.removeEventListener("click", handleClickOutside);
 });
 </script>
 
 <template>
-  <div class="wrapper" v-click-outside="focusOut">
+  <div class="wrapper">
     <input placeholder="Search players" @focusin="onFocus" @input="search" v-model="query">
     <div class="results" v-if="showResults">
       <button class="result" v-for="result in results" @click="selectResult(result)">{{ result }}</button>
@@ -97,5 +96,4 @@ input::placeholder {
 .results button:active {
   scale: 0.95;
 }
-
 </style>

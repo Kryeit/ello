@@ -50,6 +50,10 @@ input {
   font-family: 'Minecraftia', sans-serif;
 }
 
+input::placeholder {
+  color: var(--color-text);
+}
+
 .results {
   border-radius: 8px;
   position: absolute;

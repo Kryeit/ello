@@ -68,7 +68,6 @@ const toggleModal = () => {
   justify-content: center;
   user-select: none;
   width: 100%;
-
 }
 
 .settings-button:hover {
@@ -103,5 +102,15 @@ const toggleModal = () => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.setting:hover {
+  background: var(--color-background-mute);
+}
+
+.modal-header {
+  margin-bottom: 20px;
 }
 </style>

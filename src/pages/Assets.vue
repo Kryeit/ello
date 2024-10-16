@@ -52,7 +52,7 @@ async function downloadCursor() {
     </div>
 
     <div class="card">
-      <h3>Server List Icon</h3>
+      <h3>List Icon</h3>
       <div class="image-container">
         <img src="@/assets/kryeit/server_icon.png" alt="Server Icon" />
       </div>
@@ -82,6 +82,7 @@ async function downloadCursor() {
   display: flex;
   gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 h1 {
@@ -103,18 +104,61 @@ h3 {
 }
 
 .image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 150px;
   height: 150px;
   min-width: 150px;
   min-height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 8px auto 0 auto;
 }
 
 img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.download-button {
+  background: var(--color-background-mute);
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  width: 100%;
+  display: flex;
+  min-height: 30px;
+}
+
+.download-button:hover {
+  filter: brightness(1.05);
+}
+
+.download-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 75px; /* Needed for some reason (#app style in main.css is not working) */
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 32px;
+  }
+
+  .card:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

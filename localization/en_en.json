@@ -57,7 +57,7 @@
         "email": {
           "label": "Email",
           "title": "Email copied!",
-          "description": "Paste this in your email to send us mail."
+          "description": "Paste this anywhere."
         }
       }
     }
@@ -70,6 +70,7 @@
   },
   "auth": {
     "login": "Login",
+    "logout": "Logout",
     "register": "Register",
     "username": "Username",
     "no-account-yet": "No account yet?",

@@ -1,5 +1,6 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {onUnmounted} from "vue-demi";
 
 const showResults = ref(false);
 const results = ref([]);
@@ -24,13 +25,28 @@ function selectResult(value) {
 async function search() {
   results.value = await searchFn(query.value);
 }
+
+function handleClickOutside(event) {
+  const wrapper = document.querySelector('.wrapper');
+  if (wrapper && !wrapper.contains(event.target)) {
+    focusOut();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
   <div class="wrapper" v-click-outside="focusOut">
     <input placeholder="Search players" @focusin="onFocus" @input="search" v-model="query">
     <div class="results" v-if="showResults">
-      <a v-for="result in results" @click="selectResult(result)">{{ result }}</a>
+      <button class="result" v-for="result in results" @click="selectResult(result)">{{ result }}</button>
     </div>
   </div>
 </template>
@@ -62,17 +78,24 @@ input::placeholder {
   width: 100%;
 }
 
-.results a {
+.results button {
   display: block;
   padding-top: 2px;
   padding-bottom: 2px;
-  padding-left: 5px;
+  padding-left: 8px;
   cursor: pointer;
   transition-duration: 0.15s;
-  border-radius: 4px;
+  border-radius: 8px;
+  background-color: var(--color-background-mute);
+  border: none;
 }
 
-.results a:hover {
-  background: var(--color-border-hover);
+.results button:hover {
+  filter: brightness(1.05);
 }
+
+.results button:active {
+  scale: 0.95;
+}
+
 </style>

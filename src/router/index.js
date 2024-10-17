@@ -23,7 +23,7 @@ const routes = [
     {path: "/modpacks", component: Modpacks},
     {path: "/launchers", component: Launchers},
     {path: "/legacy-gallery", component: LegacyGallery},
-    {path: "/assets", component: Assets},
+    {path: "/branding", component: Assets},
     {path: "/merch", component: Merch},
 ]
 

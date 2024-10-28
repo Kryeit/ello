@@ -15,7 +15,7 @@ function downloadImage(url, filename) {
 
 async function downloadCursor() {
   try {
-    const response = await fetch('http://kryeit.com:6969/api/assets/cursor');
+    const response = await fetch('https://kryeit.com/api/assets/cursor');
 
     if (!response.ok) {
       throw new Error(`Failed to fetch file: ${response.statusText}`);

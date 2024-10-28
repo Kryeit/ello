@@ -16,7 +16,7 @@ const computedPlayerName = computed(() => {
 
 <template>
   <div v-bind="$attrs" class="player-head-container">
-    <img class="player-image" :src="computedPlayerName" alt="Player Head">
+    <img class="player-image" :src="computedPlayerName" alt="Player Head" draggable="false">
     <div class="shadow"></div>
   </div>
 </template>
@@ -38,6 +38,7 @@ const computedPlayerName = computed(() => {
   border-radius: 17px;
   z-index: 2;
   image-rendering: pixelated;
+  user-select: none;
 }
 
 .shadow {

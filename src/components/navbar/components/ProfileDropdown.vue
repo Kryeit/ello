@@ -35,31 +35,34 @@ onBeforeUnmount(() => {
 <template>
   <div class="profile-dropdown-wrapper">
     <div class="player-avatar-container" @click="toggleMenu">
-      <PlayerAvatar :player-name="playerName" />
-      <DropdownIcon class="dropdown-arrow" />
+      <PlayerAvatar :player-name="playerName"/>
+      <DropdownIcon class="dropdown-arrow"/>
     </div>
 
-    <div v-if="menuVisible" class="dropdown-menu-overlay">
-      <router-link v-if="!store.getUser()" to="login" class="menu-item" tag="button">
-        <span class="menu-item-title">{{ $t("auth.login") }}</span>
-      </router-link>
+    <transition name="dropdown">
+      <div v-if="menuVisible" class="dropdown-menu-overlay">
+        <router-link v-if="!store.getUser()" to="login" class="menu-item" tag="button">
+          <span class="menu-item-title">{{ $t("auth.login") }}</span>
+        </router-link>
 
-      <div v-if="store.getUser()">
-        <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
-          <span class="menu-item-title">@{{ playerName }}</span>
+        <div v-if="store.getUser()">
+          <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
+            <span class="menu-item-title">@{{ playerName }}</span>
+          </router-link>
+        </div>
+
+        <router-link to="leaderboard" class="menu-item" tag="button">
+          <span class="menu-item-title">{{ $t("navbar.leaderboard") }}</span>
+        </router-link>
+
+        <SettingsDropdown/>
+
+        <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="AuthService.logout()"
+                     tag="button">
+          <span class="menu-item-title">{{ $t("auth.logout") }}</span>
         </router-link>
       </div>
-
-      <router-link to="leaderboard" class="menu-item" tag="button">
-        <span class="menu-item-title">{{ $t("navbar.leaderboard") }}</span>
-      </router-link>
-
-      <SettingsDropdown />
-
-      <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="AuthService.logout()" tag="button">
-        <span class="menu-item-title">{{ $t("auth.logout") }}</span>
-      </router-link>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -129,5 +132,15 @@ span {
 
 .logout-button:hover {
   background: rgba(255, 0, 0, 0.4);
+}
+
+/* Transition styles */
+.dropdown-enter-active, .dropdown-leave-active {
+  transition: all 0.3s ease;
+}
+
+.dropdown-enter-from, .dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

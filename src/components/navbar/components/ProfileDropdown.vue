@@ -1,7 +1,7 @@
 <script setup>
-import {computed, ref} from 'vue';
-import {useRouter} from 'vue-router';
-import {i18n} from "@/main.js";
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
+import { i18n } from "@/main.js";
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 import AuthService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";
@@ -15,11 +15,25 @@ const playerName = computed(() => store.username ? store.user.username : i18n.gl
 function toggleMenu() {
   menuVisible.value = !menuVisible.value;
 }
+
+function handleClickOutside(event) {
+  const dropdown = document.querySelector('.profile-dropdown-wrapper');
+  if (dropdown && !dropdown.contains(event.target)) {
+    menuVisible.value = false;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
   <div class="profile-dropdown-wrapper">
-
     <div class="player-avatar-container" @click="toggleMenu">
       <PlayerAvatar :player-name="playerName" />
       <DropdownIcon class="dropdown-arrow" />
@@ -116,5 +130,4 @@ span {
 .logout-button:hover {
   background: rgba(255, 0, 0, 0.4);
 }
-
 </style>

@@ -1,6 +1,6 @@
 # Getting started on Kryeit
 
-- Joining the server && Installing our modpack
+- Joining the server & Installing our modpack
 - Post System
 - Friends
 - Claims
@@ -17,6 +17,7 @@ Our server IP is: "kryeit.com". But since this is a modded server, you need to i
 This is the recommended installation option. We made a 1-minute-long walkthrough video if you don't like reading. 
 
 [//]: # (TODO insert video here)
+TODO insert video here
 
 **Instructions:**
 1. Download the Modrinth launcher. Visit https://modrinth.com/app for instructions and the download link
@@ -38,6 +39,7 @@ We made a 1-minute-long walkthrough video to watch if you don't like reading. It
 done than reading the following instructions.
 
 [//]: # (TODO insert video here)
+TODO insert video here
 
 **Instructions:**
 

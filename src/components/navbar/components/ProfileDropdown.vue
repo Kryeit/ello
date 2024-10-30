@@ -1,7 +1,7 @@
 <script setup>
-import {computed, ref} from 'vue';
-import {useRouter} from 'vue-router';
-import {i18n} from "@/main.js";
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
+import { i18n } from "@/main.js";
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 import AuthService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";
@@ -15,37 +15,54 @@ const playerName = computed(() => store.username ? store.user.username : i18n.gl
 function toggleMenu() {
   menuVisible.value = !menuVisible.value;
 }
+
+function handleClickOutside(event) {
+  const dropdown = document.querySelector('.profile-dropdown-wrapper');
+  if (dropdown && !dropdown.contains(event.target)) {
+    menuVisible.value = false;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
   <div class="profile-dropdown-wrapper">
-
     <div class="player-avatar-container" @click="toggleMenu">
-      <PlayerAvatar :player-name="playerName" />
-      <DropdownIcon class="dropdown-arrow" />
+      <PlayerAvatar :player-name="playerName"/>
+      <DropdownIcon class="dropdown-arrow"/>
     </div>
 
-    <div v-if="menuVisible" class="dropdown-menu-overlay">
-      <router-link v-if="!store.getUser()" to="login" class="menu-item" tag="button">
-        <span class="menu-item-title">{{ $t("auth.login") }}</span>
-      </router-link>
+    <transition name="dropdown">
+      <div v-if="menuVisible" class="dropdown-menu-overlay">
+        <router-link v-if="!store.getUser()" to="login" class="menu-item" tag="button">
+          <span class="menu-item-title">{{ $t("auth.login") }}</span>
+        </router-link>
 
-      <div v-if="store.getUser()">
-        <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
-          <span class="menu-item-title">@{{ playerName }}</span>
+        <div v-if="store.getUser()">
+          <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
+            <span class="menu-item-title">@{{ playerName }}</span>
+          </router-link>
+        </div>
+
+        <router-link to="leaderboard" class="menu-item" tag="button">
+          <span class="menu-item-title">{{ $t("navbar.leaderboard") }}</span>
+        </router-link>
+
+        <SettingsDropdown/>
+
+        <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="AuthService.logout()"
+                     tag="button">
+          <span class="menu-item-title">{{ $t("auth.logout") }}</span>
         </router-link>
       </div>
-
-      <router-link to="leaderboard" class="menu-item" tag="button">
-        <span class="menu-item-title">{{ $t("navbar.leaderboard") }}</span>
-      </router-link>
-
-      <SettingsDropdown />
-
-      <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="AuthService.logout()" tag="button">
-        <span class="menu-item-title">{{ $t("auth.logout") }}</span>
-      </router-link>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -117,4 +134,13 @@ span {
   background: rgba(255, 0, 0, 0.4);
 }
 
+/* Transition styles */
+.dropdown-enter-active, .dropdown-leave-active {
+  transition: all 0.3s ease;
+}
+
+.dropdown-enter-from, .dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 </style>

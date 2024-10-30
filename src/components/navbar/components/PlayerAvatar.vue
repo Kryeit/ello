@@ -1,18 +1,22 @@
 <script setup>
-import {computed} from "vue";
+import { computed } from 'vue';
+import Store from "@/js/auth/store.js";
 
 const props = defineProps({
   playerName: String,
 });
 
 const computedPlayerName = computed(() => {
-  return props.playerName || 'Steve';
+  if (!Store.getUser() || !props.playerName) {
+    return new URL('@/assets/minecraft/steve.png', import.meta.url).href;
+  }
+  return `/api/players/${props.playerName}/head`;
 });
 </script>
 
 <template>
   <div v-bind="$attrs" class="player-head-container">
-    <img class="player-image" :src="`/api/players/${computedPlayerName}/head`" alt="Player Head">
+    <img class="player-image" :src="computedPlayerName" alt="Player Head" draggable="false">
     <div class="shadow"></div>
   </div>
 </template>
@@ -33,6 +37,8 @@ const computedPlayerName = computed(() => {
   height: 41px;
   border-radius: 17px;
   z-index: 2;
+  image-rendering: pixelated;
+  user-select: none;
 }
 
 .shadow {

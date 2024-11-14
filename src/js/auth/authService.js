@@ -68,7 +68,7 @@ class AuthService {
         document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         document.cookie = '_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
-        Store.setUser(null);
+        Store.resetUser();
     }
 }
 

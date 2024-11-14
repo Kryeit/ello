@@ -14,6 +14,10 @@ class Store {
     getUser() {
         return this.state.user;
     }
+
+    resetUser() {
+        this.state.user = null;
+    }
 }
 
 export default new Store();

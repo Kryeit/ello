@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 
     <transition name="dropdown">
       <div v-if="menuVisible" class="dropdown-menu-overlay">
-        <router-link v-if="!store.getUser()" to="login" class="menu-item" tag="button">
+        <router-link v-if="!store.getUser()" :to="{ path: '/login' }" class="menu-item" tag="button">
           <span class="menu-item-title">{{ $t("auth.login") }}</span>
         </router-link>
 

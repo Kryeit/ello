@@ -1,53 +1,25 @@
-import {reactive, watch} from 'vue';
+// src/js/merch/cart.js
+import { reactive } from 'vue';
 
-const cart = reactive({
-    items: JSON.parse(localStorage.getItem('cart') || '[]')
-});
+export const cart = reactive({
+    items: [],
+    totalPrice: 0,
 
-watch(
-    () => cart.items,
-    (newItems) => {
-        localStorage.setItem('cart', JSON.stringify(newItems));
+    addItem(product) {
+        this.items.push(product);
+        this.totalPrice += product.price;
     },
-    { deep: true }
-);
 
-const addToCart = (item) => {
-    const existingItem = cart.items.find(cartItem => cartItem.id === item.id);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.items.push({ ...item, quantity: 1 });
-    }
-};
-
-const removeFromCart = (itemId) => {
-    const index = cart.items.findIndex(cartItem => cartItem.id === itemId);
-    if (index !== -1) {
-        cart.items.splice(index, 1);
-    }
-};
-
-const increaseQuantity = (itemId) => {
-    const item = cart.items.find(cartItem => cartItem.id === itemId);
-    if (item) {
-        item.quantity += 1;
-    }
-};
-
-const decreaseQuantity = (itemId) => {
-    const item = cart.items.find(cartItem => cartItem.id === itemId);
-    if (item) {
-        if (item.quantity > 1) {
-            item.quantity -= 1;
-        } else {
-            removeFromCart(itemId);
+    removeItem(productId) {
+        const index = this.items.findIndex(item => item.id === productId);
+        if (index !== -1) {
+            this.totalPrice -= this.items[index].price;
+            this.items.splice(index, 1);
         }
+    },
+
+    clearCart() {
+        this.items = [];
+        this.totalPrice = 0;
     }
-};
-
-const clearCart = () => {
-    cart.items = [];
-};
-
-export { cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart };
+});

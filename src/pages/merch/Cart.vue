@@ -1,120 +1,148 @@
 <template>
-  <v-menu open-on-hover v-model="menu" :close-on-content-click="false" :open-delay="0" :close-delay="400">
-    <template v-slot:activator="{ props }">
-      <v-btn class="cart-button" color="var(--dark-brass-gold)" v-bind="props">
-        <Cart/>
-        <CartBadge :item-count="itemCount"/>
-      </v-btn>
-    </template>
-
-    <v-card class="cart-menu">
-      <v-card-title>Shopping Cart</v-card-title>
-      <v-list class="cart-items-list">
-        <v-list-item v-for="(item, index) in cart.items" :key="index" class="cart-item">
-          <div class="item-details">
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
-            <v-list-item-subtitle>
-              Price: ${{ item.price.toFixed(2) }}
-            </v-list-item-subtitle>
-          </div>
-          <div class="item-controls">
-            <div class="quantity-controls">
-              <v-btn size="x-small" @click="decreaseQuantity(item.id)">-</v-btn>
-              <span class="quantity-display">{{ item.quantity }}</span>
-              <v-btn size="x-small" @click="increaseQuantity(item.id)">+</v-btn>
-            </div>
-            <v-btn size="small" color="red" @click="removeFromCart(item.id)">x</v-btn>
-          </div>
-        </v-list-item>
-      </v-list>
-      <v-divider></v-divider>
-      <div class="cart-footer">
-        <v-card-text class="text-right">
-          <strong>Total: ${{ total }}</strong>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" @click="checkout">
-            Checkout
-          </v-btn>
-        </v-card-actions>
+  <div>
+    <CartIcon class="cart-icon" @click="toggleCart" />
+    <div v-if="visible" ref="cartContainer" class="cart">
+      <h3>Cart</h3>
+      <div v-for="(item, index) in groupedItems" :key="index" class="cart-item">
+        <div class="item-header">
+          <div :style="{ backgroundColor: item.color }" class="color-square"></div>
+          <div class="item-name">{{ item.name }}</div>
+        </div>
+        <div class="item-details">
+          {{ item.size }}
+          {{ item.price }}€
+        </div>
+        <div class="item-buttons">
+          <button @click="decreaseQuantity(item.id)">-</button>
+          {{ item.quantity }}
+          <button @click="increaseQuantity(item.id)">+</button>
+          <button @click="removeItem(item.id)">
+            <Trash/>
+          </button>
+        </div>
       </div>
-    </v-card>
-  </v-menu>
+      <p>Total: ${{ cart.totalPrice }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import {computed, ref} from 'vue';
-import {cart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart} from '@/js/merch/cart.js';
-import CartBadge from "@/pages/merch/CartBadge.vue";
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { cart } from '@/js/merch/cart.js';
 
-const menu = ref(false);
+const visible = ref(false);
+const cartContainer = ref(null);
 
-const total = computed(() => {
-  return cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+const toggleCart = (event) => {
+  event.stopPropagation();
+  visible.value = !visible.value;
+};
+
+const handleClickOutside = (event) => {
+  if (cartContainer.value && !cartContainer.value.contains(event.target)) {
+    visible.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
 });
 
-const itemCount = computed(() => {
-  return cart.items.reduce((count, item) => count + item.quantity, 0);
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
 });
 
-const checkout = () => {
-  console.log('Checking out with items:', cart.items);
-  clearCart();
-  menu.value = false;
+const groupedItems = computed(() => {
+  const grouped = {};
+  cart.items.forEach(item => {
+    if (!grouped[item.id]) {
+      grouped[item.id] = { ...item, quantity: 0 };
+    }
+    grouped[item.id].quantity += 1;
+  });
+  return Object.values(grouped);
+});
+
+const increaseQuantity = (productId) => {
+  const product = cart.items.find(item => item.id === productId);
+  if (product) {
+    cart.addItem(product);
+  }
+};
+
+const decreaseQuantity = (productId) => {
+  const index = cart.items.findIndex(item => item.id === productId);
+  if (index !== -1) {
+    cart.totalPrice -= cart.items[index].price;
+    cart.items.splice(index, 1);
+  }
+};
+
+const removeItem = (productId) => {
+  cart.items = cart.items.filter(item => item.id !== productId);
+  cart.totalPrice = cart.items.reduce((total, item) => total + item.price, 0);
+};
+
+const closeCart = () => {
+  visible.value = false;
 };
 </script>
 
 <style scoped>
-.cart-menu {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  max-height: 80vh;
+.cart-icon {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
-.cart-button {
-  position: relative;
-  min-height: 42px;
-}
-
-.cart-items-list {
-  flex-grow: 1;
-  overflow-y: auto;
-  max-height: calc(80vh - 130px);
+.cart {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background: var(--color-background);
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-width: 300px;
+  width: auto;
 }
 
 .cart-item {
+  margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.item-header {
+  display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.color-square {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.item-name {
+  flex-grow: 1;
 }
 
 .item-details {
   flex-grow: 1;
-  margin-right: 16px;
+  margin-bottom: 10px;
 }
 
-.item-controls {
+.item-buttons {
   display: flex;
-  align-items: center;
+  gap: 5px;
 }
 
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-}
-
-.quantity-display {
-  margin: 0 8px;
-  min-width: 24px;
-  text-align: center;
-}
-
-.cart-footer {
-  border-top: 1px solid #eee;
-  padding-top: 16px;
+button {
+  background: var(--color-background-mute);
 }
 </style>

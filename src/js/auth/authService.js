@@ -13,7 +13,7 @@ class AuthService {
             const data = await response.json();
 
             const user = new User(data.uuid, data.username, data.creation, data.roles);
-            Store.setUser(user);
+            Store.setUser(user.uuid, user.username, user.creation, user.roles);
             return true;
         }
         return false;
@@ -21,6 +21,26 @@ class AuthService {
 
     saveToken(token) {
         document.cookie = `auth=${token}; path=/`;
+    }
+
+    async validateLogin(token) {
+
+        const encodedToken = encodeURIComponent(token);
+
+        const response = await fetch(`/api/login/validate-login?t=` + encodedToken);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const user = new User(data.uuid, data.username, data.creation, data.roles);
+
+        Store.setUser(user.uuid, user.username, user.creation, user.roles);
+        this.saveToken(data.token);
+
+        return true;
     }
 
     getToken() {
@@ -46,6 +66,9 @@ class AuthService {
 
         // Clear the auth cookie
         document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = '_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+        Store.setUser(null);
     }
 }
 

@@ -10,7 +10,7 @@ import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vu
 
 const router = useRouter();
 const menuVisible = ref(false);
-const playerName = computed(() => store.username ? store.user.username : i18n.global.t("auth.login"));
+const playerName = computed(() => store.getUser() ? store.getUser().username : null);
 
 function toggleMenu() {
   menuVisible.value = !menuVisible.value;

@@ -14,7 +14,7 @@ import Assets from "@/pages/Assets.vue";
 
 const routes = [
     {path: '/', component: Home},
-    {path: '/login', component: Login},
+    {path: '/login', component: Login, props: route => ({ token: route.query.t })},
     {path: '/home', component: Home},
     {path: '/bans', component: Bans},
     {path: "/@:playerName", component: Playerinfo},

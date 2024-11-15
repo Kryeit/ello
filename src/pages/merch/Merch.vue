@@ -44,13 +44,18 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
-  padding: 16px;
 }
 
 .grid-item {
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   padding: 16px;
-  margin: 0; /* Reset margin */
+  margin: 0;
+  transition: transform 0.3s ease;
+  background: var(--color-background-mute);
+}
+
+.grid-item:hover {
+  transform: scale(1.02);
 }
 </style>

@@ -66,9 +66,9 @@ const processTitle = (title) => {
             <h2 v-if="processTitle(modpack.title).prefix" class="prefix">{{ processTitle(modpack.title).prefix }}</h2>
             <h2>{{ processTitle(modpack.title).title }}</h2>
             <p style="text-align: justify">{{ modpack.description }}</p>
-            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
           </div>
           <div class="modpack-stats">
+            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
             <p class="followers">
               Followers:
               {{ modpack.followers }}
@@ -94,9 +94,9 @@ const processTitle = (title) => {
             <h2 v-if="processTitle(modpack.title).prefix" class="prefix">{{ processTitle(modpack.title).prefix }}</h2>
             <h2>{{ processTitle(modpack.title).title }}</h2>
             <p style="text-align: justify">{{ modpack.description }}</p>
-            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
           </div>
           <div class="modpack-stats">
+            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
             <p class="downloads">
               <Download />
               {{ modpack.downloads }}
@@ -135,6 +135,10 @@ h1 {
 
 .modpack:hover {
   transform: scale(1.01);
+}
+
+.modpack:active {
+  transform: scale(0.99);
 }
 
 .modpack a {

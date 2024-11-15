@@ -24,17 +24,16 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
 
 <template>
   <div class="product-item" @click="navigateToProduct">
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
+    <div class="product-header">
+      <img :src="product.image" alt="" />
+      <h2>{{ product.name }}</h2>
+    </div>
+
+    <p>{{ product.price }}€</p>
+
     <div class="sizes">
-      <p>Sizes: {{ uniqueSizes.join(', ') }}</p>
+      <p>{{ uniqueSizes.join(', ') }}</p>
     </div>
-    <div class="colors">
-      <p>Colors:</p>
-      <div v-for="color in Object.keys(product.colors)" :key="color" class="color-square" :style="{ backgroundColor: color }"></div>
-    </div>
-    <p>Material: {{ product.material }}</p>
   </div>
 </template>
 
@@ -43,22 +42,26 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
   cursor: pointer;
 }
 
-.product-item h2 {
+.product-header {
+  width: 100%;
+  background: var(--color-background);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 1.1rem ;
+}
+
+.product-header h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem ;
 }
 
-.colors {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.color-square {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border: 1px solid #000;
+.sizes {
+  margin-top: auto;
+  font-size: 0.6rem;
 }
 </style>

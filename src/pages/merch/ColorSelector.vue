@@ -52,9 +52,11 @@ const selectColor = (color) => {
   height: 30px;
   margin: 5px;
   cursor: pointer;
+  border: 2px solid var(--color-background-mute);
+
 }
 
 .color-square.selected {
-  border: 2px solid white;
+  border: 2px solid var(--color-border);
 }
 </style>

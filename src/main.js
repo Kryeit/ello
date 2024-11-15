@@ -4,7 +4,7 @@ import router from './router'
 import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
 
-import {Cafe32, CarbonIconsVue, Laptop32, Moon32, ShoppingCart32, Sun32, TrashCan16} from '@carbon/icons-vue';
+import {Cafe32, CarbonIconsVue, Laptop32, Moon32, ShoppingCart32, Sun32, TrashCan16, Download16} from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
@@ -44,6 +44,7 @@ createApp(App)
                 Laptop: Laptop32,
                 CartIcon: ShoppingCart32,
                 Trash: TrashCan16,
+                Download: Download16,
             }
         }
     )

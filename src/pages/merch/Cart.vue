@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CartIcon class="cart-icon" @click="toggleCart" />
+    <img class="cart-icon" src="@/assets/minecraft/clipboard.webp" @click="toggleCart" />
     <div v-if="visible" ref="cartContainer" class="cart">
       <h3>Cart</h3>
       <div v-for="(item, index) in groupedItems" :key="index" class="cart-item">
@@ -37,20 +37,6 @@ const toggleCart = (event) => {
   event.stopPropagation();
   visible.value = !visible.value;
 };
-
-const handleClickOutside = (event) => {
-  if (cartContainer.value && !cartContainer.value.contains(event.target)) {
-    visible.value = false;
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleClickOutside);
-});
 
 const groupedItems = computed(() => {
   const grouped = {};

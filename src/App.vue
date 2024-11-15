@@ -17,7 +17,7 @@ useRouter().afterEach(() => {
 
 <template>
   <ToastManager />
-  <img :class="{ 'toggle-btn': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
+  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>
@@ -27,7 +27,7 @@ useRouter().afterEach(() => {
 
 <style scoped>
 
-.toggle-btn {
+.cog-toggler {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
@@ -45,11 +45,11 @@ useRouter().afterEach(() => {
   transition: transform 0.4s ease-in-out;
 }
 
-.toggle-btn.rotated {
+.cog-toggler.rotated {
   transform: translateX(-50%) translateY(-50%) rotate(90deg);
 }
 
-.toggle-btn:focus {
+.cog-toggler:focus {
   outline: none;
 }
 
@@ -63,7 +63,7 @@ useRouter().afterEach(() => {
 }
 
 @media (max-width: 600px) {
-  .toggle-btn {
+  .cog-toggler {
     top: min(100%, 100% - env(safe-area-inset-bottom)); /* In case a browser/app adds a bottom nav bar too */
     left: 50%;
     width: 150px;

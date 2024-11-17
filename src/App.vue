@@ -42,7 +42,7 @@ useRouter().afterEach(() => {
   cursor: pointer;
   width: 10vw;
   border-radius: 100%;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.6s ease-in-out;
 }
 
 .cog-toggler.rotated {

@@ -8,6 +8,7 @@ const clickSound = new URL('@/assets/sounds/click.ogg', import.meta.url);
 const textInput = ref(null);
 const text = ref('kryeit.com');
 const sound = ref(new Audio(clickSound.href));
+sound.value.volume = 0.1;
 
 async function copyText() {
   if (textInput.value) {

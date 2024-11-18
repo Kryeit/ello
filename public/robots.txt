@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /login/
+
+Sitemap: https://kryeit.com/sitemap.xml

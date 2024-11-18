@@ -33,7 +33,7 @@ const navigateToAnalytics = () => {
   background-color: var(--color-background);
   flex: 1;
   padding: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   display: flex;
   justify-content: center;

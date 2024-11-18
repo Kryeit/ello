@@ -48,8 +48,15 @@ onMounted(() => {
 
   <header class="header">
     <div class="header-content">
-      <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
-           alt=""/>
+      <div>
+        <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
+             alt=""/>
+        <div class="social-media">
+          <a href="https://discord.gg/njGh5UUU4d" target="_blank" rel="noopener noreferrer">
+            <DiscordLogo class="logo"/>
+          </a>
+        </div>
+      </div>
       <ProfileDropdown class="profile-dropdown"/>
     </div>
   </header>
@@ -78,16 +85,22 @@ onMounted(() => {
 
 .header {
   width: 100%;
+  border-bottom: 3px solid var(--color-border);
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--primary-brass-gold);
+  background-color: var(--color-background);
   width: 100%;
   padding: 10px 30px;
   min-height: 105px;
+}
+
+.header-content > div {
+  display: flex;
+  align-items: center;
 }
 
 .profile-dropdown {
@@ -98,5 +111,24 @@ onMounted(() => {
   width: 85px;
   height: auto;
   cursor: pointer;
+}
+
+.social-media a {
+  cursor: pointer;
+  color: var(--color-text);
+
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  color: var(--color-text);
+  align-items: center;
+  margin-left: 8px;
+}
+
+.logo:hover {
+  color: var(--color-border);
+
 }
 </style>

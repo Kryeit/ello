@@ -82,12 +82,13 @@ async function addEmailToast() {
   bottom: 0;
   max-height: 30vh;
   width: auto;
-  background-color: var(--primary-brass-gold);
+  background-color: var(--color-background);
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 10px;
+  border-top: 3px solid var(--color-border);
 }
 
 .footer-section {
@@ -101,14 +102,14 @@ async function addEmailToast() {
 
 .footer-section p {
   font-size: 13px;
-  color: lightgray;
+  color: var(--color-text);
   margin-bottom: 3px;
 }
 
 .footer-section a, button {
   font-size: 11px;
   white-space: nowrap;
-  color: lightblue;
+  color: var(--color-text);
   text-decoration: none;
   margin-top: 3px;
 }

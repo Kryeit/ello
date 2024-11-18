@@ -4,7 +4,17 @@ import router from './router'
 import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
 
-import {Cafe32, CarbonIconsVue, Laptop32, Moon32, Sun32, TrashCan16, Download16, ArrowLeft32} from '@carbon/icons-vue';
+import {
+    Cafe32,
+    CarbonIconsVue,
+    Laptop32,
+    Moon32,
+    Sun32,
+    TrashCan16,
+    Download16,
+    ArrowLeft32,
+    LogoDiscord32
+} from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
@@ -41,6 +51,7 @@ createApp(App)
         CarbonIconsVue,
         {
             components: {
+                DiscordLogo: LogoDiscord32,
                 Moon: Moon32,
                 Sun: Sun32,
                 Cafe: Cafe32,

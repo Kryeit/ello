@@ -6,7 +6,7 @@ import svgLoader from "vite-svg-loader";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  assetsInclude: ['**/*.mkv'],
+  assetsInclude: ['**/*.mkv', '**/*.png', '**/*.jpg', '**/*.webp'],
   plugins: [
     vue(),
     svgLoader(),
@@ -19,7 +19,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:6969",
+        target: "https://kryeit.com",
         changeOrigin: true
       }
     }

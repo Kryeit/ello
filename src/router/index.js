@@ -13,6 +13,7 @@ import Merch from "@/pages/merch/Merch.vue";
 import Assets from "@/pages/Assets.vue";
 import Product from "@/pages/merch/Product.vue";
 import GettingStarted from "@/pages/GettingStarted.vue";
+import Error from "@/pages/Error.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -29,6 +30,8 @@ const routes = [
     {path: "/merch", component: Merch},
     {path: "/product/:name",component: Product },
     {path: '/getting-started', component: GettingStarted},
+    {path: '/:pathMatch(.*)*', name: 'NotFound', component: Error }, // 404 route
+
 ]
 
 const router = createRouter({

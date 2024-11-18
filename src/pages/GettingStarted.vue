@@ -6,11 +6,8 @@
 
       <li><router-link to="/getting-started#join">Joining the server & Installing our modpack</router-link></li>
       <li><router-link to="/getting-started#posts">Post System</router-link></li>
-
-      <li>Friends</li>
-
-      <li>Claims</li>
-      <li>BlueMap</li>
+      <li><router-link to="/getting-started#claiming">Claiming</router-link></li>
+      <li><a href="https://map.kryeit.com" target="_blank">BlueMap</a></li>
     </ul>
 
     <h2 id="join">Joining the Server</h2>
@@ -41,7 +38,6 @@
     <p>We made a 1-minute-long walkthrough video to watch if you don't like reading. It's probably easier watching how it's done than reading the following instructions.</p>
     <VideoPlayer :src="ManualInstallation"/>
 
-
     <h4>Instructions:</h4>
     <ol>
       <li>Install the Fabric Modloader. Visit <a href="https://fabricmc.net/wiki/install">https://fabricmc.net/wiki/install</a></li>
@@ -55,11 +51,11 @@
     <h2>Basic guide on server mechanics</h2>
 
     <h3 id="posts">Post System</h3>
-    <img src="@/assets/kryeit/post.webp">
+    <img src="@/assets/kryeit/post.webp" alt="post">
     <p>A post is a teleportation landmark, the only place you can use teleporting commands (/visit and /home). The posts are spread out across the world, with 5K blocks in between each other.</p>
     <p>You will spawn at the latest admin named post, which are named automatically the 1st of each month.</p>
 
-    <h3>Claiming</h3>
+    <h3 id="claiming">Claiming</h3>
     <p>Use /claim and click 2 opposite corners to claim your land, also use /abandon to unclaim the land.</p>
   </div>
 </template>
@@ -90,4 +86,5 @@ h3 {
 img {
   width: 100%;
 }
+
 </style>

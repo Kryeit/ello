@@ -62,9 +62,9 @@ useRouter().afterEach(() => {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .cog-toggler {
-    top: min(100%, 100% - env(safe-area-inset-bottom)); /* In case a browser/app adds a bottom nav bar too */
+    top: min(100%, 100% - env(safe-area-inset-bottom));
     left: 50%;
     width: 150px;
     height: 150px;

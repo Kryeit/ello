@@ -16,7 +16,7 @@ onMounted(async () => {
 
 <template>
   <div class="header">
-    <h1>Merch Store</h1>
+    <h1>Store</h1>
   </div>
 
   <div class="grid-container">
@@ -49,7 +49,6 @@ onMounted(async () => {
 .grid-item {
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  padding: 16px;
   margin: 0;
   transition: transform 0.3s ease;
   background: var(--color-background-mute);

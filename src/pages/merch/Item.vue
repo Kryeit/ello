@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
+import ProductCarousel from "@/pages/merch/ProductCarousel.vue";
 
 const props = defineProps({
   product: {
@@ -29,10 +30,12 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
       <h2>{{ product.name }}</h2>
     </div>
 
-    <p>{{ product.price }}€</p>
+    <div class="product-info">
+      <p>{{ product.price }}€</p>
 
-    <div class="sizes">
-      <p>{{ uniqueSizes.join(', ') }}</p>
+      <div class="sizes">
+        <p>{{ uniqueSizes.join(', ') }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -40,15 +43,21 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
 <style scoped>
 .product-item {
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .product-header {
-  width: 100%;
   background: var(--color-background);
   padding: 8px;
   border-radius: 8px;
   border: 1px solid var(--color-border);
-  font-size: 1.1rem ;
+  font-size: 1.1rem;
+  flex-grow: 1;
 }
 
 .product-header h2 {
@@ -56,12 +65,16 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  padding: 8px;
-  font-size: 1.1rem ;
+  font-size: 0.9rem;
 }
 
 .sizes {
   margin-top: auto;
   font-size: 0.6rem;
+}
+
+.product-info {
+  flex-grow: 1;
+  padding: 14px 14px 8px 14px;
 }
 </style>

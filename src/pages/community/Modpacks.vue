@@ -6,6 +6,7 @@ const communityProjectIds = ['iEeNYT4y', 'thV8JtM6', 'uWc39OfE'];
 
 const officialModpacks = ref([]);
 const communityModpacks = ref([]);
+const rotationAngles = new Map();
 
 const fetchModpackData = async (projectId) => {
   try {
@@ -33,7 +34,6 @@ const fetchModpackData = async (projectId) => {
     return null;
   }
 };
-
 onMounted(async () => {
   const officialFetchPromises = officialProjectIds.map(projectId => fetchModpackData(projectId));
   const communityFetchPromises = communityProjectIds.map(projectId => fetchModpackData(projectId));
@@ -54,13 +54,18 @@ const processTitle = (title) => {
   return { prefix: '', title };
 };
 </script>
+
 <template>
   <h1>Modpacks</h1>
   <h2>Official</h2>
   <div class="modpack-grid">
     <div v-for="(modpack, index) in officialModpacks" :key="index" class="modpack">
       <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
-        <img :src="modpack.icon_url" :alt="modpack.title" class="modpack-icon" />
+        <img
+            :src="modpack.icon_url"
+            :alt="modpack.title"
+            class="modpack-icon"
+        />
         <div class="modpack-content">
           <div class="modpack-info">
             <h2 v-if="processTitle(modpack.title).prefix" class="prefix">{{ processTitle(modpack.title).prefix }}</h2>
@@ -88,7 +93,11 @@ const processTitle = (title) => {
   <div class="modpack-grid">
     <div v-for="(modpack, index) in communityModpacks" :key="index" class="modpack">
       <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
-        <img :src="modpack.icon_url" :alt="modpack.title" class="modpack-icon" />
+        <img
+            :src="modpack.icon_url"
+            :alt="modpack.title"
+            class="modpack-icon"
+        />
         <div class="modpack-content">
           <div class="modpack-info">
             <h2 v-if="processTitle(modpack.title).prefix" class="prefix">{{ processTitle(modpack.title).prefix }}</h2>
@@ -131,14 +140,9 @@ h1 {
   border-radius: 10px;
   position: relative;
   background: var(--color-background-mute);
-}
-
-.modpack:hover {
-  transform: scale(1.01);
-}
-
-.modpack:active {
-  transform: scale(0.99);
+  overflow: hidden;
+  transition: transform 1.5s ease;
+  animation: none;
 }
 
 .modpack a {
@@ -156,12 +160,11 @@ h1 {
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 20px;
   background: var(--color-background);
   border: 3px solid var(--color-border);
-  margin-top: 20px;
   padding: 10px;
-
+  position: absolute;
+  top: 20px; /* Adjust as needed */
 }
 
 .modpack-content {
@@ -170,6 +173,7 @@ h1 {
   flex-direction: column;
   flex-grow: 1;
   padding: 20px;
+  margin-top: 190px; /* Adjust to provide space for the icon */
 }
 
 .modpack-info {
@@ -206,6 +210,20 @@ h2 {
 }
 
 .authors {
-  color: var(--color-background);
+  font-weight: bold;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) scale(1.04);
+  }
+  to {
+    transform: rotate(360deg) scale(1.04);
+  }
+}
+
+.modpack:hover .modpack-icon {
+  animation: rotate 238s linear infinite;
+  transform: scale(1.04);
 }
 </style>

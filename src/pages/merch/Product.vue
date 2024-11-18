@@ -7,6 +7,7 @@ import ColorSelector from "@/pages/merch/ColorSelector.vue";
 import SizeSelector from "@/pages/merch/SizeSelector.vue";
 import { cart } from '@/js/merch/cart.js';
 import Cart from "@/pages/merch/Cart.vue";
+import ProductCarousel from "@/pages/merch/ProductCarousel.vue";
 
 const route = useRoute();
 const product = ref(null);
@@ -34,9 +35,17 @@ const addToCart = () => {
 
 <template>
   <div v-if="product" class="product-details">
+
+    <button class="back-button">
+      <router-link class="catalog" to="/merch">
+        <ArrowLeft/>
+        <p>Catalog</p>
+      </router-link>
+    </button>
     <h1>{{ product.name }}</h1>
+    <ProductCarousel :product-name="product.name" />
+    <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
     <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
     <SizeSelector v-if="selectedColor" :sizes="product.colors[selectedColor]" @update:selectedSize="selectedSize = $event"/>
     <ColorSelector :colors="product.colors" @update:selectedColor="selectedColor = $event"/>
     <p>Material: {{ product.material }}</p>
@@ -50,7 +59,40 @@ const addToCart = () => {
 </template>
 
 <style scoped>
+h1 {
+  margin-bottom: 28px;
+}
 button {
   background: var(--color-background-mute);
+  border-radius: 18px;
+}
+
+.back-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalog {
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  text-decoration: none;
+
+}
+
+.price {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1368px) {
+  .back-button {
+    bottom: 8px;
+    top: auto;
+    left: 4px;
+  }
 }
 </style>

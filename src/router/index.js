@@ -12,6 +12,7 @@ import Login from "@/pages/auth/Login.vue";
 import Merch from "@/pages/merch/Merch.vue";
 import Assets from "@/pages/Assets.vue";
 import Product from "@/pages/merch/Product.vue";
+import GettingStarted from "@/pages/GettingStarted.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -27,6 +28,7 @@ const routes = [
     {path: "/branding", component: Assets},
     {path: "/merch", component: Merch},
     {path: "/product/:name",component: Product },
+    {path: '/getting-started', component: GettingStarted},
 ]
 
 const router = createRouter({

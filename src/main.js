@@ -4,12 +4,14 @@ import router from './router'
 import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
 
-import {Cafe32, CarbonIconsVue, Laptop32, Moon32, ShoppingCart32, Sun32, TrashCan16, Download16} from '@carbon/icons-vue';
+import {Cafe32, CarbonIconsVue, Laptop32, Moon32, Sun32, TrashCan16, Download16, ArrowLeft32} from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
 import {createI18n} from "vue-i18n";
 import {useColorMode} from "@vueuse/core";
 import AuthService from "@/js/auth/authService.js";
+
+import Flicking from "@egjs/vue3-flicking";
 
 const browserLanguage = navigator.language.split('-')[0];
 const savedLanguage = localStorage.getItem('language') || browserLanguage || 'en';
@@ -33,6 +35,7 @@ useColorMode({
 AuthService.validateToken();
 
 createApp(App)
+    .component('Flicking', Flicking)
     .use(i18n)
     .use(
         CarbonIconsVue,
@@ -42,9 +45,9 @@ createApp(App)
                 Sun: Sun32,
                 Cafe: Cafe32,
                 Laptop: Laptop32,
-                CartIcon: ShoppingCart32,
                 Trash: TrashCan16,
                 Download: Download16,
+                ArrowLeft: ArrowLeft32,
             }
         }
     )

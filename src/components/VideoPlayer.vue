@@ -12,6 +12,9 @@ export default {
         (entries) => {
           if (entries[0].isIntersecting) {
             this.isVisible = true;
+            this.$nextTick(() => {
+              this.$refs.videoPlayer.volume = 0.1;
+            });
             observer.disconnect();
           }
         },
@@ -50,7 +53,5 @@ export default {
 
 video {
   width: 80%;
-  height: auto;
-  object-fit: contain;
 }
 </style>

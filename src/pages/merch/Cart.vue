@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="cart-icon" src="@/assets/minecraft/clipboard.webp" @click="toggleCart" />
+    <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" />
     <div v-if="visible" ref="cartContainer" class="cart">
       <h3>Cart</h3>
       <div v-for="(item, index) in groupedItems" :key="index" class="cart-item">
@@ -27,11 +27,12 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-import { cart } from '@/js/merch/cart.js';
+import {ref, computed} from 'vue';
+import {cart} from '@/js/merch/cart.js';
+import clipboard from '@/assets/minecraft/clipboard.webp';
+import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
 
 const visible = ref(false);
-const cartContainer = ref(null);
 
 const toggleCart = (event) => {
   event.stopPropagation();
@@ -42,7 +43,7 @@ const groupedItems = computed(() => {
   const grouped = {};
   cart.items.forEach(item => {
     if (!grouped[item.id]) {
-      grouped[item.id] = { ...item, quantity: 0 };
+      grouped[item.id] = {...item, quantity: 0};
     }
     grouped[item.id].quantity += 1;
   });
@@ -69,9 +70,13 @@ const removeItem = (productId) => {
   cart.totalPrice = cart.items.reduce((total, item) => total + item.price, 0);
 };
 
-const closeCart = () => {
-  visible.value = false;
-};
+const cartIconSrc = computed(() => {
+  return cart.items.length > 0 ? writtenClipboard : clipboard;
+});
+
+const cartIconClass = computed(() => {
+  return cart.items.length > 0 ? 'cart-icon filled' : 'cart-icon';
+});
 </script>
 
 <style scoped>
@@ -80,11 +85,17 @@ const closeCart = () => {
   top: 10px;
   right: 10px;
   cursor: pointer;
+  image-rendering: pixelated;
+  width: 70px
+}
+
+.cart-icon.filled {
+  /* Add any additional styles for the filled cart icon if needed */
 }
 
 .cart {
   position: fixed;
-  top: 50px;
+  top: 90px;
   right: 10px;
   background: var(--color-background);
   border: 1px solid #ccc;

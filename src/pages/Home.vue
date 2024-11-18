@@ -7,16 +7,8 @@ import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
   {
-    src: "https://kryeit.com/images/gallery/MrRedRhino.png",
-    name: "MrRedRhino"
-  },
-  {
     src: "https://kryeit.com/images/gallery/ELZEN219.png",
     name: "ELZEN219"
-  },
-  {
-    src: "https://kryeit.com/images/gallery/MuriPlz.png",
-    name: "MuriPlz"
   },
   {
     src: "https://kryeit.com/images/gallery/goldnphoenix258.png",

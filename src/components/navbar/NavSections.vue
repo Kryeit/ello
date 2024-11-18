@@ -1,12 +1,21 @@
 <script setup>
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const navigateToMerch = () => {
+  router.push('/merch');
+};
+
+const navigateToAnalytics = () => {
+  router.push('/analytics');
+};
 </script>
 
 <template>
   <div class="sections-container">
-
-    <div class="section">Landmarks (WIP)</div>
-    <div class="section">Merch (WIP)</div>
+    <div class="section" @click="navigateToAnalytics">Analytics</div>
+    <div class="section" @click="navigateToMerch">Merch</div>
     <div class="section">Nothing thought</div>
   </div>
 </template>
@@ -30,6 +39,13 @@
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.section:hover {
+  transform: scale(1.01);
+  background-color: var(--color-background);
 }
 
 @media (max-width: 900px) {
@@ -45,7 +61,4 @@
     width: 100%;
   }
 }
-
 </style>
-<script setup>
-</script>

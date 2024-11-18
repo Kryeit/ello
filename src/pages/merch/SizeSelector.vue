@@ -27,7 +27,6 @@ watch(() => props.sizes, (newSizes) => {
 
 <template>
   <div class="size-selector">
-    <h3>Sizes:</h3>
     <div class="sizes">
       <div v-for="size in sizes" :key="size" class="size-option">
         <input type="radio" :id="size" :value="size" v-model="selectedSize" @change="selectSize(size)" />

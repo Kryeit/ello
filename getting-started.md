@@ -16,7 +16,7 @@ Our server IP is: "kryeit.com". But since this is a modded server, you need to i
 
 This is the recommended installation option. We made a 1-minute-long walkthrough video if you don't like reading. 
 
-[//]: # (TODO insert video here)
+[//]: # A video in assets/media/installation.mp4
 TODO insert video here
 
 **Instructions:**
@@ -38,7 +38,7 @@ option is more tedious than the ones above and not recommended.
 We made a 1-minute-long walkthrough video to watch if you don't like reading. It's probably easier watching how it's
 done than reading the following instructions.
 
-[//]: # (TODO insert video here)
+[//]: # A video in assets/media/manual_installation.mp4
 TODO insert video here
 
 **Instructions:**
@@ -54,3 +54,11 @@ https://modrinth.com/modpack/kryeit
 ## Joining
 
 # Post System
+[//]: # (TODO insert image here)
+A post is a teleportation landmark, the only place you can use teleporting commands (/visit and /home).
+The posts are spread out across the world, with 5K blocks in between each other.
+
+You will spawn at the latest admin named post, which are named automatically the 1st of each month.
+
+# Claiming
+Use /claim and click 2 oposite corners to claim your land, also use /abandon to unclaim the land.

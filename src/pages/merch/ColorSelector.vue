@@ -53,6 +53,7 @@ const selectColor = (color) => {
   margin: 5px;
   cursor: pointer;
   border: 2px solid var(--color-background-mute);
+  border-radius: 12px;
 
 }
 

@@ -59,7 +59,7 @@ onMounted(async () => {
 .panel {
   margin-right: 16px;
   display: inline-block;
-  height: min(70vw, 75vh);
+  height: min(70vw, 50vh);
 }
 
 .panel:last-child {
@@ -70,7 +70,7 @@ onMounted(async () => {
   object-fit: cover;
   image-rendering: pixelated;
   user-select: none;
-  height: min(70vw, 75vh);
+  height: min(70vw, 50vh);
 }
 
 @media (max-width: 768px) {

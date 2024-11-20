@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref} from 'vue';
-import {cart} from '@/js/merch/cart.js';
+import { ref, computed, onMounted, watch } from 'vue';
+import { cart } from '@/js/merch/cart.js';
 import Products from '@/js/merch/products.js';
 import clipboard from '@/assets/minecraft/clipboard.webp';
 import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
@@ -43,7 +43,7 @@ const toggleCart = (event) => {
 const groupedItems = ref([]);
 
 const fetchGroupedItems = async () => {
-  groupedItems.value = await Promise.all(
+  const items = await Promise.all(
       Object.entries(cart.items).map(async ([id, item]) => {
         const product = await Products.getProduct(id);
         return {
@@ -55,26 +55,26 @@ const fetchGroupedItems = async () => {
         };
       })
   );
+  groupedItems.value = items;
 };
 
 onMounted(fetchGroupedItems);
+
+watch(() => cart.items, fetchGroupedItems, { deep: true });
 
 const increaseQuantity = (productId) => {
   const product = cart.items[productId];
   if (product) {
     cart.addItem(productId, product.price);
-    fetchGroupedItems();
   }
 };
 
 const decreaseQuantity = (productId) => {
   cart.removeItem(productId);
-  fetchGroupedItems();
 };
 
 const removeItem = (productId) => {
   delete cart.items[productId];
-  fetchGroupedItems();
 };
 
 const totalPrice = computed(() => {

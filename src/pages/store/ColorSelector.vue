@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   colors: {
-    type: Object,
+    type: Array,
     required: true
   }
 });
@@ -14,10 +14,9 @@ const emits = defineEmits(['update:selectedColor']);
 const selectedColor = ref(null);
 
 onMounted(() => {
-  const firstColor = Object.keys(props.colors)[0];
-  if (firstColor) {
-    selectedColor.value = firstColor;
-    emits('update:selectedColor', firstColor);
+  if (props.colors.length > 0) {
+    selectedColor.value = props.colors[0];
+    emits('update:selectedColor', props.colors[0]);
   }
 });
 
@@ -30,7 +29,7 @@ const selectColor = (color) => {
 <template>
   <div class="color-selector">
     <div
-        v-for="color in Object.keys(colors)"
+        v-for="color in colors"
         :key="color"
         class="color-square"
         :class="{ selected: color === selectedColor }"
@@ -54,7 +53,6 @@ const selectColor = (color) => {
   cursor: pointer;
   border: 2px solid var(--color-background-mute);
   border-radius: 12px;
-
 }
 
 .color-square.selected {

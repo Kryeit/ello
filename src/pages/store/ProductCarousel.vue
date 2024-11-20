@@ -11,8 +11,6 @@ const images = ref([]);
 onMounted(async () => {
   try {
     images.value = await Products.getImages(props.productName);
-    // x2
-    images.value = images.value.concat(images.value);
   } catch (error) {
     console.error("Error loading product images:", error);
   }
@@ -59,7 +57,7 @@ onMounted(async () => {
 }
 
 .panel {
-  margin-right: 16px; /* Add space between images */
+  margin-right: 16px;
   display: inline-block;
   height: min(70vw, 75vh);
 }

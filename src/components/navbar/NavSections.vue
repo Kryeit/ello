@@ -3,8 +3,8 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const navigateToMerch = () => {
-  router.push('/merch');
+const navigateToStore = () => {
+  router.push('/store');
 };
 
 const navigateToAnalytics = () => {
@@ -15,7 +15,7 @@ const navigateToAnalytics = () => {
 <template>
   <div class="sections-container">
     <div class="section" @click="navigateToAnalytics">Analytics</div>
-    <div class="section" @click="navigateToMerch">Merch</div>
+    <div class="section" @click="navigateToStore">Store</div>
     <div class="section">Nothing thought</div>
   </div>
 </template>
@@ -30,10 +30,10 @@ const navigateToAnalytics = () => {
 }
 
 .section {
-  background-color: var(--color-background);
+  background-color: var(--color-text);
   flex: 1;
   padding: 16px;
-  border: 1px solid var(--color-border);
+  border: 5px solid var(--color-border);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -41,6 +41,7 @@ const navigateToAnalytics = () => {
   font-size: 30px;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.3s;
+  color: var(--color-border);
 }
 
 .section:hover {

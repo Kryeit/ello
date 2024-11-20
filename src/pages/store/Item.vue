@@ -1,7 +1,8 @@
 <script setup>
-import { defineProps } from 'vue';
-import { useRouter } from 'vue-router';
-import ProductCarousel from "@/pages/merch/ProductCarousel.vue";
+import {defineProps, onMounted, ref} from 'vue';
+import {useRouter} from 'vue-router';
+import Products from "@/js/merch/products.js";
+import Stock from "@/js/merch/stock.js";
 
 const props = defineProps({
   product: {
@@ -11,30 +12,34 @@ const props = defineProps({
 });
 
 const router = useRouter();
+const image = ref('');
+const stock = ref(0);
+const sizes = ref([]);
 
 const navigateToProduct = () => {
-  router.push(`/product/${props.product.name}`);
+  router.push(`/product/${props.product[0].name}`);
 };
 
-// Define the custom order for sizes
-const sizeOrder = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-
-// Extract unique sizes from all colors and sort them
-const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sort((a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b));
+onMounted(async () => {
+  image.value = await Products.getImage(props.product[0].name, 1);
+  stock.value = await Stock.getStockByName(props.product[0].name);
+  sizes.value = await Products.getSizes(props.product[0].name);
+});
 </script>
 
 <template>
   <div class="product-item" @click="navigateToProduct">
     <div class="product-header">
-      <img :src="product.image" alt="" />
-      <h2>{{ product.name }}</h2>
+      <img class="product-image" :src="image" alt="" />
+      <h2>{{ props.product[0].name }}</h2>
     </div>
 
     <div class="product-info">
-      <p>{{ product.price }}€</p>
+      <p>{{ props.product[0].price }}€</p>
+      <p>{{ stock }} units left!</p>
 
       <div class="sizes">
-        <p>{{ uniqueSizes.join(', ') }}</p>
+        <p>{{ sizes.join(', ') }}</p>
       </div>
     </div>
   </div>
@@ -49,6 +54,10 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
   flex-direction: column;
   padding: 12px;
   box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
 }
 
 .product-header {
@@ -76,5 +85,13 @@ const uniqueSizes = [...new Set(Object.values(props.product.colors).flat())].sor
 .product-info {
   flex-grow: 1;
   padding: 14px 14px 8px 14px;
+}
+
+.product-image {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 8px;
+  image-rendering: pixelated;
 }
 </style>

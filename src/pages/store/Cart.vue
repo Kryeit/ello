@@ -10,7 +10,7 @@
         </div>
         <div class="item-details">
           {{ item.size }}
-          {{ item.price }}€
+          {{ item.price * item.quantity }}€
         </div>
         <div class="item-buttons">
           <button @click="decreaseQuantity(item.id)">-</button>
@@ -21,14 +21,15 @@
           </button>
         </div>
       </div>
-      <p>Total: ${{ cart.totalPrice }}</p>
+      <p>Total: €{{ totalPrice }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, computed} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {cart} from '@/js/merch/cart.js';
+import Products from '@/js/merch/products.js';
 import clipboard from '@/assets/minecraft/clipboard.webp';
 import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
 
@@ -39,43 +40,53 @@ const toggleCart = (event) => {
   visible.value = !visible.value;
 };
 
-const groupedItems = computed(() => {
-  const grouped = {};
-  cart.items.forEach(item => {
-    if (!grouped[item.id]) {
-      grouped[item.id] = {...item, quantity: 0};
-    }
-    grouped[item.id].quantity += 1;
-  });
-  return Object.values(grouped);
-});
+const groupedItems = ref([]);
+
+const fetchGroupedItems = async () => {
+  groupedItems.value = await Promise.all(
+      Object.entries(cart.items).map(async ([id, item]) => {
+        const product = await Products.getProduct(id);
+        return {
+          id,
+          ...item,
+          name: product.name,
+          color: product.color,
+          size: product.size
+        };
+      })
+  );
+};
+
+onMounted(fetchGroupedItems);
 
 const increaseQuantity = (productId) => {
-  const product = cart.items.find(item => item.id === productId);
+  const product = cart.items[productId];
   if (product) {
-    cart.addItem(product);
+    cart.addItem(productId, product.price);
+    fetchGroupedItems();
   }
 };
 
 const decreaseQuantity = (productId) => {
-  const index = cart.items.findIndex(item => item.id === productId);
-  if (index !== -1) {
-    cart.totalPrice -= cart.items[index].price;
-    cart.items.splice(index, 1);
-  }
+  cart.removeItem(productId);
+  fetchGroupedItems();
 };
 
 const removeItem = (productId) => {
-  cart.items = cart.items.filter(item => item.id !== productId);
-  cart.totalPrice = cart.items.reduce((total, item) => total + item.price, 0);
+  delete cart.items[productId];
+  fetchGroupedItems();
 };
 
+const totalPrice = computed(() => {
+  return cart.totalPrice;
+});
+
 const cartIconSrc = computed(() => {
-  return cart.items.length > 0 ? writtenClipboard : clipboard;
+  return Object.keys(cart.items).length > 0 ? writtenClipboard : clipboard;
 });
 
 const cartIconClass = computed(() => {
-  return cart.items.length > 0 ? 'cart-icon filled' : 'cart-icon';
+  return Object.keys(cart.items).length > 0 ? 'cart-icon filled' : 'cart-icon';
 });
 </script>
 
@@ -86,7 +97,7 @@ const cartIconClass = computed(() => {
   right: 10px;
   cursor: pointer;
   image-rendering: pixelated;
-  width: 70px
+  width: 70px;
 }
 
 .cart-icon.filled {

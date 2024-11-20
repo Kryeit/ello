@@ -9,9 +9,9 @@ import Modpacks from "@/pages/community/Modpacks.vue";
 import Launchers from "@/pages/community/Launchers.vue";
 import LegacyGallery from "@/pages/LegacyGallery.vue";
 import Login from "@/pages/auth/Login.vue";
-import Merch from "@/pages/merch/Merch.vue";
+import Store from "@/pages/store/Store.vue";
 import Assets from "@/pages/Assets.vue";
-import Product from "@/pages/merch/Product.vue";
+import Product from "@/pages/store/Product.vue";
 import GettingStarted from "@/pages/GettingStarted.vue";
 import Error from "@/pages/Error.vue";
 
@@ -27,7 +27,7 @@ const routes = [
     {path: "/launchers", component: Launchers},
     {path: "/legacy-gallery", component: LegacyGallery},
     {path: "/branding", component: Assets},
-    {path: "/merch", component: Merch},
+    {path: "/store", component: Store},
     {path: "/product/:name",component: Product },
     {path: '/getting-started', component: GettingStarted},
     {path: '/:pathMatch(.*)*', name: 'NotFound', component: Error }, // 404 route

@@ -102,6 +102,8 @@ const images = [
     <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
   </div>
 
+  <h1 class="visually-hidden">Kryeit Home Page</h1>
+
   <h2 class="slogan">{{ $t("home.slogan") }}</h2>
 
   <OnlinePlayers class="online-players"/>
@@ -191,5 +193,16 @@ const images = [
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 </style>

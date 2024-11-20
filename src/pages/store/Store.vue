@@ -1,15 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import Products from '@/js/merch/products.js';
-import Item from '@/pages/merch/Item.vue';
+import Item from '@/pages/store/Item.vue';
 import ProductUtils from "@/js/merch/productUtils.js";
-import Cart from "@/pages/merch/Cart.vue";
+import Cart from "@/pages/store/Cart.vue";
 
 const items = ref([]);
 
 onMounted(async () => {
-  const products = await Products.getProducts();
-  items.value = ProductUtils.getGroupedProductsByColorAndSize(products);
+  items.value = await Products.getProductsGroupedByName();
   console.log(items.value);
 });
 </script>

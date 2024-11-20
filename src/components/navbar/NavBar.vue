@@ -85,14 +85,14 @@ onMounted(() => {
 
 .header {
   width: 100%;
-  border-bottom: 3px solid var(--color-border);
+  border-bottom: 5px solid var(--color-border);
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-background);
+  background-color: var(--color-text);
   width: 100%;
   padding: 10px 30px;
   min-height: 105px;
@@ -115,20 +115,21 @@ onMounted(() => {
 
 .social-media a {
   cursor: pointer;
-  color: var(--color-text);
+  color: var(--color-background);
 
 }
 
 .logo {
   width: 50px;
   height: 50px;
-  color: var(--color-text);
+  color: var(--color-background);
   align-items: center;
   margin-left: 8px;
+
 }
 
 .logo:hover {
-  color: var(--color-border);
+  color: var(--color-text);
 
 }
 </style>

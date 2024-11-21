@@ -1,10 +1,10 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import {onMounted, ref, watch} from 'vue';
+import {useRoute} from 'vue-router';
 import Products from '@/js/merch/products.js';
 import ColorSelector from "@/pages/store/ColorSelector.vue";
 import SizeSelector from "@/pages/store/SizeSelector.vue";
-import { cart } from '@/js/merch/cart.js';
+import {cart} from '@/js/merch/cart.js';
 import Cart from "@/pages/store/Cart.vue";
 import ProductCarousel from "@/pages/store/ProductCarousel.vue";
 import Stock from "@/js/merch/stock.js";
@@ -31,7 +31,8 @@ onMounted(async () => {
   };
 
   sizes.value = await Products.getSizesByColor(productName, selectedColor.value.replace('#', ''));
-  updateSelectedProduct();
+
+  await updateSelectedProduct();
 });
 
 watch(selectedColor, async (newColor) => {
@@ -72,8 +73,8 @@ async function updateSelectedProduct() {
                   @update:selectedSize="selectedSize = $event"/>
     <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
     <p v-if="product.material">Material: {{ product.material }}</p>
-    <p>Stock: {{ stock.quantity }}</p>
-    <button @click="cart.addItem(selectedProduct, product.price)">Add to Cart</button>
+    <p>Stock: {{ stock?.quantity ?? 'N/A' }}</p>
+    <button @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
   </div>
 
   <div v-else>

@@ -1,12 +1,15 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import Products from "@/js/merch/products.js";
+import Flicking from "@egjs/vue3-flicking";
+import "@egjs/vue3-flicking/dist/flicking.css";
 
 const props = defineProps({
   productName: String
 });
 
 const images = ref([]);
+const flicking = ref(null);
 
 onMounted(async () => {
   try {
@@ -15,6 +18,12 @@ onMounted(async () => {
     console.error("Error loading product images:", error);
   }
 });
+
+const onFlickingReady = () => {
+  setTimeout(() => {
+    flicking.value.align = 'prev';
+  }, 200);
+};
 </script>
 
 <template>
@@ -22,10 +31,10 @@ onMounted(async () => {
     <Flicking
         ref="flicking"
         :options="{
-          circular: true,
-          align: 'prev',
+          circular: true, align: 'center'
       }"
         class="carousel"
+        @ready="onFlickingReady"
     >
       <div
           class="panel"
@@ -45,7 +54,6 @@ onMounted(async () => {
 
 <style scoped>
 .carousel-wrapper {
-  width: 290%;
   overflow: hidden;
   position: relative;
 }
@@ -57,7 +65,6 @@ onMounted(async () => {
 }
 
 .panel {
-  margin-right: 16px;
   display: inline-block;
   height: min(70vw, 50vh);
 }
@@ -67,7 +74,7 @@ onMounted(async () => {
 }
 
 .carousel-image {
-  object-fit: cover;
+  object-fit: contain;
   image-rendering: pixelated;
   user-select: none;
   height: min(70vw, 50vh);
@@ -76,11 +83,7 @@ onMounted(async () => {
 @media (max-width: 768px) {
   .carousel-image {
     width: 100vw;
-    height: 100vw;
-  }
-
-  .carousel-wrapper {
-    left: -8%;
+    height: 100%;
   }
 }
 </style>

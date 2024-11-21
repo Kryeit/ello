@@ -73,7 +73,7 @@ async function updateSelectedProduct() {
                   @update:selectedSize="selectedSize = $event"/>
     <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
     <p v-if="product.material">Material: {{ product.material }}</p>
-    <p>Stock: {{ stock?.quantity ?? 'N/A' }}</p>
+    <p>Stock: {{ stock?.quantity ?? 0 }}</p>
     <button @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
   </div>
 

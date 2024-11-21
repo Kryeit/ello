@@ -21,8 +21,6 @@ import {createI18n} from "vue-i18n";
 import {useColorMode} from "@vueuse/core";
 import AuthService from "@/js/auth/authService.js";
 
-import Flicking from "@egjs/vue3-flicking";
-
 const browserLanguage = navigator.language.split('-')[0];
 const savedLanguage = localStorage.getItem('language') || browserLanguage || 'en';
 
@@ -45,7 +43,6 @@ useColorMode({
 AuthService.validateToken();
 
 createApp(App)
-    .component('Flicking', Flicking)
     .use(i18n)
     .use(
         CarbonIconsVue,

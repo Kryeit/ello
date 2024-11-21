@@ -32,6 +32,7 @@ onMounted(async () => {
     <div class="product-header">
       <img class="product-image" :src="image" alt="" />
       <h2>{{ props.product[0].name }}</h2>
+      <div v-if="stock === 0" class="sold-out">Sold Out</div>
     </div>
 
     <div class="product-info">
@@ -42,6 +43,7 @@ onMounted(async () => {
         <p>{{ sizes.join(', ') }}</p>
       </div>
     </div>
+    <div v-if="stock === 0" class="blur-overlay"></div>
   </div>
 </template>
 
@@ -54,6 +56,7 @@ onMounted(async () => {
   flex-direction: column;
   padding: 12px;
   box-sizing: border-box;
+  position: relative;
 }
 
 h2 {
@@ -67,6 +70,7 @@ h2 {
   border: 1px solid var(--color-border);
   font-size: 1.1rem;
   flex-grow: 1;
+  position: relative;
 }
 
 .product-header h2 {
@@ -93,5 +97,29 @@ h2 {
   object-fit: cover;
   border-radius: 8px;
   image-rendering: pixelated;
+}
+
+.sold-out {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  transform: rotate(-15deg);
+  z-index: 2;
+  border-radius: 4px;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1px);
+  z-index: 1;
 }
 </style>

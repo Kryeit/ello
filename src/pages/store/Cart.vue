@@ -113,6 +113,7 @@ const cartIconClass = computed(() => {
   padding: 10px;
   max-width: 300px;
   width: auto;
+  z-index: 900; /* Ensure the cart is above other elements */
 }
 
 .cart-item {

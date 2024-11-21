@@ -129,7 +129,6 @@ onMounted(() => {
 }
 
 .logo:hover {
-  color: var(--color-text);
-
+  transform: scale(1.05);
 }
 </style>

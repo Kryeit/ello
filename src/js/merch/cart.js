@@ -1,8 +1,20 @@
 import { reactive, computed, watch } from 'vue';
+import Stock from '@/js/merch/stock.js';
 
-const loadCartFromLocalStorage = () => {
+const loadCartFromLocalStorage = async () => {
     const cartData = localStorage.getItem('cart');
-    return cartData ? JSON.parse(cartData) : {};
+    const items = cartData ? JSON.parse(cartData) : {};
+    for (const id in items) {
+        const stock = await Stock.getStock(id);
+        if (items[id].quantity > stock.quantity) {
+            if (stock.quantity > 0) {
+                items[id].quantity = stock.quantity;
+            } else {
+                delete items[id];
+            }
+        }
+    }
+    return items;
 };
 
 const saveCartToLocalStorage = (cart) => {
@@ -10,13 +22,22 @@ const saveCartToLocalStorage = (cart) => {
 };
 
 export const cart = reactive({
-    items: loadCartFromLocalStorage(),
+    items: await loadCartFromLocalStorage(),
 
-    addItem(id, price) {
+    async addItem(id, price) {
+        const stock = await Stock.getStock(id);
         if (this.items[id]) {
-            this.items[id].quantity += 1;
+            if (this.items[id].quantity < stock.quantity) {
+                this.items[id].quantity += 1;
+            } else {
+                console.warn('Not enough stock to add more items');
+            }
         } else {
-            this.items[id] = { quantity: 1, price };
+            if (stock.quantity > 0) {
+                this.items[id] = { quantity: 1, price };
+            } else {
+                console.warn('No stock available for this item');
+            }
         }
         saveCartToLocalStorage(this.items);
     },

@@ -14,6 +14,7 @@ import Assets from "@/pages/Assets.vue";
 import Product from "@/pages/store/Product.vue";
 import GettingStarted from "@/pages/GettingStarted.vue";
 import Error from "@/pages/Error.vue";
+import Homemade from "@/pages/community/Homemade.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -25,12 +26,13 @@ const routes = [
     {path: "/about", component: About},
     {path: "/modpacks", component: Modpacks},
     {path: "/launchers", component: Launchers},
+    {path: "/homemade", component: Homemade},
     {path: "/legacy-gallery", component: LegacyGallery},
     {path: "/branding", component: Assets},
     {path: "/store", component: Store},
     {path: "/product/:name",component: Product },
-    {path: '/getting-started', component: GettingStarted},
-    {path: '/:pathMatch(.*)*', name: 'NotFound', component: Error }, // 404 route
+    {path: "/getting-started", component: GettingStarted},
+    {path: "/:pathMatch(.*)*", name: "NotFound", component: Error }, // 404 route
 
 ]
 

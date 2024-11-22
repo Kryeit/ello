@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
-import { i18n } from "@/main.js";
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 import AuthService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";
@@ -45,7 +44,7 @@ onBeforeUnmount(() => {
           <span class="menu-item-title">{{ $t("auth.login") }}</span>
         </router-link>
 
-        <div v-if="store.getUser()">
+        <div v-if="store.getUser()" class="menu-item">
           <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
             <span class="menu-item-title">@{{ playerName }}</span>
           </router-link>
@@ -84,6 +83,7 @@ onBeforeUnmount(() => {
 }
 
 .dropdown-menu-overlay {
+  gap: 4px;
   position: absolute;
   top: 100%;
   left: -150%;
@@ -96,6 +96,7 @@ onBeforeUnmount(() => {
   padding: 10px;
   align-items: center;
   border: 2px solid var(--color-background-mute);
+  margin-top: 8px;
 }
 
 span {
@@ -108,7 +109,6 @@ span {
   cursor: pointer;
   font-size: 16px;
   border-radius: 12px;
-  margin-bottom: 6px;
   align-items: center;
   justify-content: center;
   user-select: none;

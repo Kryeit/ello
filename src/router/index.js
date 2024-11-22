@@ -16,6 +16,7 @@ import GettingStarted from "@/pages/GettingStarted.vue";
 import Error from "@/pages/Error.vue";
 import Homemade from "@/pages/community/Homemade.vue";
 import PrivacyPolicy from "@/pages/policies/PrivacyPolicy.vue";
+import ServiceAgreement from "@/pages/policies/ServiceAgreement.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -36,7 +37,7 @@ const routes = [
     {path: "/:pathMatch(.*)*", name: "NotFound", component: Error }, // 404 route
 
     {path: "/privacy", component: PrivacyPolicy},
-
+    {path: "/terms", component: ServiceAgreement},
 ]
 
 const router = createRouter({

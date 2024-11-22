@@ -2,14 +2,12 @@
 import { ref, onMounted } from 'vue';
 import Products from '@/js/merch/products.js';
 import Item from '@/pages/store/Item.vue';
-import ProductUtils from "@/js/merch/productUtils.js";
 import Cart from "@/pages/store/Cart.vue";
 
 const items = ref([]);
 
 onMounted(async () => {
   items.value = await Products.getProductsGroupedByName();
-  console.log(items.value);
 });
 </script>
 

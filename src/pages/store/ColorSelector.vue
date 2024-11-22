@@ -27,7 +27,7 @@ const selectColor = (color) => {
 </script>
 
 <template>
-  <div class="color-selector">
+  <div class="color-selector" v-if="colors.filter(color => color).length > 0">
     <div
         v-for="color in colors"
         :key="color"

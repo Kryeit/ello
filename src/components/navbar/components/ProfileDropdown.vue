@@ -73,7 +73,6 @@ onBeforeUnmount(() => {
 .player-avatar-container {
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .dropdown-arrow {
@@ -97,6 +96,7 @@ onBeforeUnmount(() => {
   align-items: center;
   border: 2px solid var(--color-background-mute);
   margin-top: 8px;
+  cursor: default;
 }
 
 span {

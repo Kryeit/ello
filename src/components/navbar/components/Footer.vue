@@ -24,6 +24,7 @@ async function addEmailToast() {
     <img :src="treeSource" alt=""/>
     <div class="footer-section">
       <p>Kryeit </p>
+
       <hr class="separator">
 
       <router-link to="/about">
@@ -39,13 +40,19 @@ async function addEmailToast() {
       <p>
         {{ $t("navbar.footer.survival.title") }}
       </p>
+
       <hr class="separator">
+
+      <router-link to="/getting-started">
+        {{ $t("navbar.footer.survival.getting-started") }}
+      </router-link>
+
+      <a href="https://archive.kryeit.com" target="_blank">
+        {{ $t("navbar.footer.survival.archive") }}
+      </a>
 
       <a href="https://map.kryeit.com" target="_blank">
         {{ $t("navbar.footer.survival.map") }}
-      </a>
-      <a href="https://archive.kryeit.com" target="_blank">
-        {{ $t("navbar.footer.survival.archive") }}
       </a>
     </div>
 

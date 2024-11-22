@@ -56,7 +56,26 @@
     <p>You will spawn at the latest admin named post, which are named automatically the 1st of each month.</p>
 
     <h3 id="claiming">Claiming</h3>
+    <p>
+      We use the
+      <a href="https://griefdefender.com/">GriefDefender</a>
+      fabric mod to have a claim system in place.
+    </p>
     <p>Use /claim and click 2 opposite corners to claim your land, also use /abandon to unclaim the land.</p>
+
+    <h4>Useful commands:</h4>
+    <ul>
+      <li>/expandclaim &lt;amount&gt; [direction]</li>
+      <li>/trust &lt;player&gt; [trust-type]</li>
+      <li>/gd (Opens the GriefDefender GUI)</li>
+    </ul>
+
+    <h3>Homemade mechanics</h3>
+    <p class="end">
+      Our server has a few custom mechanics granted by mods developed by us.
+      Check out
+      <router-link to="/homemade">Our mods</router-link>
+    </p>
   </div>
 </template>
 
@@ -87,4 +106,7 @@ img {
   width: 100%;
 }
 
+.end {
+  margin-bottom: 20px;
+}
 </style>

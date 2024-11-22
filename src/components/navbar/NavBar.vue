@@ -55,6 +55,9 @@ onMounted(() => {
           <a href="https://discord.gg/njGh5UUU4d" target="_blank" rel="noopener noreferrer">
             <DiscordLogo class="logo"/>
           </a>
+          <a href="https://github.com/Kryeit" target="_blank" rel="noopener noreferrer">
+            <GithubLogo class="logo"/>
+          </a>
         </div>
       </div>
       <ProfileDropdown class="profile-dropdown"/>

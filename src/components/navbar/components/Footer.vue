@@ -94,12 +94,12 @@ async function addEmailToast() {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 10px;
+  gap: 2%;
   border-top: 5px solid var(--color-border);
 }
 
 .footer-section {
-  padding: 10px;
+  padding: 10px 0;
   flex-direction: column;
   display: flex;
   justify-content: flex-start;
@@ -135,9 +135,9 @@ async function addEmailToast() {
   width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .footer {
-    padding-bottom: 150px;
+    padding-bottom: 80px;
     gap: 5px;
   }
 

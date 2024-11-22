@@ -1,94 +1,109 @@
 <script setup>
-import {ref} from "vue";
+import {ref, onMounted, watch} from "vue";
+import Flicking from "@egjs/vue3-flicking";
+import "@egjs/vue3-flicking/dist/flicking.css";
+import {AutoPlay} from "@egjs/flicking-plugins";
 
-const {images} = defineProps(["images"]);
+const props = defineProps({
+  images: Array
+});
 
+const flicking = ref(null);
 const currentImage = ref(0);
-const parent = ref();
-let currentTimeout = null;
+const plugins = [new AutoPlay({duration: 4500, direction: "NEXT", stopOnHover: true})];
 
-function deltaImages(n) {
-  let newValue = currentImage.value + n;
-  if (newValue >= images.length) {
-    newValue = 0;
-  } else if (newValue < 0) {
-    newValue = images.length - 1;
+const onFlickingReady = () => {
+  setTimeout(() => {
+    flicking.value.align = 'center';
+  }, 200);
+};
+
+watch(flicking, (newFlicking) => {
+  if (newFlicking) {
+    newFlicking.on('changed', (e) => {
+      currentImage.value = e.index;
+    });
   }
-  currentImage.value = newValue;
-
-  clearTimeout(currentTimeout);
-  currentTimeout = setTimeout(() => deltaImages(1), 4500);
-}
-
-deltaImages(0);
+});
 </script>
 
 <template>
-  <div ref="parent" class="slideshow">
-    <a class="button" @click="deltaImages(-1)">❮</a>
-    <a class="button right" @click="deltaImages(1)">❯</a>
-    <div :style="{transform: `translateX(${-parent?.clientWidth * currentImage}px)`}" class="image" v-for="image in images">
-      <img :src="image.src" :alt="image.name">
-    </div>
-    <a class="subtitle">{{ $t("home.gallery.subtitle", { author: images[currentImage].name }) }}</a>  </div>
+  <div class="carousel-wrapper">
+    <Flicking
+        ref="flicking"
+        :options="{
+          circular: true, align: 'center'
+      }"
+        :plugins="plugins"
+        class="carousel"
+        @ready="onFlickingReady"
+    >
+      <div
+          class="panel"
+          v-for="(image, index) in images"
+          :key="index"
+      >
+        <img
+            :src="image.src"
+            :alt="image.name"
+            class="carousel-image"
+            draggable="false"
+        />
+      </div>
+    </Flicking>
+    <a class="subtitle">{{ $t("home.gallery.subtitle", {author: images[currentImage].name}) }}</a>
+  </div>
 </template>
 
 <style scoped>
-.slideshow {
-  position: relative;
+.carousel-wrapper {
   overflow: hidden;
-  display: flex;
+  position: relative;
 }
 
-.image {
-  float: left;
-  flex-shrink: 0;
+.carousel {
   width: 100%;
-  transition: transform 1s;
+  height: auto;
+  white-space: nowrap;
 }
 
-a {
-  color: var(--vt-c-white-mute);
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
+.panel {
+  display: inline-block;
   width: 100%;
-  text-align: center;
+  height: min(70vw, 50vh);
+}
+
+.panel:last-child {
+  margin-right: 0;
+}
+
+.carousel-image {
+  object-fit: contain;
+  image-rendering: pixelated;
+  user-select: none;
+  width: 100%;
+  height: 100%;
 }
 
 .subtitle {
-  left: 0;
-  padding-bottom: 30px;
-}
-
-.button {
-  cursor: pointer;
   position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  user-select: none;
-  transition: scale 0.2s;
-  height: fit-content;
-  z-index: 10;
-}
-
-.button.right {
-  right: 0;
-}
-
-.button:hover {
-  scale: 1.3;
-}
-
-img {
+  bottom: 28px;
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: contain;
+  text-align: center;
+  color: var(--vt-c-white-mute);
+  font-size: 15px;
+  padding: 8px 12px;
+  z-index: 900;
+}
+
+@media (max-width: 768px) {
+  .panel {
+    width: 100vw;
+  }
+
+  .carousel-image {
+    width: 100vw;
+    height: 100%;
+  }
 }
 </style>

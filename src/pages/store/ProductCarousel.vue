@@ -3,7 +3,6 @@ import { ref, onMounted } from "vue";
 import Products from "@/js/merch/products.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
-import { AutoPlay } from "@egjs/flicking-plugins";
 
 const props = defineProps({
   productName: String
@@ -12,7 +11,6 @@ const props = defineProps({
 const images = ref([]);
 const flicking = ref(null);
 
-const plugins = [new AutoPlay({ duration: 2000, direction: "NEXT", stopOnHover: true })];
 
 onMounted(async () => {
   try {
@@ -36,7 +34,6 @@ const onFlickingReady = () => {
         :options="{
           circular: true, align: 'center'
       }"
-        :plugins="plugins"
         class="carousel"
         @ready="onFlickingReady"
     >

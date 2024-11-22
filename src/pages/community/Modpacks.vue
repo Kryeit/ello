@@ -60,7 +60,7 @@ const processTitle = (title) => {
   <h2>Official</h2>
   <div class="modpack-grid">
     <div v-for="(modpack, index) in officialModpacks" :key="index" class="modpack">
-      <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
+      <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank" class="clicked-wrapper">
         <img
             :src="modpack.icon_url"
             :alt="modpack.title"
@@ -73,7 +73,14 @@ const processTitle = (title) => {
             <p style="text-align: justify">{{ modpack.description }}</p>
           </div>
           <div class="modpack-stats">
-            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
+            <p><strong>Made by:</strong>
+              <span class="authors">
+                <span v-for="(author, index) in modpack.authors" :key="index">
+                  <a :href="`https://modrinth.com/user/${author}`" target="_blank" rel="noopener noreferrer" @click.stop>{{ author }}</a>
+                <span v-if="index < modpack.authors.length - 1">, </span>
+              </span>
+            </span>
+            </p>
             <p class="followers">
               Followers:
               {{ modpack.followers }}
@@ -92,7 +99,7 @@ const processTitle = (title) => {
   <h2>Community driven</h2>
   <div class="modpack-grid">
     <div v-for="(modpack, index) in communityModpacks" :key="index" class="modpack">
-      <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank">
+      <a :href="`https://modrinth.com/mod/${modpack.slug}`" target="_blank" class="clicked-wrapper">
         <img
             :src="modpack.icon_url"
             :alt="modpack.title"
@@ -105,7 +112,14 @@ const processTitle = (title) => {
             <p style="text-align: justify">{{ modpack.description }}</p>
           </div>
           <div class="modpack-stats">
-            <p><strong>Made by:</strong> <span class="authors">{{ modpack.authors.join(', ') }}</span></p>
+            <p><strong>Made by:</strong>
+              <span class="authors">
+                <span v-for="(author, index) in modpack.authors" :key="index">
+                  <a :href="`https://modrinth.com/user/${author}`" target="_blank" rel="noopener noreferrer" @click.stop>{{ author }}</a>
+                <span v-if="index < modpack.authors.length - 1">, </span>
+              </span>
+            </span>
+            </p>
             <p class="downloads">
               <Download />
               {{ modpack.downloads }}
@@ -145,7 +159,7 @@ h1 {
   animation: none;
 }
 
-.modpack a {
+.clicked-wrapper {
   color: inherit;
   text-decoration: none;
   display: flex;
@@ -210,7 +224,18 @@ h2 {
 }
 
 .authors {
+  display: inline;
   font-weight: bold;
+  margin-left: 8px;
+  gap: 4px;
+}
+
+.authors a {
+  color: var(--color-text);
+}
+
+.authors a:hover {
+  color: #0000EE;
 }
 
 @keyframes rotate {

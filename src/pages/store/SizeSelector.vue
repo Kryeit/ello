@@ -28,7 +28,7 @@ watch(() => props.sizes, (newSizes) => {
 <template>
   <div class="size-selector">
     <div class="sizes">
-      <div v-for="size in sizes" :key="size" class="size-option">
+      <div v-for="size in sizes" :key="size" class="size-option" :class="{ selected: size === selectedSize }" @click="selectSize(size)">
         <input type="radio" :id="size" :value="size" v-model="selectedSize" @change="selectSize(size)" />
         <label class="size" :for="size">{{ size }}</label>
       </div>
@@ -38,7 +38,14 @@ watch(() => props.sizes, (newSizes) => {
 
 <style scoped>
 .size-selector {
-  margin-top: 20px;
+  display: inline-flex;
+  background-image: url('/src/assets/minecraft/dirt.png');
+  background-size: 70px 70px;
+  background-repeat: repeat;
+  image-rendering: pixelated;
+  padding: 6px;
+  border: 3px solid black;
+  border-radius: 12px;
 }
 
 .sizes {
@@ -49,10 +56,34 @@ watch(() => props.sizes, (newSizes) => {
 .size-option {
   display: flex;
   align-items: center;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background-image: url('/src/assets/minecraft/squared_button.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  cursor: pointer;
+  user-select: none;
+}
+
+.size-option.selected {
+  background-image: url('/src/assets/minecraft/squared_button_hover.png');
 }
 
 .size {
-  margin-left: 5px;
   cursor: pointer;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.7rem;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+button {
+
 }
 </style>

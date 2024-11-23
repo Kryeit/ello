@@ -8,6 +8,10 @@ const props = defineProps({
   product: {
     type: Object,
     required: true
+  },
+  lonely: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -37,10 +41,10 @@ onMounted(async () => {
 
     <div class="product-info">
       <p>{{ props.product[0].price }}€</p>
-      <p>{{ stock }} units left!</p>
-
+      <p v-if="!props.lonely">{{ stock }} units left!</p>
       <div class="sizes">
-        <p>{{ sizes.join(', ') }}</p>
+        <p v-if="!props.lonely">{{ sizes.join(', ') }}</p>
+        <p v-else>{{ product[0].size }}</p>
       </div>
     </div>
     <div v-if="stock === 0" class="blur-overlay"></div>
@@ -57,6 +61,15 @@ onMounted(async () => {
   padding: 12px;
   box-sizing: border-box;
   position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin: 0;
+  transition: transform 0.3s ease;
+  background: var(--color-background-mute);
+}
+
+.product-item:hover {
+  transform: scale(1.02);
 }
 
 h2 {

@@ -42,16 +42,4 @@ onMounted(async () => {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
 }
-
-.grid-item {
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  margin: 0;
-  transition: transform 0.3s ease;
-  background: var(--color-background-mute);
-}
-
-.grid-item:hover {
-  transform: scale(1.02);
-}
 </style>

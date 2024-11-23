@@ -61,16 +61,18 @@ async function updateSelectedProduct() {
   <div v-if="product" class="product-details">
     <button class="back-button">
       <router-link class="catalog" to="/store">
-        <ArrowLeft/>
-        <p>Catalog</p>
+        < Catalog
       </router-link>
     </button>
     <h1>{{ product.name }}</h1>
     <ProductCarousel :product-name="product.name"/>
-    <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
     <p>{{ product.description }}</p>
+    <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
+
+    <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
     <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
                   @update:selectedSize="selectedSize = $event"/>
+    <h3 v-if="selectedColor">Color:</h3>
     <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
     <p v-if="product.material">Material: {{ product.material }}</p>
     <p>Stock: {{ stock?.quantity ?? 0 }}</p>
@@ -89,20 +91,6 @@ h1 {
   margin-bottom: 28px;
 }
 
-button {
-  background: var(--color-background-mute);
-  border-radius: 18px;
-}
-
-.back-button {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .catalog {
   display: flex;
   align-items: center;
@@ -112,6 +100,33 @@ button {
 
 .price {
   font-size: 0.9rem;
+}
+
+button {
+  background: var(--color-background-mute);
+  margin-top: 8px;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  display: flex;
+  min-height: 30px;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.back-button {
+  position: absolute;
+  left: 20px;
 }
 
 @media (max-width: 1368px) {

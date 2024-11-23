@@ -62,7 +62,6 @@ watch([page, sortDirection, order], () => {
       <h2>Order by: </h2>
       <Dropdown class="dropdown wide" :values="orders" v-model="order"></Dropdown>
     </div>
-
   </div>
   <button class="page-button" @click="previousPage"><</button>
   <input class="page-input" :value="page" @input="updatePage($event.target.value)"><a class="page"> /
@@ -71,17 +70,20 @@ watch([page, sortDirection, order], () => {
 
   <div class="table-wrapper">
     <table v-if="order">
+      <thead>
       <tr>
         <th>Rank</th>
         <th>Player</th>
         <th>{{ order.name }}</th>
       </tr>
-
-      <tr v-for="(entry, i) in table">
+      </thead>
+      <tbody>
+      <tr v-for="(entry, i) in table" :key="i">
         <td>{{ getRank(i) }}.</td>
         <td>{{ entry.name }}</td>
         <td>{{ entry.value }}</td>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>

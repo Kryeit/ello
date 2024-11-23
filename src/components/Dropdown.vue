@@ -1,7 +1,7 @@
 <script setup>
-import {ref} from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const {values} = defineProps(["values"]);
+const { values } = defineProps(["values"]);
 const selectedValue = defineModel();
 selectedValue.value = values[0];
 const inputValue = ref(values[0].name);
@@ -21,10 +21,24 @@ function select(value) {
   inputValue.value = value.name;
   blur();
 }
+
+function handleClickOutside(event) {
+  if (!event.target.closest('.wrapper')) {
+    blur();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
-  <div class="wrapper" v-click-outside="blur">
+  <div class="wrapper">
     <input placeholder="Search players" @focusin="focus" readonly v-model="inputValue">
     <div class="results" v-if="show">
       <a v-for="value in values" @click="select(value)">{{ value.name }}</a>

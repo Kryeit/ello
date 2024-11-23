@@ -48,10 +48,11 @@ const selectColor = (color) => {
   background-size: 70px 70px;
   background-repeat: repeat;
   image-rendering: pixelated;
-  padding: 6px;
+  padding: 8px;
   border: 3px solid black;
   border-radius: 12px;
   position: relative;
+  gap: 10px;
 }
 
 .overlay {
@@ -67,7 +68,6 @@ const selectColor = (color) => {
 }
 
 .color-square {
-  margin: 5px;
   cursor: pointer;
   width: 42px;
   height: 42px;

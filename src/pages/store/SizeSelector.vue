@@ -27,6 +27,7 @@ watch(() => props.sizes, (newSizes) => {
 
 <template>
   <div class="size-selector">
+    <div class="overlay"></div>
     <div class="sizes">
       <div v-for="size in sizes" :key="size" class="size-option" :class="{ selected: size === selectedSize }" @click="selectSize(size)">
         <input type="radio" :id="size" :value="size" v-model="selectedSize" @change="selectSize(size)" />
@@ -46,11 +47,14 @@ watch(() => props.sizes, (newSizes) => {
   padding: 6px;
   border: 3px solid black;
   border-radius: 12px;
+  position: relative;
 }
 
 .sizes {
   display: flex;
   gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .size-option {
@@ -65,6 +69,20 @@ watch(() => props.sizes, (newSizes) => {
   image-rendering: pixelated;
   cursor: pointer;
   user-select: none;
+  position: relative;
+}
+
+.size-option::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: var(--color); /* Use the color variable */
+  opacity: 1; /* Adjust the opacity as needed */
+  mix-blend-mode: overlay; /* Blend the color with the background */
+  z-index: -1;
 }
 
 .size-option.selected {
@@ -83,7 +101,15 @@ input[type="radio"] {
   display: none;
 }
 
-button {
-
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 0;
+  pointer-events: none;
 }
 </style>

@@ -41,4 +41,8 @@ watchEffect(() => mode.value = state.value)
   width: 47px;
   height: 47px;
 }
+
+.tgl-btn:active {
+  transform: scale(0.95);
+}
 </style>

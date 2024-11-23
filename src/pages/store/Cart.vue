@@ -1,7 +1,9 @@
 <template>
   <div>
     <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" />
+
     <div v-if="visible" ref="cartContainer" class="cart">
+      <ArrowLeft v-if="visible" class="close-cart" style="visibility: hidden; position: absolute;" @click="toggleCart"/>
       <h3>Cart</h3>
       <div v-for="(item, index) in groupedItems" :key="index" class="cart-item">
         <div class="item-header">
@@ -9,7 +11,7 @@
           <div class="item-name">{{ item.name }}</div>
         </div>
         <div class="item-details">
-          {{ item.size }}
+          <p>Size: {{ item.size }}</p>
           {{ item.price * item.quantity }}€
         </div>
         <div class="item-buttons">
@@ -113,7 +115,7 @@ const cartIconClass = computed(() => {
   padding: 10px;
   max-width: 300px;
   width: auto;
-  z-index: 900; /* Ensure the cart is above other elements */
+  z-index: 900;
 }
 
 .cart-item {
@@ -153,5 +155,20 @@ const cartIconClass = computed(() => {
 
 button {
   background: var(--color-background-mute);
+}
+
+@media (max-width: 768px) {
+  .cart {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .close-cart {
+    position: static !important;
+    visibility: visible !important;
+  }
 }
 </style>

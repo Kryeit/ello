@@ -57,4 +57,8 @@ img {
   image-rendering: pixelated;
   border-radius: 4px;
 }
+
+div:active {
+  transform: scale(0.95);
+}
 </style>

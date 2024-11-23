@@ -181,6 +181,8 @@ h3 {
 }
 
 .player-list p {
+  display: flex;
+  align-items: center;
   margin: 0;
 }
 
@@ -194,6 +196,7 @@ h3 {
 a.player-link {
   color: inherit;
   text-decoration: none;
+  margin-left: 5px;
 }
 
 a.player-link:hover {

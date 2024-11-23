@@ -8,6 +8,7 @@ import {cart} from '@/js/merch/cart.js';
 import Cart from "@/pages/store/Cart.vue";
 import ProductCarousel from "@/pages/store/ProductCarousel.vue";
 import Stock from "@/js/merch/stock.js";
+import Sidebar from "@/components/navbar/components/Sidebar.vue";
 
 const route = useRoute();
 const product = ref(null);
@@ -58,12 +59,9 @@ async function updateSelectedProduct() {
 </script>
 
 <template>
+  <Sidebar/>
+
   <div v-if="product" class="product-details">
-    <button class="back-button">
-      <router-link class="catalog" to="/store">
-        < Catalog
-      </router-link>
-    </button>
     <h1>{{ product.name }}</h1>
     <ProductCarousel :product-name="product.name"/>
     <p>{{ product.description }}</p>
@@ -88,7 +86,8 @@ async function updateSelectedProduct() {
 
 <style scoped>
 h1 {
-  margin-bottom: 28px;
+  margin-bottom: 38px;
+  text-align: center;
 }
 
 .catalog {

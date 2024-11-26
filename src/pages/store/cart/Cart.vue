@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" draggable="false" />
+    <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" draggable="false" alt=""/>
 
     <transition name="cart">
       <div v-if="visible" ref="cartContainer" class="cart">
@@ -86,6 +86,7 @@ const goToCheckout = () => {
   image-rendering: pixelated;
   width: 70px;
   user-select: none;
+  z-index: 999;
 }
 
 .cart {
@@ -96,7 +97,7 @@ const goToCheckout = () => {
   padding: 22px;
   max-width: 400px;
   width: auto;
-  z-index: 900;
+  z-index: 999;
   border-radius: 20px;
   border: 2px solid var(--color-background-mute);
   transition: width 3s ease, height 3s ease;
@@ -116,19 +117,22 @@ const goToCheckout = () => {
   gap: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .cart {
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     max-width: 100%;
-    z-index: 999;
   }
 
   .close-cart {
     position: static !important;
     visibility: visible !important;
+  }
+
+  .cart-icon {
+    visibility: hidden;
   }
 }
 

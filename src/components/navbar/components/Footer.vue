@@ -135,7 +135,7 @@ async function addEmailToast() {
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .footer {
     padding-bottom: 80px;
     gap: 5px;

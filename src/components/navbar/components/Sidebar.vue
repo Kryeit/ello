@@ -1,11 +1,23 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import {ref, onMounted, onUnmounted, computed} from 'vue';
+
+import clipboard from '@/assets/minecraft/clipboard.webp';
+import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
+import {cart} from "@/js/merch/cart.js";
 
 const isMobile = ref(false);
 
 const checkScreenSize = () => {
   isMobile.value = window.innerWidth <= 1024;
 };
+
+const cartIconSrc = computed(() => {
+  return Object.keys(cart.items).length > 0 ? writtenClipboard : clipboard;
+});
+
+const cartIconClass = computed(() => {
+  return Object.keys(cart.items).length > 0 ? 'cart-icon filled' : 'cart-icon';
+});
 
 onMounted(() => {
   checkScreenSize();
@@ -25,6 +37,7 @@ onUnmounted(() => {
       </router-link>
     </button>
     <button class="cart">
+      <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" draggable="false"  alt=""/>
       Cart
     </button>
   </div>
@@ -72,6 +85,13 @@ onUnmounted(() => {
 
   .cart {
     right: calc(18vw - 55px);
+  }
+
+  .cart-icon {
+    position: relative;
+    width: 30px;
+    bottom: -5px;
+    right: -8px;
   }
 }
 </style>

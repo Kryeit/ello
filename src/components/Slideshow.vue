@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, watch} from "vue";
+import {ref, watch} from "vue";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 import {AutoPlay} from "@egjs/flicking-plugins";

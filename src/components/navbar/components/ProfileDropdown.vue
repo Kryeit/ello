@@ -60,6 +60,18 @@ onBeforeUnmount(() => {
                      tag="button">
           <span class="menu-item-title">{{ $t("auth.logout") }}</span>
         </router-link>
+
+        <div class="social-media">
+          <a href="https://discord.gg/njGh5UUU4d" target="_blank" rel="noopener noreferrer">
+            <DiscordLogo class="logo"/>
+          </a>
+          <a href="https://github.com/Kryeit" target="_blank" rel="noopener noreferrer">
+            <GithubLogo class="logo"/>
+          </a>
+          <a href="https://youtube.com/@Kryeit" target="_blank" rel="noopener noreferrer">
+            <YoutubeLogo class="logo"/>
+          </a>
+        </div>
       </div>
     </transition>
   </div>
@@ -132,6 +144,15 @@ span {
 
 .logout-button:hover {
   background: rgba(255, 0, 0, 0.4);
+}
+
+.social-media a {
+  cursor: pointer;
+  color: var(--color-border);
+}
+
+.social-media a:hover {
+  transform: scale(1.9);
 }
 
 /* Transition styles */

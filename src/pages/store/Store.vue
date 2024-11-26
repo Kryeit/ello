@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import Products from '@/js/merch/products.js';
 import Item from '@/pages/store/Item.vue';
-import Cart from "@/pages/store/Cart.vue";
+import Cart from "@/pages/store/cart/Cart.vue";
 
 const items = ref([]);
 

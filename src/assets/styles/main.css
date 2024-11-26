@@ -11,7 +11,7 @@
   --minecraft-font: 'MinecraftiaRegular', sans-serif;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   #app {
     padding: 0 10px 75px 10px; /* Cog icon margin in vertical devices */
   }

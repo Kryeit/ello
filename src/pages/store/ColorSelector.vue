@@ -21,9 +21,18 @@ onMounted(() => {
 });
 
 const selectColor = (color) => {
-  selectedColor.value = color;
-  emits('update:selectedColor', color);
+  if (selectedColor.value !== color) {
+    selectedColor.value = color;
+    emits('update:selectedColor', color);
+  }
 };
+
+watch(() => props.colors, (newColors) => {
+  if (newColors.length > 0 && !newColors.includes(selectedColor.value)) {
+    selectedColor.value = newColors[0];
+    emits('update:selectedColor', newColors[0]);
+  }
+}, { immediate: true });
 </script>
 
 <template>
@@ -88,9 +97,9 @@ const selectColor = (color) => {
   left: 2px;
   width: calc(100% - 4px);
   height: calc(100% - 4px);
-  background-color: var(--color); /* Use the color variable */
-  opacity: 1; /* Adjust the opacity as needed */
-  mix-blend-mode: overlay; /* Blend the color with the background */
+  background-color: var(--color);
+  opacity: 1;
+  mix-blend-mode: overlay;
   z-index: -1;
 }
 

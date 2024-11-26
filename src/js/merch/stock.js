@@ -4,6 +4,7 @@ class Stock {
     }
 
     async getStock(id) {
+        if (typeof id != 'number') return 0;
         const response = await fetch(`${this.apiUrl}/${id}`);
         return await response.json();
     }

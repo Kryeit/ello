@@ -1,3 +1,38 @@
+<template>
+  <Sidebar/>
+
+  <div v-if="product" class="product-container">
+    <h1>{{ product.name }} #{{ selectedProduct }}</h1>
+    <ProductCarousel :product-name="product.name"/>
+
+    <div class="details-container">
+      <div class="product-description">
+        <p>{{ product.description }}</p>
+      </div>
+      <div class="product-details">
+        <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
+        <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
+                      :name="product.name" :color="selectedColor"
+                      @update:selectedSize="selectedSize = $event"/>
+        <h3 v-if="selectedColor">Color:</h3>
+        <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
+        <p v-if="product.material">Material: {{ product.material }}</p>
+        <p>Stock: {{ stock?.quantity ?? 0 }}</p>
+        <div class="price-container">
+          <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
+          <button @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-else>
+    <p>Loading...</p>
+  </div>
+
+  <Cart/>
+</template>
+
 <script setup>
 import {onMounted, ref, watch} from 'vue';
 import {useRoute} from 'vue-router';
@@ -5,9 +40,9 @@ import Products from '@/js/merch/products.js';
 import ColorSelector from "@/pages/store/ColorSelector.vue";
 import SizeSelector from "@/pages/store/SizeSelector.vue";
 import {cart} from '@/js/merch/cart.js';
-import Cart from "@/pages/store/Cart.vue";
+import Cart from "@/pages/store/cart/Cart.vue";
 import ProductCarousel from "@/pages/store/ProductCarousel.vue";
-import Stock from "@/js/merch/stock.js";
+import Stock from '@/js/merch/stock.js';
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
 
 const route = useRoute();
@@ -21,7 +56,7 @@ const stock = ref(null);
 
 onMounted(async () => {
   const productName = route.params.name;
-  const productsByColor = await Products.getProductsGroupedByColor(productName);
+  const productsByColor = await Products.getProductsByColor(productName);
   colors = Object.keys(productsByColor);
   selectedColor.value = colors[0];
 
@@ -58,47 +93,41 @@ async function updateSelectedProduct() {
 }
 </script>
 
-<template>
-  <Sidebar/>
-
-  <div v-if="product" class="product-details">
-    <h1>{{ product.name }}</h1>
-    <ProductCarousel :product-name="product.name"/>
-    <p>{{ product.description }}</p>
-    <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
-
-    <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
-    <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
-                  @update:selectedSize="selectedSize = $event"/>
-    <h3 v-if="selectedColor">Color:</h3>
-    <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
-    <p v-if="product.material">Material: {{ product.material }}</p>
-    <p>Stock: {{ stock?.quantity ?? 0 }}</p>
-    <button @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
-  </div>
-
-  <div v-else>
-    <p>Loading...</p>
-  </div>
-
-  <Cart/>
-</template>
-
 <style scoped>
+.product-container {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-description {
+  flex: 0 1 auto;
+  min-width: 300px;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 h1 {
-  margin-bottom: 38px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.catalog {
-  display: flex;
-  align-items: center;
-  color: var(--color-text);
-  text-decoration: none;
-}
-
 .price {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 button {
@@ -123,16 +152,9 @@ button:active {
   transform: scale(0.95);
 }
 
-.back-button {
-  position: absolute;
-  left: 20px;
-}
-
-@media (max-width: 1368px) {
-  .back-button {
-    bottom: 8px;
-    top: auto;
-    left: 4px;
+@media (max-width: 600px) {
+  .details-container {
+    flex-direction: column;
   }
 }
 </style>

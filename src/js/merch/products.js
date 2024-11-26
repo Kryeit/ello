@@ -32,8 +32,14 @@ class Products {
         return await response.json();
     }
 
-    async getProductsGroupedByColor(name) {
-        const response = await fetch(`${this.apiUrl}/color-group?name=${name}`);
+    async getProductsByNameAndColor(name, color) {
+        const encodedColor = encodeURIComponent(color);
+        const response = await fetch(`${this.apiUrl}/by-name-and-color?name=${name}&color=${encodedColor}`);
+        return await response.json();
+    }
+
+    async getProductsByColor(name) {
+        const response = await fetch(`${this.apiUrl}/by-color?name=${name}`);
         return await response.json();
     }
 

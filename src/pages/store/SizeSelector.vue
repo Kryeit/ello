@@ -1,21 +1,62 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { defineProps, defineEmits } from 'vue';
+import Stock from "@/js/merch/stock.js";
+import Products from "@/js/merch/products.js";
 
 const props = defineProps({
   sizes: {
     type: Array,
     required: true
-  }
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  color: {
+    type: String,
+    required: true
+  },
 });
 
 const emits = defineEmits(['update:selectedSize']);
+const isSoldOut = ref([]);
 
 const selectedSize = ref(null);
+const selectedSizes = ref([]);
+
+const fetchProductsAndStock = async (color) => {
+  let products = await Products.getProductsByNameAndColor(props.name, color);
+  isSoldOut.value = new Array(selectedSizes.value.length).fill(false);
+
+  for (let product of products) {
+    let stock = await Stock.getStock(product.id);
+
+    const sizeIndex = selectedSizes.value.indexOf(product.size);
+    if (sizeIndex !== -1) {
+      isSoldOut.value[sizeIndex] = stock.quantity <= 0;
+    }
+  }
+};
+
+watch(() => props.color, async (newColor) => {
+  selectedSizes.value = await Products.getSizesByColor(props.name, newColor.replace('#', ''));
+  if (newColor) {
+    await fetchProductsAndStock(newColor);
+    if (selectedSizes.value.length > 0) {
+      const firstAvailableSize = selectedSizes.value.find((size, index) => !isSoldOut.value[index]);
+      if (firstAvailableSize) {
+        selectSize(firstAvailableSize);
+      }
+    }
+  }
+}, { immediate: true });
 
 const selectSize = (size) => {
-  selectedSize.value = size;
-  emits('update:selectedSize', size);
+  if (!isSoldOut.value[selectedSizes.value.indexOf(size)]) {
+    selectedSize.value = size;
+    emits('update:selectedSize', size);
+  }
 };
 
 watch(() => props.sizes, (newSizes) => {
@@ -23,16 +64,19 @@ watch(() => props.sizes, (newSizes) => {
     selectSize(newSizes[0]);
   }
 }, { immediate: true });
+
+onMounted(async () => {
+  await fetchProductsAndStock(props.color);
+});
 </script>
 
 <template>
   <div class="size-selector">
     <div class="overlay"></div>
     <div class="sizes">
-      <div v-for="size in sizes" :key="size" class="size-option" :class="{ selected: size === selectedSize }" @click="selectSize(size)">
-        <input type="radio" :id="size" :value="size" v-model="selectedSize" @change="selectSize(size)" />
-        <label class="size" :for="size">{{ size }}</label>
-      </div>
+      <div v-for="(size, index) in selectedSizes" :key="size" class="size-option" :class="{ selected: size === selectedSize, 'sold-out': isSoldOut[index] }" @click="selectSize(size)">
+        <input type="radio" :id="size" :value="size" v-model="selectedSize" @change="selectSize(size)" :disabled="isSoldOut[index]" />
+        <label class="size" :for="size" :class="{ 'disabled-label': isSoldOut[index] }">{{ size }}</label>      </div>
     </div>
   </div>
 </template>
@@ -72,6 +116,11 @@ watch(() => props.sizes, (newSizes) => {
   position: relative;
 }
 
+.size-option.sold-out {
+  filter: brightness(0.5);
+  cursor: not-allowed;
+}
+
 .size-option::before {
   content: '';
   position: absolute;
@@ -79,9 +128,9 @@ watch(() => props.sizes, (newSizes) => {
   left: 2px;
   width: calc(100% - 4px);
   height: calc(100% - 4px);
-  background-color: var(--color); /* Use the color variable */
-  opacity: 1; /* Adjust the opacity as needed */
-  mix-blend-mode: overlay; /* Blend the color with the background */
+  background-color: var(--color);
+  opacity: 1;
+  mix-blend-mode: overlay;
   z-index: -1;
 }
 
@@ -111,5 +160,10 @@ input[type="radio"] {
   border-radius: 8px;
   z-index: 0;
   pointer-events: none;
+}
+
+.disabled-label {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>

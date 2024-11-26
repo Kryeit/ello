@@ -51,14 +51,6 @@ onMounted(() => {
       <div>
         <img :src="iconSource" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave" @click="sendToMainPage"
              alt=""/>
-        <div class="social-media">
-          <a href="https://discord.gg/njGh5UUU4d" target="_blank" rel="noopener noreferrer">
-            <DiscordLogo class="logo"/>
-          </a>
-          <a href="https://github.com/Kryeit" target="_blank" rel="noopener noreferrer">
-            <GithubLogo class="logo"/>
-          </a>
-        </div>
       </div>
       <ProfileDropdown class="profile-dropdown"/>
     </div>
@@ -116,11 +108,7 @@ onMounted(() => {
   cursor: pointer;
 }
 
-.social-media a {
-  cursor: pointer;
-  color: var(--color-background);
 
-}
 
 .logo {
   width: 50px;

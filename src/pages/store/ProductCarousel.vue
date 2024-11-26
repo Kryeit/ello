@@ -57,6 +57,7 @@ const onFlickingReady = () => {
 .carousel-wrapper {
   overflow: hidden;
   position: relative;
+  z-index: 998;
 }
 
 .carousel {

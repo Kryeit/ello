@@ -16,7 +16,7 @@ const navigateToAnalytics = () => {
   <div class="sections-container">
     <div class="section" @click="navigateToAnalytics">Analytics</div>
     <div class="section" @click="navigateToStore">Store</div>
-    <div class="section">Nothing thought</div>
+    <div class="section">Nothing</div>
   </div>
 </template>
 
@@ -30,23 +30,47 @@ const navigateToAnalytics = () => {
 }
 
 .section {
-  background-color: var(--color-text);
   flex: 1;
   padding: 16px;
-  border: 5px solid var(--color-border);
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 3rem;
   cursor: pointer;
-  transition: transform 0.3s, background-color 0.3s;
-  color: var(--color-border);
+  position: relative;
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 255, 0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+.section:nth-child(2) {
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 40px rgb(255, 122, 12);
+}
+
+.section:nth-child(3) {
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 255, 0, 0.5);
 }
 
 .section:hover {
-  transform: scale(1.01);
-  background-color: var(--color-background);
+  animation: swing 5s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-1px) translateY(1px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateX(1px) translateY(-1px) rotate(0.5deg);
+  }
+  75% {
+    transform: translateX(-1px) translateY(1px) rotate(-0.3deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
 }
 
 @media (max-width: 900px) {

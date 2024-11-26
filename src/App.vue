@@ -62,7 +62,7 @@ useRouter().afterEach(() => {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .cog-toggler {
     top: min(100%, 100% - env(safe-area-inset-bottom));
     left: 50%;

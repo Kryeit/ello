@@ -13,8 +13,9 @@ import {
     TrashCan16,
     Download16,
     ArrowLeft32,
-    LogoDiscord32,
-    LogoGithub32
+    LogoDiscord16,
+    LogoGithub16,
+    LogoYoutube16
 } from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
@@ -49,8 +50,9 @@ createApp(App)
         CarbonIconsVue,
         {
             components: {
-                DiscordLogo: LogoDiscord32,
-                GithubLogo: LogoGithub32,
+                DiscordLogo: LogoDiscord16,
+                GithubLogo: LogoGithub16,
+                YoutubeLogo: LogoYoutube16,
                 Moon: Moon32,
                 Sun: Sun32,
                 Cafe: Cafe32,

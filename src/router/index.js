@@ -17,6 +17,8 @@ import Error from "@/pages/Error.vue";
 import Homemade from "@/pages/community/Homemade.vue";
 import PrivacyPolicy from "@/pages/policies/PrivacyPolicy.vue";
 import ServiceAgreement from "@/pages/policies/ServiceAgreement.vue";
+import Orders from "@/pages/Orders.vue";
+import CreateOrder from "@/components/payment/CreateOrder.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -38,6 +40,8 @@ const routes = [
 
     {path: "/privacy", component: PrivacyPolicy},
     {path: "/terms", component: ServiceAgreement},
+    {path: "/orders", component: Orders},
+    {path: "/order/create", component: CreateOrder},
 ]
 
 const router = createRouter({

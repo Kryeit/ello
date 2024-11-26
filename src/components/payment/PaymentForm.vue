@@ -1,0 +1,78 @@
+<template>
+  <div>
+    <button @click="redirectToCheckout" :disabled="processing">
+      {{ processing ? "Processing..." : "Pay Now " + cart().totalPrice + "€" }}
+    </button>
+  </div>
+</template>
+
+<script>
+import { loadStripe } from '@stripe/stripe-js';
+import { cart } from "@/js/merch/cart.js";
+
+export default {
+  props: {
+    formData: Object
+  },
+  data() {
+    return {
+      stripe: null,
+      processing: false,
+    };
+  },
+  async mounted() {
+    this.stripe = await loadStripe('pk_test_51OtwANDLNKXyc0J1TNDujqp4FCBKXlq7yMqUOBMsKSfYenydSamwzyl0T4dIDsvaVmUJ5KHORvRkogmjCmHEkMqa00R6cDAaGV'); // Replace with your publishable key
+
+    if (!this.stripe) {
+      console.error("Stripe failed to initialize.");
+    }
+  },
+  methods: {
+    cart() {
+      return cart
+    },
+    async redirectToCheckout() {
+      if (!this.formData.email || !this.formData.destination) {
+        alert('Please provide both email and destination.');
+        return;
+      }
+
+      this.processing = true;
+
+      try {
+        // Prepare the cart data to be sent
+        const cartData = cart.items; // Use your imported reactive `cart` object
+
+        // Send cart details to backend to create a Stripe Checkout session
+        const response = await fetch('http://localhost:6969/api/payment/create', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify({
+            cart: cartData,
+            email: this.formData.email,
+            phone: this.formData.phone,
+            destination: this.formData.destination,
+          }),
+        });
+
+        const {id: sessionId, error} = await response.json();
+
+        if (error) {
+          console.error(error);
+          alert('Error creating checkout session.');
+          return;
+        }
+
+        // Redirect to Stripe Checkout
+        await this.stripe.redirectToCheckout({sessionId});
+      } catch (err) {
+        console.error(err.message);
+        alert('Failed to redirect to Checkout.');
+      } finally {
+        this.processing = false;
+      }
+    },
+  },
+};
+</script>

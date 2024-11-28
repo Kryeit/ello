@@ -16,7 +16,7 @@
           <h3 v-if="selectedColor">Color:</h3>
           <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
           <p v-if="product.material">Material: {{ product.material }}</p>
-          <p>Stock: {{ stock?.quantity ?? 0 }}</p>
+          <p v-if="!product.virtual">Stock: {{ stock?.quantity ?? 0 }}</p>
           <div class="price-container">
             <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
             <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>

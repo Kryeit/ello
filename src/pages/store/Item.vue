@@ -36,19 +36,25 @@ onMounted(async () => {
     <div class="product-header">
       <img class="product-image" :src="image" alt="" />
       <h2>{{ props.product[0].name }}</h2>
-      <div v-if="stock === 0" class="sold-out">Sold Out</div>
     </div>
 
     <div class="product-info">
       <p>{{ props.product[0].price }}€</p>
-      <p v-if="!props.lonely">{{ stock }} units left!</p>
+      <p v-if="product[0].virtual">{{ product[0].description}}</p>
+      <p v-if="!props.lonely && !product[0].virtual">{{ stock }} units left!</p>
       <div class="sizes">
         <p v-if="!props.lonely">{{ sizes.join(', ') }}</p>
         <p v-else>{{ product[0].size }}</p>
       </div>
     </div>
     <div v-if="stock === 0" class="blur-overlay"></div>
+    <div v-if="stock === 0" class="sold-out">
+      <p>
+        Out of stock
+      </p>
+    </div>
   </div>
+
 </template>
 
 <style scoped>
@@ -113,17 +119,24 @@ h2 {
 }
 
 .sold-out {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: red;
+  background: rgba(255, 0, 0, 0.4);
   color: white;
   padding: 5px 10px;
   font-size: 1rem;
   font-weight: bold;
-  transform: rotate(-15deg);
   z-index: 2;
-  border-radius: 4px;
+  width: 104%;
+  margin: -16px;
+  position: absolute;
+  height: 30%;
+  top: 20%;
+  align-content: center;
+}
+
+.sold-out p {
+  transform: scaleY(3.5);
+  font-stretch: condensed;
+  text-align: center;
 }
 
 .blur-overlay {

@@ -68,7 +68,8 @@ const removeItem = (productId) => {
 .item-name {
   flex-grow: 1;
   color: var(--color-text);
-  text-decoration: none;
+  text-decoration: underline;
+
 }
 
 .item-details {

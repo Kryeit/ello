@@ -81,7 +81,7 @@ const navigateToAnalytics = () => {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .sections-container {
     flex-direction: column;
     padding-left: 8px;

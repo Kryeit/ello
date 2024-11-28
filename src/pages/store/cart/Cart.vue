@@ -26,8 +26,10 @@
 import { computed, onMounted, ref, watch, nextTick } from 'vue';
 import { cart } from '@/js/merch/cart.js';
 import Products from '@/js/merch/products.js';
-import clipboard from '@/assets/minecraft/clipboard.webp';
-import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
+import jarOfTips from '@/assets/minecraft/jar_of_tips.png';
+import jarOfTips1 from '@/assets/minecraft/jar_of_tips_1.png';
+import jarOfTips2 from '@/assets/minecraft/jar_of_tips_2.png';
+import jarOfTips3 from '@/assets/minecraft/jar_of_tips_3.png';
 import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
@@ -68,8 +70,11 @@ const totalPrice = computed(() => {
   return cart.totalPrice;
 });
 
+const cartIcons = [jarOfTips, jarOfTips1, jarOfTips2, jarOfTips3];
+
 const cartIconSrc = computed(() => {
-  return Object.keys(cart.items).length > 0 ? writtenClipboard : clipboard;
+  const itemCount = Object.values(cart.items).reduce((total, item) => total + item.quantity, 0);
+  return cartIcons[Math.min(itemCount, cartIcons.length - 1)];
 });
 
 const cartIconClass = computed(() => {
@@ -121,7 +126,7 @@ const goToCheckout = () => {
 .cart-items {
   margin-top: 10px;
   margin-bottom: 10px;
-  max-height: calc(100vh - 200px); /* Adjust the value as needed */
+  max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
 
@@ -130,6 +135,26 @@ const goToCheckout = () => {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+button {
+  background: none;
+  border: 2px dashed var(--color-border);
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  display: flex;
+}
+
+button:hover {
+  background: var(--color-background-mute);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 @media (max-width: 1024px) {

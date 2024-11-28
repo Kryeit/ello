@@ -47,10 +47,9 @@ onMounted(async () => {
         <p v-else>{{ product[0].size }}</p>
       </div>
     </div>
-    <div v-if="stock === 0" class="blur-overlay"></div>
     <div v-if="stock === 0" class="sold-out">
       <p>
-        Out of stock
+        Sold Out
       </p>
     </div>
   </div>
@@ -119,33 +118,19 @@ h2 {
 }
 
 .sold-out {
-  background: rgba(255, 0, 0, 0.4);
+  background: rgba(255, 0, 0, 0.5);
   color: white;
-  padding: 5px 10px;
   font-size: 1rem;
   font-weight: bold;
   z-index: 2;
-  width: 104%;
-  margin: -16px;
   position: absolute;
-  height: 30%;
-  top: 20%;
   align-content: center;
+  display: block;
 }
 
 .sold-out p {
   transform: scaleY(3.5);
   font-stretch: condensed;
   text-align: center;
-}
-
-.blur-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(1px);
-  z-index: 1;
 }
 </style>

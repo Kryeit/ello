@@ -20,6 +20,7 @@ import ServiceAgreement from "@/pages/policies/ServiceAgreement.vue";
 import Orders from "@/pages/Orders.vue";
 import CreateOrder from "@/pages/CreateOrder.vue";
 import Shipping from "@/pages/policies/Shipping.vue";
+import Donate from "@/pages/Donate.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -42,6 +43,8 @@ const routes = [
     {path: "/privacy", component: PrivacyPolicy},
     {path: "/terms", component: ServiceAgreement},
     {path: "/shipping", component: Shipping},
+
+    {path: "/donate", component: Donate},
 
     {path: "/orders", component: Orders},
     {path: "/order/create", component: CreateOrder},

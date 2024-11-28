@@ -1,8 +1,10 @@
 <script setup>
 import {ref, onMounted, onUnmounted, computed} from 'vue';
 
-import clipboard from '@/assets/minecraft/clipboard.webp';
-import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
+import jarOfTips from '@/assets/minecraft/jar_of_tips.png';
+import jarOfTips1 from '@/assets/minecraft/jar_of_tips_1.png';
+import jarOfTips2 from '@/assets/minecraft/jar_of_tips_2.png';
+import jarOfTips3 from '@/assets/minecraft/jar_of_tips_3.png';
 import {cart} from "@/js/merch/cart.js";
 
 const isMobile = ref(false);
@@ -11,8 +13,11 @@ const checkScreenSize = () => {
   isMobile.value = window.innerWidth <= 1024;
 };
 
+const cartIcons = [jarOfTips, jarOfTips1, jarOfTips2, jarOfTips3];
+
 const cartIconSrc = computed(() => {
-  return Object.keys(cart.items).length > 0 ? writtenClipboard : clipboard;
+  const itemCount = Object.values(cart.items).reduce((total, item) => total + item.quantity, 0);
+  return cartIcons[Math.min(itemCount, cartIcons.length - 1)];
 });
 
 const cartIconClass = computed(() => {
@@ -37,12 +42,11 @@ onUnmounted(() => {
       </router-link>
     </button>
     <button class="cart" @click="$emit('open-cart')">
-      <img :class="cartIconClass" :src="cartIconSrc" draggable="false" alt="" />
+      <img :class="cartIconClass" :src="cartIconSrc" draggable="false" alt=""/>
       Cart
     </button>
   </div>
 </template>
-
 
 <style scoped>
 @media (max-width: 1024px) {

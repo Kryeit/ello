@@ -8,6 +8,7 @@
         <div class="product-description">
           <p>{{ product.description }}</p>
         </div>
+        <div class="separator"></div>
         <div class="product-details">
           <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
           <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
@@ -110,22 +111,6 @@ async function updateSelectedProduct() {
   box-sizing: border-box;
 }
 
-.details-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.product-description {
-  flex: 0 1 auto;
-  min-width: 300px;
-}
-
-.product-details {
-  flex: 1;
-}
-
 .price-container {
   display: flex;
   align-items: center;
@@ -142,9 +127,9 @@ h1 {
 }
 
 button {
-  background: var(--color-background-mute);
+  background: none;
   margin-top: 8px;
-  border: 2px solid var(--color-border);
+  border: 2px dashed var(--color-border);
   cursor: pointer;
   font-size: 16px;
   border-radius: 12px;
@@ -153,10 +138,11 @@ button {
   user-select: none;
   display: flex;
   min-height: 30px;
+  padding: 10px;
 }
 
 button:hover {
-  filter: brightness(1.05);
+  background: var(--color-background-mute);
 }
 
 button:active {
@@ -167,9 +153,36 @@ button:active {
   white-space: nowrap;
 }
 
+.separator {
+  width: 1px;
+  background: var(--color-border);
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-description {
+  flex: 1;
+  min-width: 50%;
+}
+
+.product-details {
+  flex: 1;
+  min-width: 50%;
+}
+
 @media (max-width: 600px) {
   .details-container {
     flex-direction: column;
+  }
+
+  .product-description,
+  .product-details {
+    min-width: 100%;
   }
 }
 </style>

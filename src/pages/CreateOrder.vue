@@ -1,19 +1,21 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, nextTick, getCurrentInstance } from 'vue';
 import PaymentForm from "@/components/payment/PaymentForm.vue";
 import Cart from "@/pages/store/cart/Cart.vue";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
 import { cart } from "@/js/merch/cart.js";
 import Products from "@/js/merch/products.js";
 
+const { emit } = getCurrentInstance();
+
 const email = ref('');
 const destination = ref('');
 const phone = ref('');
 
 const hasPhysicalProduct = computed(() => {
-  const items = cart.items; // Access the reactive object directly
+  const items = cart.items;
   for (const key in items) {
-    const product = Products.getProduct(items[key].key); // Access the key property directly
+    const product = Products.getProduct(items[key].key);
     if (!product.virtual) {
       return true;
     }
@@ -26,6 +28,11 @@ const handleSubmit = () => {
   console.log('Destination:', destination.value);
   console.log('Phone:', phone.value);
 };
+
+onMounted(async () => {
+  await nextTick();
+  emit('open-cart');
+});
 </script>
 
 <template>
@@ -34,17 +41,19 @@ const handleSubmit = () => {
   <form @submit.prevent="handleSubmit">
     <div>
       <label for="email">Email: </label>
-      <input type="email" id="email" v-model="email" required />
+      <input type="email" id="email" v-model="email" required/>
     </div>
     <div>
       <label :for="hasPhysicalProduct ? 'destination' : ''">Destination: </label>
-      <input type="text" id="destination" v-model="destination" :required="hasPhysicalProduct" placeholder="Flat 1, 123 Main St, Springfield, USA, 12345" />
+      <input type="text" id="destination" v-model="destination" :required="hasPhysicalProduct"
+             placeholder="Flat 1, 123 Main St, Springfield, USA, 12345"/>
     </div>
     <div>
       <label for="phone">Phone: </label>
-      <input type="tel" id="phone" v-model="phone" placeholder="+1 123-456-7890" oninput="this.value=this.value.replace(/[^0-9+]/g,'')" />
+      <input type="tel" id="phone" v-model="phone" placeholder="+1 123-456-7890"
+             oninput="this.value=this.value.replace(/[^0-9+]/g,'')"/>
     </div>
-    <PaymentForm :form-data="{ email, destination, phone }" />
+    <PaymentForm :form-data="{ email, destination, phone }"/>
   </form>
 </template>
 
@@ -57,7 +66,7 @@ form {
 
 label {
   font-weight: bold;
-  display: block; /* Ensure label is a block element */
+  display: block;
   position: relative;
 }
 
@@ -76,8 +85,8 @@ input {
   font-size: 0.9rem;
   border-radius: 5px;
   font-family: 'Minecraftia', sans-serif;
-  display: block; /* Ensure input is a block element */
-  margin-top: 5px; /* Add margin to separate input from label */
+  display: block;
+  margin-top: 5px;
 }
 
 input:focus {

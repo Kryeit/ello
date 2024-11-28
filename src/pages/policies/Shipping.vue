@@ -1,6 +1,7 @@
 <script setup>
 import {marked} from 'marked';
 import Cart from "@/pages/store/cart/Cart.vue";
+import StoreFooter from "@/components/payment/StoreFooter.vue";
 
 const rawShipping = `
 ## Shipping Information
@@ -49,6 +50,7 @@ const shippingHtml = marked.parse(rawShipping);
   </div>
 
   <Cart />
+  <StoreFooter />
 </template>
 
 <style scoped>

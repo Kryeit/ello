@@ -4,18 +4,22 @@
 
     <transition name="cart">
       <div v-if="visible" ref="cartContainer" class="cart">
-        <ArrowLeft v-if="visible" class="close-cart" style="visibility: hidden; position: absolute;" @click="toggleCart"/>
-        <h2 style="text-align: center">Cart</h2>
+        <div class="header">
+          <ArrowLeft class="close-cart" @click="toggleCart"/>
+          <h2 class="title">Cart</h2>
+        </div>
         <div class="cart-items">
           <CartItem v-for="(item, index) in displayedItems" :key="index" :item="item"/>
         </div>
         <div class="bottom">
           <p>Total: {{ totalPrice }}€</p>
-          <button class="checkout" @click="goToCheckout">Checkout</button>
+          <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
         </div>
       </div>
     </transition>
   </div>
+
+  <Sidebar @open-cart="toggleCart"/>
 </template>
 
 <script setup>
@@ -26,12 +30,12 @@ import clipboard from '@/assets/minecraft/clipboard.webp';
 import writtenClipboard from '@/assets/minecraft/written_clipboard.webp';
 import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
+import Sidebar from "@/components/navbar/components/Sidebar.vue";
 
 const visible = ref(false);
 const displayedItems = ref([]);
 
 const toggleCart = (event) => {
-  event.stopPropagation();
   visible.value = !visible.value;
 };
 
@@ -89,6 +93,17 @@ const goToCheckout = () => {
   z-index: 999;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .cart {
   position: fixed;
   top: 90px;
@@ -124,11 +139,6 @@ const goToCheckout = () => {
     height: 100%;
     width: 100%;
     max-width: 100%;
-  }
-
-  .close-cart {
-    position: static !important;
-    visibility: visible !important;
   }
 
   .cart-icon {

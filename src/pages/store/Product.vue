@@ -1,36 +1,37 @@
 <template>
-  <Sidebar/>
+  <div class="page-container">
+    <div v-if="product" class="product-container">
+      <h1>{{ product.name }} #{{ selectedProduct }}</h1>
+      <ProductCarousel :product-name="product.name"/>
 
-  <div v-if="product" class="product-container">
-    <h1>{{ product.name }} #{{ selectedProduct }}</h1>
-    <ProductCarousel :product-name="product.name"/>
-
-    <div class="details-container">
-      <div class="product-description">
-        <p>{{ product.description }}</p>
-      </div>
-      <div class="product-details">
-        <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
-        <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
-                      :name="product.name" :color="selectedColor"
-                      @update:selectedSize="selectedSize = $event"/>
-        <h3 v-if="selectedColor">Color:</h3>
-        <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
-        <p v-if="product.material">Material: {{ product.material }}</p>
-        <p>Stock: {{ stock?.quantity ?? 0 }}</p>
-        <div class="price-container">
-          <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
-          <button @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+      <div class="details-container">
+        <div class="product-description">
+          <p>{{ product.description }}</p>
+        </div>
+        <div class="product-details">
+          <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
+          <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
+                        :name="product.name" :color="selectedColor"
+                        @update:selectedSize="selectedSize = $event"/>
+          <h3 v-if="selectedColor">Color:</h3>
+          <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
+          <p v-if="product.material">Material: {{ product.material }}</p>
+          <p>Stock: {{ stock?.quantity ?? 0 }}</p>
+          <div class="price-container">
+            <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
+            <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div v-else>
-    <p>Loading...</p>
-  </div>
+    <div v-else>
+      <p>Loading...</p>
+    </div>
 
-  <Cart/>
+    <Cart/>
+    <StoreFooter class="footer"/>
+  </div>
 </template>
 
 <script setup>
@@ -43,7 +44,7 @@ import {cart} from '@/js/merch/cart.js';
 import Cart from "@/pages/store/cart/Cart.vue";
 import ProductCarousel from "@/pages/store/ProductCarousel.vue";
 import Stock from '@/js/merch/stock.js';
-import Sidebar from "@/components/navbar/components/Sidebar.vue";
+import StoreFooter from "@/components/payment/StoreFooter.vue";
 
 const route = useRoute();
 const product = ref(null);
@@ -94,6 +95,16 @@ async function updateSelectedProduct() {
 </script>
 
 <style scoped>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  margin-top: auto;
+}
+
 .product-container {
   padding: 20px;
   box-sizing: border-box;
@@ -150,6 +161,10 @@ button:hover {
 
 button:active {
   transform: scale(0.95);
+}
+
+.add-to-cart {
+  white-space: nowrap;
 }
 
 @media (max-width: 600px) {

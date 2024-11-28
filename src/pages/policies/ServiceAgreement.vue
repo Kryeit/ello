@@ -1,5 +1,6 @@
 <script setup>
 import { marked } from 'marked';
+import Cart from "@/pages/store/cart/Cart.vue";
 
 const rawServiceAgreement = `
 # Service Agreement
@@ -50,6 +51,8 @@ const serviceAgreement = marked.parse(rawServiceAgreement);
     <h1>Service Agreement</h1>
     <div class="agreement-content" v-html="serviceAgreement"></div>
   </div>
+
+  <Cart />
 </template>
 
 <style scoped>

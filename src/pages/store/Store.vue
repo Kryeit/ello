@@ -3,11 +3,21 @@ import { ref, onMounted } from 'vue';
 import Products from '@/js/merch/products.js';
 import Item from '@/pages/store/Item.vue';
 import Cart from "@/pages/store/cart/Cart.vue";
+import StoreFooter from "@/components/payment/StoreFooter.vue";
 
-const items = ref([]);
+const virtualProducts = ref([]);
+const merchProducts = ref([]);
 
 onMounted(async () => {
-  items.value = await Products.getProductsGroupedByName();
+  const allProducts = await Products.getProductsGroupedByName();
+
+  for (const category in allProducts) {
+    if (allProducts[category][0].virtual) {
+      virtualProducts.value.push(allProducts[category][0]);
+    } else {
+      merchProducts.value.push(allProducts[category][0]);
+    }
+  }
 });
 </script>
 
@@ -16,13 +26,28 @@ onMounted(async () => {
     <h1>Store</h1>
   </div>
 
-  <div class="grid-container">
-    <div v-for="item in items" :key="item.id" class="grid-item">
-      <Item :product="item" />
+  <div class="section">
+    <h2>Merch</h2>
+    <div class="grid-container">
+      <div v-for="product in merchProducts" :key="product.id" class="grid-item">
+
+        <Item v-if="product.listed" :product="Array.of(product)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Virtual Cosmetics</h2>
+    <div class="grid-container">
+      <div v-for="product in virtualProducts" :key="product.id" class="grid-item">
+        <Item v-if="product.listed" :product="Array.of(product)" />
+      </div>
     </div>
   </div>
 
   <Cart />
+
+  <StoreFooter />
 </template>
 
 <style scoped>
@@ -35,6 +60,14 @@ onMounted(async () => {
 
 .header h1 {
   margin: 0;
+}
+
+h2 {
+  margin-bottom: 12px;
+}
+
+.section {
+  margin-bottom: 32px;
 }
 
 .grid-container {

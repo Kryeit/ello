@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 100%;
   left: -150%;
-  z-index: 1000;
+  z-index: 1600;
   background-color: var(--color-background);
   width: 200px;
   display: flex;

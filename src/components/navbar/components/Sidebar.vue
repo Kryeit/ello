@@ -36,12 +36,13 @@ onUnmounted(() => {
         Store
       </router-link>
     </button>
-    <button class="cart">
-      <img :class="cartIconClass" :src="cartIconSrc" @click="toggleCart" draggable="false"  alt=""/>
+    <button class="cart" @click="$emit('open-cart')">
+      <img :class="cartIconClass" :src="cartIconSrc" draggable="false" alt="" />
       Cart
     </button>
   </div>
 </template>
+
 
 <style scoped>
 @media (max-width: 1024px) {

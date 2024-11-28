@@ -1,5 +1,6 @@
 <script setup>
 import {marked} from 'marked';
+import Cart from "@/pages/store/cart/Cart.vue";
 
 const rawPrivacyPolicy = `
 
@@ -60,6 +61,8 @@ const privacyPolicy = marked.parse(rawPrivacyPolicy);
     <h1>Privacy Policy</h1>
     <div class="policy-content" v-html="privacyPolicy"></div>
   </div>
+
+  <Cart />
 </template>
 
 <style scoped>

@@ -3,7 +3,6 @@ import {useRoute, useRouter} from "vue-router";
 import InfoHolder from "@/pages/playerInfo/InfoHolder.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import {ref} from "vue";
-import Avatar from "@/pages/playerInfo/Avatar.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -31,7 +30,6 @@ async function search(query) {
   <Searchbar class="searchbar" :search-fn="search" @result-selected="showInfo"></Searchbar>
 
   <InfoHolder v-if="playerName" :key="playerName" :player-name="playerName"></InfoHolder>
-  <Avatar :player="playerName"></Avatar>
 
 </template>
 

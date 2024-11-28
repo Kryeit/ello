@@ -15,7 +15,10 @@ const navigateToAnalytics = () => {
 <template>
   <div class="sections-container">
     <div class="section" @click="navigateToAnalytics">Analytics</div>
-    <div class="section" @click="navigateToStore">Store</div>
+    <div class="section" @click="navigateToStore">
+      <img class="snowman" src="@/assets/kryeit/snowman.png" alt="Snowman" />
+      <h1>Store</h1>
+      </div>
     <div class="section">Nothing</div>
   </div>
 </template>
@@ -41,6 +44,11 @@ const navigateToAnalytics = () => {
   color: white;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 255, 0.5);
   transition: transform 0.3s ease-in-out;
+  user-select: none;
+}
+
+.section h1 {
+  z-index: 1000;
 }
 
 .section:nth-child(2) {
@@ -85,5 +93,15 @@ const navigateToAnalytics = () => {
   .section {
     width: 100%;
   }
+}
+
+.snowman {
+  position: absolute;
+  z-index: 0;
+  transform: rotate(-7deg);
+  left: 20px;
+  width: 300px;
+  user-select: none;
+  pointer-events: none;
 }
 </style>

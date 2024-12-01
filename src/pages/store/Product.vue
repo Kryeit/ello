@@ -59,18 +59,29 @@ const stock = ref(null);
 onMounted(async () => {
   const productName = route.params.name;
   const productsByColor = await Products.getProductsByColor(productName);
-  colors = Object.keys(productsByColor);
-  selectedColor.value = colors[0];
+  console.log(productsByColor);
 
-  product.value = {
-    name: productName,
-    colors: productsByColor,
-    ...productsByColor[colors[0]][0]
-  };
+  if (Object.keys(productsByColor)[0] === "") {
+    // No colors or sizes, just one product
+    const productId = await Products.getProductsByName(productName);
+    product.value = await Products.getProduct(productId);
+    selectedProduct.value = productId[0];
 
-  sizes.value = await Products.getSizesByColor(productName, selectedColor.value.replace('#', ''));
+  } else {
+    // Existing logic for handling products with colors and sizes
+    colors = Object.keys(productsByColor);
+    selectedColor.value = colors[0];
 
-  await updateSelectedProduct();
+    product.value = {
+      name: productName,
+      colors: productsByColor,
+      ...productsByColor[colors[0]][0]
+    };
+
+    sizes.value = await Products.getSizesByColor(productName, selectedColor.value.replace('#', ''));
+
+    await updateSelectedProduct();
+  }
 });
 
 watch(selectedColor, async (newColor) => {

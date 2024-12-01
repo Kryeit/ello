@@ -59,7 +59,8 @@ const fetchGroupedItems = async () => {
           ...item,
           name: product.name,
           color: product.color,
-          size: product.size
+          size: product.size,
+          virtual: product.virtual,
         };
       })
   );

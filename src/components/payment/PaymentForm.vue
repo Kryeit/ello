@@ -1,10 +1,31 @@
 <template>
   <div>
     <button @click="redirectToCheckout" :disabled="processing">
-      {{ processing ? "Processing..." : "Pay Now " + cart().totalPrice + "€" }}
+      {{ processing ? "Processing..." : "Pay Now " + cart.totalPrice(hasNonVirtualItems) + "€" }}
     </button>
   </div>
 </template>
+
+<script setup>
+import {computed, onMounted, ref, watch} from "vue";
+import Products from "@/js/merch/products.js";
+
+const hasNonVirtualItems = ref(false);
+
+const checkNonVirtualItems = async () => {
+  const results = await Promise.all(
+      Object.keys(cart.items).map(async item => {
+        const product = await Products.getProduct(item);
+        return !product.virtual;
+      })
+  );
+  hasNonVirtualItems.value = results.some(isNonVirtual => isNonVirtual);
+};
+
+onMounted(checkNonVirtualItems);
+
+watch(() => cart.items, checkNonVirtualItems, { deep: true });
+</script>
 
 <script>
 import { loadStripe } from '@stripe/stripe-js';
@@ -76,3 +97,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+button {
+  background-color: var(--color-background);
+  cursor: pointer;
+}
+</style>

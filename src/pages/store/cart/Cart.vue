@@ -12,9 +12,9 @@
           <CartItem v-for="(item, index) in displayedItems" :key="index" :item="item"/>
         </div>
         <div class="bottom">
-          <div class="price">
+          <div>
             <p>Total: {{ totalPrice }}€</p>
-            <p v-if="hasNonVirtualItems">+{{ Orders.shippingCosts }} of shipping</p>
+            <p v-if="hasNonVirtualItems" class="shipping">+{{ Orders.shippingCosts }}€ of shipping</p>
           </div>
           <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
         </div>
@@ -37,6 +37,7 @@ import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
 import Orders from "../../../js/merch/orders.js";
+import Shipping from "@/pages/policies/Shipping.vue";
 
 const visible = ref(false);
 const displayedItems = ref([]);
@@ -75,7 +76,7 @@ watch(() => cart.items, async () => {
 }, { deep: true });
 
 const totalPrice = computed(() => {
-  return cart.totalPrice;
+  return cart.totalPrice(false);
 });
 
 const cartIcons = [jarOfTips, jarOfTips1, jarOfTips2, jarOfTips3];
@@ -179,6 +180,10 @@ button:active {
   }
 }
 
+.shipping {
+  font-size: 0.7rem;
+
+}
 /* Transition styles */
 .cart-enter-active, .cart-leave-active {
   transition: all 0.3s ease;

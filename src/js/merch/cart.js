@@ -50,8 +50,14 @@ const createCart = async () => {
             saveCartToLocalStorage(this.items);
         },
 
-        get totalPrice() {
-            return Object.values(this.items).reduce((total, item) => total + item.price * item.quantity, 0);
+        totalPrice(hasNonVirtualItems) {
+            let totalPrice = Object.values(this.items).reduce((total, item) => total + item.price * item.quantity, 0);
+
+            if (hasNonVirtualItems) {
+                totalPrice += 10;
+            }
+
+            return totalPrice;
         }
     });
 

@@ -81,4 +81,9 @@ const removeItem = (productId) => {
   display: flex;
   gap: 5px;
 }
+
+button {
+  color: var(--color-text);
+  background: var(--color-background);
+}
 </style>

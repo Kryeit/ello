@@ -12,7 +12,10 @@
           <CartItem v-for="(item, index) in displayedItems" :key="index" :item="item"/>
         </div>
         <div class="bottom">
-          <p>Total: {{ totalPrice }}€</p>
+          <div class="price">
+            <p>Total: {{ totalPrice }}€</p>
+            <p v-if="hasNonVirtualItems">+{{ Orders.shippingCosts }} of shipping</p>
+          </div>
           <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
         </div>
       </div>
@@ -33,6 +36,7 @@ import jarOfTips3 from '@/assets/minecraft/jar_of_tips_3.png';
 import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
+import Orders from "../../../js/merch/orders.js";
 
 const visible = ref(false);
 const displayedItems = ref([]);
@@ -42,6 +46,9 @@ const toggleCart = (event) => {
 };
 
 const groupedItems = ref([]);
+const hasNonVirtualItems = computed(() => {
+  return groupedItems.value.some(item => !item.virtual);
+});
 
 const fetchGroupedItems = async () => {
   groupedItems.value = await Promise.all(

@@ -1,6 +1,8 @@
 class Orders {
     constructor() {
         this.apiUrl = 'http://localhost:6969/api/orders';
+
+        this.shippingCosts = 10;
     }
 
     async getOrders() {

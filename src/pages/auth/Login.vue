@@ -1,8 +1,6 @@
 <script setup>
 import {defineProps, onMounted} from 'vue';
 import AuthService from "@/js/auth/authService.js";
-import Store from "@/js/auth/store.js";
-import store from "@/js/auth/store.js";
 
 const props = defineProps({
   token: {

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 
 const modIds = ['jv0UKGOX', 'KN33kvHF', 'w8avchdW', '8k8d2Dbx', 'BGFlKGar'];
 

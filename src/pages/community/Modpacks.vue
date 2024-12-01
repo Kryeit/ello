@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 
 const officialProjectIds = ['duaqEXgz', 'QZixYYM8'];
 const communityProjectIds = ['iEeNYT4y', 'thV8JtM6', 'uWc39OfE'];

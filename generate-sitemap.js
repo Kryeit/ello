@@ -1,6 +1,6 @@
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { createWriteStream } from 'fs';
-import { resolve } from 'path';
+import {SitemapStream, streamToPromise} from 'sitemap';
+import {createWriteStream} from 'fs';
+import {resolve} from 'path';
 
 // Define your routes
 const routes = [

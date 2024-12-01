@@ -1,9 +1,8 @@
 <script setup>
-import { ref, computed, onMounted, nextTick, getCurrentInstance } from 'vue';
+import {computed, getCurrentInstance, nextTick, onMounted, ref} from 'vue';
 import PaymentForm from "@/components/payment/PaymentForm.vue";
 import Cart from "@/pages/store/cart/Cart.vue";
-import Sidebar from "@/components/navbar/components/Sidebar.vue";
-import { cart } from "@/js/merch/cart.js";
+import {cart} from "@/js/merch/cart.js";
 import Products from "@/js/merch/products.js";
 
 const { emit } = getCurrentInstance();

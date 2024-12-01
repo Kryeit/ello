@@ -5,17 +5,17 @@ import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
 
 import {
+    ArrowLeft32,
     Cafe32,
     CarbonIconsVue,
-    Laptop32,
-    Moon32,
-    Sun32,
-    TrashCan16,
     Download16,
-    ArrowLeft32,
+    Laptop32,
     LogoDiscord16,
     LogoGithub16,
-    LogoYoutube16
+    LogoYoutube16,
+    Moon32,
+    Sun32,
+    TrashCan16
 } from '@carbon/icons-vue';
 
 import './assets/styles/main.css'

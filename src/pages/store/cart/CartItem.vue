@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { cart } from '@/js/merch/cart.js';
+import {cart} from '@/js/merch/cart.js';
 
 const props = defineProps({
   item: Object

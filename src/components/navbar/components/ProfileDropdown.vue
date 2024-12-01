@@ -1,6 +1,6 @@
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
-import { useRouter } from 'vue-router';
+import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
+import {useRouter} from 'vue-router';
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 import AuthService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";

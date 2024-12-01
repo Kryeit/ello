@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from "vue";
+import {onMounted, ref, watch} from "vue";
 import Products from "@/js/merch/products.js";
 
 const hasNonVirtualItems = ref(false);

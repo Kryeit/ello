@@ -1,4 +1,4 @@
-import { reactive, computed, watch } from 'vue';
+import {reactive, watch} from 'vue';
 import Stock from '@/js/merch/stock.js';
 
 const loadCartFromLocalStorage = async () => {

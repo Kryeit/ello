@@ -26,8 +26,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch, nextTick } from 'vue';
-import { cart } from '@/js/merch/cart.js';
+import {computed, nextTick, onMounted, ref, watch} from 'vue';
+import {cart} from '@/js/merch/cart.js';
 import Products from '@/js/merch/products.js';
 import jarOfTips from '@/assets/minecraft/jar_of_tips.png';
 import jarOfTips1 from '@/assets/minecraft/jar_of_tips_1.png';
@@ -37,7 +37,6 @@ import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
 import Orders from "../../../js/merch/orders.js";
-import Shipping from "@/pages/policies/Shipping.vue";
 
 const visible = ref(false);
 const displayedItems = ref([]);

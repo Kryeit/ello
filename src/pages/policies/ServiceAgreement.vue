@@ -1,5 +1,5 @@
 <script setup>
-import { marked } from 'marked';
+import {marked} from 'marked';
 import Cart from "@/pages/store/cart/Cart.vue";
 import StoreFooter from "@/components/payment/StoreFooter.vue";
 

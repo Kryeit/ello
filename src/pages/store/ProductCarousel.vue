@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import {onMounted, ref} from "vue";
 import Products from "@/js/merch/products.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";

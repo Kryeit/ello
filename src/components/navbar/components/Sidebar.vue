@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, onUnmounted, computed} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 
 import jarOfTips from '@/assets/minecraft/jar_of_tips.png';
 import jarOfTips1 from '@/assets/minecraft/jar_of_tips_1.png';

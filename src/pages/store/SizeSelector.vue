@@ -1,6 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue';
-import { defineProps, defineEmits } from 'vue';
+import {defineEmits, defineProps, onMounted, ref, watch} from 'vue';
 import Stock from "@/js/merch/stock.js";
 import Products from "@/js/merch/products.js";
 

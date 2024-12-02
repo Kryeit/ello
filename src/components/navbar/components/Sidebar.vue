@@ -63,7 +63,7 @@ onUnmounted(() => {
     border-top-right-radius: 20% 20px;
     border-top-left-radius: 20% 20px;
     outline: 7px solid black;
-    z-index: 1000;
+    z-index: 900;
   }
 
   .sidebar button {

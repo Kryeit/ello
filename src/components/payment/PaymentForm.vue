@@ -30,6 +30,8 @@ watch(() => cart.items, checkNonVirtualItems, { deep: true });
 <script>
 import { loadStripe } from '@stripe/stripe-js';
 import { cart } from "@/js/merch/cart.js";
+import Products from "@/js/merch/products.js";
+import store from "@/js/auth/store.js";
 
 export default {
   props: {
@@ -62,7 +64,22 @@ export default {
 
       try {
         // Prepare the cart data to be sent
-        const cartData = cart.items; // Use your imported reactive `cart` object
+        const cartData = cart.items;
+
+        let hasVirtual = false;
+
+        for (const key in cartData) {
+          const product = await Products.getProduct(key);
+          if (product.virtual) {
+            hasVirtual = true;
+            break;
+          }
+        }
+
+        if (hasVirtual && !store.getUser()) {
+          alert('You need to be logged in.');
+          return;
+        }
 
         // Send cart details to backend to create a Stripe Checkout session
         const response = await fetch('http://localhost:6969/api/payment/create', {

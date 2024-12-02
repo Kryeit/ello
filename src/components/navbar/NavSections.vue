@@ -14,12 +14,18 @@ const navigateToAnalytics = () => {
 
 <template>
   <div class="sections-container">
-    <div class="section" @click="navigateToAnalytics">Analytics</div>
+    <div class="section" @click="navigateToAnalytics">
+      <img class="librarian" src="@/assets/minecraft/librarian.webp" alt="Librarian" />
+      <h4>Analytics</h4>
+    </div>
     <div class="section" @click="navigateToStore">
       <img class="snowman" src="@/assets/kryeit/snowman.png" alt="Snowman" />
       <h1>Store</h1>
       </div>
-    <div class="section">Nothing</div>
+    <div class="section">
+      <h4>Nothing</h4>
+
+    </div>
   </div>
 </template>
 
@@ -60,25 +66,7 @@ const navigateToAnalytics = () => {
 }
 
 .section:hover {
-  animation: swing 5s ease-in-out infinite;
-}
-
-@keyframes swing {
-  0% {
-    transform: translateX(0) translateY(0) rotate(0);
-  }
-  25% {
-    transform: translateX(-1px) translateY(1px) rotate(-0.5deg);
-  }
-  50% {
-    transform: translateX(1px) translateY(-1px) rotate(0.5deg);
-  }
-  75% {
-    transform: translateX(-1px) translateY(1px) rotate(-0.3deg);
-  }
-  100% {
-    transform: translateX(0) translateY(0) rotate(0);
-  }
+  transform: scale(1.1);
 }
 
 @media (max-width: 1024px) {
@@ -93,6 +81,15 @@ const navigateToAnalytics = () => {
   .section {
     width: 100%;
   }
+
+  .snowman {
+    max-width: 250px;
+  }
+
+  .librarian {
+    max-width: 60px;
+    right: 40px;
+  }
 }
 
 .snowman {
@@ -104,4 +101,18 @@ const navigateToAnalytics = () => {
   user-select: none;
   pointer-events: none;
 }
+
+.librarian {
+  position: absolute;
+  z-index: 0;
+  right: 60px;
+  width: 80px;
+  user-select: none;
+  pointer-events: none;
+}
+
+h4 {
+  z-index: 2;
+}
+
 </style>

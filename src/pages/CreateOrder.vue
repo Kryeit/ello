@@ -40,7 +40,8 @@ onMounted(async () => {
   <form @submit.prevent="handleSubmit">
     <div>
       <label for="email">Email: </label>
-      <input type="email" id="email" v-model="email" required/>
+      <input type="email" id="email" v-model="email" required
+             placeholder="example@kryeit.com"/>
     </div>
     <div>
       <label :for="hasPhysicalProduct ? 'destination' : ''">Destination: </label>

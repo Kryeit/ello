@@ -22,6 +22,8 @@ const checkNonVirtualItems = async () => {
   hasNonVirtualItems.value = results.some(isNonVirtual => isNonVirtual);
 };
 
+
+
 onMounted(checkNonVirtualItems);
 
 watch(() => cart.items, checkNonVirtualItems, { deep: true });
@@ -55,6 +57,13 @@ export default {
       return cart
     },
     async redirectToCheckout() {
+      const emailError = this.validateEmail(this.formData.email);
+
+      if (emailError !== '') {
+        alert(emailError);
+        return;
+      }
+
       if (!this.formData.email || !this.formData.destination) {
         alert('Please provide both email and destination.');
         return;
@@ -110,6 +119,44 @@ export default {
       } finally {
         this.processing = false;
       }
+    },
+    validateEmail(emailToCheck) {
+      // Check if email is empty
+      if (!emailToCheck) {
+        return 'Email is required';
+      }
+
+      // Trim the email
+      emailToCheck = emailToCheck.trim();
+
+      // Simple but effective email regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Check if email matches the regex
+      if (!emailRegex.test(emailToCheck)) {
+        return 'Please enter a valid email address';
+      }
+
+      // Additional basic checks
+      const [local, domain] = emailToCheck.split('@');
+
+      // Check local part length
+      if (local.length < 1 || local.length > 64) {
+        return 'Invalid email address';
+      }
+
+      // Check domain length
+      if (domain.length < 3 || domain.length > 255) {
+        return 'Invalid email domain';
+      }
+
+      // Ensure domain has at least one dot
+      if (!domain.includes('.')) {
+        return 'Email domain is invalid';
+      }
+
+      // If all checks pass
+      return '';
     },
   },
 };

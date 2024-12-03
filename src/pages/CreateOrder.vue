@@ -50,7 +50,7 @@ onMounted(async () => {
     <div>
       <label for="phone">Phone: </label>
       <input type="tel" id="phone" v-model="phone" placeholder="+1 123-456-7890"
-             oninput="this.value=this.value.replace(/[^0-9+]/g,'')"/>
+             oninput="this.value=this.value.replace(/[^0-9+ ]/g,'')"/>
     </div>
     <PaymentForm :form-data="{ email, destination, phone }"/>
   </form>

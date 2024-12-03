@@ -76,7 +76,12 @@ export default {
           }
         }
 
-        if (hasVirtual && !store.getUser()) {
+        if (hasVirtual) {
+          alert('You need to be logged in to purchase virtual items.');
+          return;
+        }
+
+        if (!store.getUser()) {
           alert('You need to be logged in.');
           return;
         }

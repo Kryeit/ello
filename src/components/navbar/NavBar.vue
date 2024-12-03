@@ -75,7 +75,7 @@ onMounted(() => {
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .header {

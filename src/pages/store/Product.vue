@@ -1,7 +1,13 @@
 <template>
   <div class="page-container">
     <div v-if="product" class="product-container">
-      <h1>{{ product.name }} #{{ selectedProduct }}</h1>
+      <div class="product-header">
+        <router-link class="return-to-store" to="/store">
+          <ArrowLeft/>
+          <h1>Store</h1>
+        </router-link>
+        <h1>{{ product.name }} #{{ selectedProduct }}</h1>
+      </div>
       <ProductCarousel :product-name="product.name"/>
 
       <div class="details-container">
@@ -107,6 +113,41 @@ async function updateSelectedProduct() {
 </script>
 
 <style scoped>
+.product-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  margin-top: 10px;
+}
+
+.return-to-store {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  left: 0;
+  transform: translateY(10%);
+  color: var(--color-text);
+}
+
+.product-header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  margin: 0; /* Removes any default margins for h1 */
+}
+
+.return-to-store h1 {
+  margin: 0;
+  left: 220%;
+
+  font-size: 1.2rem; /* Adjust for proper sizing */
+}
+
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -194,6 +235,18 @@ button:active {
   .product-description,
   .product-details {
     min-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-header {
+    margin-bottom: 40px;
+    margin-right: -30px;
+
+  }
+
+  .return-to-store h1 {
+    display: none;
   }
 }
 </style>

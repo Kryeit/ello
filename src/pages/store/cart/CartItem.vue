@@ -69,7 +69,7 @@ const removeItem = (productId) => {
   flex-grow: 1;
   color: var(--color-text);
   text-decoration: underline;
-
+  text-underline-offset: 4px;
 }
 
 .item-details {

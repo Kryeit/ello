@@ -5,10 +5,11 @@ import {watchEffect} from 'vue-demi'
 const mode = useColorMode({
   modes: {
     cafe: 'cafe',
+    contrast: 'contrast',
   },
 })
 
-const {state, next} = useCycleList(['dark', 'light', 'cafe', 'auto'], {initialValue: mode})
+const {state, next} = useCycleList(['dark', 'light', 'cafe', 'contrast', 'auto'], {initialValue: mode})
 
 watchEffect(() => mode.value = state.value)
 </script>
@@ -18,6 +19,7 @@ watchEffect(() => mode.value = state.value)
     <Moon v-if="state === 'dark'" i-carbon-moon class="align-middle"/>
     <Sun v-if="state === 'light'" i-carbon-sun class="align-middle"/>
     <Cafe v-if="state === 'cafe'" i-carbon-cafe class="align-middle"/>
+    <Contrast v-if="state === 'contrast'" i-carbon-contrast class="align-middle"/>
     <Laptop v-if="state === 'auto'" i-carbon-laptop class="align-middle"/>
   </button>
 </template>

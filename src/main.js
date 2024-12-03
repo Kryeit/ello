@@ -15,7 +15,8 @@ import {
     LogoYoutube16,
     Moon32,
     Sun32,
-    TrashCan16
+    Contrast32,
+    TrashCan16,
 } from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
@@ -57,6 +58,7 @@ createApp(App)
                 Sun: Sun32,
                 Cafe: Cafe32,
                 Laptop: Laptop32,
+                Contrast: Contrast32,
                 Trash: TrashCan16,
                 Download: Download16,
                 ArrowLeft: ArrowLeft32,

@@ -44,6 +44,17 @@
 
     --vt-c-cafe-text: #ffffff;
     --vt-c-cafe-text-soft: #9b7556;
+
+    /* Contrast theme colors */
+    --vt-c-contrast-background: #000000;
+    --vt-c-contrast-background-soft: #000000;
+    --vt-c-contrast-background-mute: #505050;
+
+    --vt-c-contrast-divider: #ffffff;
+    --vt-c-contrast-divider-hover: #cccccc;
+
+    --vt-c-contrast-text: #ffffff;
+    --vt-c-contrast-text-soft: #cccccc;
 }
 
 /* semantic color variables for this project */
@@ -102,6 +113,18 @@ html.cafe {
 
     --color-heading: var(--vt-c-cafe-text);
     --color-text: var(--vt-c-cafe-text-soft);
+}
+
+html.contrast {
+    --color-background: var(--vt-c-contrast-background);
+    --color-background-soft: var(--vt-c-contrast-background-soft);
+    --color-background-mute: var(--vt-c-contrast-background-mute);
+
+    --color-border: var(--vt-c-contrast-divider);
+    --color-border-hover: var(--vt-c-contrast-divider-hover);
+
+    --color-heading: var(--vt-c-contrast-text);
+    --color-text: var(--vt-c-contrast-text-soft);
 }
 
 *,

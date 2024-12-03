@@ -15,11 +15,9 @@ const navigateToAnalytics = () => {
 <template>
   <div class="sections-container">
     <div class="section" @click="navigateToAnalytics">
-      <img class="librarian" src="@/assets/minecraft/librarian.webp" alt="Librarian" />
       <h4>Analytics</h4>
     </div>
     <div class="section" @click="navigateToStore">
-      <img class="snowman" src="@/assets/kryeit/snowman.png" alt="Snowman" />
       <h1>Store</h1>
       </div>
     <div class="section">

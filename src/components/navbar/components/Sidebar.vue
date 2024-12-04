@@ -90,6 +90,7 @@ onUnmounted(() => {
 
   .cart {
     right: calc(18vw - 55px);
+    cursor: pointer;
   }
 
   .cart-icon {

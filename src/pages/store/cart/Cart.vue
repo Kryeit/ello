@@ -119,7 +119,7 @@ const goToCheckout = () => {
 
 .cart {
   position: fixed;
-  top: 90px;
+  top: 75px;
   right: 10px;
   background: var(--color-background);
   padding: 22px;

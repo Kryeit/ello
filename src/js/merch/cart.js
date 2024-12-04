@@ -1,5 +1,6 @@
 import {reactive, watch} from 'vue';
 import Stock from '@/js/merch/stock.js';
+import Products from "@/js/merch/products.js";
 
 const loadCartFromLocalStorage = async () => {
     const cartData = localStorage.getItem('cart');
@@ -18,8 +19,12 @@ const createCart = async () => {
 
         async addItem(id, price) {
             const stock = await Stock.getStock(id);
+            const product = await Products.getProduct(id);
+
             if (this.items[id]) {
-                if (this.items[id].quantity < stock.quantity) {
+                if (product.virtual) {
+                    console.warn('Virtual products can only have a quantity of 1 in the cart');
+                } else if (this.items[id].quantity < stock.quantity) {
                     this.items[id].quantity += 1;
                 } else {
                     console.warn('Not enough stock to add more items');

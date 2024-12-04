@@ -18,6 +18,9 @@ const createCart = async () => {
         items,
 
         async addItem(id, price) {
+            if (typeof id !== 'number') {
+                id = Number(id);
+            }
             const stock = await Stock.getStock(id);
             const product = await Products.getProduct(id);
 

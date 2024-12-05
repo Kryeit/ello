@@ -17,6 +17,7 @@ import {
     Sun32,
     Contrast32,
     TrashCan16,
+    ShoppingCartClear32,
 } from '@carbon/icons-vue';
 
 import './assets/styles/main.css'
@@ -62,6 +63,7 @@ createApp(App)
                 Trash: TrashCan16,
                 Download: Download16,
                 ArrowLeft: ArrowLeft32,
+                ShoppingCartClear: ShoppingCartClear32,
             }
         }
     )

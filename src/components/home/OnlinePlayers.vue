@@ -81,6 +81,7 @@ const hidePlayerList = () => {
   image-rendering: pixelated;
   border: 4px solid black;
   border-radius: 12px;
+  z-index: 320;
 }
 
 .overlay {
@@ -174,7 +175,7 @@ h3 {
   top: 100%;
   left: 0;
   white-space: nowrap;
-  z-index: 3;
+  z-index: 380;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   transform-origin: top left;
   transform: translateX(-75%);

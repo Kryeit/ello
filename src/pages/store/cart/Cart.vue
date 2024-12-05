@@ -7,6 +7,7 @@
         <div class="header">
           <ArrowLeft class="close-cart" @click="toggleCart"/>
           <h2 class="title">Cart</h2>
+          <ClearCart class="clear-cart"/>
         </div>
         <div class="cart-items">
           <CartItem v-for="(item, index) in displayedItems" :key="index" :item="item"/>
@@ -37,6 +38,7 @@ import CartItem from './CartItem.vue';
 import router from "@/router/index.js";
 import Sidebar from "@/components/navbar/components/Sidebar.vue";
 import Orders from "../../../js/merch/orders.js";
+import ClearCart from "@/pages/store/cart/ClearCart.vue";
 
 const visible = ref(false);
 const displayedItems = ref([]);
@@ -113,12 +115,18 @@ const goToCheckout = () => {
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.clear-cart {
+  cursor: pointer;
 }
 
 .cart {
@@ -185,8 +193,8 @@ button:active {
 
 .shipping {
   font-size: 0.7rem;
-
 }
+
 /* Transition styles */
 .cart-enter-active, .cart-leave-active {
   transition: all 0.3s ease;

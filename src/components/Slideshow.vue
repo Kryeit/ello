@@ -93,7 +93,7 @@ watch(flicking, (newFlicking) => {
   color: var(--vt-c-white-mute);
   font-size: 15px;
   padding: 8px 12px;
-  z-index: 900;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

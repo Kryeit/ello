@@ -1,6 +1,8 @@
+import {getIpAddress} from "@/js/static.js";
+
 class Orders {
     constructor() {
-        this.apiUrl = 'http://localhost:6969/api/orders';
+        this.apiUrl = getIpAddress() + '/api/orders';
 
         this.shippingCosts = 10;
     }

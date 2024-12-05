@@ -19,7 +19,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:6969",
+        target: "https://kryeit.com",
         changeOrigin: true
       }
     }

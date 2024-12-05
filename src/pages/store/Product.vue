@@ -65,7 +65,6 @@ const stock = ref(null);
 onMounted(async () => {
   const productName = route.params.name;
   const productsByColor = await Products.getProductsByColor(productName);
-  console.log(productsByColor);
 
   if (Object.keys(productsByColor)[0] === "") {
     // No colors or sizes, just one product
@@ -245,7 +244,7 @@ button:active {
 
   }
 
-  .return-to-store h1 {
+  .return-to-store {
     display: none;
   }
 }

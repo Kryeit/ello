@@ -1,12 +1,13 @@
 import Store from "@/js/auth/store.js";
 import User from "@/js/auth/user.js";
+import {getIpAddress} from "@/js/static.js";
 
 class AuthService {
 
     async validateToken() {
         const token = this.getToken();
         if (token) {
-            const response = await fetch(`/api/login/validate`);
+            const response = await fetch(getIpAddress() + `/api/login/validate`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -27,7 +28,7 @@ class AuthService {
 
         const encodedToken = encodeURIComponent(token);
 
-        const response = await fetch(`/api/login/validate-login?t=` + encodedToken);
+        const response = await fetch(getIpAddress() + `/api/login/validate-login?t=` + encodedToken);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -56,7 +57,7 @@ class AuthService {
     }
 
     async logout() {
-        const response = await fetch('/api/account/logout', {
+        const response = await fetch(getIpAddress() + '/api/account/logout', {
             method: 'POST',
         });
 

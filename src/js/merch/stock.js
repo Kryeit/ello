@@ -1,6 +1,8 @@
+import {getIpAddress} from "@/js/static.js";
+
 class Stock {
     constructor() {
-        this.apiUrl = 'http://localhost:6969/api/stock'; // replace with your actual API URL
+        this.apiUrl = getIpAddress() + '/api/stock';
     }
 
     async getStock(id) {

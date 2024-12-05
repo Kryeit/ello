@@ -1,7 +1,9 @@
+import {getIpAddress} from "@/js/static.js";
+
 class Products {
     constructor() {
-        this.apiUrl = 'http://localhost:6969/api/products';
-        this.imageApiUrl = 'http://localhost:6969/api/images/products';
+        this.apiUrl = getIpAddress() + '/api/products';
+        this.imageApiUrl = getIpAddress() + '/api/images/products';
     }
 
     async getProducts() {

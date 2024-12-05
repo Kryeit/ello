@@ -106,6 +106,10 @@ const goToCheckout = () => {
   z-index: 999;
 }
 
+.close-cart {
+  cursor: pointer;
+}
+
 .header {
   display: flex;
   align-items: center;

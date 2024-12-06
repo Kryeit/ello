@@ -21,6 +21,7 @@ const router = useRouter();
 const image = ref('');
 const stock = ref(0);
 const sizes = ref([]);
+const stockLoaded = ref(false);
 
 const navigateToProduct = () => {
   router.push(`/product/${props.product[0].name}`);
@@ -30,13 +31,14 @@ onMounted(async () => {
   image.value = await Products.getImage(props.product[0].name, 1);
   stock.value = await Stock.getStockByName(props.product[0].name);
   sizes.value = await Products.getSizes(props.product[0].name);
+  stockLoaded.value = true;
 });
 </script>
 
 <template>
   <div class="product-item" @click="navigateToProduct">
     <div class="product-header">
-      <img class="product-image" :src="getIpAddress() + image" :alt="props.product[0].name" />
+      <img class="product-image" :src="getIpAddress() + image" :alt="props.product[0].name"/>
     </div>
 
     <div class="product-info">
@@ -53,7 +55,7 @@ onMounted(async () => {
       <p v-if="!props.lonely">{{ sizes.join(', ') }}</p>
       <p v-else>{{ product[0].size }}</p>
     </div>
-    <div v-if="stock === 0" class="sold-out">
+    <div v-if="stockLoaded && stock === 0" class="sold-out">
       <p>
         Sold Out
       </p>

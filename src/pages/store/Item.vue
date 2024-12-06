@@ -26,6 +26,23 @@ const navigateToProduct = () => {
   router.push(`/product/${props.product[0].name}`);
 };
 
+const handleMouseMove = (event) => {
+  const item = event.currentTarget;
+  const rect = item.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  const rotateX = (y - centerY) / 20;
+  const rotateY = (centerX - x) / 20;
+  item.style.transform = `translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+};
+
+const handleMouseLeave = (event) => {
+  const item = event.currentTarget;
+  item.style.transform = 'translateY(0) scale(1)';
+};
+
 onMounted(async () => {
   image.value = await Products.getImage(props.product[0].name, 1);
   stock.value = await Stock.getStockByName(props.product[0].name);
@@ -35,7 +52,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="product-item" @click="navigateToProduct">
+  <div class="product-item" @click="navigateToProduct" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
     <div class="product-header">
       <img class="product-image" :src="getIpAddress() + image" :alt="props.product[0].name"/>
     </div>
@@ -76,13 +93,14 @@ onMounted(async () => {
   margin: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: var(--color-background-soft);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensure child elements do not overflow */
+  box-shadow: 0 2px 4px var(--color-text);
+  overflow: hidden;
+  perspective: 1000px;
 }
 
 .product-item:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px var(--color-text);
 }
 
 .product-header {
@@ -98,7 +116,7 @@ onMounted(async () => {
   width: 100%;
   color: var(--color-background-mute);
   font-size: 1.1rem;
-  text-shadow: 1px 3px 1px var(--color-text); /* Adds a subtle shadow for contrast */
+  text-shadow: 1px 3px 1px var(--color-text);
 }
 
 .sizes {

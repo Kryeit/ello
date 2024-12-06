@@ -7,17 +7,23 @@
         <div class="header">
           <ArrowLeft class="close-cart" @click="toggleCart"/>
           <h2 class="title">Cart</h2>
-          <ClearCart class="clear-cart"/>
-        </div>
+          <ClearCart v-if="!isCartEmpty" class="clear-cart"/>
+          </div>
         <div class="cart-items">
           <CartItem v-for="(item, index) in displayedItems" :key="index" :item="item"/>
         </div>
-        <div class="bottom">
+        <div v-if="!isCartEmpty" class="bottom">
           <div>
-            <p>Total: {{ totalPrice }}€</p>
+            <div style="display: flex; flex-direction: row; gap: 12px; align-items: flex-end;">
+              <p>Total: {{ totalPrice }}€</p>
+              <p style="font-size: 0.8rem; font-style: italic; margin-bottom: 1px">{{Object.values(cart.items).reduce((total, item) => total + item.quantity, 0)}} item(s)</p>
+            </div>
             <p v-if="hasNonVirtualItems" class="shipping">+{{ Orders.shippingCosts }}€ of shipping</p>
           </div>
           <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
+        </div>
+        <div v-else class="empty-cart-message">
+          <p>Maybe it's time to add stuff :)</p>
         </div>
       </div>
     </transition>
@@ -91,6 +97,10 @@ const cartIconClass = computed(() => {
   return Object.keys(cart.items).length > 0 ? 'cart-icon filled' : 'cart-icon';
 });
 
+const isCartEmpty = computed(() => {
+  return Object.keys(cart.items).length === 0;
+});
+
 const goToCheckout = () => {
   router.push('/order/create');
 };
@@ -155,6 +165,12 @@ const goToCheckout = () => {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text-muted);
 }
 
 button {

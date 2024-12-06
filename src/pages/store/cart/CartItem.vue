@@ -3,6 +3,7 @@
     <div class="item-header">
       <div :style="{ '--color-square': item.color }" class="color-square"></div>
       <router-link :to="`/product/${item.name}`" class="item-name">{{ item.name }}</router-link>
+      <p style="margin-left: 8px">(x{{ item.quantity }})</p>
     </div>
     <div class="content">
       <div class="item-details">
@@ -10,11 +11,10 @@
         {{ item.price * item.quantity }}€
       </div>
       <div class="item-buttons">
-        <button @click="decreaseQuantity(item.id)">-</button>
-        {{ item.quantity }}
-        <button @click="cart.addItem(item.id, item.price)">+</button>
+        <button @click="decreaseQuantity(item.id)" v-if="isVirtual(item.id)">-</button>
+        <button @click="cart.addItem(item.id, item.price)" v-if="isVirtual(item.id)">+</button>
         <button @click="removeItem(item.id)">
-          <Trash/>
+          <Trash style="margin-top: 3px"/>
         </button>
       </div>
     </div>
@@ -23,6 +23,7 @@
 
 <script setup>
 import {cart} from '@/js/merch/cart.js';
+import Products from "@/js/merch/products.js";
 
 const props = defineProps({
   item: Object
@@ -35,6 +36,11 @@ const decreaseQuantity = (productId) => {
 const removeItem = (productId) => {
   delete cart.items[productId];
 };
+
+const isVirtual = async (productId) => {
+  const product = await Products.getProduct(productId);
+  return product.virtual;
+}
 </script>
 
 <style scoped>

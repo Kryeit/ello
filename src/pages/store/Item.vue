@@ -3,6 +3,8 @@ import {defineProps, onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import Products from "@/js/merch/products.js";
 import Stock from "@/js/merch/stock.js";
+import ItemImage from "@/pages/store/ItemImage.vue";
+import {getIpAddress} from "@/js/static.js";
 
 const props = defineProps({
   product: {
@@ -34,18 +36,22 @@ onMounted(async () => {
 <template>
   <div class="product-item" @click="navigateToProduct">
     <div class="product-header">
-      <img class="product-image" :src="image" alt="" />
-      <h2>{{ props.product[0].name }}</h2>
+      <img class="product-image" :src="getIpAddress() + image" :alt="props.product[0].name" />
     </div>
 
     <div class="product-info">
-      <p>{{ props.product[0].price }}€</p>
-      <p v-if="product[0].virtual">{{ product[0].description}}</p>
-      <p v-if="!props.lonely && !product[0].virtual">{{ stock }} units left!</p>
-      <div class="sizes">
-        <p v-if="!props.lonely">{{ sizes.join(', ') }}</p>
-        <p v-else>{{ product[0].size }}</p>
-      </div>
+      <h2 class="title">{{ props.product[0].name }}</h2>
+      <p>
+        <strong class="price">
+          {{ props.product[0].price }}
+          <span class="euro-symbol">€</span>
+        </strong>
+      </p>
+    </div>
+    <p v-if="product[0].virtual">{{ product[0].description }}</p>
+    <div class="sizes">
+      <p v-if="!props.lonely">{{ sizes.join(', ') }}</p>
+      <p v-else>{{ product[0].size }}</p>
     </div>
     <div v-if="stock === 0" class="sold-out">
       <p>
@@ -53,7 +59,6 @@ onMounted(async () => {
       </p>
     </div>
   </div>
-
 </template>
 
 <style scoped>
@@ -63,7 +68,6 @@ onMounted(async () => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 12px;
   box-sizing: border-box;
   position: relative;
   border: 1px solid var(--color-border);
@@ -73,48 +77,46 @@ onMounted(async () => {
   background: var(--color-background-mute);
 }
 
-.product-item:hover {
-  transform: scale(1.02);
-}
-
-h2 {
-  text-align: center;
-}
-
 .product-header {
-  background: var(--color-background);
-  padding: 8px;
   border-radius: 8px;
-  border: 1px solid var(--color-border);
   font-size: 1.1rem;
   flex-grow: 1;
   position: relative;
 }
 
-.product-header h2 {
+.title {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .sizes {
   margin-top: auto;
+  margin-bottom: 12px;
   font-size: 0.6rem;
+  margin-left: 12px;
 }
 
 .product-info {
-  flex-grow: 1;
-  padding: 14px 14px 8px 14px;
+  padding: 12px;
 }
 
 .product-image {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   width: 100%;
-  height: 80%;
   object-fit: cover;
-  border-radius: 8px;
   image-rendering: pixelated;
+}
+
+.price {
+  font-size: 2rem;
+}
+
+.product-info p {
+  margin-left: auto;
+  text-align: right;
 }
 
 .sold-out {
@@ -132,5 +134,10 @@ h2 {
   transform: scaleY(3.5);
   font-stretch: condensed;
   text-align: center;
+}
+
+.euro-symbol {
+  font-size: 1.2rem; /* Smaller font size for the € symbol */
+  margin-left: -18px; /* Reduces the gap between the number and the € */
 }
 </style>

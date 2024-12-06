@@ -1,4 +1,5 @@
 <template>
+  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
   <div class="page-container">
     <div v-if="product" class="product-container">
       <div class="product-header">
@@ -12,7 +13,7 @@
 
       <div class="details-container">
         <div class="product-description">
-          <p>{{ product.description }}</p>
+          <div v-html="productDescriptionHtml"></div>
         </div>
         <div class="separator"></div>
         <div class="product-details">
@@ -42,7 +43,7 @@
 </template>
 
 <script setup>
-import {onMounted, ref, watch} from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 import {useRoute} from 'vue-router';
 import Products from '@/js/merch/products.js';
 import ColorSelector from "@/pages/store/ColorSelector.vue";
@@ -52,6 +53,7 @@ import Cart from "@/pages/store/cart/Cart.vue";
 import ProductCarousel from "@/pages/store/ProductCarousel.vue";
 import Stock from '@/js/merch/stock.js';
 import StoreFooter from "@/components/payment/StoreFooter.vue";
+import {marked} from "marked";
 
 const route = useRoute();
 const product = ref(null);
@@ -109,6 +111,10 @@ async function updateSelectedProduct() {
     selectedProduct.value = await Products.getProductBySizeAndColor(productName, selectedSize.value, selectedColor.value.replace('#', ''));
   }
 }
+
+const productDescriptionHtml = computed(() => {
+  return marked.parse(product.value?.description || '');
+});
 </script>
 
 <style scoped>

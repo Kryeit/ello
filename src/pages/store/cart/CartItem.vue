@@ -1,7 +1,7 @@
 <template>
   <div class="cart-item">
     <div class="item-header">
-      <div :style="{ '--color-square': item.color }" class="color-square"></div>
+      <div v-if="!isVirtual" :style="{ '--color-square': item.color }" class="color-square"></div>
       <router-link :to="`/product/${item.name}`" class="item-name">{{ item.name }}</router-link>
       <p  v-if="!isVirtual" style="margin-left: 8px">(x{{ item.quantity }})</p>
     </div>
@@ -10,6 +10,7 @@
         <p v-if="item.size">Size: {{ item.size }}</p>
         {{ item.price * item.quantity }}€
       </div>
+      <router-link to="/login" v-if="isVirtual && !Store.getUser()" class="login-required">Requires login to buy</router-link>
       <div class="item-buttons">
         <button @click="decreaseQuantity(item.id)" v-if="!isVirtual">-</button>
         <button @click="cart.addItem(item.id, item.price)" v-if="!isVirtual">+</button>
@@ -25,6 +26,7 @@
 import {cart} from '@/js/merch/cart.js';
 import Products from "@/js/merch/products.js";
 import {onMounted, ref} from "vue";
+import Store from "@/js/auth/store.js";
 
 const props = defineProps({
   item: Object
@@ -106,7 +108,7 @@ onMounted(async () => {
 .content {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   width: 100%;
 }
 
@@ -119,5 +121,13 @@ onMounted(async () => {
 button {
   color: var(--color-text);
   background: var(--color-background);
+}
+
+.login-required {
+  font-size: 0.7rem;
+  font-style: italic;
+  margin-right: 12px;
+  color: #a12424;
+  text-decoration: none;
 }
 </style>

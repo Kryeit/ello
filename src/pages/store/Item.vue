@@ -3,7 +3,6 @@ import {defineProps, onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import Products from "@/js/merch/products.js";
 import Stock from "@/js/merch/stock.js";
-import ItemImage from "@/pages/store/ItemImage.vue";
 import {getIpAddress} from "@/js/static.js";
 
 const props = defineProps({
@@ -75,8 +74,15 @@ onMounted(async () => {
   border: 1px solid var(--color-border);
   border-radius: 12px;
   margin: 0;
-  transition: transform 0.3s ease;
-  background: var(--color-background-mute);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--color-background-soft);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure child elements do not overflow */
+}
+
+.product-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .product-header {
@@ -90,7 +96,9 @@ onMounted(async () => {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
+  color: var(--color-background-mute);
   font-size: 1.1rem;
+  text-shadow: 1px 3px 1px var(--color-text); /* Adds a subtle shadow for contrast */
 }
 
 .sizes {
@@ -122,24 +130,30 @@ onMounted(async () => {
 }
 
 .sold-out {
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(170, 41, 41, 0.5);
   color: white;
-  font-size: 1rem;
   font-weight: bold;
   z-index: 2;
   position: absolute;
-  align-content: center;
-  display: block;
+  top: 30px;
+  left: 30px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-top: 2px solid var(--color-background);
+  border-bottom: 2px solid var(--color-background);
 }
 
 .sold-out p {
-  transform: scaleY(3.5);
-  font-stretch: condensed;
+  font-size: 25px;
+  transform: scaleX(0.4);
   text-align: center;
 }
 
 .euro-symbol {
-  font-size: 1.2rem; /* Smaller font size for the € symbol */
-  margin-left: -18px; /* Reduces the gap between the number and the € */
+  font-size: 1.2rem;
+  margin-left: -18px;
 }
 </style>

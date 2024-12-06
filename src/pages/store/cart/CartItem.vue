@@ -3,7 +3,7 @@
     <div class="item-header">
       <div :style="{ '--color-square': item.color }" class="color-square"></div>
       <router-link :to="`/product/${item.name}`" class="item-name">{{ item.name }}</router-link>
-      <p style="margin-left: 8px">(x{{ item.quantity }})</p>
+      <p  v-if="!isVirtual" style="margin-left: 8px">(x{{ item.quantity }})</p>
     </div>
     <div class="content">
       <div class="item-details">
@@ -11,8 +11,8 @@
         {{ item.price * item.quantity }}€
       </div>
       <div class="item-buttons">
-        <button @click="decreaseQuantity(item.id)" v-if="isVirtual(item.id)">-</button>
-        <button @click="cart.addItem(item.id, item.price)" v-if="isVirtual(item.id)">+</button>
+        <button @click="decreaseQuantity(item.id)" v-if="!isVirtual">-</button>
+        <button @click="cart.addItem(item.id, item.price)" v-if="!isVirtual">+</button>
         <button @click="removeItem(item.id)">
           <Trash style="margin-top: 3px"/>
         </button>
@@ -24,10 +24,13 @@
 <script setup>
 import {cart} from '@/js/merch/cart.js';
 import Products from "@/js/merch/products.js";
+import {onMounted, ref} from "vue";
 
 const props = defineProps({
   item: Object
 });
+
+const isVirtual = ref(false);
 
 const decreaseQuantity = (productId) => {
   cart.removeItem(productId);
@@ -37,10 +40,10 @@ const removeItem = (productId) => {
   delete cart.items[productId];
 };
 
-const isVirtual = async (productId) => {
-  const product = await Products.getProduct(productId);
-  return product.virtual;
-}
+onMounted(async () => {
+  const product = await Products.getProduct(props.item.id);
+  isVirtual.value = product.virtual;
+});
 </script>
 
 <style scoped>

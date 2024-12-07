@@ -2,32 +2,32 @@
   <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
   <div class="page-container">
     <div v-if="product" class="product-container">
-      <div class="product-header">
-        <router-link class="return-to-store" to="/store">
-          <ArrowLeft/>
-          <h1>Store</h1>
-        </router-link>
-        <h1>{{ product.name }} #{{ selectedProduct }}</h1>
-      </div>
-      <ProductCarousel :product-name="product.name"/>
-
       <div class="details-container">
-        <div class="product-description">
-          <div v-html="productDescriptionHtml"></div>
+        <div class="product-header">
+          <router-link class="return-to-store" to="/store">
+            <ArrowLeft/>
+            <h1>Store</h1>
+          </router-link>
+          <h1>{{ product.name }} #{{ selectedProduct }}</h1>
         </div>
-        <div class="separator"></div>
-        <div class="product-details">
-          <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
-          <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
-                        :name="product.name" :color="selectedColor"
-                        @update:selectedSize="selectedSize = $event"/>
-          <h3 v-if="selectedColor">Color:</h3>
-          <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
-          <p v-if="product.material">Material: {{ product.material }}</p>
-          <p v-if="!product.virtual">Stock: {{ stock?.quantity ?? 0 }}</p>
-          <div class="price-container">
-            <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
-            <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+        <div class="content">
+          <ProductCarousel :product-name="product.name" class="carousel"/>
+          <div class="product-description">
+            <div v-html="productDescriptionHtml"></div>
+            <div class="product-details">
+              <h3 v-if="selectedColor && sizes.length > 0">Size:</h3>
+              <SizeSelector v-if="selectedColor && product.colors[selectedColor]" :sizes="sizes"
+                            :name="product.name" :color="selectedColor"
+                            @update:selectedSize="selectedSize = $event"/>
+              <h3 v-if="selectedColor">Color:</h3>
+              <ColorSelector :colors="colors" @update:selectedColor="selectedColor = $event"/>
+              <p v-if="product.material">Material: {{ product.material }}</p>
+              <p v-if="!product.virtual">Stock: {{ stock?.quantity ?? 0 }}</p>
+              <div class="price-container">
+                <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
+                <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -69,13 +69,11 @@ onMounted(async () => {
   const productsByColor = await Products.getProductsByColor(productName);
 
   if (Object.keys(productsByColor)[0] === "") {
-    // No colors or sizes, just one product
     const productId = await Products.getProductsByName(productName);
     product.value = await Products.getProduct(productId);
     selectedProduct.value = productId[0];
 
   } else {
-    // Existing logic for handling products with colors and sizes
     colors = Object.keys(productsByColor);
     selectedColor.value = colors[0];
 
@@ -142,21 +140,13 @@ const productDescriptionHtml = computed(() => {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  margin: 0; /* Removes any default margins for h1 */
+  margin: 0;
 }
 
 .return-to-store h1 {
   margin: 0;
   left: 220%;
-
-  font-size: 1.2rem; /* Adjust for proper sizing */
-}
-
-
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-size: 1.2rem;
 }
 
 .footer {
@@ -168,10 +158,17 @@ const productDescriptionHtml = computed(() => {
   box-sizing: border-box;
 }
 
-.price-container {
+.content {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 20px;
+}
+
+.carousel {
+  flex: 0 0 60%;
+}
+
+.product-description {
+  flex: 0 0 40%;
 }
 
 h1 {
@@ -210,33 +207,7 @@ button:active {
   white-space: nowrap;
 }
 
-.separator {
-  width: 1px;
-  background: var(--color-border);
-}
-
-.details-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.product-description {
-  flex: 1;
-  min-width: 50%;
-}
-
-.product-details {
-  flex: 1;
-  min-width: 50%;
-}
-
 @media (max-width: 600px) {
-  .details-container {
-    flex-direction: column;
-  }
-
   .product-description,
   .product-details {
     min-width: 100%;
@@ -247,7 +218,6 @@ button:active {
   .product-header {
     margin-bottom: 40px;
     margin-right: -30px;
-
   }
 
   .return-to-store {

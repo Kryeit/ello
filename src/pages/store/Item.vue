@@ -33,8 +33,8 @@ const handleMouseMove = (event) => {
   const y = event.clientY - rect.top;
   const centerX = rect.width / 2;
   const centerY = rect.height / 2;
-  const rotateX = (y - centerY) / 20;
-  const rotateY = (centerX - x) / 20;
+  const rotateX = (y - centerY) / 15;
+  const rotateY = (centerX - x) / 15;
   item.style.transform = `translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 };
 
@@ -88,7 +88,7 @@ onMounted(async () => {
   flex-direction: column;
   box-sizing: border-box;
   position: relative;
-  border: 1px solid var(--color-border);
+  border: 3px solid var(--color-border);
   border-radius: 12px;
   margin: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -131,8 +131,7 @@ onMounted(async () => {
 }
 
 .product-image {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+
   width: 100%;
   object-fit: cover;
   image-rendering: pixelated;

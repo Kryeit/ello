@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import Products from "@/js/merch/products.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
@@ -10,32 +10,69 @@ const props = defineProps({
 
 const images = ref([]);
 const flicking = ref(null);
-
+const carouselWrapper = ref(null);
+const scrollHintHeight = ref(0);
+let index = 1;
+let flickingMoving = false;
+let firstIteration = true;
 
 onMounted(async () => {
   try {
     images.value = await Products.getImages(props.productName);
+    await nextTick();
+    setCarouselHeight();
+    addScrollEventListener();
+    updateScrollHint();
   } catch (error) {
     console.error("Error loading product images:", error);
   }
 });
 
-const onFlickingReady = () => {
-  setTimeout(() => {
-    flicking.value.align = 'prev';
-  }, 200);
+const setCarouselHeight = () => {
+  const firstImage = carouselWrapper.value.querySelector('.carousel-image');
+  if (firstImage) {
+    firstImage.addEventListener('load', () => {
+      carouselWrapper.value.style.height = `${firstImage.clientHeight + 40}px`;
+    });
+  }
 };
+
+const addScrollEventListener = () => {
+  carouselWrapper.value.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    if (flicking.value && !flickingMoving) {
+      if (event.deltaY > 0) {
+        flicking.value.next();
+        index = (index + 1) > images.value.length ? 1 : index + 1;
+      } else {
+        flicking.value.prev();
+        index = index === 1 ? images.value.length : index - 1;
+      }
+      updateScrollHint();
+    }
+  });
+};
+
+const updateScrollHint = () => {
+  const totalPanels = images.value.length;
+  scrollHintHeight.value = (index / totalPanels) * 100;
+};
+
+watch(images, updateScrollHint);
 </script>
 
 <template>
-  <div class="carousel-wrapper">
+  <div ref="carouselWrapper" class="carousel-wrapper">
     <Flicking
         ref="flicking"
         :options="{
-          circular: true, align: 'center'
+        circular: true, horizontal: false
       }"
         class="carousel"
-        @ready="onFlickingReady"
+        @changed="updateScrollHint"
+        @move="updateScrollHint"
+        @moveStart="() => { flickingMoving = true; }"
+        @moveEnd="() => { flickingMoving = false;}"
     >
       <div
           class="panel"
@@ -50,6 +87,10 @@ const onFlickingReady = () => {
         />
       </div>
     </Flicking>
+
+    <div class="scrolling-hint">
+      <div class="scrolling-hint-progress" :style="{ height: scrollHintHeight + '%' }"></div>
+    </div>
   </div>
 </template>
 
@@ -58,35 +99,45 @@ const onFlickingReady = () => {
   overflow: hidden;
   position: relative;
   z-index: 998;
+  padding: 20px 0;
+  display: flex;
 }
 
 .carousel {
-  width: 100%;
-  height: auto;
+  width: 90%;
+  height: 100%;
   white-space: nowrap;
-
 }
 
 .panel {
-  display: inline-block;
-  height: min(70vw, 50vh);
-}
-
-.panel:last-child {
-  margin-right: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
 }
 
 .carousel-image {
   object-fit: contain;
   image-rendering: pixelated;
   user-select: none;
-  height: min(70vw, 50vh);
+  width: 100%;
+  height: auto;
 }
 
-@media (max-width: 768px) {
-  .carousel-image {
-    width: 100vw;
-    height: 100%;
-  }
+.scrolling-hint {
+  width: 4px;
+  background-color: var(--color-background);
+  display: flex;
+  align-items: flex-start;
+  margin-left: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.scrolling-hint-progress {
+  width: 100%;
+  background-color: var(--color-text);
+  transition: height 0.3s ease;
+  border-radius: 4px;
 }
 </style>

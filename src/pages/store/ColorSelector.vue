@@ -1,5 +1,5 @@
 <script setup>
-import {defineEmits, defineProps, onMounted, ref, watch} from 'vue';
+import {onMounted, ref, watch} from 'vue';
 
 const props = defineProps({
   colors: {

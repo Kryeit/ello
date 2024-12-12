@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, onMounted, ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import Products from "@/js/merch/products.js";
 import Stock from "@/js/merch/stock.js";

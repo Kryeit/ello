@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, onMounted} from 'vue';
+import {onMounted} from 'vue';
 import AuthService from "@/js/auth/authService.js";
 
 const props = defineProps({

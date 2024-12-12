@@ -66,7 +66,8 @@ watch(images, updateScrollHint);
     <Flicking
         ref="flicking"
         :options="{
-        circular: true, horizontal: false
+        circular: true, align: 'prev',
+        horizontal: false
       }"
         class="carousel"
         @changed="updateScrollHint"

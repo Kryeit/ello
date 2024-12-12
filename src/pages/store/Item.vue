@@ -135,6 +135,7 @@ onMounted(async () => {
   width: 100%;
   object-fit: cover;
   image-rendering: pixelated;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .price {

@@ -57,14 +57,6 @@ class AuthService {
     }
 
     async logout() {
-        const response = await fetch(getIpAddress() + '/api/account/logout', {
-            method: 'POST',
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
         // Clear the auth cookie
         document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         document.cookie = '_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';

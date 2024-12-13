@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, onMounted, ref, watch, computed } from "vue";
 import Products from "@/js/merch/products.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
@@ -14,7 +14,8 @@ const carouselWrapper = ref(null);
 const scrollHintHeight = ref(0);
 let index = 1;
 let flickingMoving = false;
-let firstIteration = true;
+
+const isMobileOrTablet = computed(() => window.innerWidth <= 1024);
 
 onMounted(async () => {
   try {
@@ -67,7 +68,7 @@ watch(images, updateScrollHint);
         ref="flicking"
         :options="{
         circular: true, align: 'prev',
-        horizontal: false
+        horizontal: isMobileOrTablet
       }"
         class="carousel"
         @changed="updateScrollHint"
@@ -89,7 +90,7 @@ watch(images, updateScrollHint);
       </div>
     </Flicking>
 
-    <div class="scrolling-hint">
+    <div v-if="!isMobileOrTablet" class="scrolling-hint">
       <div class="scrolling-hint-progress" :style="{ height: scrollHintHeight + '%' }"></div>
     </div>
   </div>

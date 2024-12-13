@@ -223,5 +223,18 @@ button:active {
   .return-to-store {
     display: none;
   }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .carousel {
+    flex: 0 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .product-description {
+    flex: 0 0 auto;
+  }
 }
 </style>

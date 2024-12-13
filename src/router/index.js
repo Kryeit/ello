@@ -21,6 +21,7 @@ import Orders from "@/pages/Orders.vue";
 import CreateOrder from "@/pages/CreateOrder.vue";
 import Shipping from "@/pages/policies/Shipping.vue";
 import Donate from "@/pages/Donate.vue";
+import Survival from "@/pages/Survival.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -35,6 +36,7 @@ const routes = [
     {path: "/homemade", component: Homemade},
     {path: "/legacy-gallery", component: LegacyGallery},
     {path: "/branding", component: Assets},
+    {path: "/survival", component: Survival},
     {path: "/store", component: Store},
     {path: "/product/:name",component: Product },
     {path: "/getting-started", component: GettingStarted},

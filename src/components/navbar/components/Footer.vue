@@ -38,26 +38,6 @@ async function addEmailToast() {
 
     <div class="footer-section">
       <p>
-        {{ $t("navbar.footer.survival.title") }}
-      </p>
-
-      <hr class="separator">
-
-      <router-link to="/getting-started">
-        {{ $t("navbar.footer.survival.getting-started") }}
-      </router-link>
-
-      <a href="https://archive.kryeit.com" target="_blank">
-        {{ $t("navbar.footer.survival.archive") }}
-      </a>
-
-      <a href="https://map.kryeit.com" target="_blank">
-        {{ $t("navbar.footer.survival.map") }}
-      </a>
-    </div>
-
-    <div class="footer-section">
-      <p>
         {{ $t("navbar.footer.support.title") }}
       </p>
       <hr class="separator">

@@ -10,6 +10,10 @@ const navigateToStore = () => {
 const navigateToAnalytics = () => {
   router.push('/analytics');
 };
+
+const navigateToSurvival = () => {
+  router.push('/survival');
+};
 </script>
 
 <template>
@@ -20,9 +24,8 @@ const navigateToAnalytics = () => {
     <div class="section" @click="navigateToStore">
       <h1>Store</h1>
       </div>
-    <div class="section">
-      <h4>Nothing</h4>
-
+    <div class="section" @click="navigateToSurvival">
+      <h4>{{ $t("navbar.footer.survival.title") }}</h4>
     </div>
   </div>
 </template>

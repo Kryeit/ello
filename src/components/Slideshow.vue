@@ -94,6 +94,9 @@ watch(flicking, (newFlicking) => {
   font-size: 15px;
   padding: 8px 12px;
   z-index: 1;
+  user-select: none;
+  pointer-events: none;
+
 }
 
 @media (max-width: 768px) {

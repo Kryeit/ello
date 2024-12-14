@@ -39,7 +39,7 @@ onMounted(async () => {
   </div>
 
   <div class="section">
-    <h2>Virtual Cosmetics</h2>
+    <h2>Cosmetics</h2>
     <div class="grid-container">
       <div v-for="product in virtualProducts" :key="product.id" class="grid-item">
         <Item v-if="product.listed" :product="Array.of(product)" />

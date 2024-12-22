@@ -1,5 +1,4 @@
 <template>
-  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
   <div class="page-container">
     <div v-if="product" class="product-container">
       <div class="details-container">

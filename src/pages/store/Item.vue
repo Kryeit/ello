@@ -131,10 +131,10 @@ onMounted(async () => {
 }
 
 .product-image {
-
   width: 100%;
   object-fit: cover;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   border-bottom: 1px solid var(--color-border);
 }
 

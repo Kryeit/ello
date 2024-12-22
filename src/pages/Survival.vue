@@ -62,7 +62,8 @@ p, h1 {
   background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 100px 100px;
   background-repeat: repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   border: 4px solid black;
   padding: 10px;
   border-radius: 12px;
@@ -84,7 +85,8 @@ p, h1 {
   background-image: url('/src/assets/minecraft/squared_button.png');
   background-size: cover;
   background-repeat: no-repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   cursor: pointer;
   user-select: none;
 }
@@ -92,7 +94,8 @@ p, h1 {
 .archive-button img {
   width: 30px;
   height: 30px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
 }
 
 .archive-button:hover {

@@ -86,7 +86,8 @@ onMounted(async () => {
   background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 70px 70px;
   background-repeat: repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   padding: 6px;
   border: 3px solid black;
   border-radius: 12px;
@@ -109,7 +110,8 @@ onMounted(async () => {
   background-image: url('/src/assets/minecraft/squared_button.png');
   background-size: contain;
   background-repeat: no-repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   cursor: pointer;
   user-select: none;
   position: relative;

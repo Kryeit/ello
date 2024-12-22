@@ -55,7 +55,8 @@ watch(() => props.colors, (newColors) => {
   background-image: url('/src/assets/minecraft/dirt.png');
   background-size: 70px 70px;
   background-repeat: repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   padding: 8px;
   border: 3px solid black;
   border-radius: 12px;
@@ -83,7 +84,8 @@ watch(() => props.colors, (newColors) => {
   background-image: url('/src/assets/minecraft/squared_button.png');
   background-size: cover;
   background-repeat: no-repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   user-select: none;
   z-index: 1;
   position: relative;

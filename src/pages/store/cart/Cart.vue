@@ -112,7 +112,8 @@ const goToCheckout = () => {
   top: 10px;
   right: 10px;
   cursor: pointer;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   width: 70px;
   user-select: none;
   z-index: 999;

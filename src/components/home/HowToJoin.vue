@@ -62,7 +62,8 @@ import CopyIP from "@/components/home/CopyIP.vue";
 }
 
 .title-image {
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   width: 80%;
   object-fit: cover;
   display: block;

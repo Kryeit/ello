@@ -35,7 +35,8 @@ export default {
   align-items: center;
   padding: 20px;
   cursor: pointer;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   background-image: url('@/assets/minecraft/toast.png');
   background-size: cover;
   background-position: center;
@@ -55,7 +56,8 @@ export default {
   width: 70px;
   height: 70px;
   margin-right: 20px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   flex-shrink: 0;
 }
 

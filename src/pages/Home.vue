@@ -135,7 +135,7 @@ const images = [
 
   <hr class="separator">
 
-  <VideoPlayer :src="Kryeitrailer"/>
+  <VideoPlayer :src="Kryeitrailer" :sound="0.7"/>
 
   <hr class="footer-separator">
 

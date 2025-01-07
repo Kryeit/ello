@@ -22,6 +22,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
+
   <div class="header">
     <h1>Store</h1>
   </div>

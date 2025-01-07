@@ -35,6 +35,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
   <h1 style="text-align: center; margin-bottom: 20px;">Order creation</h1>
   <Cart/>
   <form @submit.prevent="handleSubmit">

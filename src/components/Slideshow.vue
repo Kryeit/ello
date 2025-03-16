@@ -46,8 +46,11 @@ watch(flicking, (newFlicking) => {
         <img
             :src="image.src"
             :alt="image.name"
+            :width="image.width"
+            :height="image.height"
             class="carousel-image"
             draggable="false"
+            :loading="index === 0 ? 'eager' : 'lazy'"
         />
       </div>
     </Flicking>
@@ -79,8 +82,8 @@ watch(flicking, (newFlicking) => {
 
 .carousel-image {
   object-fit: contain;
-  image-rendering: pixelated; /* For browsers that support it */
-  image-rendering: crisp-edges; /* Safari fallback */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   user-select: none;
   width: 100%;
   height: 100%;
@@ -97,7 +100,6 @@ watch(flicking, (newFlicking) => {
   z-index: 1;
   user-select: none;
   pointer-events: none;
-
 }
 
 @media (max-width: 768px) {

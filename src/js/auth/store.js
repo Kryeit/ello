@@ -7,8 +7,8 @@ class Store {
         };
     }
 
-    setUser(uuid, username, creation, roles) {
-        this.state.user = new User(uuid, username, creation, roles);
+    setUser(user) {
+        this.state.user = user;
     }
 
     getUser() {

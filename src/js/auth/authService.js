@@ -13,8 +13,8 @@ class AuthService {
             }
             const data = await response.json();
 
-            const user = new User(data.uuid, data.username, data.creation, data.roles);
-            Store.setUser(user.uuid, user.username, user.creation, user.roles);
+            const user = new User(data.uuid, data.username, data.creation, data.lastSeen, data.roles, data.stats);
+            Store.setUser(user);
             return true;
         }
         return false;
@@ -36,9 +36,9 @@ class AuthService {
 
         const data = await response.json();
 
-        const user = new User(data.uuid, data.username, data.creation, data.roles);
+        const user = new User(data.uuid, data.username, data.creation, data.lastSeen, data.roles, data.stats);
+        Store.setUser(user);
 
-        Store.setUser(user.uuid, user.username, user.creation, user.roles);
         this.saveToken(data.token);
 
         return true;

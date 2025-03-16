@@ -59,7 +59,6 @@ class AuthService {
     async logout() {
         // Clear the auth cookie
         document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = '_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
         Store.resetUser();
     }

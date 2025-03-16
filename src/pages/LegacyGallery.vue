@@ -4,63 +4,63 @@ import Slideshow from "@/components/Slideshow.vue";
 
 const images = [
   {
-    src: "https://kryeit.com/images/img_0.webp",
+    src: "https://kryeit.com/images/OlimilO1402.webp",
     name: "Picture by OlimilO1402"
   },
   {
-    src: "https://kryeit.com/images/img_1.webp",
-    name: "Picture by Tesseract"
+    src: "https://kryeit.com/images/__Tesseract.webp",
+    name: "Picture by __Tesseract"
   },
   {
-    src: "https://kryeit.com/images/img_2.webp",
+    src: "https://kryeit.com/images/bbqribs2129.webp",
     name: "Picture by bbqribs2129"
   },
   {
-    src: "https://kryeit.com/images/img_3.webp",
+    src: "https://kryeit.com/images/Enzoquest10.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_4.webp",
+    src: "https://kryeit.com/images/Enzoquest10-2.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_5.webp",
+    src: "https://kryeit.com/images/Enzoquest10-3.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_6.webp",
+    src: "https://kryeit.com/images/Enzoquest10-4.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_7.webp",
+    src: "https://kryeit.com/images/Derpduck.webp",
     name: "Picture by Derpduck"
   },
   {
-    src: "https://kryeit.com/images/img_8.webp",
+    src: "https://kryeit.com/images/Enzoquest10-5.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_9.webp",
+    src: "https://kryeit.com/images/Enzoquest10-6.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_10.webp",
+    src: "https://kryeit.com/images/Enzoquest10-7.webp",
     name: "Picture by Enzoquest10"
   },
   {
-    src: "https://kryeit.com/images/img_11.webp",
+    src: "https://kryeit.com/images/bbqribs2129-2.webp",
     name: "Picture by bbqribs2129"
   },
   {
-    src: "https://kryeit.com/images/img_12.webp",
+    src: "https://kryeit.com/images/bbqribs2129-3.webp",
     name: "Picture by bbqribs2129"
   },
   {
-    src: "https://kryeit.com/images/img_13.webp",
+    src: "https://kryeit.com/images/Hedgie.webp",
     name: "Picture by Not a Hedgie"
   },
   {
-    src: "https://kryeit.com/images/img_14.webp",
+    src: "https://kryeit.com/images/OlimilO1402-2.webp",
     name: "Picture by OlimilO1402"
   },
 ]

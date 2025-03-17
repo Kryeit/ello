@@ -1,7 +1,138 @@
+<script setup>
+import {computed, onMounted, ref, watch} from 'vue';
+import {useRoute} from 'vue-router';
+import productStore from '@/js/merch/productStore.js';
+import ColorSelector from "@/pages/store/ColorSelector.vue";
+import SizeSelector from "@/pages/store/SizeSelector.vue";
+import {cart} from '@/js/merch/cart.js';
+import Cart from "@/pages/store/cart/Cart.vue";
+import ProductCarousel from "@/pages/store/ProductCarousel.vue";
+import Stock from '@/js/merch/stock.js';
+import StoreFooter from "@/components/payment/StoreFooter.vue";
+import {marked} from "marked";
+
+const route = useRoute();
+const product = ref(null);
+const selectedProduct = ref(null);
+const colors = ref([]);
+const selectedColor = ref(null);
+const selectedSize = ref(null);
+const sizes = ref([]);
+const stock = ref(null);
+const isLoading = ref(true);
+
+onMounted(async () => {
+  const productName = route.params.name;
+
+  // If products aren't loaded yet, wait for them
+  if (!productStore.isLoaded()) {
+    await productStore.fetchCatalog();
+  }
+
+  // Get product details from store
+  const productDetails = productStore.getProductDetails(productName);
+
+  if (!productDetails || productDetails.colorVariants.length === 0) {
+    console.error('Product not found or has no color variants');
+    isLoading.value = false;
+    return;
+  }
+
+  // Set product data
+  product.value = {
+    name: productDetails.name,
+    description: productDetails.description,
+    price: productDetails.price,
+    material: productDetails.material,
+    virtual: productDetails.virtual
+  };
+
+  // Extract colors
+  colors.value = productDetails.colorVariants.map(cv => cv.color);
+
+  // Set default color
+  selectedColor.value = colors.value[0];
+
+  // Process product variants
+  const variantsByColor = {};
+  for (const colorVariant of productDetails.colorVariants) {
+    variantsByColor[colorVariant.color] = colorVariant.sizes.map(size => ({
+      id: size.id,
+      name: productDetails.name,
+      description: productDetails.description,
+      price: productDetails.price,
+      size: size.size,
+      color: colorVariant.color,
+      material: productDetails.material,
+      virtual: productDetails.virtual,
+      stock: size.stock
+    }));
+  }
+
+  // Add color variants to product
+  product.value.colors = variantsByColor;
+
+  // Update sizes based on selected color
+  if (selectedColor.value) {
+    updateSizesForColor(selectedColor.value);
+  }
+
+  // Set initial product selection
+  await updateSelectedProduct();
+  isLoading.value = false;
+});
+
+function updateSizesForColor(color) {
+  if (product.value && product.value.colors && product.value.colors[color]) {
+    sizes.value = product.value.colors[color].map(p => p.size);
+  }
+}
+
+watch(selectedColor, async (newColor) => {
+  if (newColor) {
+    updateSizesForColor(newColor);
+    selectedSize.value = sizes.value[0];
+  }
+});
+
+watch([selectedColor, selectedSize], updateSelectedProduct);
+
+watch(selectedProduct, async (newProduct) => {
+  if (newProduct) {
+    stock.value = await Stock.getStock(newProduct);
+  }
+});
+
+async function updateSelectedProduct() {
+  if (selectedColor.value && selectedSize.value && product.value && product.value.colors) {
+    const variants = product.value.colors[selectedColor.value];
+    const selectedVariant = variants.find(v => v.size === selectedSize.value);
+
+    if (selectedVariant) {
+      selectedProduct.value = selectedVariant.id;
+    }
+  }
+}
+
+const productDescriptionHtml = computed(() => {
+  return marked.parse(product.value?.description || '');
+});
+</script>
+
 <template>
-  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
+  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO
+    THROUGH OR ARE REAL</h1>
   <div class="page-container">
-    <div v-if="product" class="product-container">
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading product details...</p>
+    </div>
+
+    <div v-else-if="!product" class="error-state">
+      <p>Product not found</p>
+      <router-link to="/store" class="back-link">Back to Store</router-link>
+    </div>
+
+    <div v-else class="product-container">
       <div class="details-container">
         <div class="product-header">
           <router-link class="return-to-store" to="/store">
@@ -25,7 +156,9 @@
               <p v-if="!product.virtual">Stock: {{ stock?.quantity ?? 0 }}</p>
               <div class="price-container">
                 <p class="price"><span style="font-weight: bold; font-size: 1.5rem">{{ product.price }}</span>€</p>
-                <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)" :disabled="!selectedProduct">Add to Cart</button>
+                <button class="add-to-cart" @click="cart.addItem(selectedProduct, product.price)"
+                        :disabled="!selectedProduct">Add to Cart
+                </button>
               </div>
             </div>
           </div>
@@ -33,87 +166,10 @@
       </div>
     </div>
 
-    <div v-else>
-      <p>Loading...</p>
-    </div>
-
     <Cart/>
     <StoreFooter class="footer"/>
   </div>
 </template>
-
-<script setup>
-import {computed, onMounted, ref, watch} from 'vue';
-import {useRoute} from 'vue-router';
-import Products from '@/js/merch/products.js';
-import ColorSelector from "@/pages/store/ColorSelector.vue";
-import SizeSelector from "@/pages/store/SizeSelector.vue";
-import {cart} from '@/js/merch/cart.js';
-import Cart from "@/pages/store/cart/Cart.vue";
-import ProductCarousel from "@/pages/store/ProductCarousel.vue";
-import Stock from '@/js/merch/stock.js';
-import StoreFooter from "@/components/payment/StoreFooter.vue";
-import {marked} from "marked";
-
-const route = useRoute();
-const product = ref(null);
-const selectedProduct = ref(null);
-let colors = [];
-const selectedColor = ref(null);
-const selectedSize = ref(null);
-const sizes = ref([]);
-const stock = ref(null);
-
-onMounted(async () => {
-  const productName = route.params.name;
-  const productsByColor = await Products.getProductsByColor(productName);
-
-  if (Object.keys(productsByColor)[0] === "") {
-    const productId = await Products.getProductsByName(productName);
-    product.value = await Products.getProduct(productId);
-    selectedProduct.value = productId[0];
-
-  } else {
-    colors = Object.keys(productsByColor);
-    selectedColor.value = colors[0];
-
-    product.value = {
-      name: productName,
-      colors: productsByColor,
-      ...productsByColor[colors[0]][0]
-    };
-
-    sizes.value = await Products.getSizesByColor(productName, selectedColor.value.replace('#', ''));
-
-    await updateSelectedProduct();
-  }
-});
-
-watch(selectedColor, async (newColor) => {
-  if (newColor) {
-    sizes.value = await Products.getSizesByColor(product.value.name, newColor.replace('#', ''));
-  }
-});
-
-watch([selectedColor, selectedSize], updateSelectedProduct);
-
-watch(selectedProduct, async (newProduct) => {
-  if (newProduct) {
-    stock.value = await Stock.getStock(newProduct);
-  }
-});
-
-async function updateSelectedProduct() {
-  if (selectedColor.value && selectedSize.value) {
-    const productName = route.params.name;
-    selectedProduct.value = await Products.getProductBySizeAndColor(productName, selectedSize.value, selectedColor.value.replace('#', ''));
-  }
-}
-
-const productDescriptionHtml = computed(() => {
-  return marked.parse(product.value?.description || '');
-});
-</script>
 
 <style scoped>
 .product-header {
@@ -205,6 +261,27 @@ button:active {
 
 .add-to-cart {
   white-space: nowrap;
+}
+
+.loading-state, .error-state {
+  text-align: center;
+  padding: 40px;
+  margin: 20px;
+}
+
+.error-state {
+  color: #cf4747;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: var(--color-background-mute);
+  border: 2px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {

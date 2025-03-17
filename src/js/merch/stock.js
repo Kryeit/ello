@@ -1,4 +1,4 @@
-import {getIpAddress} from "@/js/static.js";
+import { getIpAddress } from "@/js/static.js";
 
 class Stock {
     constructor() {
@@ -6,14 +6,26 @@ class Stock {
     }
 
     async getStock(id) {
-        if (typeof id != 'number') return 0;
-        const response = await fetch(`${this.apiUrl}/${id}`);
-        return await response.json();
+        if (typeof id !== 'number' && !Number.isInteger(parseInt(id))) return { quantity: 0, discount: 0 };
+
+        try {
+            const response = await fetch(`${this.apiUrl}/${id}`);
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching stock:", error);
+            return { quantity: 0, discount: 0 };
+        }
     }
 
     async getStockByName(name) {
-        const response = await fetch(`${this.apiUrl}/by-name?name=${name}`);
-        return await response.json();
+        try {
+            // For product groups, we sum up the stock across all variants
+            const response = await fetch(`${this.apiUrl}/by-name?name=${encodeURIComponent(name)}`);
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching stock by name:", error);
+            return 0;
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 <script setup>
 import { nextTick, onMounted, ref, watch, computed } from "vue";
-import Products from "@/js/merch/products.js";
+import productStore from "@/js/merch/productStore.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 
@@ -19,7 +19,14 @@ const isMobileOrTablet = computed(() => window.innerWidth <= 1024);
 
 onMounted(async () => {
   try {
-    images.value = await Products.getImages(props.productName);
+    // If the store isn't loaded yet, wait for it
+    if (!productStore.isLoaded()) {
+      await productStore.fetchCatalog();
+    }
+
+    // Get images from store
+    images.value = productStore.getImages(props.productName);
+
     await nextTick();
     setCarouselHeight();
     addScrollEventListener();

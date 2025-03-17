@@ -39,7 +39,7 @@ const routes = [
     {path: "/branding", component: Assets},
     {path: "/survival", component: Survival},
     {path: "/store", component: Store},
-    {path: "/analytics", component: Analytics},
+    {path: "/analytics", redirect: () => { window.location.href = 'https://coucou.kryeit.com/#/leaderboard'; } },
     {path: "/product/:name",component: Product },
     {path: "/getting-started", component: GettingStarted},
     {path: "/:pathMatch(.*)*", name: "NotFound", component: Error }, // 404 route

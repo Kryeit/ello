@@ -1,40 +1,69 @@
-import {getIpAddress} from "@/js/static.js";
+import { getIpAddress } from "@/js/static.js";
 
 class Orders {
     constructor() {
         this.apiUrl = getIpAddress() + '/api/orders';
-
         this.shippingCosts = 10;
     }
 
     async getOrders() {
-        const response = await fetch(this.apiUrl + '/by-user', {
-            method: 'GET',
-            credentials: 'include'
-        });
-        return await response.json();
-    }
+        try {
+            const response = await fetch(this.apiUrl + '/by-user', {
+                method: 'GET',
+                credentials: 'include'
+            });
 
-    async createOrder(order) {
-        const response = await fetch(this.apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify(order),
-        });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+            return [];
         }
-
-        const responseData = await response.json();
-
-        return responseData.id;
     }
 
+    async createOrder(orderData) {
+        try {
+            const response = await fetch(this.apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(orderData),
+            });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            return responseData.id;
+        } catch (error) {
+            console.error("Error creating order:", error);
+            throw error;
+        }
+    }
+
+    formatOrderDate(timestamp) {
+        if (!timestamp) return 'N/A';
+
+        const date = new Date(timestamp);
+        return date.toLocaleString();
+    }
+
+    getStatusLabel(status) {
+        const statusMap = {
+            'UNPAID': 'Unpaid',
+            'PENDING': 'Pending',
+            'SHIPPED': 'Shipped',
+            'DELIVERED': 'Delivered'
+        };
+
+        return statusMap[status] || status;
+    }
 }
 
 export default new Orders();

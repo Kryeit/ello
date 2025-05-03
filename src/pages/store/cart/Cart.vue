@@ -23,7 +23,7 @@
           <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
         </div>
         <div v-else class="empty-cart-message">
-          <p>Maybe it's time to add stuff :)</p>
+          <p>This jar looks empty...</p>
         </div>
       </div>
     </transition>

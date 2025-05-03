@@ -1,15 +1,15 @@
 <script setup>
-import { computed, getCurrentInstance, nextTick, onMounted, ref } from 'vue';
-import PaymentForm from "@/components/payment/PaymentForm.vue";
+import { getCurrentInstance, nextTick, onMounted, ref } from 'vue';
 import Cart from "@/pages/store/cart/Cart.vue";
 import { cart } from "@/js/merch/cart.js";
 import Products from "@/js/merch/products.js";
 import Orders from "@/js/merch/orders.js";
-import { useRouter } from 'vue-router';
 import Store from "@/js/auth/store.js";
+import { loadStripe } from "@stripe/stripe-js";
+import { onBeforeMount } from "vue-demi";
+import StoreFooter from "@/components/payment/StoreFooter.vue";
 
 const { emit } = getCurrentInstance();
-const router = useRouter();
 
 const email = ref('');
 const destination = ref('');
@@ -17,92 +17,104 @@ const phone = ref('');
 const isSubmitting = ref(false);
 const errorMessage = ref('');
 const successMessage = ref('');
+const hasPhysicalProduct = ref(false);
 
-const hasPhysicalProduct = computed(async () => {
-  for (const id in cart.items) {
-    const product = await Products.getProduct(id);
-    if (!product.virtual) {
-      return true;
-    }
+// API base URL - will use the current domain for subdomain.kryeit.com or current domain
+// for localhost
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+    ? 'https://kryeit.com'
+    : 'http://localhost:6969';
+
+const checkForPhysicalProducts = async () => {
+  try {
+    const productPromises = Object.keys(cart.items).map(id => Products.getProduct(id));
+    const products = await Promise.all(productPromises);
+    hasPhysicalProduct.value = products.some(product => !product.virtual);
+  } catch (error) {
+    console.error("Error checking for physical products:", error);
+    errorMessage.value = "Failed to check product types. Please try refreshing the page.";
   }
-  return false;
-});
-
-const cartItemsFormatted = computed(() => {
-  // Format cart items for the backend
-  return JSON.stringify(Object.keys(cart.items).map(id => parseInt(id)));
-});
+};
 
 const handleSubmit = async () => {
   if (isSubmitting.value) return;
+  errorMessage.value = '';
 
-  // Validation
-  if (!email.value) {
-    errorMessage.value = "Email is required";
+  // Input validation
+  if (!email.value || !email.value.includes('@')) {
+    errorMessage.value = "Please enter a valid email address";
     return;
   }
 
-  const physicalProductPresent = await hasPhysicalProduct.value;
-
-  if (physicalProductPresent && !destination.value) {
+  if (hasPhysicalProduct.value && !destination.value) {
     errorMessage.value = "Shipping address is required for physical products";
-    return;
-  }
-
-  // For virtual products, check if user is logged in
-  const hasVirtualProducts = Object.keys(cart.items).some(async (id) => {
-    const product = await Products.getProduct(id);
-    return product.virtual;
-  });
-
-  if (hasVirtualProducts && !Store.getUser()) {
-    errorMessage.value = "You must be logged in to purchase virtual products";
     return;
   }
 
   try {
     isSubmitting.value = true;
-    errorMessage.value = '';
 
-    // Create payment intent (this would usually be handled by PaymentForm component)
-    // For this example, we're just showing the process
-    const paymentIntentId = "test_payment_" + Date.now();
+    // Check for virtual products requiring login
+    const productPromises = Object.keys(cart.items).map(id => Products.getProduct(id));
+    const products = await Promise.all(productPromises);
+    const hasVirtualProducts = products.some(product => product.virtual);
 
-    // Create order data
-    const orderData = {
-      cart: cartItemsFormatted.value,
-      destination: destination.value || "Virtual Product",
-      phone: phone.value || "",
-      email: email.value,
-      transaction: paymentIntentId
-    };
+    if (hasVirtualProducts && !Store.getUser()) {
+      errorMessage.value = "You must be logged in to purchase virtual products";
+      isSubmitting.value = false;
+      return;
+    }
 
-    // Submit order
-    const orderId = await Orders.createOrder(orderData);
+    // Create Stripe session
+    const response = await fetch(`${API_BASE_URL}/api/payment/create`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({
+        cart: cart.items,
+        email: email.value,
+        phone: phone.value || "",
+        destination: destination.value || "Virtual Product",
+      }),
+    });
 
-    // Success!
-    successMessage.value = `Order created successfully! Order ID: ${orderId}`;
+    const responseText = await response.text();
+    let data;
 
-    // Clear cart
-    cart.clearCart();
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      throw new Error(`Invalid server response: ${responseText.substring(0, 100)}`);
+    }
 
-    // Redirect to confirmation page (or implement it here)
-    setTimeout(() => {
-      router.push('/orders');
-    }, 3000);
+    // Check if we got a valid Stripe session ID regardless of status code
+    if (data && data.id && typeof data.id === 'string' && data.id.startsWith('cs_')) {
+      // Valid Stripe session - redirect to checkout 'pk_live_51OtwANDLNKXyc0J1CzeD4E3QXQ8Oygtac1h9ZS8nMHIXNL42WOTU79H3gOAi7XkzB2ocPZITi1dAPc8SUmgLIehV00l0E6tVsg'
+      const stripe = await loadStripe('pk_live_51OtwANDLNKXyc0J1CzeD4E3QXQ8Oygtac1h9ZS8nMHIXNL42WOTU79H3gOAi7XkzB2ocPZITi1dAPc8SUmgLIehV00l0E6tVsg');
 
+      if (!stripe) {
+        throw new Error("Failed to initialize payment provider");
+      }
+
+      const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error(data.error || "Failed to create checkout session");
+    }
   } catch (error) {
     console.error("Error creating order:", error);
-    errorMessage.value = "Failed to create order: " + (error.message || "Unknown error");
-  } finally {
+    errorMessage.value = `Failed to process payment: ${error.message || "Unknown error"}`;
     isSubmitting.value = false;
   }
 };
 
 const preloadUserData = () => {
   const user = Store.getUser();
-  if (user) {
-    email.value = user.email || '';
+  if (user && user.email) {
+    email.value = user.email;
   }
 };
 
@@ -110,11 +122,28 @@ onMounted(async () => {
   await nextTick();
   emit('open-cart');
   preloadUserData();
+  await checkForPhysicalProducts();
+});
+
+onBeforeMount(async () => {
+  const url = new URL(window.location.href);
+  if (url.pathname === '/orders' && url.searchParams.has('checkout') && url.searchParams.get('checkout') === 'success') {
+    successMessage.value = "Your order has been placed successfully!";
+    cart.clearCart();
+
+    const sessionId = url.searchParams.get('session_id');
+    if (sessionId) {
+      try {
+        await fetch(`${API_BASE_URL}/api/payment/success?session_id=${encodeURIComponent(sessionId)}`);
+      } catch (error) {
+        console.error("Error verifying payment:", error);
+      }
+    }
+  }
 });
 </script>
 
 <template>
-  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO THROUGH OR ARE REAL</h1>
   <h1 style="text-align: center; margin-bottom: 20px;">Order creation</h1>
   <Cart/>
 
@@ -154,14 +183,21 @@ onMounted(async () => {
     </div>
 
     <div class="payment-section">
-      <h3>Payment</h3>
-      <PaymentForm :form-data="{ email, destination, phone }" />
+      <h3 class="disclaimer">Important: If you are not
+        <a href="https://kryeit.com/login">
+        logged in</a>
+        you won't be able to see your order status, unless you contact
+      <a href="https://kryeit.com/about">
+        Staff</a>.</h3>
 
       <button type="submit" class="submit-button" :disabled="isSubmitting">
         {{ isSubmitting ? 'Processing...' : 'Complete Purchase' }}
       </button>
     </div>
   </form>
+
+  <StoreFooter />
+
 </template>
 
 <style scoped>
@@ -231,7 +267,7 @@ input:focus {
   background-color: var(--color-background-soft);
   padding: 15px;
   border-radius: 5px;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .order-summary h3 {
@@ -270,5 +306,9 @@ input:focus {
 .submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.disclaimer a {
+  color: #ba304d;
 }
 </style>

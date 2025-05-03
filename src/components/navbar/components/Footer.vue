@@ -1,10 +1,8 @@
 <script setup>
 import {ref} from "vue";
-import treePath from "@/assets/tree.png";
 import {addToast} from "@/js/toasts.js";
 import {i18n} from "@/main.js";
 
-const treeSource = ref(treePath);
 const clickSound = new URL('@/assets/sounds/click.ogg', import.meta.url);
 const sound = ref(new Audio(clickSound.href));
 
@@ -21,7 +19,6 @@ async function addEmailToast() {
 
 <template>
   <div class="footer">
-    <img :src="treeSource" alt=""/>
     <div class="footer-section">
       <p>Kryeit </p>
 

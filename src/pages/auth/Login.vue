@@ -24,7 +24,15 @@ onMounted(async () => {
 <template>
   <div>
     <p v-if="token">Token: {{ token }}</p>
-    <p v-else>Log in inside the server using /login</p>
+    <div v-else style="text-align:center; margin-top: 200px;">
+      <p>
+        The authentication depends on minecraft accounts for now.
+      </p>
+      <p>
+        Use /login command to log into the website.
+      </p>
+    </div>
+
   </div>
 </template>
 

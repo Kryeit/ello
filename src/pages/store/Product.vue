@@ -30,7 +30,8 @@ onMounted(async () => {
   }
 
   // Get product details from store
-  const productDetails = productStore.getProductDetails(productName);
+  const productDetails = await productStore.getProductDetails(productName);
+  console.log("Product details:", productDetails);
 
   if (!productDetails || productDetails.colorVariants.length === 0) {
     console.error('Product not found or has no color variants');
@@ -120,8 +121,6 @@ const productDescriptionHtml = computed(() => {
 </script>
 
 <template>
-  <h1 style="color: red">THIS PAGE IS NOT RELEASED, JUST INTERACTABLE AS A TEST PHASE, NO PAYMENTS OR ANYTHING WILL GO
-    THROUGH OR ARE REAL</h1>
   <div class="page-container">
     <div v-if="isLoading" class="loading-state">
       <p>Loading product details...</p>

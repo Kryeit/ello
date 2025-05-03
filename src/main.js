@@ -46,8 +46,8 @@ useColorMode({
 })
 
 // Start loading the product catalog at application launch
-productStore.fetchCatalog().catch(err => {
-    console.error('Failed to preload product catalog:', err);
+productStore.fetchCatalog().catch(error => {
+    console.error('Failed to preload product catalog:', error);
 });
 
 // Validate user token if available

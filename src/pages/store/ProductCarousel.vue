@@ -3,6 +3,7 @@ import { nextTick, onMounted, ref, watch, computed } from "vue";
 import productStore from "@/js/merch/productStore.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
+import Products from "@/js/merch/products.js";
 
 const props = defineProps({
   productName: String
@@ -11,8 +12,6 @@ const props = defineProps({
 const images = ref([]);
 const flicking = ref(null);
 const carouselWrapper = ref(null);
-const scrollHintHeight = ref(0);
-let index = 1;
 let flickingMoving = false;
 
 const isMobileOrTablet = computed(() => window.innerWidth <= 1024);
@@ -25,12 +24,10 @@ onMounted(async () => {
     }
 
     // Get images from store
-    images.value = productStore.getImages(props.productName);
+    images.value = await Products.getImages(props.productName);
 
     await nextTick();
     setCarouselHeight();
-    addScrollEventListener();
-    updateScrollHint();
   } catch (error) {
     console.error("Error loading product images:", error);
   }
@@ -45,28 +42,6 @@ const setCarouselHeight = () => {
   }
 };
 
-const addScrollEventListener = () => {
-  carouselWrapper.value.addEventListener('wheel', (event) => {
-    event.preventDefault();
-    if (flicking.value && !flickingMoving) {
-      if (event.deltaY > 0) {
-        flicking.value.next();
-        index = (index + 1) > images.value.length ? 1 : index + 1;
-      } else {
-        flicking.value.prev();
-        index = index === 1 ? images.value.length : index - 1;
-      }
-      updateScrollHint();
-    }
-  });
-};
-
-const updateScrollHint = () => {
-  const totalPanels = images.value.length;
-  scrollHintHeight.value = (index / totalPanels) * 100;
-};
-
-watch(images, updateScrollHint);
 </script>
 
 <template>
@@ -78,8 +53,6 @@ watch(images, updateScrollHint);
         horizontal: isMobileOrTablet
       }"
         class="carousel"
-        @changed="updateScrollHint"
-        @move="updateScrollHint"
         @moveStart="() => { flickingMoving = true; }"
         @moveEnd="() => { flickingMoving = false;}"
     >
@@ -96,10 +69,6 @@ watch(images, updateScrollHint);
         />
       </div>
     </Flicking>
-
-    <div v-if="!isMobileOrTablet" class="scrolling-hint">
-      <div class="scrolling-hint-progress" :style="{ height: scrollHintHeight + '%' }"></div>
-    </div>
   </div>
 </template>
 

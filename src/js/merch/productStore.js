@@ -94,8 +94,56 @@ function getProductByName(name) {
     return state.productsByName[name] || null;
 }
 
-function getProductDetails(name) {
-    return state.productsByName[name] || null;
+// Add this new method to fetch product details directly from API
+async function fetchProductDetailsFromApi(name) {
+    try {
+        const apiUrl = getIpAddress() + '/api/products/details';
+        const response = await fetch(`${apiUrl}?name=${encodeURIComponent(name)}`);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch product details: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Add to cache
+        state.productsByName[name] = data;
+
+        // Add each variant to ID lookup
+        if (data && data.colorVariants) {
+            for (const colorVariant of data.colorVariants) {
+                for (const sizeVariant of colorVariant.sizes) {
+                    state.productsByID[sizeVariant.id] = {
+                        id: sizeVariant.id,
+                        name: data.name,
+                        description: data.description,
+                        price: data.price,
+                        color: colorVariant.color,
+                        colorCode: colorVariant.colorCode,
+                        size: sizeVariant.size,
+                        stock: sizeVariant.stock,
+                        discount: sizeVariant.discount || 0,
+                        material: data.material,
+                        virtual: data.virtual,
+                        images: colorVariant.images || []
+                    };
+                }
+            }
+        }
+
+        return data;
+    } catch (error) {
+        console.error(`Error fetching product details for ${name}:`, error);
+        return null;
+    }
+}
+
+// Updated to fetch from API if not in cache
+async function getProductDetails(name) {
+    if (state.productsByName[name]) {
+        return state.productsByName[name];
+    }
+    return await fetchProductDetailsFromApi(name);
 }
 
 function getProductVariants(name) {

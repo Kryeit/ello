@@ -15,7 +15,7 @@
   border-top: 2px dashed var(--color-border);
   padding-top: 10px;
   padding-bottom: 4px;
-  margin-top: 200px;
+  margin-top: 40px;
 }
 
 .footer .link {

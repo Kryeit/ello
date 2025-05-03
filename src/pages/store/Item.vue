@@ -114,9 +114,9 @@ onMounted(async () => {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  color: var(--color-background-mute);
+  color: var(--color-text);
   font-size: 1.1rem;
-  text-shadow: 1px 3px 1px var(--color-text);
+  text-shadow: 1px 3px 1px var(--color-background-gradient);
 }
 
 .sizes {

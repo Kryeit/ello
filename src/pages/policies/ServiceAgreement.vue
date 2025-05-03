@@ -25,10 +25,6 @@ Welcome to our shop. By using our website, you agree to the following terms outl
 - We aim to deliver your order within the specified timeframe, but delays may occur due to external factors (e.g., customs, weather).
 - Shipping fees are non-refundable.
 
-## Intellectual Property
-- All content on this website, including text, images, and logos, is the property of the owner(s) of Kryeit.
-- You may not reproduce, distribute, or use any content without prior written permission.
-
 ## Limitation of Liability
 - We are not liable for any damages resulting from the use of our website or products, except as required by law.
 

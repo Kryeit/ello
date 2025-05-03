@@ -1,26 +1,60 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Orders from '@/js/merch/orders.js';
 import Products from '@/js/merch/products.js';
+import {cart} from "@/js/merch/cart.js";
 
+const route = useRoute();
 const orders = ref([]);
 const orderProducts = ref({});
 const isLoading = ref(true);
+const showSuccessMessage = ref(false);
+
+// Check if this is a successful checkout
+const checkoutStatus = computed(() => route.query.checkout || null);
+const sessionId = computed(() => route.query.session_id || null);
 
 onMounted(async () => {
+  // Show success message if coming from checkout
+  if (checkoutStatus.value === 'success' && sessionId.value) {
+    showSuccessMessage.value = true;
+
+    cart.clearCart()
+
+    // Optional: Clear the query parameters after showing the message
+    setTimeout(() => {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }, 5000);
+  }
+
   try {
     // Get user orders
     orders.value = await Orders.getOrders();
 
     // Load product details for each order
     for (const order of orders.value) {
-      // Parse the cart
+      // Handle cart data - now it's an array, not a JSON string
       let cartItems = [];
-      try {
-        cartItems = JSON.parse(order.cart);
-      } catch (e) {
-        console.error("Error parsing cart:", e);
-        cartItems = [];
+
+      // Check if cart is already an array (direct from BIGINT[])
+      if (Array.isArray(order.cart)) {
+        cartItems = order.cart;
+      }
+      // For backwards compatibility, try to parse if it's a string
+      else if (typeof order.cart === 'string') {
+        try {
+          cartItems = JSON.parse(order.cart);
+        } catch (e) {
+          console.error("Error parsing cart string:", e);
+          cartItems = [];
+        }
+      }
+      // Handle if it's any other type (should be rare)
+      else if (order.cart) {
+        console.warn("Unexpected cart format:", order.cart);
+        // Try to convert to array if possible
+        cartItems = Object.values(order.cart);
       }
 
       // Get product details for each item
@@ -51,12 +85,18 @@ onMounted(async () => {
   <div>
     <h1>Your Orders</h1>
 
+    <!-- Success message for completed checkout -->
+    <div v-if="showSuccessMessage" class="success-message">
+      <p>Thank you for your order! Your purchase was successful.</p>
+      <p>Order Session ID: {{ sessionId }}</p>
+    </div>
+
     <div v-if="isLoading" class="loading">
       <p>Loading your orders...</p>
     </div>
 
     <div v-else-if="orders.length === 0" class="no-orders">
-      <p>You don't have any orders yet.</p>
+      <p>You don't have any orders yet or you made the purchase without being logged. As long as you saved the transaction id you can ask staff about information about your order.</p>
       <router-link to="/store" class="store-link">Browse the Store</router-link>
     </div>
 
@@ -70,7 +110,7 @@ onMounted(async () => {
         </div>
 
         <div class="order-details">
-          <p><strong>Date:</strong> {{ Orders.formatOrderDate(order.createdAt) }}</p>
+          <p><strong>Date:</strong> {{ Orders.formatOrderDate(order.creation || order.createdAt) }}</p>
           <p v-if="order.destination && order.destination !== 'Virtual Product'">
             <strong>Shipping Address:</strong> {{ order.destination }}
           </p>
@@ -103,6 +143,16 @@ onMounted(async () => {
 .loading, .no-orders {
   text-align: center;
   padding: 30px;
+}
+
+.success-message {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .store-link {

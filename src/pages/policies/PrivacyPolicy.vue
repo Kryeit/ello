@@ -13,7 +13,7 @@ Your privacy is important to us. This Privacy Policy explains how we collect, us
 - **Order Details**: Information about the items you've purchased.
 - **JWT Tokens**: Used to authenticate your session securely.
 
-We do not store any passwords.
+We do not store any passwords, only hashed ones.
 
 ## Data Retention
 We only retain your personal data as long as necessary to process your orders:
@@ -31,9 +31,6 @@ Your data is used solely for:
 
 ## Cookies
 Users can manage or disable cookies through their browser settings. Our cookie use is minimal and only for session management.
-
-## Data Security
-We implement industry-standard measures, such as encryption and secure servers, to protect your personal data from unauthorized access, alteration, or disclosure.
 
 ## Your Rights
 Under GDPR, you have the right to:

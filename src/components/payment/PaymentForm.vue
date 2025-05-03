@@ -72,21 +72,17 @@ export default {
       this.processing = true;
 
       try {
-        // Prepare the cart data to be sent
         const cartData = cart.items;
 
-        let hasVirtual = false;
+        // Use Promise.all to properly check all products
+        const productPromises = Object.keys(cartData).map(key => Products.getProduct(key));
+        const products = await Promise.all(productPromises);
 
-        for (const key in cartData) {
-          const product = await Products.getProduct(key);
-          if (product.virtual) {
-            hasVirtual = true;
-            break;
-          }
-        }
+        const hasVirtual = products.some(product => product.virtual);
 
         if (hasVirtual && !store.getUser()) {
           alert('You need to be logged in to purchase virtual items.');
+          this.processing = false;
           return;
         }
 

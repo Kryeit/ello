@@ -144,63 +144,73 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <h1 style="text-align: center; margin-bottom: 20px;">Order creation</h1>
-  <Cart/>
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 20px;">Order creation</h1>
+    <Cart/>
 
-  <div v-if="successMessage" class="success-message">
-    {{ successMessage }}
-    <p>Redirecting to your orders...</p>
+    <div v-if="successMessage" class="success-message">
+      {{ successMessage }}
+      <p>Redirecting to your orders...</p>
+    </div>
+
+    <form v-else @submit.prevent="handleSubmit">
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+      <div>
+        <label for="email">Email: </label>
+        <input type="email" id="email" v-model="email" required
+               placeholder="example@kryeit.com"/>
+      </div>
+
+      <div>
+        <label :for="hasPhysicalProduct ? 'destination' : ''">Delivery Address: </label>
+        <input type="text" id="destination" v-model="destination" :required="hasPhysicalProduct"
+               placeholder="Flat 1, 123 Main St, Springfield, USA, 12345"/>
+        <small v-if="!hasPhysicalProduct" class="form-hint">Not required for virtual products</small>
+      </div>
+
+      <div>
+        <label for="phone">Phone: </label>
+        <input type="tel" id="phone" v-model="phone" placeholder="+1 123-456-7890"
+               oninput="this.value=this.value.replace(/[^0-9+ ]/g,'')"/>
+      </div>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <p>Total Items: {{ Object.values(cart.items).reduce((sum, item) => sum + item.quantity, 0) }}</p>
+        <p>Subtotal: {{ cart.totalPrice() }}€</p>
+        <p v-if="hasPhysicalProduct">Shipping: {{ Orders.shippingCosts }}€</p>
+        <p class="total-price">Total: {{ cart.totalWithShipping(hasPhysicalProduct) }}€</p>
+      </div>
+
+      <div class="payment-section">
+        <h3 class="disclaimer">Important: If you are not
+          <a href="https://kryeit.com/login">
+            logged in</a>
+          you won't be able to see your order status, unless you contact
+          <a href="https://kryeit.com/about">
+            Staff</a> or send us an [email](mailto:kryeit.minecraft@gmial.com).</h3>
+
+        <button type="submit" class="submit-button" :disabled="isSubmitting">
+          {{ isSubmitting ? 'Processing...' : 'Complete Purchase' }}
+        </button>
+      </div>
+    </form>
+
+    <StoreFooter />
   </div>
-
-  <form v-else @submit.prevent="handleSubmit">
-    <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-    <div>
-      <label for="email">Email: </label>
-      <input type="email" id="email" v-model="email" required
-             placeholder="example@kryeit.com"/>
-    </div>
-
-    <div>
-      <label :for="hasPhysicalProduct ? 'destination' : ''">Delivery Address: </label>
-      <input type="text" id="destination" v-model="destination" :required="hasPhysicalProduct"
-             placeholder="Flat 1, 123 Main St, Springfield, USA, 12345"/>
-      <small v-if="!hasPhysicalProduct" class="form-hint">Not required for virtual products</small>
-    </div>
-
-    <div>
-      <label for="phone">Phone: </label>
-      <input type="tel" id="phone" v-model="phone" placeholder="+1 123-456-7890"
-             oninput="this.value=this.value.replace(/[^0-9+ ]/g,'')"/>
-    </div>
-
-    <div class="order-summary">
-      <h3>Order Summary</h3>
-      <p>Total Items: {{ Object.values(cart.items).reduce((sum, item) => sum + item.quantity, 0) }}</p>
-      <p>Subtotal: {{ cart.totalPrice() }}€</p>
-      <p v-if="hasPhysicalProduct">Shipping: {{ Orders.shippingCosts }}€</p>
-      <p class="total-price">Total: {{ cart.totalWithShipping(hasPhysicalProduct) }}€</p>
-    </div>
-
-    <div class="payment-section">
-      <h3 class="disclaimer">Important: If you are not
-        <a href="https://kryeit.com/login">
-        logged in</a>
-        you won't be able to see your order status, unless you contact
-      <a href="https://kryeit.com/about">
-        Staff</a>.</h3>
-
-      <button type="submit" class="submit-button" :disabled="isSubmitting">
-        {{ isSubmitting ? 'Processing...' : 'Complete Purchase' }}
-      </button>
-    </div>
-  </form>
-
-  <StoreFooter />
 
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 form {
   display: flex;
   flex-direction: column;

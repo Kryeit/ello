@@ -17,6 +17,7 @@ const translate = ref({ x: 0, y: 0 });
 const pointers = new Map();
 let startDist = 0;
 let startScale = 1;
+let pinchCenter = { x: 0, y: 0 };
 
 /**
  * Compute CSS transform string
@@ -49,12 +50,11 @@ function onWheel(e) {
   const offsetX = e.clientX - rect.left;
   const offsetY = e.clientY - rect.top;
 
-  // apply zoom
-  scale.value *= zoomFactor;
-
-  // adjust translate to keep around pointer
-  translate.value.x = (translate.value.x - offsetX) * zoomFactor + offsetX;
-  translate.value.y = (translate.value.y - offsetY) * zoomFactor + offsetY;
+  // apply zoom around pointer
+  const newScale = scale.value * zoomFactor;
+  translate.value.x = (translate.value.x - offsetX) * (newScale / scale.value) + offsetX;
+  translate.value.y = (translate.value.y - offsetY) * (newScale / scale.value) + offsetY;
+  scale.value = newScale;
 }
 
 /** Track pointer down for drag or pinch */
@@ -63,10 +63,16 @@ function onPointerDown(e) {
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
   if (pointers.size === 2) {
-    // pinch start
+    // pinch start: calculate distance and center
     const pts = Array.from(pointers.values());
     startDist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
     startScale = scale.value;
+    // pinch center relative to container
+    const rect = e.currentTarget.getBoundingClientRect();
+    pinchCenter = {
+      x: ((pts[0].x + pts[1].x) / 2) - rect.left,
+      y: ((pts[0].y + pts[1].y) / 2) - rect.top
+    };
   }
 }
 
@@ -87,7 +93,11 @@ function onPointerMove(e) {
     const pts = Array.from(pointers.values());
     const dist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
     const factor = dist / startDist;
-    scale.value = startScale * factor;
+    const newScale = startScale * factor;
+    // adjust translate to zoom around pinchCenter
+    translate.value.x = (translate.value.x - pinchCenter.x) * (newScale / scale.value) + pinchCenter.x;
+    translate.value.y = (translate.value.y - pinchCenter.y) * (newScale / scale.value) + pinchCenter.y;
+    scale.value = newScale;
   }
 }
 
@@ -101,7 +111,7 @@ function onPointerUp(e) {
 
 <template>
   <div v-if="modelValue" class="modal-overlay" @click.self="close">
-    <div class="modal-content">
+    <div class="modal-content" @click.self="close">
       <div class="image-container"
            @wheel.prevent="onWheel"
            @pointerdown="onPointerDown"
@@ -174,19 +184,6 @@ function onPointerUp(e) {
   pointer-events: none;
   max-width: 100%;
   max-height: 100%;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  -ms-user-drag: none;
-  user-drag: none;
 }
 .close-btn {
   margin-top: 8px;

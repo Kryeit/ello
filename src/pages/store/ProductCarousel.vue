@@ -6,6 +6,7 @@ import "@egjs/vue3-flicking/dist/flicking.css";
 import Products from "@/js/merch/products.js";
 import {getIpAddress} from "@/js/static.js";
 import ImagePopup from "@/pages/store/ImagePopup.vue";
+import {AutoPlay} from "@egjs/flicking-plugins";
 
 const props = defineProps({
   productName: String
@@ -15,6 +16,7 @@ const images = ref([]);
 const flicking = ref(null);
 const carouselWrapper = ref(null);
 let flickingMoving = false;
+const plugins = [new AutoPlay({duration: 4000, direction: "NEXT", stopOnHover: true})];
 
 // Popup state
 const popupVisible = ref(false);
@@ -62,6 +64,8 @@ function openPopup(image) {
         class="carousel"
         @moveStart="() => { flickingMoving = true; }"
         @moveEnd="() => { flickingMoving = false;}"
+        :plugins="plugins"
+
     >
       <div
           class="panel"

@@ -108,6 +108,7 @@ onMounted(async () => {
   font-size: 1.1rem;
   flex-grow: 1;
   position: relative;
+  min-height: 160px;
 }
 
 .title {

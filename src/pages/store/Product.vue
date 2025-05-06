@@ -138,7 +138,7 @@ const productDescriptionHtml = computed(() => {
             <ArrowLeft/>
             <h1>Store</h1>
           </router-link>
-          <h1>{{ product.name }} #{{ selectedProduct }}</h1>
+          <h1>{{ product.name }}</h1>
         </div>
         <div class="content">
           <ProductCarousel :product-name="product.name" class="carousel"/>
@@ -164,13 +164,21 @@ const productDescriptionHtml = computed(() => {
         </div>
       </div>
     </div>
+    <StoreFooter class="footer"/>
 
     <Cart/>
-    <StoreFooter class="footer"/>
   </div>
+
 </template>
 
 <style scoped>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
 .product-header {
   display: flex;
   align-items: center;
@@ -202,10 +210,6 @@ const productDescriptionHtml = computed(() => {
   margin: 0;
   left: 220%;
   font-size: 1.2rem;
-}
-
-.footer {
-  margin-top: auto;
 }
 
 .product-container {

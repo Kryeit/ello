@@ -4,6 +4,8 @@ import productStore from "@/js/merch/productStore.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 import Products from "@/js/merch/products.js";
+import {getIpAddress} from "@/js/static.js";
+import ImagePopup from "@/pages/store/ImagePopup.vue";
 
 const props = defineProps({
   productName: String
@@ -14,18 +16,18 @@ const flicking = ref(null);
 const carouselWrapper = ref(null);
 let flickingMoving = false;
 
+// Popup state
+const popupVisible = ref(false);
+const popupSrc = ref("");
+
 const isMobileOrTablet = computed(() => window.innerWidth <= 1024);
 
 onMounted(async () => {
   try {
-    // If the store isn't loaded yet, wait for it
     if (!productStore.isLoaded()) {
       await productStore.fetchCatalog();
     }
-
-    // Get images from store
     images.value = await Products.getImages(props.productName);
-
     await nextTick();
     setCarouselHeight();
   } catch (error) {
@@ -42,6 +44,11 @@ const setCarouselHeight = () => {
   }
 };
 
+// Open popup with selected image
+function openPopup(image) {
+  popupSrc.value = getIpAddress() + image;
+  popupVisible.value = true;
+}
 </script>
 
 <template>
@@ -62,13 +69,18 @@ const setCarouselHeight = () => {
           :key="index"
       >
         <img
-            :src="image"
+            :src="getIpAddress() + image"
             alt="Product Image"
             class="carousel-image"
             draggable="false"
+            @dragstart.prevent
+            @click="openPopup(image)"
         />
       </div>
     </Flicking>
+
+    <!-- Image popup component -->
+    <ImagePopup v-model="popupVisible" :src="popupSrc" />
   </div>
 </template>
 
@@ -79,11 +91,12 @@ const setCarouselHeight = () => {
   z-index: 998;
   padding: 20px 0;
   display: flex;
+  height: 100%;
 }
 
 .carousel {
   width: 90%;
-  height: 100%;
+  height: 105%;
   white-space: nowrap;
 }
 
@@ -91,32 +104,42 @@ const setCarouselHeight = () => {
   display: block;
   width: 100%;
   height: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
-
 .carousel-image {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -ms-user-drag: none;
+  user-drag: none;
+
   object-fit: contain;
   image-rendering: pixelated; /* For browsers that support it */
   image-rendering: crisp-edges; /* Safari fallback */
-  user-select: none;
   width: 100%;
   height: auto;
+  border-radius: 12px;
+  border: 4px solid black;
+  cursor: pointer;
 }
 
-.scrolling-hint {
-  width: 4px;
-  background-color: var(--color-background);
-  display: flex;
-  align-items: flex-start;
-  margin-left: 20px;
-  border-radius: 4px;
-  border: 1px solid var(--color-border);
-}
+@media (max-width: 1024px) {
+  .carousel {
+    width: 100%;
+  }
 
-.scrolling-hint-progress {
-  width: 100%;
-  background-color: var(--color-text);
-  transition: height 0.3s ease;
-  border-radius: 4px;
+  .panel {
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
+
 }
 </style>

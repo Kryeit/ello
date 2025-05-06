@@ -13,7 +13,6 @@ class Products {
     }
 
     async getProductDetails(name) {
-        console.log("Hey")
         const response = await fetch(`${this.apiUrl}/details?name=${encodeURIComponent(name)}`);
         return await response.json();
     }

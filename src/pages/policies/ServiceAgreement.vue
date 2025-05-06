@@ -14,7 +14,7 @@ Welcome to our shop. By using our website, you agree to the following terms outl
 
 ## Orders and Payments
 - **Order Acceptance:** All orders are subject to availability and acceptance.
-- **Pricing:** Prices are listed in USD and may be subject to change without notice.
+- **Pricing:** Prices are listed in EUR and may be subject to change without notice.
 - **Payment Processing:** Payments are processed securely through [Stripe](https://stripe.com). Please refer to their [Privacy Policy](https://stripe.com/privacy) for more information.
 
 ## Refunds and Cancellations

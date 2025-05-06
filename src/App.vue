@@ -17,7 +17,7 @@ useRouter().afterEach(() => {
 
 <template>
   <ToastManager />
-  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
+  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.webp" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>

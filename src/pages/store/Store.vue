@@ -27,50 +27,61 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="header">
-    <h1>Store</h1>
-  </div>
-
-  <div v-if="isLoading" class="loading-state">
-    <p>Loading products...</p>
-  </div>
-
-  <div v-else-if="hasError" class="error-state">
-    <p>Error loading products: {{ errorMessage }}</p>
-    <button @click="productStore.fetchCatalog()">Try Again</button>
-  </div>
-
-  <template v-else>
-    <div class="section">
-      <h2>Merch</h2>
-      <div class="grid-container">
-        <div v-for="product in merchProducts" :key="product.id" class="grid-item">
-          <Item v-if="product.listed" :product="Array.of(product)" />
-        </div>
-      </div>
+  <div class="container">
+    <div class="header">
+      <h1>Store</h1>
     </div>
 
-    <div class="section">
-      <h2>Cosmetics</h2>
-      <div class="grid-container">
-        <div v-for="product in virtualProducts" :key="product.id" class="grid-item">
-          <Item v-if="product.listed" :product="Array.of(product)" />
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading products...</p>
+    </div>
+
+    <div v-else-if="hasError" class="error-state">
+      <p>Error loading products: {{ errorMessage }}</p>
+      <button @click="productStore.fetchCatalog()">Try Again</button>
+    </div>
+
+    <template v-else>
+      <div class="section">
+        <h2>Merch</h2>
+        <div class="grid-container">
+          <div v-for="product in merchProducts" :key="product.id" class="grid-item">
+            <Item v-if="product.listed" :product="Array.of(product)" />
+          </div>
         </div>
       </div>
-    </div>
-  </template>
 
-  <Cart />
+      <div class="section">
+        <h2>Cosmetics</h2>
+        <div class="grid-container">
+          <div v-for="product in virtualProducts" :key="product.id" class="grid-item">
+            <Item v-if="product.listed" :product="Array.of(product)" />
+          </div>
+        </div>
+      </div>
+    </template>
+    <StoreFooter />
 
-  <StoreFooter />
+    <Cart />
+  </div>
+
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 16px;
+
 }
 
 .header h1 {

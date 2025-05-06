@@ -11,20 +11,15 @@
 
 <style scoped>
 .footer {
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
   border-top: 2px dashed var(--color-border);
-  padding-top: 10px;
-  padding-bottom: 4px;
-  margin-top: 40px;
+  margin-top: auto;
 }
 
 .footer .link {
-  margin: 0 50px 0 0;
   color: var(--color-text);
 }
 
-.footer .link:last-child {
-  margin-right: 0;
-}
 
 </style>

@@ -46,7 +46,7 @@ export default {
     };
   },
   async mounted() {
-    this.stripe = await loadStripe('pk_test_51OtwANDLNKXyc0J1TNDujqp4FCBKXlq7yMqUOBMsKSfYenydSamwzyl0T4dIDsvaVmUJ5KHORvRkogmjCmHEkMqa00R6cDAaGV'); // Replace with your publishable key
+    this.stripe = await loadStripe('pk_live_51OtwANDLNKXyc0J1CzeD4E3QXQ8Oygtac1h9ZS8nMHIXNL42WOTU79H3gOAi7XkzB2ocPZITi1dAPc8SUmgLIehV00l0E6tVsg'); // Replace with your publishable key
 
     if (!this.stripe) {
       console.error("Stripe failed to initialize.");

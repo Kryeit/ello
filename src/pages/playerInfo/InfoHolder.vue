@@ -3,19 +3,26 @@ import {computed, ref} from "vue";
 import {formatDate, ordinal} from "@/utils.js";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
-const {playerName} = defineProps(["player-name"]);
+const {"player": playerId} = defineProps(["player"]);
 
 const data = ref();
+const rank = ref();
 const error = ref(false);
 const lastSeenMessage = computed(() => {
   const daysAgo = Math.round((new Date() - data.value.lastSeen) / (1000 * 60 * 60 * 24));
   return daysAgo === 1 ? "1 day ago" : daysAgo + " days ago";
 });
 
-fetch(`/api/players/${playerName}`).then(res => res.json())
+const playtimeStat = "minecraft:custom/minecraft:play_time";
+const encodedStats = encodeURIComponent(playtimeStat);
+fetch(`/api/players/${playerId}?stats=${encodedStats}`).then(res => res.json())
     .catch(() => error.value = true)
     .then(json => {
       data.value = json;
+
+      fetch(`/api/players/${playerId}/rank?key=minecraft:play_time`).then(res => res.json()).then(r => {
+        rank.value = r.rank;
+      });
     });
 </script>
 
@@ -25,18 +32,19 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
       <h1 class="error">Not found</h1>
     </div>
     <div v-else-if="data" class="data-wrapper">
-      <h1>{{ playerName }}</h1>
+      <h1>{{ data.minecraftName }}</h1>
 
       <h2>Status:</h2>
       <div class="info-wrapper">
         <div class="status-wrapper">
-          <div class="status" :style="{background: data.afk ? 'grey' : (data.online && !data.banStatus ? 'var(--green)' : 'var(--red)')}"></div>
+          <div class="status"
+               :style="{background: data.afk ? 'grey' : (data.online && !data.banStatus ? 'var(--green)' : 'var(--red)')}"></div>
           <h3 v-if="data.banStatus">Banned
             <router-link to="/bans">All bans...</router-link>
           </h3>
           <h3 v-else>{{ data.online ? (data.afk ? "AFK" : "Online") : "Offline" }}</h3>
         </div>
-        <h3 v-if="!data.online">Last Seen: {{ formatDate(data.lastSeen) }}
+        <h3 v-if="!data.connected">Last Seen: {{ formatDate(+data.lastSeen) }}
           <br>
           ({{ lastSeenMessage }})</h3>
       </div>
@@ -44,7 +52,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
       <h2>Playtime</h2>
       <div class="info-wrapper">
         <h3 class="info">
-          {{ Math.floor(data.playtime / 3600) }} hours ({{ ordinal(data.rank) }} place)
+          {{ Math.floor(data.selectedStats[playtimeStat] / 3600) }} hours ({{ ordinal(rank) }} place)
         </h3>
       </div>
 
@@ -56,7 +64,7 @@ fetch(`/api/players/${playerName}`).then(res => res.json())
       </div>
     </div>
     <LoadingSpinner v-else></LoadingSpinner>
-    <img :hidden="!data" :src="`/api/players/${playerName}/head`" alt=""/>
+    <img :hidden="!data" :src="`/api/players/${playerId}/head-skin`" alt=""/>
   </div>
 </template>
 

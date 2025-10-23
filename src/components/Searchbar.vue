@@ -4,7 +4,7 @@ import {onMounted, onUnmounted, ref} from "vue";
 const showResults = ref(false);
 const results = ref([]);
 const emit = defineEmits(["result-selected"]);
-const {searchFn} = defineProps(["search-fn"]);
+const {searchFn, optionLabel} = defineProps(["search-fn", "option-label"]);
 const query = ref("");
 
 function onFocus() {
@@ -45,7 +45,7 @@ onUnmounted(() => {
   <div class="wrapper">
     <input placeholder="Search players" @focusin="onFocus" @input="search" v-model="query">
     <div class="results" v-if="showResults">
-      <button class="result" v-for="result in results" @click="selectResult(result)">{{ result }}</button>
+      <button class="result" v-for="result in results" @click="selectResult(result)">{{ optionLabel ? result[optionLabel] : result }}</button>
     </div>
   </div>
 </template>

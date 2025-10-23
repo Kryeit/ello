@@ -3,14 +3,14 @@ import {computed} from 'vue';
 import Store from "@/js/auth/store.js";
 
 const props = defineProps({
-  playerName: String,
+  playerUuid: String,
 });
 
 const computedPlayerName = computed(() => {
-  if (!Store.getUser() || !props.playerName) {
+  if (!Store.getUser() || !props.playerUuid) {
     return new URL('@/assets/minecraft/steve.png', import.meta.url).href;
   }
-  return `/api/players/${props.playerName}/head`;
+  return `/api/players/${props.playerUuid}/head-skin`;
 });
 </script>
 

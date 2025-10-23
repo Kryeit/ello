@@ -1,15 +1,15 @@
 <script setup>
 import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
-import {useRouter} from 'vue-router';
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
 import AuthService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";
 import DropdownIcon from "@/assets/dropdown.svg?component";
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
+import LoginModal from "@/components/auth/LoginModal.vue";
 
-const router = useRouter();
+const loginShown = ref(false);
 const menuVisible = ref(false);
-const playerName = computed(() => store.getUser() ? store.getUser().username : null);
+const user = computed(() => store.getUser() ? store.getUser() : null);
 
 function toggleMenu() {
   menuVisible.value = !menuVisible.value;
@@ -34,19 +34,19 @@ onBeforeUnmount(() => {
 <template>
   <div class="profile-dropdown-wrapper">
     <div class="player-avatar-container" @click="toggleMenu">
-      <PlayerAvatar :player-name="playerName"/>
+      <PlayerAvatar :player-uuid="user?.uuid"/>
       <DropdownIcon class="dropdown-arrow"/>
     </div>
 
     <transition name="dropdown">
       <div v-if="menuVisible" class="dropdown-menu-overlay">
-        <router-link v-if="!store.getUser()" :to="{ path: '/login' }" class="menu-item" tag="button">
+        <a v-if="!store.getUser()" class="menu-item" @click="loginShown = true">
           <span class="menu-item-title">{{ $t("auth.login") }}</span>
-        </router-link>
+        </a>
 
         <div v-if="store.getUser()" class="menu-item">
-          <router-link :to="`/@${playerName}`" class="menu-item" tag="button">
-            <span class="menu-item-title">@{{ playerName }}</span>
+          <router-link :to="`/@${user?.username}`" class="menu-item" tag="button">
+            <span class="menu-item-title">@{{ user?.username }}</span>
           </router-link>
         </div>
 
@@ -74,6 +74,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </transition>
+
+    <LoginModal v-model:shown="loginShown"/>
   </div>
 </template>
 
@@ -85,6 +87,7 @@ onBeforeUnmount(() => {
 .player-avatar-container {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .dropdown-arrow {

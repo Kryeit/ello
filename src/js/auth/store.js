@@ -1,22 +1,8 @@
-import User from './user.js';
+import authService from "@/js/auth/authService.js";
 
 class Store {
-    constructor() {
-        this.state = {
-            user: null
-        };
-    }
-
-    setUser(uuid, username, creation, roles) {
-        this.state.user = new User(uuid, username, creation, roles);
-    }
-
     getUser() {
-        return this.state.user;
-    }
-
-    resetUser() {
-        this.state.user = null;
+        return authService.user.value;
     }
 }
 

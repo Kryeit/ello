@@ -99,7 +99,7 @@ const images = [
 
 <template>
   <div class="banner">
-    <img alt="Kryeit banner" src="https://kryeit.com/banner.webp"/>
+    <img alt="Kryeit banner" src="@/assets/kryeit/banner-scaled.webp"/>
   </div>
 
   <h1 class="visually-hidden">Kryeit Home Page</h1>

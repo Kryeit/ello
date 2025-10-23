@@ -98,10 +98,6 @@ onMounted(() => {
   align-items: center;
 }
 
-.profile-dropdown {
-  cursor: pointer;
-}
-
 .header-content img {
   width: 85px;
   height: auto;

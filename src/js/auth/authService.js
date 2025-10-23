@@ -1,59 +1,34 @@
-import Store from "@/js/auth/store.js";
-import User from "@/js/auth/user.js";
 import {getIpAddress} from "@/js/static.js";
+import {ref} from "vue";
+import User from "@/js/auth/user.js";
 
 class AuthService {
+    user = ref();
+
+    async login(code) {
+        const response = await fetch("/api/account/login", {
+            method: "POST",
+            body: JSON.stringify({code: code}),
+        });
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
+
+        const body = await response.json();
+        localStorage.setItem("token", body.token);
+        this.user.value = new User(body.account.minecraftUUID, body.account.minecraftName, []);
+    }
 
     async validateToken() {
-        const token = this.getToken();
-        if (token) {
-            const response = await fetch(getIpAddress() + `/api/login/validate`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch("/api/account", {
+            headers: {
+                "Authorization": `${localStorage.getItem("token")}`,
             }
-            const data = await response.json();
-
-            const user = new User(data.uuid, data.username, data.creation, data.roles);
-            Store.setUser(user.uuid, user.username, user.creation, user.roles);
-            return true;
+        });
+        if (response.ok) {
+            const body = await response.json();
+            this.user.value = new User(body.minecraftUUID, body.minecraftName, []);
         }
-        return false;
-    }
-
-    saveToken(token) {
-        document.cookie = `auth=${token}; path=/`;
-    }
-
-    async validateLogin(token) {
-
-        const encodedToken = encodeURIComponent(token);
-
-        const response = await fetch(getIpAddress() + `/api/login/validate-login?t=` + encodedToken);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        const user = new User(data.uuid, data.username, data.creation, data.roles);
-
-        Store.setUser(user.uuid, user.username, user.creation, user.roles);
-        this.saveToken(data.token);
-
-        return true;
-    }
-
-    getToken() {
-        const cookies = document.cookie.split('; ');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const [name, value] = cookie.split('=');
-            if (name === 'auth') {
-                return value;
-            }
-        }
-        return null;
     }
 
     async logout() {
@@ -62,14 +37,11 @@ class AuthService {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! ${await response.text()}`);
         }
 
-        // Clear the auth cookie
-        document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = '_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-        Store.resetUser();
+        localStorage.setItem("token", null);
+        this.user.value = null;
     }
 }
 

@@ -4,17 +4,11 @@ import {ref, watch} from "vue";
 
 const sortDirections = [{'name': 'Descending', 'value': 'DESC'}, {'name': 'Ascending', 'value': 'ASC'}];
 const orders = [
-  {'name': 'Playtime', 'value': 'playtime'},
-  {'name': 'Distance walked', 'value': 'distance-walked'},
-  {'name': 'Deaths', 'value': 'deaths'},
-  {'name': 'Mob kills', 'value': 'mob-kills'},
-  {'name': 'Potatoes planted', 'value': 'potatoes'}
+  {'name': 'Playtime', 'value': 'minecraft:play_time'},
+  {'name': 'Distance walked', 'value': 'minecraft:walk_one_cm'},
+  {'name': 'Deaths', 'value': 'minecraft:deaths'},
+  {'name': 'Mob kills', 'value': 'minecraft:mob_kills'}
 ];
-
-function getRank(i) {
-  const rank = i + entriesPerPage * (page.value - 1);
-  return sortDirection.value.value === "ASC" ? totalCount.value - rank : rank + 1;
-}
 
 const sortDirection = ref();
 const order = ref();
@@ -42,31 +36,39 @@ function nextPage() {
 watch([page, sortDirection, order], () => {
   clearTimeout(timoutId);
   timoutId = setTimeout(async () => {
-    const response = await fetch(`/api/leaderboard?limit=${entriesPerPage}&offset=${(page.value - 1) * entriesPerPage}&sort-direction=${sortDirection.value.value}&order-by=${order.value.value}`);
+    const response = await fetch(`/api/leaderboard?limit=${entriesPerPage}&offset=${(page.value - 1) * entriesPerPage}&ascending=${sortDirection.value.value === "ASC"}&key=${order.value.value}`);
     const json = await response.json();
-    totalCount.value = json["total-count"];
-    table.value = json["leaderboard"];
-  }, 400);
+    // totalCount.value = json["total-count"];
+    totalCount.value = json.length;
+    table.value = json;
+  }, 0);
 });
+
+function getRank(i) {
+  const rank = i + entriesPerPage * (page.value - 1);
+  return sortDirection.value.value === "ASC" ? totalCount.value - rank : rank + 1;
+}
 </script>
 
 <template>
   <h1>Leaderboard</h1>
   <div class="settings">
-    <div>
+    <div class="setting">
+      <h2>Statistic: </h2>
+      <Dropdown class="dropdown wide" :values="orders" v-model="order"></Dropdown>
+    </div>
+
+    <div class="setting">
       <h2>Order: </h2>
       <Dropdown class="dropdown" :values="sortDirections" v-model="sortDirection"></Dropdown>
     </div>
-
-    <div>
-      <h2>Order by: </h2>
-      <Dropdown class="dropdown wide" :values="orders" v-model="order"></Dropdown>
-    </div>
   </div>
-  <button class="page-button" @click="previousPage"><</button>
-  <input class="page-input" :value="page" @input="updatePage($event.target.value)"><a class="page"> /
-  {{ Math.ceil(totalCount / entriesPerPage) }}</a>
-  <button class="page-button" @click="nextPage">></button>
+  <div class="page-input-wrapper">
+    <button class="page-button" @click="previousPage"><</button>
+    <input class="page-input" :value="page" @input="updatePage($event.target.value)"><a class="page"> /
+    {{ Math.ceil(totalCount / entriesPerPage) }}</a>
+    <button class="page-button" @click="nextPage">></button>
+  </div>
 
   <div class="table-wrapper">
     <table v-if="order">
@@ -81,7 +83,7 @@ watch([page, sortDirection, order], () => {
       <tr v-for="(entry, i) in table" :key="i">
         <td>{{ getRank(i) }}.</td>
         <td>{{ entry.name }}</td>
-        <td>{{ entry.value }}</td>
+        <td>{{ entry.formattedValue }}</td>
       </tr>
       </tbody>
     </table>
@@ -101,7 +103,6 @@ watch([page, sortDirection, order], () => {
   min-width: 28px;
   color: inherit;
   cursor: pointer;
-  margin-bottom: 8px;
 }
 
 .page-button:last-of-type {
@@ -158,6 +159,11 @@ table {
   width: 130px;
 }
 
+.setting {
+  display: flex;
+  align-items: center;
+}
+
 .settings h2 {
   display: inline-block;
   font-weight: normal;
@@ -173,5 +179,11 @@ table {
 
 h1 {
   color: var(--color-text);
+}
+
+.page-input-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 </style>

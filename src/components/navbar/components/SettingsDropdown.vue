@@ -2,42 +2,29 @@
 import {ref} from 'vue';
 import ThemeSwitch from "@/components/navbar/components/ThemeSwitch.vue";
 import LanguageSelector from "@/components/navbar/components/LanguageSelector.vue";
+import Modal from "@/components/Modal.vue";
 
 // State to toggle modal visibility
 const showSettings = ref(false);
-
-// Function to open/close modal
-const toggleModal = () => {
-  showSettings.value = !showSettings.value;
-};
 </script>
 
 <template>
   <div class="menu">
     <!-- Trigger Button -->
-    <button class="settings-button" @click="toggleModal">
+    <button class="settings-button" @click="showSettings = true">
       <span>{{ $t("navbar.settings.label") }}</span>
     </button>
 
-    <!-- Modal -->
-    <div v-if="showSettings" class="modal-overlay" @click="toggleModal">
-      <div class="modal-content" @click.stop>
-        <div class="modal-header">
-          <h1 class="modal-title">{{ $t("navbar.settings.label") }}</h1>
-          <button class="close-btn" @click="toggleModal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="setting">
-            <span>{{ $t("navbar.settings.theme") }}</span>
-            <ThemeSwitch />
-          </div>
-          <div class="setting">
-            <span>{{ $t("navbar.settings.language") }}</span>
-            <LanguageSelector />
-          </div>
-        </div>
+    <Modal :title="$t('navbar.settings.label')" v-model:shown="showSettings">
+      <div class="setting">
+        <span>{{ $t("navbar.settings.theme") }}</span>
+        <ThemeSwitch />
       </div>
-    </div>
+      <div class="setting">
+        <span>{{ $t("navbar.settings.language") }}</span>
+        <LanguageSelector />
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -46,16 +33,17 @@ const toggleModal = () => {
   width: 100%;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+.setting {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.setting:hover {
+  background: var(--color-background-mute);
 }
 
 .settings-button {
@@ -76,41 +64,5 @@ const toggleModal = () => {
 
 .settings-button:active {
   transform: scale(0.95);
-}
-
-.modal-content {
-  background-color: var(--color-background);
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.setting {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 20px;
-  border-radius: 15px;
-}
-
-.setting:hover {
-  background: var(--color-background-mute);
-}
-
-.modal-header {
-  margin-bottom: 20px;
 }
 </style>

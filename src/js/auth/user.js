@@ -1,8 +1,7 @@
 class User {
-    constructor(uuid, username, creation, roles) {
+    constructor(uuid, username, roles) {
         this.uuid = uuid;
         this.username = username;
-        this.creation = creation;
         this.roles = roles;
     }
 }

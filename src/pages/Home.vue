@@ -7,92 +7,136 @@ import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
   {
-    src: "https://kryeit.com/images/gallery/ELZEN219.png",
-    name: "ELZEN219"
+    src: "https://kryeit.com/images/gallery/ELZEN219.webp",
+    name: "ELZEN219",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/goldnphoenix258.png",
-    name: "goldnphoenix258"
+    src: "https://kryeit.com/images/gallery/goldnphoenix258.webp",
+    name: "goldnphoenix258",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/__Tesseract.png",
-    name: "__Tesseract"
+    src: "https://kryeit.com/images/gallery/__Tesseract.webp",
+    name: "__Tesseract",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Jerry_Snow5038.png",
-    name: "Jerry_Snow5038"
+    src: "https://kryeit.com/images/gallery/Jerry_Snow5038.webp",
+    name: "Jerry_Snow5038",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/OlimilO1402.png",
-    name: "OlimilO1402"
+    src: "https://kryeit.com/images/gallery/OlimilO1402.webp",
+    name: "OlimilO1402",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/BerrySweet.png",
-    name: "BerrySweet"
+    src: "https://kryeit.com/images/gallery/BerrySweet.webp",
+    name: "BerrySweet",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Enzoquest10.png",
-    name: "Enzoquest10"
+    src: "https://kryeit.com/images/gallery/Enzoquest10.webp",
+    name: "Enzoquest10",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Maxwell_Western.png",
-    name: "Maxwell_Western"
+    src: "https://kryeit.com/images/gallery/Maxwell_Western.webp",
+    name: "Maxwell_Western",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/RatsInATopHat.png",
-    name: "RatsInATopHat"
+    src: "https://kryeit.com/images/gallery/RatsInATopHat.webp",
+    name: "RatsInATopHat",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/MaysonBean.png",
-    name: "MaysonBean"
+    src: "https://kryeit.com/images/gallery/MaysonBean.webp",
+    name: "MaysonBean",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/OcttKing.png",
-    name: "OcttKing"
+    src: "https://kryeit.com/images/gallery/OcttKing.webp",
+    name: "OcttKing",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/JustRay23.png",
-    name: "JustRay23"
+    src: "https://kryeit.com/images/gallery/JustRay23.webp",
+    name: "JustRay23",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Kcnctc.png",
-    name: "Kcnctc"
+    src: "https://kryeit.com/images/gallery/Kcnctc.webp",
+    name: "Kcnctc",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Best25.png",
-    name: "Best25"
+    src: "https://kryeit.com/images/gallery/Best25.webp",
+    name: "Best25",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Quales_.png",
-    name: "Quales_"
+    src: "https://kryeit.com/images/gallery/Quales_.webp",
+    name: "Quales_",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/jotredi_.png",
-    name: "jotredi_"
+    src: "https://kryeit.com/images/gallery/jotredi_.webp",
+    name: "jotredi_",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Metalli70.png",
-    name: "Metalli70"
+    src: "https://kryeit.com/images/gallery/Metalli70.webp",
+    name: "Metalli70",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Seisonicon.png",
-    name: "Seisonicon"
+    src: "https://kryeit.com/images/gallery/Seisonicon.webp",
+    name: "Seisonicon",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Do_you_know_wae.png",
-    name: "Do_you_know_wae"
+    src: "https://kryeit.com/images/gallery/Do_you_know_wae.webp",
+    name: "Do_you_know_wae",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/verdeen_.png",
-    name: "verdeen_"
+    src: "https://kryeit.com/images/gallery/verdeen_.webp",
+    name: "verdeen_",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Phostt.png",
-    name: "Phostt"
+    src: "https://kryeit.com/images/gallery/Phostt.webp",
+    name: "Phostt",
+    width: 800,
+    height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/LKnotOK.png",
-    name: "LKnotOK"
+    src: "https://kryeit.com/images/gallery/LKnotOK.webp",
+    name: "LKnotOK",
+    width: 800,
+    height: 600
   },
 ]
 </script>
@@ -135,7 +179,7 @@ const images = [
 
   <hr class="separator">
 
-  <VideoPlayer :src="Kryeitrailer"/>
+  <VideoPlayer :src="Kryeitrailer" :sound="0.7"/>
 
   <hr class="footer-separator">
 

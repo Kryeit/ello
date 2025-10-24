@@ -1,10 +1,8 @@
 <script setup>
 import {ref} from "vue";
-import treePath from "@/assets/tree.png";
 import {addToast} from "@/js/toasts.js";
 import {i18n} from "@/main.js";
 
-const treeSource = ref(treePath);
 const clickSound = new URL('@/assets/sounds/click.ogg', import.meta.url);
 const sound = ref(new Audio(clickSound.href));
 
@@ -21,7 +19,6 @@ async function addEmailToast() {
 
 <template>
   <div class="footer">
-    <img :src="treeSource" alt=""/>
     <div class="footer-section">
       <p>Kryeit </p>
 
@@ -33,27 +30,7 @@ async function addEmailToast() {
       <a href="https://status.kryeit.com" target="_blank">
         {{ $t("navbar.footer.kryeit.status") }}
       </a>
-      <a href="https://kryeit.miraheze.org" target="_blank">Wiki</a>
-    </div>
-
-    <div class="footer-section">
-      <p>
-        {{ $t("navbar.footer.survival.title") }}
-      </p>
-
-      <hr class="separator">
-
-      <router-link to="/getting-started">
-        {{ $t("navbar.footer.survival.getting-started") }}
-      </router-link>
-
-      <a href="https://archive.kryeit.com" target="_blank">
-        {{ $t("navbar.footer.survival.archive") }}
-      </a>
-
-      <a href="https://map.kryeit.com" target="_blank">
-        {{ $t("navbar.footer.survival.map") }}
-      </a>
+      <a href="https://kryeit.wiki" target="_blank">Wiki</a>
     </div>
 
     <div class="footer-section">

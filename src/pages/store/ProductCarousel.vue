@@ -1,8 +1,12 @@
 <script setup>
-import { nextTick, onMounted, ref, watch } from "vue";
-import Products from "@/js/merch/products.js";
+import { nextTick, onMounted, ref, watch, computed } from "vue";
+import productStore from "@/js/merch/productStore.js";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
+import Products from "@/js/merch/products.js";
+import {getIpAddress} from "@/js/static.js";
+import ImagePopup from "@/pages/store/ImagePopup.vue";
+import {AutoPlay} from "@egjs/flicking-plugins";
 
 const props = defineProps({
   productName: String
@@ -11,18 +15,23 @@ const props = defineProps({
 const images = ref([]);
 const flicking = ref(null);
 const carouselWrapper = ref(null);
-const scrollHintHeight = ref(0);
-let index = 1;
 let flickingMoving = false;
-let firstIteration = true;
+const plugins = [new AutoPlay({duration: 4000, direction: "NEXT", stopOnHover: true})];
+
+// Popup state
+const popupVisible = ref(false);
+const popupSrc = ref("");
+
+const isMobileOrTablet = computed(() => window.innerWidth <= 1024);
 
 onMounted(async () => {
   try {
+    if (!productStore.isLoaded()) {
+      await productStore.fetchCatalog();
+    }
     images.value = await Products.getImages(props.productName);
     await nextTick();
     setCarouselHeight();
-    addScrollEventListener();
-    updateScrollHint();
   } catch (error) {
     console.error("Error loading product images:", error);
   }
@@ -37,28 +46,11 @@ const setCarouselHeight = () => {
   }
 };
 
-const addScrollEventListener = () => {
-  carouselWrapper.value.addEventListener('wheel', (event) => {
-    event.preventDefault();
-    if (flicking.value && !flickingMoving) {
-      if (event.deltaY > 0) {
-        flicking.value.next();
-        index = (index + 1) > images.value.length ? 1 : index + 1;
-      } else {
-        flicking.value.prev();
-        index = index === 1 ? images.value.length : index - 1;
-      }
-      updateScrollHint();
-    }
-  });
-};
-
-const updateScrollHint = () => {
-  const totalPanels = images.value.length;
-  scrollHintHeight.value = (index / totalPanels) * 100;
-};
-
-watch(images, updateScrollHint);
+// Open popup with selected image
+function openPopup(image) {
+  popupSrc.value = getIpAddress() + image;
+  popupVisible.value = true;
+}
 </script>
 
 <template>
@@ -66,13 +58,14 @@ watch(images, updateScrollHint);
     <Flicking
         ref="flicking"
         :options="{
-        circular: true, horizontal: false
+        circular: true, align: 'prev',
+        horizontal: isMobileOrTablet
       }"
         class="carousel"
-        @changed="updateScrollHint"
-        @move="updateScrollHint"
         @moveStart="() => { flickingMoving = true; }"
         @moveEnd="() => { flickingMoving = false;}"
+        :plugins="plugins"
+
     >
       <div
           class="panel"
@@ -80,17 +73,18 @@ watch(images, updateScrollHint);
           :key="index"
       >
         <img
-            :src="image"
+            :src="getIpAddress() + image"
             alt="Product Image"
             class="carousel-image"
             draggable="false"
+            @dragstart.prevent
+            @click="openPopup(image)"
         />
       </div>
     </Flicking>
 
-    <div class="scrolling-hint">
-      <div class="scrolling-hint-progress" :style="{ height: scrollHintHeight + '%' }"></div>
-    </div>
+    <!-- Image popup component -->
+    <ImagePopup v-model="popupVisible" :src="popupSrc" />
   </div>
 </template>
 
@@ -101,11 +95,12 @@ watch(images, updateScrollHint);
   z-index: 998;
   padding: 20px 0;
   display: flex;
+  height: 100%;
 }
 
 .carousel {
   width: 90%;
-  height: 100%;
+  height: 105%;
   white-space: nowrap;
 }
 
@@ -113,31 +108,42 @@ watch(images, updateScrollHint);
   display: block;
   width: 100%;
   height: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
-
 .carousel-image {
-  object-fit: contain;
-  image-rendering: pixelated;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -ms-user-drag: none;
+  user-drag: none;
+
+  object-fit: contain;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   width: 100%;
   height: auto;
+  border-radius: 12px;
+  border: 4px solid black;
+  cursor: pointer;
 }
 
-.scrolling-hint {
-  width: 4px;
-  background-color: var(--color-background);
-  display: flex;
-  align-items: flex-start;
-  margin-left: 20px;
-  border-radius: 4px;
-  border: 1px solid var(--color-border);
-}
+@media (max-width: 1024px) {
+  .carousel {
+    width: 100%;
+  }
 
-.scrolling-hint-progress {
-  width: 100%;
-  background-color: var(--color-text);
-  transition: height 0.3s ease;
-  border-radius: 4px;
+  .panel {
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
+
 }
 </style>

@@ -75,7 +75,8 @@ onMounted(async () => {
   background-image: url('/src/assets/minecraft/squared_button.png');
   background-size: contain;
   background-repeat: no-repeat;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   user-select: none;
   position: relative;
 }

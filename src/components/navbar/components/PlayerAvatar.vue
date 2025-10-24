@@ -37,7 +37,8 @@ const computedPlayerName = computed(() => {
   height: 41px;
   border-radius: 17px;
   z-index: 2;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   user-select: none;
 }
 

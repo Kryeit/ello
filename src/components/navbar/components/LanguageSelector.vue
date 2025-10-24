@@ -54,7 +54,8 @@ div {
 
 img {
   width: 47px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   border-radius: 4px;
 }
 

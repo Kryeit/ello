@@ -30,8 +30,14 @@
 
       <div class="staff-member">
 
-        <img src="../assets/staff/tesseract.png" alt="__Tesseract" />
+        <img src="../assets/staff/tess.png" alt="__Tesseract" />
         <p>__Tesseract</p>
+      </div>
+
+      <div class="staff-member">
+
+        <img src="../assets/staff/rats.png" alt="RatInATopHat427" />
+        <p>RatInATopHat427</p>
       </div>
 
       <div class="staff-member">

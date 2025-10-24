@@ -19,6 +19,8 @@ import Orders from "@/pages/Orders.vue";
 import CreateOrder from "@/pages/CreateOrder.vue";
 import Shipping from "@/pages/policies/Shipping.vue";
 import Donate from "@/pages/Donate.vue";
+import Survival from "@/pages/Survival.vue";
+import Analytics from "@/pages/Analytics.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -33,7 +35,9 @@ const routes = [
     {path: "/homemade", component: Homemade},
     {path: "/legacy-gallery", component: LegacyGallery},
     {path: "/branding", component: Assets},
+    {path: "/survival", component: Survival},
     {path: "/store", component: Store},
+    {path: "/analytics", redirect: () => { window.location.href = 'https://coucou.kryeit.com/#/leaderboard'; } },
     {path: "/product/:name",component: Product },
     {path: "/getting-started", component: GettingStarted},
     {path: "/:pathMatch(.*)*", name: "NotFound", component: Error }, // 404 route

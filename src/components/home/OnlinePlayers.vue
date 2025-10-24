@@ -78,7 +78,8 @@ const hidePlayerList = () => {
   padding: 10px;
   overflow: visible;
   margin: 0 10px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   border: 4px solid black;
   border-radius: 12px;
   z-index: 320;
@@ -101,7 +102,8 @@ const hidePlayerList = () => {
   height: 100px;
   margin-right: 10px;
   z-index: 1;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
 }
 
 .details {
@@ -163,7 +165,8 @@ h3 {
 
 .bars {
   height: 18px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
 }
 
 .player-list {
@@ -191,7 +194,8 @@ h3 {
   width: 20px;
   height: 20px;
   margin-right: 5px;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
 }
 
 a.player-link {

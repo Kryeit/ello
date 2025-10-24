@@ -52,7 +52,7 @@ onUnmounted(() => {
 @media (max-width: 1024px) {
   .sidebar {
     position: fixed;
-    bottom: 0;
+    top: calc(100% - env(safe-area-inset-bottom) - 35px);
     left: 0;
     width: 100%;
     height: 35px;

@@ -1,7 +1,7 @@
 <script setup>
 import icon from '@/assets/kryeit/icon.png';
 import serverIcon from '@/assets/kryeit/server_icon.png';
-import banner from '@/assets/kryeit/banner.png';
+import banner from '@/assets/kryeit/banner.webp';
 
 function downloadImage(url, filename) {
   const link = document.createElement('a');
@@ -62,9 +62,9 @@ async function downloadCursor() {
     <div class="card">
       <h3>Banner</h3>
       <div class="image-container">
-        <img src="@/assets/kryeit/banner.png" alt="Banner" />
+        <img src="@/assets/kryeit/banner.webp" alt="Banner" />
       </div>
-      <button class="download-button" @click="downloadImage(banner, 'banner.png')">Download</button>
+      <button class="download-button" @click="downloadImage(banner, 'banner.webp')">Download</button>
     </div>
 
     <div class="card">

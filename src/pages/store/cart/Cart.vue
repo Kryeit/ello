@@ -23,7 +23,7 @@
           <button class="checkout" @click="goToCheckout" :disabled="totalPrice === 0">Checkout</button>
         </div>
         <div v-else class="empty-cart-message">
-          <p>Maybe it's time to add stuff :)</p>
+          <p>This jar looks empty...</p>
         </div>
       </div>
     </transition>
@@ -112,7 +112,8 @@ const goToCheckout = () => {
   top: 10px;
   right: 10px;
   cursor: pointer;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
   width: 70px;
   user-select: none;
   z-index: 999;

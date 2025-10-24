@@ -46,7 +46,7 @@ export default {
     };
   },
   async mounted() {
-    this.stripe = await loadStripe('pk_test_51OtwANDLNKXyc0J1TNDujqp4FCBKXlq7yMqUOBMsKSfYenydSamwzyl0T4dIDsvaVmUJ5KHORvRkogmjCmHEkMqa00R6cDAaGV'); // Replace with your publishable key
+    this.stripe = await loadStripe('pk_live_51OtwANDLNKXyc0J1CzeD4E3QXQ8Oygtac1h9ZS8nMHIXNL42WOTU79H3gOAi7XkzB2ocPZITi1dAPc8SUmgLIehV00l0E6tVsg'); // Replace with your publishable key
 
     if (!this.stripe) {
       console.error("Stripe failed to initialize.");
@@ -72,26 +72,22 @@ export default {
       this.processing = true;
 
       try {
-        // Prepare the cart data to be sent
         const cartData = cart.items;
 
-        let hasVirtual = false;
+        // Use Promise.all to properly check all products
+        const productPromises = Object.keys(cartData).map(key => Products.getProduct(key));
+        const products = await Promise.all(productPromises);
 
-        for (const key in cartData) {
-          const product = await Products.getProduct(key);
-          if (product.virtual) {
-            hasVirtual = true;
-            break;
-          }
-        }
+        const hasVirtual = products.some(product => product.virtual);
 
         if (hasVirtual && !store.getUser()) {
           alert('You need to be logged in to purchase virtual items.');
+          this.processing = false;
           return;
         }
 
         // Send cart details to backend to create a Stripe Checkout session
-        const response = await fetch('http://localhost:6969/api/payment/create', {
+        const response = await fetch('https://kryeit.com/api/payment/create', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',

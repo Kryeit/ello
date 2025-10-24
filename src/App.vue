@@ -17,7 +17,7 @@ useRouter().afterEach(() => {
 
 <template>
   <ToastManager />
-  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.png" alt="Menu"/>
+  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.webp" alt="Menu"/>
   <NavBar :showNav="isNavVisible"/>
 
   <router-view>
@@ -64,10 +64,11 @@ useRouter().afterEach(() => {
 
 @media (max-width: 1024px) {
   .cog-toggler {
-    top: min(100%, 100% - env(safe-area-inset-bottom));
+    top: calc(100% - env(safe-area-inset-bottom));
     left: 50%;
     width: 150px;
     height: 150px;
   }
+
 }
 </style>

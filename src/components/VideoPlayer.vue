@@ -1,6 +1,12 @@
 <script>
 export default {
-  props: ['src'],
+  props: {
+    src: String,
+    sound: {
+      type: Number,
+      default: 0.3
+    }
+  },
   data() {
     return {
       isVisible: false,
@@ -13,7 +19,7 @@ export default {
           if (entries[0].isIntersecting) {
             this.isVisible = true;
             this.$nextTick(() => {
-              this.$refs.videoPlayer.volume = 0.1;
+              this.$refs.videoPlayer.volume = this.sound;
             });
             observer.disconnect();
           }

@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, onMounted, ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import Products from "@/js/merch/products.js";
 import Stock from "@/js/merch/stock.js";
@@ -108,15 +108,16 @@ onMounted(async () => {
   font-size: 1.1rem;
   flex-grow: 1;
   position: relative;
+  min-height: 160px;
 }
 
 .title {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  color: var(--color-background-mute);
+  color: var(--color-text);
   font-size: 1.1rem;
-  text-shadow: 1px 3px 1px var(--color-text);
+  text-shadow: 1px 3px 1px var(--color-background-gradient);
 }
 
 .sizes {
@@ -131,10 +132,11 @@ onMounted(async () => {
 }
 
 .product-image {
-
   width: 100%;
   object-fit: cover;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* For browsers that support it */
+  image-rendering: crisp-edges; /* Safari fallback */
+  border-bottom: 1px solid var(--color-border);
 }
 
 .price {

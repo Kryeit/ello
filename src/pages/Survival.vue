@@ -11,7 +11,7 @@
       <p>We strive for a long-term commitment for each season. Each might last 3/4 years depending on Minecraft or Create updates.</p>
       <p>
         The
-        <a href="https://kryeit.com/discord">Discord</a>
+        <a href="/discord">Discord</a>
         is the main communication platform for the server.
       </p>
       <p>You can also see the whole
@@ -44,7 +44,6 @@ function openArchive() {
 <style scoped>
 .survival-page {
   text-align: center;
-  margin-top: 30px;
 }
 
 p, h1 {

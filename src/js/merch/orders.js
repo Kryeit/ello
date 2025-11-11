@@ -8,7 +8,7 @@ class Orders {
 
     async getOrders() {
         try {
-            const response = await fetch('https://kryeit.com/api/payment/create', {
+            const response = await fetch('/api/payment/create', {
                 method: 'GET',
                 credentials: 'include'
             });

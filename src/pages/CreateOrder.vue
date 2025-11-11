@@ -185,10 +185,10 @@ onBeforeMount(async () => {
 
       <div class="payment-section">
         <h3 class="disclaimer">Important: If you are not
-          <a href="https://kryeit.com/login">
+          <a href="/login">
             logged in</a>
           you won't be able to see your order status, unless you contact
-          <a href="https://kryeit.com/about">
+          <a href="/about">
             Staff</a> or send us an [email](mailto:kryeit.minecraft@gmial.com).</h3>
 
         <button type="submit" class="submit-button" :disabled="isSubmitting">

@@ -7,137 +7,131 @@ import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
 const images = [
   {
-    src: "https://kryeit.com/images/gallery/ELZEN219.webp",
-    name: "ELZEN219",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/goldnphoenix258.webp",
-    name: "goldnphoenix258",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/__Tesseract.webp",
-    name: "__Tesseract",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Jerry_Snow5038.webp",
-    name: "Jerry_Snow5038",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/OlimilO1402.webp",
-    name: "OlimilO1402",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/BerrySweet.webp",
-    name: "BerrySweet",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Enzoquest10.webp",
-    name: "Enzoquest10",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Maxwell_Western.webp",
-    name: "Maxwell_Western",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/RatsInATopHat.webp",
-    name: "RatsInATopHat",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/MaysonBean.webp",
-    name: "MaysonBean",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/OcttKing.webp",
-    name: "OcttKing",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/JustRay23.webp",
-    name: "JustRay23",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Kcnctc.webp",
-    name: "Kcnctc",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Best25.webp",
+    src: "/src/assets/slideshow/best2b.webp",
     name: "Best25",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Quales_.webp",
+    src: "/src/assets/slideshow/rats.webp",
+    name: "RatsInATopHat",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/tesseract.webp",
+    name: "__Tesseract",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/maxwell.webp",
+    name: "Maxwell_Western",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/lknotok.webp",
+    name: "LKnotOK",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/berrysweet.webp",
+    name: "BerrySweet",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/enzo.webp",
+    name: "Enzoquest10",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/mayson.webp",
+    name: "MaysonBean",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/octt.webp",
+    name: "OcttKing",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/ray.webp",
+    name: "JustRay23",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/kcnctc.webp",
+    name: "Kcnctc",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/quales.webp",
     name: "Quales_",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/jotredi_.webp",
+    src: "/src/assets/slideshow/jotredi.webp",
     name: "jotredi_",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Metalli70.webp",
-    name: "Metalli70",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/Seisonicon.webp",
+    src: "/src/assets/slideshow/seisonicon.webp",
     name: "Seisonicon",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Do_you_know_wae.webp",
-    name: "Do_you_know_wae",
-    width: 800,
-    height: 600
-  },
-  {
-    src: "https://kryeit.com/images/gallery/verdeen_.webp",
+    src: "/src/assets/slideshow/verdeen.webp",
     name: "verdeen_",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/Phostt.webp",
+    src: "/src/assets/slideshow/phostt.webp",
     name: "Phostt",
     width: 800,
     height: 600
   },
   {
-    src: "https://kryeit.com/images/gallery/LKnotOK.webp",
-    name: "LKnotOK",
+    src: "/src/assets/slideshow/aureline.webp",
+    name: "goldnphoenix258",
     width: 800,
     height: 600
   },
+  {
+    src: "/src/assets/slideshow/phostt.webp",
+    name: "Phostt",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/olimilo.webp",
+    name: "OlimilO1402",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/jerry.webp",
+    name: "Jerry_Snow5038",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "/src/assets/slideshow/elzen.webp",
+    name: "ELZEN",
+    width: 800,
+    height: 600
+},
 ]
 </script>
 
@@ -232,7 +226,6 @@ const images = [
 }
 
 .banner {
-  margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
   flex-direction: row;

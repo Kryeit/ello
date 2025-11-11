@@ -82,8 +82,7 @@ watch(flicking, (newFlicking) => {
 
 .carousel-image {
   object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  image-rendering: smooth;
   user-select: none;
   width: 100%;
   height: 100%;

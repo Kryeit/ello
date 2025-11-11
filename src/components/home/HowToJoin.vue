@@ -46,6 +46,7 @@ import CopyIP from "@/components/home/CopyIP.vue";
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 10px;
 }
 
 .how-to-join a img {

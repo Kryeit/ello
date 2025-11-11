@@ -13,19 +13,49 @@ function toggleNav() {
 useRouter().afterEach(() => {
   isNavVisible.value = false;
 });
+
+window.addEventListener('scroll', doParallax);
+
+function doParallax() {
+  const positionY = window.scrollY / 7;
+  document.body.style.backgroundPositionY = -positionY + "px";
+}
+
+document.body.style.backgroundSize = (document.body.clientHeight * 1.913 + document.body.clientHeight * 1.913 / 7) + "px";
 </script>
 
 <template>
-  <ToastManager />
-  <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav" src="/src/assets/kryeit/zoomed_icon.webp" alt="Menu"/>
-  <NavBar :showNav="isNavVisible"/>
+  <div>
+    <div>
+      <ToastManager/>
+      <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav"
+           src="/src/assets/kryeit/zoomed_icon.webp" alt="Menu"/>
+      <NavBar :showNav="isNavVisible"/>
+    </div>
 
-  <router-view>
-  </router-view>
-
+    <div style="backdrop-filter: blur(4px) saturate(200%) brightness(20%) hue-rotate(-10deg);">
+      <div class="main">
+        <router-view>
+        </router-view>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.main {
+  max-width: 1280px;
+  font-weight: normal;
+  margin: 0 auto;
+  padding: 20px 75px; /* Cog icon margin */
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .main {
+    padding: 0 10px 75px 10px; /* Cog icon margin in vertical devices */
+  }
+}
 
 .cog-toggler {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */

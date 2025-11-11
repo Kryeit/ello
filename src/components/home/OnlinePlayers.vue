@@ -15,9 +15,9 @@ const remainingCount = computed(() => {
 
 const hovered = ref(false);
 
-const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/live");
+const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/server/status/live");
 websocket.addEventListener("message", event => {
-  onlinePlayers.value = JSON.parse(event.data);
+  onlinePlayers.value = JSON.parse(event.data).connectedPlayers;
 });
 
 const showPlayerList = () => {
@@ -57,8 +57,8 @@ const hidePlayerList = () => {
               :key="index"
               :class="{ afk: player.afk }"
           >
-            <img class="player-image" :src="`/api/players/${player.playerName}/head`" alt=""/>
-            <a :href="`/@${player.playerName}`" class="player-link">{{ player.playerName }}</a>
+            <img class="player-image" :src="`/api/players/${player.uuid}/head-skin`" alt=""/>
+            <a :href="`/@${player.name}`" class="player-link">{{ player.name }}</a>
           </p>
           <p v-if="remainingCount > 0">...and {{ remainingCount }} more</p>
         </div>

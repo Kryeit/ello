@@ -44,7 +44,7 @@ onMounted(() => {
 
 
 <template>
-  <body v-if="showNav" class="fullscreen-nav">
+  <div v-if="showNav" class="fullscreen-nav">
 
   <header class="header">
     <div class="header-content">
@@ -60,7 +60,7 @@ onMounted(() => {
 
   <Footer/>
 
-  </body>
+  </div>
 </template>
 
 

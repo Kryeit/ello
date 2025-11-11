@@ -5,129 +5,150 @@ import HowToJoin from "@/components/home/HowToJoin.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Kryeitrailer from "@/assets/media/Kryeitrailer.mp4";
 
+import slideshowBest2b from "@/assets/slideshow/best2b.webp";
+import slideshowRats from "@/assets/slideshow/rats.webp";
+import slideshowTesseract from "@/assets/slideshow/tesseract.webp";
+import slideshowMaxwell from "@/assets/slideshow/maxwell.webp";
+import slideshowLknotok from "@/assets/slideshow/lknotok.webp";
+import slideshowBerrysweet from "@/assets/slideshow/berrysweet.webp";
+import slideshowEnzo from "@/assets/slideshow/enzo.webp";
+import slideshowMayson from "@/assets/slideshow/mayson.webp";
+import slideshowOctt from "@/assets/slideshow/octt.webp";
+import slideshowRay from "@/assets/slideshow/ray.webp";
+import slideshowKcnctc from "@/assets/slideshow/kcnctc.webp";
+import slideshowQuales from "@/assets/slideshow/quales.webp";
+import slideshowJotredi from "@/assets/slideshow/jotredi.webp";
+import slideshowSeisonicon from "@/assets/slideshow/seisonicon.webp";
+import slideshowVerdeen from "@/assets/slideshow/verdeen.webp";
+import slideshowAureline from "@/assets/slideshow/aureline.webp";
+import slideshowPhostt from "@/assets/slideshow/phostt.webp";
+import slideshowOlimilo from "@/assets/slideshow/olimilo.webp";
+import slideshowJerry from "@/assets/slideshow/jerry.webp";
+import slideshowElzen from "@/assets/slideshow/elzen.webp";
+
 const images = [
   {
-    src: "/src/assets/slideshow/best2b.webp",
+    src: slideshowBest2b,
     name: "Best25",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/rats.webp",
+    src: slideshowRats,
     name: "RatsInATopHat",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/tesseract.webp",
+    src: slideshowTesseract,
     name: "__Tesseract",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/maxwell.webp",
+    src: slideshowMaxwell,
     name: "Maxwell_Western",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/lknotok.webp",
+    src: slideshowLknotok,
     name: "LKnotOK",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/berrysweet.webp",
+    src: slideshowBerrysweet,
     name: "BerrySweet",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/enzo.webp",
+    src: slideshowEnzo,
     name: "Enzoquest10",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/mayson.webp",
+    src: slideshowMayson,
     name: "MaysonBean",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/octt.webp",
+    src: slideshowOctt,
     name: "OcttKing",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/ray.webp",
+    src: slideshowRay,
     name: "JustRay23",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/kcnctc.webp",
+    src: slideshowKcnctc,
     name: "Kcnctc",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/quales.webp",
+    src: slideshowQuales,
     name: "Quales_",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/jotredi.webp",
+    src: slideshowJotredi,
     name: "jotredi_",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/seisonicon.webp",
+    src: slideshowSeisonicon,
     name: "Seisonicon",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/verdeen.webp",
+    src: slideshowVerdeen,
     name: "verdeen_",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/phostt.webp",
+    src: slideshowPhostt,
     name: "Phostt",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/aureline.webp",
+    src: slideshowAureline,
     name: "goldnphoenix258",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/phostt.webp",
+    src: slideshowPhostt,
     name: "Phostt",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/olimilo.webp",
+    src: slideshowOlimilo,
     name: "OlimilO1402",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/jerry.webp",
+    src: slideshowJerry,
     name: "Jerry_Snow5038",
     width: 800,
     height: 600
   },
   {
-    src: "/src/assets/slideshow/elzen.webp",
+    src: slideshowElzen,
     name: "ELZEN",
     width: 800,
     height: 600

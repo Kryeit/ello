@@ -20,14 +20,18 @@ class AuthService {
     }
 
     async validateToken() {
+        const authToken = localStorage.getItem("token");
         const response = await fetch("/api/account", {
             headers: {
-                "Authorization": `${localStorage.getItem("token")}`,
+                "Authorization": `${authToken}`,
             }
         });
         if (response.ok) {
             const body = await response.json();
             this.user.value = new User(body.minecraftUUID, body.minecraftName, []);
+
+            const actualFetch = fetch;
+            fetch = (url, options) => actualFetch(url, {...options, headers: {"Authorization": authToken}});
         }
     }
 

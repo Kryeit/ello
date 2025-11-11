@@ -87,7 +87,7 @@ export default {
         }
 
         // Send cart details to backend to create a Stripe Checkout session
-        const response = await fetch('https://kryeit.com/api/payment/create', {
+        const response = await fetch('/api/payment/create', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',

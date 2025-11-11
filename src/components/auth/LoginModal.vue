@@ -9,7 +9,7 @@ const code = ref("");
 
 async function login() {
   try {
-    await authService.login(code.value);
+    await authService.login(code.value.replace(" ", ""));
   } catch (error) {
     console.log(error);
     addToast("map.png", "Error logging in", error.message);

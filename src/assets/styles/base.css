@@ -68,7 +68,7 @@
     --color-border-hover: var(--vt-c-divider-dark-1);
 
     --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --color-text: var(--vt-c-text-dark-1);
 
     --section-gap: 160px;
 
@@ -152,7 +152,13 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: radial-gradient(farthest-corner at 40px 40px, var(--color-background) 40%, var(--color-background-gradient) 100%);
+    /*background: radial-gradient(farthest-corner at 40px 40px, var(--color-background) 40%, var(--color-background-gradient) 100%);*/
+
+    background-image: url("@/assets/kryeit/background.webp");
+    /*background-size: 110%;*/
+    background-position-x: center;
+    background-attachment: fixed;
+    /*backdrop-filter: blur(4px) saturate(200%) brightness(20%) hue-rotate(-10deg);*/
 }
 
 input {

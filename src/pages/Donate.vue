@@ -2,6 +2,7 @@
 import {computed, onMounted, ref} from "vue";
 import {loadStripe} from "@stripe/stripe-js";
 import {watchEffect} from "vue-demi";
+import Trophy from "@/components/Trophy.vue";
 
 const stats = ref();
 const paymentForm = ref();
@@ -13,6 +14,7 @@ const amountModel = ref("4.00");
 
 fetch("/api/donations/stats").then(r => r.json()).then(data => {
   stats.value = data;
+  console.log(stats.value);
 });
 
 const stripePromise = loadStripe("pk_test_51SBfXvD3GmZjKuBrZzxvKsToWh8THjHJbsNEPFyzjTmFE10qlpmhF4JUzTbwWSf70RC7Lx7YVZYBHFvwryhKBZZs00sy6VrlDC");
@@ -23,7 +25,10 @@ onMounted(async () => {
   const elements = stripe.elements({
     mode: "subscription",
     amount: amount.value,
-    currency: "eur"
+    currency: "eur",
+    appearance: {
+      theme: "night"
+    }
   });
 
   watchEffect(() => {
@@ -82,7 +87,7 @@ async function submit() {
 }
 
 function formatMoney(amount) {
-  return (amount / 100).toFixed(2) + " €";
+  return (amount / 100).toFixed(2) + "\xa0€";
 }
 
 function validateAmount(event) {
@@ -95,40 +100,140 @@ function validateAmount(event) {
 <template>
   <h1>Becoming a Collaborator</h1>
   <p class="header">
-    This server runs entirely off of donations and all donations will be invested into keeping the server running.
+    This server runs entirely off of donations and all donations will be used to pay for this server.
   </p>
-  <p class="header">We seriously appreciate all your donations ❤️</p>
+  <p class="header">I seriously appreciate every donation ❤️</p>
 
-  <div class="goal-wrapper">
+  <div class="goal-wrapper" v-if="stats">
+    <h3>Our monthly goal to settle the hosting costs</h3>
     <div class="goal">
       <div :style="{width: `${stats.income / stats.targetIncome * 100}%`}" class="progress"/>
     </div>
-    <h4>{{ formatMoney(stats.income) }} / {{ formatMoney(stats.targetIncome) }}</h4>
-    <h5>raised this month</h5>
+    <h4>{{ formatMoney(stats.income) }} / {{ formatMoney(stats.targetIncome) }} <span class="goal-text-small">raised this month</span>
+    </h4>
   </div>
 
   <div class="payment-card">
-    <h2><input v-model="amountModel" class="amount-input" @beforeinput="validateAmount($event)"> € / month</h2>
+    <div>
+      <h2>Amount: <input v-model="amountModel" class="amount-input" @beforeinput="validateAmount($event)"> €</h2>
+    </div>
 
     <div ref="paymentForm"></div>
-    <input type="checkbox" v-model="subscription">
-    <input type="number" v-model="amount">
 
-    <button v-if="paymentElements" @click="submit">Subscribe monthly</button>
-    <button v-if="paymentElements" @click="submit">Donate once</button>
+    <div class="subscription-buttons">
+      <button class="once" v-if="paymentElements" @click="submit">Donate once</button>
+      <button v-if="paymentElements" @click="submit">Subscribe monthly ❤️</button>
+    </div>
+  </div>
 
-    <h1>{{ error }}</h1>
+  <div class="donations">
+    <h2>A sincere thank you to all our supporters!</h2>
+
+    <div class="top-donations">
+      <div v-for="(donation, i) in stats?.topDonations || []">
+        <h4 class="top-donator">
+          <Trophy :material="['gold', 'silver', 'bronze'][i]"/>
+          {{ donation.name }}: {{ formatMoney(donation.amount) }}
+        </h4>
+      </div>
+    </div>
+
+    <div class="donation-list-wrapper">
+      <div class="donation-list">
+        <div v-for="donation in stats?.recentDonations || []" class="donation">
+          <img :src="`/api/players/${donation.uuid}/head-skin`" height="64px">
+          <div>
+            <h4>{{ donation.name }}</h4>
+            <h5>{{ donation.count }} × {{ formatMoney(donation.amount) }}
+              {{ new Date(donation.timestamp).toLocaleDateString() }}</h5>
+            <h4 class="message">{{ donation.message }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.donations {
+  margin-top: 40px;
+}
+
+.donation-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.donation-list {
+  margin-top: 40px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 50% 50%;
+  max-width: 100%;
+  width: 900px;
+}
+
+.message {
+  margin-top: 4px;
+}
+
+.donation {
+  display: flex;
+  gap: 10px;
+}
+
+.top-donations {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.top-donator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  background: #30313d;
+  color: white;
+}
+
+button.once {
+  background: none;
+  text-decoration: underline;
+  color: var(--color-text);
+}
+
+.subscription-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+h1, h2 {
+  text-align: center;
+}
 
 .payment-card {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   text-align: center;
-  padding: 16px;
+  padding: 16px 16px 16px 16px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  gap: 20px;
 }
 
 .amount-input {
@@ -147,12 +252,17 @@ p.header {
   background: var(--color-background-mute);
   border-radius: 8px;
   height: 30px;
-  width: 300px;
+  width: 340px;
   overflow: hidden;
+  margin-top: 10px;
+}
+
+.goal-text-small {
+  color: var(--color-text);
 }
 
 .goal > .progress {
-  background: #f44336;
+  background: #08aa3e;
   height: 100%;
 }
 
@@ -160,6 +270,13 @@ p.header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 700px) {
+  .donation-list {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

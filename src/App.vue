@@ -3,6 +3,8 @@ import {ref} from 'vue';
 import NavBar from './components/navbar/NavBar.vue';
 import {useRouter} from "vue-router";
 import ToastManager from "@/components/toast/ToastManager.vue";
+import LoginModal from "@/components/auth/LoginModal.vue";
+import authService from "@/js/auth/authService.js";
 
 const isNavVisible = ref(false);
 
@@ -21,7 +23,12 @@ function doParallax() {
   document.body.style.backgroundPositionY = -positionY + "px";
 }
 
-document.body.style.backgroundSize = (document.body.clientHeight * 1.913 + document.body.clientHeight * 1.913 / 7) + "px";
+function resizeBackgroundImage() {
+  document.body.style.backgroundSize = (document.body.clientHeight * 1.913 + document.body.clientHeight * 1.913 / 7) + "px";
+}
+
+window.onresize = resizeBackgroundImage;
+resizeBackgroundImage();
 </script>
 
 <template>
@@ -31,6 +38,8 @@ document.body.style.backgroundSize = (document.body.clientHeight * 1.913 + docum
       <img :class="{ 'cog-toggler': true, rotated: isNavVisible }" @click="toggleNav"
            src="/src/assets/kryeit/zoomed_icon.webp" alt="Menu"/>
       <NavBar :showNav="isNavVisible"/>
+
+      <LoginModal v-model:shown="authService.loginShown.value"/>
     </div>
 
     <div style="backdrop-filter: blur(4px) saturate(200%) brightness(20%) hue-rotate(-10deg);">

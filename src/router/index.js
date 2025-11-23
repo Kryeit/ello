@@ -20,7 +20,7 @@ import CreateOrder from "@/pages/CreateOrder.vue";
 import Shipping from "@/pages/policies/Shipping.vue";
 import Donate from "@/pages/Donate.vue";
 import Survival from "@/pages/Survival.vue";
-import Analytics from "@/pages/Analytics.vue";
+import AccountPage from "@/pages/AccountPage.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -40,6 +40,8 @@ const routes = [
     {path: "/analytics", redirect: () => { window.location.href = 'https://coucou.kryeit.com/#/leaderboard'; } },
     {path: "/product/:name",component: Product },
     {path: "/getting-started", component: GettingStarted},
+    {path: "/account", component: AccountPage},
+
     {path: "/:pathMatch(.*)*", name: "NotFound", component: Error }, // 404 route
 
     {path: "/privacy", component: PrivacyPolicy},

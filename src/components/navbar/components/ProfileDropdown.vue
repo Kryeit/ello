@@ -1,13 +1,11 @@
 <script setup>
 import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
 import PlayerAvatar from "@/components/navbar/components/PlayerAvatar.vue";
-import AuthService from "@/js/auth/authService.js";
+import authService from "@/js/auth/authService.js";
 import store from "@/js/auth/store.js";
 import DropdownIcon from "@/assets/dropdown.svg?component";
 import SettingsDropdown from "@/components/navbar/components/SettingsDropdown.vue";
-import LoginModal from "@/components/auth/LoginModal.vue";
 
-const loginShown = ref(false);
 const menuVisible = ref(false);
 const user = computed(() => store.getUser() ? store.getUser() : null);
 
@@ -29,6 +27,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
 });
+
+function showLogin() {
+  authService.loginShown.value = true;
+}
 </script>
 
 <template>
@@ -40,13 +42,13 @@ onBeforeUnmount(() => {
 
     <transition name="dropdown">
       <div v-if="menuVisible" class="dropdown-menu-overlay">
-        <a v-if="!store.getUser()" class="menu-item" @click="loginShown = true">
+        <a v-if="!store.getUser()" class="menu-item" @click="showLogin">
           <span class="menu-item-title">{{ $t("auth.login") }}</span>
         </a>
 
         <div v-if="store.getUser()" class="menu-item">
-          <router-link :to="`/@${user?.username}`" class="menu-item" tag="button">
-            <span class="menu-item-title">@{{ user?.username }}</span>
+          <router-link to="/account" class="menu-item" tag="button">
+            <span class="menu-item-title">Your Account</span>
           </router-link>
         </div>
 
@@ -56,7 +58,7 @@ onBeforeUnmount(() => {
 
         <SettingsDropdown/>
 
-        <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="AuthService.logout()"
+        <router-link v-if="store.getUser()" to="" class="menu-item logout-button" @click="authService.logout()"
                      tag="button">
           <span class="menu-item-title">{{ $t("auth.logout") }}</span>
         </router-link>
@@ -74,8 +76,6 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </transition>
-
-    <LoginModal v-model:shown="loginShown"/>
   </div>
 </template>
 

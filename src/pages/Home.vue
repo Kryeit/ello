@@ -25,6 +25,7 @@ import slideshowPhostt from "@/assets/slideshow/phostt.webp";
 import slideshowOlimilo from "@/assets/slideshow/olimilo.webp";
 import slideshowJerry from "@/assets/slideshow/jerry.webp";
 import slideshowElzen from "@/assets/slideshow/elzen.webp";
+import Separator from "@/components/Separator.vue";
 
 const images = [
   {
@@ -157,20 +158,20 @@ const images = [
 </script>
 
 <template>
-  <div class="banner">
-    <img alt="Kryeit banner" src="@/assets/kryeit/banner-scaled.webp"/>
+  <div class="mb-8 flex flex-row justify-center">
+    <img class="w-[calc(100vw-30px)] max-w-3xl" alt="Kryeit banner" src="@/assets/kryeit/banner-scaled.webp"/>
   </div>
 
   <h1 class="visually-hidden">Kryeit Home Page</h1>
 
-  <h2 class="slogan">{{ $t("home.slogan") }}</h2>
+  <h2 class="text-center pb-1">{{ $t("home.slogan") }}</h2>
 
   <OnlinePlayers class="online-players"/>
 
-  <h3 class="description">
+  <h3 class="text-center">
     {{ $t("home.description.1") }}
   </h3>
-  <h3 class="description">
+  <h3 class="text-center">
     {{ $t("home.description.2") }}
   </h3>
 
@@ -178,6 +179,7 @@ const images = [
     {{ $t("home.gallery.title") }}
   </h2>
 
+  <Separator/>
   <hr class="separator">
 
   <Slideshow :images="images"/>
@@ -198,7 +200,7 @@ const images = [
 
   <hr class="footer-separator">
 
-  <h2 class="minecraft-disclaimer">
+  <h2 class="text-xs text-center">
     {{ $t("home.disclaimer") }}
   </h2>
 </template>
@@ -221,36 +223,9 @@ const images = [
   margin-bottom: 20px;
 }
 
-.banner img {
-  width: calc(100vw - 30px);
-  max-width: 800px;
-  height: auto;
-}
-
-.slogan {
-  text-align: center;
-  padding-bottom: 16px;
-}
-
-.description {
-  text-align: center;
-}
-
 .section-title {
   text-align: center;
   padding-top: 20px;
-}
-
-.minecraft-disclaimer {
-  text-align: center;
-  font-size: 12px;
-}
-
-.banner {
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
 .visually-hidden {

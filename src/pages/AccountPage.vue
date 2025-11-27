@@ -15,18 +15,10 @@ const uploadProgress = ref(0);
 const uploading = ref(false);
 const newSongName = ref("");
 
-watch(AuthService.user, val => {
-  if (val) {
-    fetch("/api/account/songs").then(res => res.json()).then(songData => {
-      songs.value = songData;
-    });
-  }
-}, {immediate: true});
-watch(AuthService.validatingLogin, val => {
-  if (!val && !AuthService.user.value) {
-    AuthService.loginShown.value = true;
-  }
-}, {immediate: true});
+const discordAccount = ref();
+const connectDiscordDialogVisible = ref(false);
+const connectDiscordOTP = ref();
+const connectingDiscord = ref(false);
 
 function onFileSelected({files}) {
   selectedFile.value = files[0];
@@ -35,6 +27,28 @@ function onFileSelected({files}) {
   uploading.value = false;
   uploadProgress.value = 0;
   newSongName.value = "";
+}
+
+watch(AuthService.user, val => {
+  if (val === undefined) return;
+
+  fetch("/api/account/songs").then(res => res.json()).then(songData => {
+    songs.value = songData;
+  });
+
+  fetchDiscordConnection().then();
+}, {immediate: true});
+
+watch(AuthService.validatingLogin, val => {
+  if (!val && !AuthService.user.value) {
+    AuthService.loginShown.value = true;
+  }
+}, {immediate: true});
+
+async function fetchDiscordConnection() {
+  return fetch("/api/account/connections/discord").then(res => res.json()).then(account => {
+    discordAccount.value = account;
+  });
 }
 
 async function uploadSong() {
@@ -113,13 +127,71 @@ function openLogin() {
 function isAddSongDialogValid() {
   return selectedFile.value.size < 10 * 1024 * 1024 && newSongName.value.trim().length > 0;
 }
+
+async function connectDiscord() {
+  try {
+    connectingDiscord.value = true;
+    const encodedCode = encodeURIComponent(connectDiscordOTP.value.replace(" ", ""));
+
+    const response = await fetch("/api/account/connections/discord/connect?otp=" + encodedCode, {
+      method: "POST"
+    });
+
+    if (!response.ok) {
+      toast.add({summary: "Failed to connect Discord", detail: await response.text(), life: 3000});
+      return;
+    }
+
+    await fetchDiscordConnection();
+    connectDiscordDialogVisible.value = false;
+  } finally {
+    connectingDiscord.value = false;
+  }
+}
+
+async function disconnectDiscord() {
+  confirm.require({
+    message: `Do you want to disconnect Discord?`,
+    header: "Disconnect",
+    rejectProps: {
+      label: 'Cancel',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Disconnect',
+      severity: 'danger'
+    },
+    accept: async () => {
+      await fetch(`/api/account/connections/discord`, {
+        method: "DELETE"
+      });
+      discordAccount.value = null;
+    }
+  });
+}
 </script>
 
 <template>
   <template v-if="AuthService.user.value">
-    <h1 class="text-xl">Hello {{ AuthService.user.value?.username }}</h1>
+    <h1 class="text-xl mb-8!">Hello {{ AuthService.user.value?.username }}</h1>
+
+    <h1 class="text-xl">Your Connections</h1>
+    <div class="rounded-lg p-2 bg-zinc-800 mb-8!">
+      <h1 class="mb-2! text-lg">Discord</h1>
+      <div v-if="discordAccount?.avatarURL" class="flex items-center gap-2">
+        <img class="rounded-full h-12" :src="discordAccount.avatarURL">
+        <h1 class="text-zinc-400">{{ discordAccount.name }}</h1>
+        <Button class="ml-auto!" icon="pi pi-times" severity="danger" size="small" @click="disconnectDiscord"/>
+      </div>
+      <div v-else>
+        <Button icon="pi pi-plus" size="small" label="Connect Discord"
+                @click="connectDiscordOTP = ''; connectDiscordDialogVisible = true"/>
+      </div>
+    </div>
 
     <h1 class="text-xl">Your Songs ({{ songs.length }} / 5)</h1>
+
     <div class="mb-2!">
       <div v-for="song in songs" class="flex items-center p-2 rounded-lg bg-zinc-800 mb-2!">
         <div>
@@ -155,6 +227,20 @@ function isAddSongDialogValid() {
                 @click="addSongDialogVisible = false"></Button>
         <Button :loading="uploading" :disabled="!isAddSongDialogValid()" type="button" label="Save"
                 @click="uploadSong"></Button>
+      </div>
+    </Dialog>
+
+    <Dialog v-model:visible="connectDiscordDialogVisible" modal header="Connect Discord" :style="{ width: '25rem' }">
+      <div class="flex flex-col gap-2 mb-4!">
+        <label for="otp" class="font-semibold w-24">OTP</label>
+        <InputText v-model="connectDiscordOTP" id="otp"/>
+        <Message v-if="connectDiscordOTP.trim().length === 0" severity="error">Please enter a otp</Message>
+      </div>
+
+      <div class="flex justify-end gap-2">
+        <Button type="button" label="Cancel" severity="secondary" @click="connectDiscordDialogVisible = false"></Button>
+        <Button :loading="connectingDiscord" :disabled="connectDiscordOTP.trim().length === 0" type="button"
+                label="Connect" @click="connectDiscord"></Button>
       </div>
     </Dialog>
   </template>

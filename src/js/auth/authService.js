@@ -17,7 +17,7 @@ class AuthService {
 
         const body = await response.json();
         localStorage.setItem("token", body.token);
-        this.user.value = new User(body.account.minecraftUUID, body.account.minecraftName, []);
+        this.handleSuccessfulLogin(body, body.token);
     }
 
     async validateToken() {
@@ -30,15 +30,18 @@ class AuthService {
                 }
             });
             if (response.ok) {
-                const body = await response.json();
-                this.user.value = new User(body.minecraftUUID, body.minecraftName, []);
-
-                const actualFetch = fetch;
-                fetch = (url, options) => actualFetch(url, {...options, headers: {"Authorization": authToken}});
+                this.handleSuccessfulLogin(await response.json(), authToken);
             }
         } finally {
             this.validatingLogin.value = false;
         }
+    }
+
+    handleSuccessfulLogin(body, token) {
+        const actualFetch = fetch;
+        fetch = (url, options) => actualFetch(url, {...options, headers: {"Authorization": token}});
+
+        this.user.value = new User(body.minecraftUUID, body.minecraftName, []);
     }
 
     async logout() {

@@ -41,7 +41,7 @@ class AuthService {
         const actualFetch = fetch;
         fetch = (url, options) => actualFetch(url, {...options, headers: {"Authorization": token}});
 
-        this.user.value = new User(body.minecraftUUID, body.minecraftName, []);
+        this.user.value = new User(body.minecraftUUID, body.minecraftName, body.roles);
     }
 
     async logout() {

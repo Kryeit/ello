@@ -4,6 +4,9 @@ import FileUpload from "@/components/FileUpload.vue";
 import {ref, watch} from "vue";
 import {addToast} from "@/js/toasts.js";
 import {Toast as PrimeToast, useConfirm, useToast} from "primevue";
+import draggable from 'vuedraggable';
+import {textToHTML} from "@sfirew/minecraft-motd-parser";
+import {areStringArraysEqual} from "@/utils.js";
 
 const toast = useToast();
 const confirm = useConfirm();
@@ -19,6 +22,10 @@ const discordAccount = ref();
 const connectDiscordDialogVisible = ref(false);
 const connectDiscordOTP = ref();
 const connectingDiscord = ref(false);
+
+const availableRoles = ref([]);
+const roles = ref([]);
+const savingRoles = ref(false);
 
 function onFileSelected({files}) {
   selectedFile.value = files[0];
@@ -37,6 +44,12 @@ watch(AuthService.user, val => {
   });
 
   fetchDiscordConnection().then();
+
+  fetch("/api/account/roles/available").then(res => res.json()).then(roles => {
+    availableRoles.value = roles.filter(r => !val.roles.find(rr => rr.id === r.id));
+  });
+
+  roles.value = val.roles;
 }, {immediate: true});
 
 watch(AuthService.validatingLogin, val => {
@@ -170,6 +183,33 @@ async function disconnectDiscord() {
     }
   });
 }
+
+function checkRoleMove(event) {
+  return event.from === event.to || roles.value.length < 3;
+}
+
+async function saveRoles() {
+  try {
+    savingRoles.value = true;
+
+    const response = await fetch("/api/account/roles", {
+      method: "PATCH",
+      body: JSON.stringify(roles.value.map(r => r.id))
+    });
+
+    if (!response.ok) toast.add({
+      summary: "Failed to save roles",
+      detail: await response.text(),
+      life: 3000,
+      severity: "error"
+    });
+    else {
+      AuthService.user.value.roles = roles.value;
+    }
+  } finally {
+    savingRoles.value = false;
+  }
+}
 </script>
 
 <template>
@@ -211,6 +251,41 @@ async function disconnectDiscord() {
     <Message v-if="songs.length === 5" severity="error">You cannot upload more than 5 songs</Message>
     <FileUpload v-else @select="onFileSelected"/>
 
+    <h1 class="text-lg mt-8!">Visible Badges</h1>
+    <draggable
+        class="flex flex-row rounded-lg bg-zinc-800 h-14 mb-2!"
+        v-model="roles"
+        group="people"
+        item-key="id"
+        :sort="true">
+      <template #item="{element}">
+        <div class="p-4 hover:outline rounded-lg">
+          <a v-html="textToHTML(element.prefix)"></a>
+        </div>
+      </template>
+    </draggable>
+    <Message v-if="songs.length === 5" severity="error">You can choose up to three badges</Message>
+
+    <h1 class="text-lg">Available Badges</h1>
+
+    <draggable
+        v-model="availableRoles"
+        group="people"
+        item-key="id"
+        :sort="true"
+        :move="checkRoleMove">
+      <template #item="{element}">
+        <div class="p-4 flex gap-2 items-center hover:outline rounded-lg w-fit">
+          <a v-html="textToHTML(element.prefix)"></a>
+          <h1>{{ element.name }}</h1>
+        </div>
+      </template>
+    </draggable>
+    <Button label="Save" icon="pi pi-save"
+            :disabled="areStringArraysEqual(roles.map(r => r.id), AuthService.user.value.roles.map(r => r.id))"
+            :loading="savingRoles" @click="saveRoles"/>
+
+    <!--    INVISIBLE -->
     <Dialog v-model:visible="addSongDialogVisible" modal header="Add Song" :style="{ width: '25rem' }">
       <Message v-if="selectedFile?.size >= 10 * 1024 * 1024" severity="error">File must be smaller than 10 MB</Message>
 

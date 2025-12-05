@@ -264,7 +264,7 @@ async function saveRoles() {
         </div>
       </template>
     </draggable>
-    <Message v-if="songs.length === 5" severity="error">You can choose up to three badges</Message>
+    <Message severity="error">You can choose up to three badges</Message>
 
     <h1 class="text-lg">Available Badges</h1>
 

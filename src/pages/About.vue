@@ -20,30 +20,36 @@
 
     <hr class="separator">
 
-    <div class="staff-section">
+    <div class="flex flex-col md:flex-row justify-between items-center flex-wrap gap-8">
 
-      <div class="staff-member">
+      <div class="flex flex-col items-center staff-member">
 
         <img src="../assets/staff/muriplz.png" alt="MuriPlz" />
         <p>MuriPlz</p>
       </div>
 
-      <div class="staff-member">
+      <div class="flex flex-col items-center staff-member">
 
         <img src="../assets/staff/tess.png" alt="__Tesseract" />
         <p>__Tesseract</p>
       </div>
 
-      <div class="staff-member">
+      <div class="flex flex-col items-center staff-member">
 
         <img src="../assets/staff/rats.png" alt="RatInATopHat427" />
         <p>RatInATopHat427</p>
       </div>
 
-      <div class="staff-member">
+      <div class="flex flex-col items-center staff-member">
 
         <img src="../assets/staff/rhino.png" alt="MrRedRhino" />
         <p>MrRedRhino</p>
+      </div>
+
+      <div class="flex flex-col items-center staff-member">
+
+        <img src="../assets/staff/moronic_merkury.webp" alt="MuriPlz" />
+        <p>MoronicMerkury</p>
       </div>
 
     </div>
@@ -95,16 +101,8 @@
   font-size: 5rem;
 }
 
-.staff-section {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
 .staff-member {
-  flex: 1;
-  margin: 1em;
+  gap: 4px;
 }
 
 .staff-member p {

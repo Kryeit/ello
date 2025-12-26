@@ -103,11 +103,26 @@ resizeBackgroundImage();
 
 @media (max-width: 1024px) {
   .cog-toggler {
-    top: calc(100% - env(safe-area-inset-bottom));
+    top: auto;
+    bottom: 0;
     left: 50%;
+    transform: translateX(-50%) translateY(50%);
     width: 150px;
     height: 150px;
   }
 
+  .cog-toggler.rotated {
+    transform: translateX(-50%) translateY(50%) rotate(90deg);
+  }
+}
+
+.main {
+  min-height: 100vh;
+}
+
+@supports (min-height: 100dvh) {
+  .main {
+    min-height: 100dvh;
+  }
 }
 </style>

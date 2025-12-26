@@ -158,51 +158,56 @@ const images = [
 </script>
 
 <template>
-  <div class="mb-8 flex flex-row justify-center">
-    <img class="w-[calc(100vw-30px)] max-w-3xl" alt="Kryeit banner" src="@/assets/kryeit/banner-scaled.webp"/>
+  <div class="!mx-4">
+    <div class="h-12"></div>
+    <div class="flex flex-row justify-center">
+      <img class="w-[calc(100vw-30px)] max-w-3xl" alt="Kryeit banner" src="@/assets/kryeit/banner-scaled.webp"/>
+    </div>
+
+    <h1 class="visually-hidden">Kryeit Home Page</h1>
+
+    <h2 class="text-center py-8 text-4xl !text-gray-400">{{ $t("home.slogan") }}</h2>
+
+    <OnlinePlayers class="online-players"/>
+
+    <h3 class="text-2xl">
+      {{ $t("home.description.1") }}
+    </h3>
+    <h3 class="text-2xl !mb-8">
+      {{ $t("home.description.2") }}
+    </h3>
+
+    <h2 id="gallery" class="text-4xl !mb-4 font-bold text-center">
+      {{ $t("home.gallery.title") }}
+    </h2>
+
+    <Separator/>
+    <hr class="separator">
+
+    <Slideshow :images="images" class="!mb-8"/>
+
+    <h2 id="how-to-join" class="text-4xl !mb-4 font-bold text-center">
+      {{ $t("home.how-to-join.title") }}
+    </h2>
+
+    <Separator/>
+    <hr class="separator">
+
+    <HowToJoin class="!mb-8"/>
+
+    <h2 id="trailer" class="text-4xl !mb-4 font-bold text-center">Trailer</h2>
+
+    <Separator/>
+    <hr class="separator">
+
+    <VideoPlayer :src="Kryeitrailer" :sound="0.7"/>
+
+    <hr class="footer-separator">
+
+    <h2 class="text-xs text-center">
+      {{ $t("home.disclaimer") }}
+    </h2>
   </div>
-
-  <h1 class="visually-hidden">Kryeit Home Page</h1>
-
-  <h2 class="text-center pb-1">{{ $t("home.slogan") }}</h2>
-
-  <OnlinePlayers class="online-players"/>
-
-  <h3 class="text-center">
-    {{ $t("home.description.1") }}
-  </h3>
-  <h3 class="text-center">
-    {{ $t("home.description.2") }}
-  </h3>
-
-  <h2 id="gallery" class="section-title">
-    {{ $t("home.gallery.title") }}
-  </h2>
-
-  <Separator/>
-  <hr class="separator">
-
-  <Slideshow :images="images"/>
-
-  <h2 id="how-to-join" class="section-title">
-    {{ $t("home.how-to-join.title") }}
-  </h2>
-
-  <hr class="separator">
-
-  <HowToJoin/>
-
-  <h2 id="trailer" class="section-title">Trailer</h2>
-
-  <hr class="separator">
-
-  <VideoPlayer :src="Kryeitrailer" :sound="0.7"/>
-
-  <hr class="footer-separator">
-
-  <h2 class="text-xs text-center">
-    {{ $t("home.disclaimer") }}
-  </h2>
 </template>
 
 <style scoped>

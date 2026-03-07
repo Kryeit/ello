@@ -17,7 +17,12 @@ const hovered = ref(false);
 
 const websocket = new ReconnectingWebSocket("wss://kryeit.com/api/server/status/live");
 websocket.addEventListener("message", event => {
-  onlinePlayers.value = JSON.parse(event.data).connectedPlayers;
+  const message = JSON.parse(event.data);
+  const messageType = message.type;
+
+  if (messageType === "STATUS_UPDATE") {
+    onlinePlayers.value = message.data.connectedPlayers;
+  }
 });
 
 const showPlayerList = () => {
@@ -32,7 +37,7 @@ const hidePlayerList = () => {
 <template>
   <div class="server-status">
     <div class="overlay"></div>
-    <img class="icon" src="/src/assets/kryeit/gears.png" alt="Server Icon" />
+    <img class="icon" src="/src/assets/kryeit/gears.png" alt="Server Icon"/>
     <div class="details">
       <h1>Minecraft Server</h1>
       <h2>Kryeit</h2>
@@ -49,7 +54,7 @@ const hidePlayerList = () => {
       >
         <span>{{ onlineCount }}/18</span>
         <a href="https://status.kryeit.com" target="_blank">
-          <img class="bars" src="/src/assets/minecraft/bars.png" alt="Bars" />
+          <img class="bars" src="/src/assets/minecraft/bars.png" alt="Bars"/>
         </a>
         <div class="player-list" v-show="hovered" ref="playerList">
           <p

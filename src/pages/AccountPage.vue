@@ -213,7 +213,7 @@ async function saveRoles() {
 </script>
 
 <template>
-  <template v-if="AuthService.user.value">
+  <template v-if="AuthService.user">
     <h1 class="text-xl mb-8!">Hello {{ AuthService.user.value?.username }}</h1>
 
     <h1 class="text-xl">Your Connections</h1>

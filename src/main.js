@@ -32,9 +32,13 @@ import {
     ConfirmationService,
     ConfirmDialog,
     Dialog,
+    InputGroup,
+    InputGroupAddon,
+    InputNumber,
     InputText,
     Message,
     ProgressBar,
+    Textarea,
     Toast,
     ToastService
 } from "primevue";
@@ -104,4 +108,8 @@ createApp(App)
     .component("PrimeToast", Toast)
     .component("ConfirmDialog", ConfirmDialog)
     .component("Message", Message)
+    .component("Textarea", Textarea)
+    .component("InputNumber", InputNumber)
+    .component("InputGroup", InputGroup)
+    .component("InputGroupAddon", InputGroupAddon)
     .mount('#app');

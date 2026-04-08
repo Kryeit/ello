@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import enMessages from '../localization/en_en.json'
 import esMessages from '../localization/es_es.json'
-import productStore from './js/merch/productStore.js'
 
 import {
     ArrowLeft32,
@@ -44,11 +43,6 @@ useColorMode({
         cafe: 'cafe',
     },
 })
-
-// Start loading the product catalog at application launch
-productStore.fetchCatalog().catch(error => {
-    console.error('Failed to preload product catalog:', error);
-});
 
 // Validate user token if available
 AuthService.validateToken();

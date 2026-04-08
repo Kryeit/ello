@@ -3,9 +3,7 @@
 
 <template>
   <footer class="footer">
-    <router-link class="link" to="/terms">terms</router-link>
     <router-link class="link" to="/privacy">privacy</router-link>
-    <router-link class="link" to="/shipping">shipping</router-link>
   </footer>
 </template>
 

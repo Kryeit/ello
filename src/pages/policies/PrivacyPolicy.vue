@@ -8,29 +8,19 @@ const rawPrivacyPolicy = `
 Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal data when you use our services.
 
 ## Data We Collect
-- **Email Address**: Used to communicate about your order.
-- **Shipping Address**: Used to deliver your purchase.
-- **Order Details**: Information about the items you've purchased.
 - **JWT Tokens**: Used to authenticate your session securely.
 
-We do not store any passwords, only hashed ones.
-
-## Data Retention
-We only retain your personal data as long as necessary to process your orders:
-- **Order Details, Shipping Address, and Email**: These are deleted from our database once the order status is marked as "delivered."
+We do not store any passwords.
 
 ## Why We Collect Data
-Your data is used solely for:
-1. Processing and delivering your orders.
-2. Communicating updates related to your purchases.
+Your data is used solely for communicating updates related to your purchases.
 
 ## Data Sharing
 - **Payment Processing:** We use Stripe to securely process payments. Your payment information is handled according to Stripe's Privacy Policy, which can be found at [https://stripe.com/privacy](https://stripe.com/privacy).
-- **Shipping Providers:** Your address is shared with our shipping partners to deliver your order.
 - We do not sell, share, or trade your personal information with any other third parties, except as required to comply with legal obligations.
 
 ## Cookies
-Users can manage or disable cookies through their browser settings. Our cookie use is minimal and only for session management.
+Our cookie use is minimal and only for session management.
 
 ## Your Rights
 Under GDPR, you have the right to:
@@ -48,7 +38,7 @@ We may update this Privacy Policy to reflect changes in our practices or legal r
 ## Contact Us
 If you have any questions about our Privacy Policy, please contact us at **kryeit.minecraft@gmail.com**.
 
-Effective Date: 22/11/2024
+Effective Date: 08/04/2026
 `;
 
 const privacyPolicy = marked.parse(rawPrivacyPolicy);

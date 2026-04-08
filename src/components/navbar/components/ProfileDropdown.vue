@@ -148,6 +148,7 @@ span {
 
 .social-media {
   display: flex;
+  justify-content: center;
 }
 
 .social-media a {

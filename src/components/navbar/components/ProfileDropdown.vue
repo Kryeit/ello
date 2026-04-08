@@ -146,6 +146,10 @@ span {
   background: rgba(255, 0, 0, 0.4);
 }
 
+.social-media {
+  display: flex;
+}
+
 .social-media a {
   cursor: pointer;
   color: var(--color-border);

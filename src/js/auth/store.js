@@ -1,10 +1,10 @@
-import User from './user.js';
+import { reactive } from 'vue';
 
 class Store {
     constructor() {
-        this.state = {
+        this.state = reactive({
             user: null
-        };
+        });
     }
 
     setUser(user) {

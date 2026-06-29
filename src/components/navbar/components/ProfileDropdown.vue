@@ -63,7 +63,7 @@ function showLogin() {
           <span class="menu-item-title">{{ $t("auth.logout") }}</span>
         </router-link>
 
-        <div class="social-media">
+        <div class="social-media flex gap-2 mt-2">
           <a href="https://discord.gg/njGh5UUU4d" target="_blank" rel="noopener noreferrer">
             <DiscordLogo class="logo"/>
           </a>

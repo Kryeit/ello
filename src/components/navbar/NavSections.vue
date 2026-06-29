@@ -4,7 +4,7 @@ import {useRouter} from 'vue-router';
 const router = useRouter();
 
 const navigateToStore = () => {
-  router.push('/store');
+  window.open('https://shop.kryeit.com', '_blank');
 };
 
 const navigateToAnalytics = () => {
